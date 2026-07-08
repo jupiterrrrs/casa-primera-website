@@ -1,0 +1,573 @@
+import { motion, AnimatePresence } from "motion/react";
+import { CalendarDays, Phone, Mail, ChevronLeft, ChevronRight, X, Users, CheckCircle, Check, Ban } from "lucide-react";
+import { useState } from "react";
+import { DayPicker, DateRange } from "react-day-picker";
+import { format, differenceInCalendarDays, isWithinInterval, addDays } from "date-fns";
+import { TermsModal } from "./TermsModal";
+import "react-day-picker/dist/style.css";
+
+// Villa data with blocked dates
+const allVillas = [
+  {
+    label: "La Palma Villa",
+    short: "La Palma",
+    pax: 34,
+    price: 8500,
+    tag: "Luxury",
+    blocked: [
+      { from: new Date(2026, 6, 4), to: new Date(2026, 6, 6) },
+      { from: new Date(2026, 6, 18), to: new Date(2026, 6, 22) },
+      { from: new Date(2026, 7, 1), to: new Date(2026, 7, 4) },
+    ],
+  },
+  {
+    label: "Villa Sampaguita",
+    short: "Sampaguita",
+    pax: 40,
+    price: 5500,
+    tag: "Family",
+    blocked: [
+      { from: new Date(2026, 6, 5), to: new Date(2026, 6, 8) },
+      { from: new Date(2026, 6, 25), to: new Date(2026, 6, 27) },
+    ],
+  },
+  {
+    label: "Villa Ilang-Ilang",
+    short: "Ilang-Ilang",
+    pax: 50,
+    price: 3800,
+    tag: "Standard",
+    blocked: [
+      { from: new Date(2026, 6, 10), to: new Date(2026, 6, 13) },
+    ],
+  },
+  {
+    label: "Bougainvillea Suite",
+    short: "Bougainvillea",
+    pax: 40,
+    price: 4200,
+    tag: "Romantic",
+    blocked: [
+      { from: new Date(2026, 6, 15), to: new Date(2026, 6, 17) },
+      { from: new Date(2026, 7, 8), to: new Date(2026, 7, 10) },
+    ],
+  },
+  {
+    label: "Casa Bamboo",
+    short: "Bamboo",
+    pax: 34,
+    price: 2200,
+    tag: "Budget",
+    blocked: [
+      { from: new Date(2026, 6, 20), to: new Date(2026, 6, 23) },
+    ],
+  },
+  {
+    label: "3 Villas Package",
+    short: "3 Villas",
+    pax: 100,
+    price: 16000,
+    tag: "Grand Event",
+    blocked: [],
+  },
+  {
+    label: "Reconnecting Venue",
+    short: "Reconnecting",
+    pax: 100,
+    price: 18000,
+    tag: "Events",
+    blocked: [],
+  },
+];
+
+function isVillaAvailable(villa: typeof allVillas[0], range: DateRange | undefined): boolean {
+  if (!range?.from) return true;
+  const end = range.to ?? range.from;
+  for (let d = new Date(range.from); d <= end; d = addDays(d, 1)) {
+    if (villa.blocked.some((b) => isWithinInterval(d, { start: b.from, end: b.to }))) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function getAllBlockedDates() {
+  const all: { from: Date; to: Date }[] = [];
+  allVillas.forEach((v) => all.push(...v.blocked));
+  return all;
+}
+
+function buildGoogleCalendarUrl(title: string, checkIn: Date, checkOut: Date, details: string, location: string): string {
+  const fmt = (d: Date) => d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+  const params = new URLSearchParams({ action: "TEMPLATE", text: title, dates: `${fmt(checkIn)}/${fmt(checkOut)}`, details, location });
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+// ── Calendar modal with inline villa availability ──────────────────────────
+function ReservationCalendar({
+  range,
+  onChange,
+  onClose,
+  selectedVilla,
+  onSelectVilla,
+}: {
+  range: DateRange | undefined;
+  onChange: (r: DateRange | undefined) => void;
+  onClose: () => void;
+  selectedVilla: string;
+  onSelectVilla: (v: string) => void;
+}) {
+  const nights = range?.from && range?.to ? differenceInCalendarDays(range.to, range.from) : 0;
+  const anySelected = !!range?.from;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/55 backdrop-blur-sm" />
+      <motion.div
+        className="relative rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row"
+        style={{ backgroundColor: "#fff", maxWidth: 820, width: "100%", maxHeight: "92vh" }}
+        initial={{ opacity: 0, scale: 0.93, y: 18 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.93 }}
+        transition={{ type: "spring", stiffness: 280, damping: 28 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* ── LEFT: Calendar ── */}
+        <div className="flex flex-col" style={{ minWidth: 0, flex: "0 0 auto" }}>
+          <div className="flex items-center justify-between px-5 py-4" style={{ backgroundColor: "#00b4d8" }}>
+            <div>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.05rem", color: "#fff" }}>
+                Select Stay Dates
+              </h3>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "rgba(255,255,255,0.82)" }}>
+                🔴 Crossed-out dates are unavailable
+              </p>
+            </div>
+            <button onClick={onClose} className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition-colors">
+              <X size={15} color="#fff" />
+            </button>
+          </div>
+
+          <div className="px-3 py-2 overflow-auto">
+            <style>{`
+              .rdp { --rdp-accent-color: #00b4d8; --rdp-background-color: #e0f7fa; margin: 0 auto; font-family: 'DM Sans', sans-serif; }
+              .rdp-day_selected, .rdp-day_range_start, .rdp-day_range_end { background-color: #00b4d8 !important; color: #fff !important; border-radius: 50% !important; }
+              .rdp-day_range_middle { background-color: #e0f7fa !important; color: #007a9a !important; border-radius: 0 !important; }
+              .rdp-day:hover:not(.rdp-day_selected):not(.rdp-day_range_middle):not(.rdp-day_disabled) { background-color: #b2ebf2 !important; border-radius: 50% !important; }
+              .rdp-day_disabled { color: #e57373 !important; text-decoration: line-through !important; opacity: 0.55 !important; }
+              .rdp-caption_label { font-family: 'Playfair Display', serif; font-weight: 700; color: #1a2e1a; font-size: 1rem; }
+              .rdp-head_cell { font-family: 'DM Sans', sans-serif; color: #6b7a5e; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+            `}</style>
+            <DayPicker
+              mode="range"
+              selected={range}
+              onSelect={onChange}
+              disabled={[{ before: new Date() }, ...getAllBlockedDates()]}
+              numberOfMonths={1}
+              components={{ IconLeft: () => <ChevronLeft size={15} />, IconRight: () => <ChevronRight size={15} /> }}
+            />
+          </div>
+
+          {/* Date summary bar */}
+          {range?.from && range?.to && (
+            <div className="mx-4 mb-4 p-3 rounded-2xl grid grid-cols-3 gap-1 text-center" style={{ backgroundColor: "#e0f7fa" }}>
+              <div>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", color: "#6b7a5e", textTransform: "uppercase", letterSpacing: "0.06em" }}>Check-in</p>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "0.82rem" }}>{format(range.from, "MMM d, yyyy")}</p>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", color: "#007a9a" }}>3:00 PM</p>
+              </div>
+              <div style={{ borderLeft: "1px solid #b2ebf2", borderRight: "1px solid #b2ebf2" }}>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", color: "#6b7a5e", textTransform: "uppercase", letterSpacing: "0.06em" }}>Nights</p>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, color: "#00b4d8", fontSize: "1.3rem", lineHeight: 1 }}>{nights}</p>
+              </div>
+              <div>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", color: "#6b7a5e", textTransform: "uppercase", letterSpacing: "0.06em" }}>Check-out</p>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "0.82rem" }}>{format(range.to, "MMM d, yyyy")}</p>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", color: "#007a9a" }}>12:00 NN</p>
+              </div>
+            </div>
+          )}
+
+          {!range?.from && (
+            <p className="text-center pb-4" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#9aaa8e" }}>
+              👆 Click a date to start selecting
+            </p>
+          )}
+        </div>
+
+        {/* ── RIGHT: Villa Availability Panel ── */}
+        <div className="flex flex-col border-t lg:border-t-0 lg:border-l overflow-y-auto" style={{ borderColor: "#e0f7fa", flex: 1, minWidth: 0 }}>
+          <div className="px-5 py-4 sticky top-0 z-10" style={{ backgroundColor: "#f8fdff", borderBottom: "1px solid #e0f7fa" }}>
+            <h4 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: "#1a2e1a" }}>
+              Villa Availability
+            </h4>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "#6b7a5e" }}>
+              {anySelected
+                ? range?.to
+                  ? `For ${format(range.from!, "MMM d")} – ${format(range.to, "MMM d, yyyy")}`
+                  : `From ${format(range.from!, "MMM d, yyyy")} — pick check-out`
+                : "Select dates to see availability"}
+            </p>
+          </div>
+
+          <div className="px-4 py-3 space-y-2.5">
+            {allVillas.map((villa) => {
+              const available = isVillaAvailable(villa, range);
+              const isSelected = selectedVilla === villa.label;
+              return (
+                <button
+                  key={villa.label}
+                  type="button"
+                  disabled={!available || !range?.from}
+                  onClick={() => { onSelectVilla(villa.label); onClose(); }}
+                  className="w-full text-left rounded-2xl px-4 py-3 transition-all duration-200 border"
+                  style={{
+                    backgroundColor: isSelected ? "#e0f7fa" : available ? "#fff" : "#fafafa",
+                    borderColor: isSelected ? "#00b4d8" : available ? "rgba(0,180,216,0.15)" : "#f0f0f0",
+                    opacity: !range?.from ? 0.6 : 1,
+                    cursor: !available || !range?.from ? "not-allowed" : "pointer",
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    {/* Status dot */}
+                    <div
+                      className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+                      style={{
+                        backgroundColor: !range?.from
+                          ? "#e5e7eb"
+                          : available
+                          ? "#dcfce7"
+                          : "#fee2e2",
+                      }}
+                    >
+                      {!range?.from ? (
+                        <CalendarDays size={13} color="#9ca3af" />
+                      ) : available ? (
+                        <Check size={13} color="#16a34a" strokeWidth={2.5} />
+                      ) : (
+                        <Ban size={12} color="#dc2626" />
+                      )}
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.88rem", color: "#1a2e1a" }}>
+                          {villa.label}
+                        </span>
+                        <span
+                          className="px-2 py-0.5 rounded-full text-xs"
+                          style={{
+                            backgroundColor: villa.pax >= 100 ? "#fff8e1" : "#f0fafe",
+                            color: villa.pax >= 100 ? "#7a6000" : "#007a9a",
+                            fontFamily: "'DM Sans', sans-serif",
+                          }}
+                        >
+                          {villa.tag}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3 mt-0.5">
+                        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "#6b7a5e" }}>
+                          <Users size={11} className="inline mr-1" />Up to {villa.pax} pax
+                        </span>
+                        <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.82rem", fontWeight: 700, color: "#00b4d8" }}>
+                          ₱{villa.price.toLocaleString()}/night
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Status label */}
+                    {range?.from && (
+                      <span
+                        className="text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0"
+                        style={{
+                          backgroundColor: available ? "#dcfce7" : "#fee2e2",
+                          color: available ? "#16a34a" : "#dc2626",
+                          fontFamily: "'DM Sans', sans-serif",
+                        }}
+                      >
+                        {available ? "Available" : "Booked"}
+                      </span>
+                    )}
+                  </div>
+
+                  {isSelected && available && (
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "#007a9a", marginTop: "0.4rem", paddingLeft: "2.5rem" }}>
+                      ✓ Selected — click Confirm to apply
+                    </p>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="px-4 py-3 mt-auto sticky bottom-0" style={{ backgroundColor: "#f8fdff", borderTop: "1px solid #e0f7fa" }}>
+            <button
+              onClick={onClose}
+              disabled={!range?.from || !range?.to}
+              className="w-full py-3 rounded-full font-semibold text-white transition-all duration-200 hover:opacity-90 disabled:opacity-35 disabled:cursor-not-allowed"
+              style={{ backgroundColor: "#00b4d8", fontFamily: "'DM Sans', sans-serif" }}
+            >
+              {range?.from && range?.to ? "Confirm Dates →" : "Select Check-in & Check-out"}
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+// ── Main section ──────────────────────────────────────────────────────────
+export function BookingCTA() {
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", villa: "", guests: "2" });
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [termsOpen, setTermsOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [calendarUrl, setCalendarUrl] = useState("");
+
+  const nights = dateRange?.from && dateRange?.to ? differenceInCalendarDays(dateRange.to, dateRange.from) : 0;
+
+  const dateLabel = dateRange?.from && dateRange?.to
+    ? `${format(dateRange.from, "MMM d")} → ${format(dateRange.to, "MMM d, yyyy")}  (${nights} night${nights !== 1 ? "s" : ""})`
+    : dateRange?.from
+    ? `${format(dateRange.from, "MMM d, yyyy")} → Pick check-out`
+    : "Select check-in & check-out";
+
+  function handleReserveClick(e: React.FormEvent) {
+    e.preventDefault();
+    setTermsOpen(true);
+  }
+
+  function handleAcceptTerms() {
+    setTermsOpen(false);
+    if (dateRange?.from && dateRange?.to) {
+      const checkIn = new Date(dateRange.from); checkIn.setHours(15, 0, 0, 0);
+      const checkOut = new Date(dateRange.to); checkOut.setHours(12, 0, 0, 0);
+      setCalendarUrl(buildGoogleCalendarUrl(
+        `Casa Primera Hotspring Resort — ${formData.villa || "Villa Stay"}`,
+        checkIn, checkOut,
+        `Reservation for ${formData.guests} guest(s).\nCasa Primera Hotspring Resort, Calamba, Laguna.\nContact: +63 917 123 4567`,
+        "Brgy. Pansol, Calamba City, Laguna, Philippines"
+      ));
+    }
+    setSubmitted(true);
+    setTimeout(() => { setSubmitted(false); setCalendarUrl(""); }, 12000);
+  }
+
+  // Availability summary for selected dates (shown in form)
+  const availabilityRows = dateRange?.from
+    ? allVillas.map((v) => ({ ...v, available: isVillaAvailable(v, dateRange) }))
+    : [];
+  const availableCount = availabilityRows.filter((v) => v.available).length;
+
+  return (
+    <section id="booking" className="py-24 relative overflow-hidden">
+      <div className="absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1585730989347-1cffe553c948?w=1800&h=900&fit=crop&auto=format" alt="Pool" className="w-full h-full object-cover" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(0,91,110,0.88) 0%, rgba(45,106,79,0.82) 100%)" }} />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left info */}
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+            <span className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-6" style={{ backgroundColor: "rgba(0,180,216,0.25)", color: "#7eeaf7", fontFamily: "'DM Sans', sans-serif", border: "1px solid rgba(0,180,216,0.35)" }}>
+              Reservations
+            </span>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.2rem, 4.5vw, 3.2rem)", color: "#fff", fontWeight: 800, lineHeight: 1.2 }} className="mb-6">
+              Plan Your Perfect<br /><span style={{ color: "#f5c42c" }}>Getaway Today</span>
+            </h2>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.82)", lineHeight: 1.8, fontSize: "1.05rem" }} className="mb-10">
+              Reserve your slice of tropical paradise at Casa Primera. Whether it's a weekend with family or a romantic escape for two, we have the perfect villa waiting for you.
+            </p>
+            <div className="space-y-5">
+              {[
+                { icon: Phone, label: "Call Us", value: "+63 917 123 4567" },
+                { icon: Mail, label: "Email Us", value: "reservations@casaprimera.ph" },
+                { icon: CalendarDays, label: "Check-in / Check-out", value: "3:00 PM / 12:00 NN" },
+                { icon: Users, label: "Max Capacity", value: "50 pax/villa · 100 pax events" },
+              ].map(({ icon: Icon, label, value }) => (
+                <div key={label} className="flex items-center gap-4">
+                  <div className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "rgba(0,180,216,0.25)" }}>
+                    <Icon size={18} color="#7eeaf7" />
+                  </div>
+                  <div>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.55)", textTransform: "uppercase", letterSpacing: "0.08em" }}>{label}</p>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", color: "#fff", fontWeight: 500 }}>{value}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.15 }}
+            className="rounded-3xl p-8 shadow-2xl"
+            style={{ backgroundColor: "#fff" }}
+          >
+            {submitted ? (
+              <div className="text-center py-8">
+                <CheckCircle className="mx-auto mb-4" size={48} color="#16a34a" />
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.6rem", color: "#1a2e1a", fontWeight: 700 }} className="mb-3">Reservation Sent!</h3>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", color: "#6b7a5e", lineHeight: 1.7 }} className="mb-4">
+                  Thank you, <strong>{formData.name}</strong>! We'll contact you within 24 hours to confirm your booking.
+                </p>
+                {dateRange?.from && dateRange?.to && (
+                  <div className="mt-4 px-5 py-3 rounded-2xl inline-block mb-5" style={{ backgroundColor: "#e0f7fa" }}>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "#007a9a", fontWeight: 600 }}>
+                      📅 {format(dateRange.from, "MMM d")} – {format(dateRange.to, "MMM d, yyyy")} · {nights} night{nights !== 1 ? "s" : ""}
+                    </p>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "#6b7a5e" }}>Check-in 3:00 PM · Check-out 12:00 NN</p>
+                  </div>
+                )}
+                {calendarUrl && (
+                  <a href={calendarUrl} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full py-3.5 rounded-full font-semibold text-white transition-all duration-200 hover:opacity-90"
+                    style={{ backgroundColor: "#00b4d8", fontFamily: "'DM Sans', sans-serif" }}>
+                    📅 Add to Google Calendar
+                  </a>
+                )}
+              </div>
+            ) : (
+              <>
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.5rem", color: "#1a2e1a", fontWeight: 700 }} className="mb-6">Reserve Now</h3>
+                <form onSubmit={handleReserveClick} className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#4a5e40", fontWeight: 600 }} className="block mb-1.5">Full Name</label>
+                      <input type="text" required placeholder="Juan dela Cruz" value={formData.name}
+                        onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#00b4d8] focus:ring-2 focus:ring-[#00b4d8]/20"
+                        style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", borderColor: "#d6c9a8", backgroundColor: "#fdf6ec" }} />
+                    </div>
+                    <div>
+                      <label style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#4a5e40", fontWeight: 600 }} className="block mb-1.5">Phone</label>
+                      <input type="tel" required placeholder="+63 9XX XXX XXXX" value={formData.phone}
+                        onChange={(e) => setFormData((p) => ({ ...p, phone: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#00b4d8] focus:ring-2 focus:ring-[#00b4d8]/20"
+                        style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", borderColor: "#d6c9a8", backgroundColor: "#fdf6ec" }} />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#4a5e40", fontWeight: 600 }} className="block mb-1.5">Email Address</label>
+                    <input type="email" required placeholder="you@email.com" value={formData.email}
+                      onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
+                      className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#00b4d8] focus:ring-2 focus:ring-[#00b4d8]/20"
+                      style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", borderColor: "#d6c9a8", backgroundColor: "#fdf6ec" }} />
+                  </div>
+
+                  {/* Date picker trigger */}
+                  <div>
+                    <label style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#4a5e40", fontWeight: 600 }} className="block mb-1.5">Stay Dates & Villa Availability</label>
+                    <button type="button" onClick={() => setCalendarOpen(true)}
+                      className="w-full px-4 py-2.5 rounded-xl border text-left flex items-center gap-3 transition-all duration-200 hover:border-[#00b4d8]"
+                      style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", borderColor: dateRange?.from ? "#00b4d8" : "#d6c9a8", backgroundColor: dateRange?.from ? "#e0f7fa" : "#fdf6ec", color: dateRange?.from ? "#007a9a" : "#9aaa8e" }}>
+                      <CalendarDays size={16} color={dateRange?.from ? "#00b4d8" : "#9aaa8e"} />
+                      <span className="flex-1">{dateLabel}</span>
+                      {dateRange?.from && (
+                        <span style={{ fontSize: "0.75rem", color: "#007a9a", fontWeight: 600 }}>
+                          {availableCount}/{allVillas.length} villas free
+                        </span>
+                      )}
+                    </button>
+                    {nights > 0 && (
+                      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "#007a9a", marginTop: "4px" }}>
+                        ✓ {nights} night{nights !== 1 ? "s" : ""} · Check-in 3PM · Check-out 12NN
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Compact availability list (once dates chosen) */}
+                  {availabilityRows.length > 0 && (
+                    <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "#e0f7fa" }}>
+                      <div className="px-4 py-2 flex items-center justify-between" style={{ backgroundColor: "#f0fafe" }}>
+                        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", fontWeight: 700, color: "#007a9a" }}>All Villa Availability</span>
+                        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "#6b7a5e" }}>Tap to select</span>
+                      </div>
+                      <div className="divide-y">
+                        {availabilityRows.map((v) => (
+                          <button
+                            key={v.label}
+                            type="button"
+                            disabled={!v.available}
+                            onClick={() => setFormData((p) => ({ ...p, villa: v.label }))}
+                            className="w-full px-4 py-2.5 flex items-center gap-3 transition-colors duration-150 text-left"
+                            style={{
+                              backgroundColor: formData.villa === v.label ? "#e0f7fa" : v.available ? "#fff" : "#fafafa",
+                              cursor: v.available ? "pointer" : "not-allowed",
+                              borderBottom: "1px solid #f0fafe",
+                            }}
+                          >
+                            <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                              style={{ backgroundColor: v.available ? "#dcfce7" : "#fee2e2" }}>
+                              {v.available ? <Check size={11} color="#16a34a" strokeWidth={2.5} /> : <Ban size={10} color="#dc2626" />}
+                            </div>
+                            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.84rem", fontWeight: 600, color: v.available ? "#1a2e1a" : "#9ca3af", flex: 1 }}>
+                              {v.label}
+                            </span>
+                            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "#9aaa8e" }}>
+                              {v.pax} pax
+                            </span>
+                            <span
+                              className="text-xs font-semibold px-2 py-0.5 rounded-full"
+                              style={{ backgroundColor: v.available ? "#dcfce7" : "#fee2e2", color: v.available ? "#16a34a" : "#dc2626", fontFamily: "'DM Sans', sans-serif" }}>
+                              {v.available ? "✓ Free" : "Booked"}
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#4a5e40", fontWeight: 600 }} className="block mb-1.5">Selected Villa</label>
+                      <select value={formData.villa} onChange={(e) => setFormData((p) => ({ ...p, villa: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#00b4d8]"
+                        style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", borderColor: "#d6c9a8", backgroundColor: "#fdf6ec" }}>
+                        <option value="">Any Villa</option>
+                        {allVillas.map((v) => <option key={v.label} value={v.label}>{v.label} ({v.pax} pax)</option>)}
+                      </select>
+                    </div>
+                    <div>
+                      <label style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#4a5e40", fontWeight: 600 }} className="block mb-1.5">Guests (Max 50)</label>
+                      <select value={formData.guests} onChange={(e) => setFormData((p) => ({ ...p, guests: e.target.value }))}
+                        className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#00b4d8]"
+                        style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", borderColor: "#d6c9a8", backgroundColor: "#fdf6ec" }}>
+                        {Array.from({ length: 50 }, (_, i) => i + 1).map((n) => <option key={n}>{n}</option>)}
+                      </select>
+                    </div>
+                  </div>
+
+                  <button type="submit"
+                    className="w-full py-4 rounded-full font-semibold text-white transition-all duration-300 hover:opacity-90 hover:scale-[1.02] hover:shadow-lg mt-2"
+                    style={{ backgroundColor: "#00b4d8", fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}>
+                    Reserve Now — View T&C →
+                  </button>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "#9aaa8e", textAlign: "center" }}>
+                    Terms & Conditions shown before final confirmation
+                  </p>
+                </form>
+              </>
+            )}
+          </motion.div>
+        </div>
+      </div>
+
+      <AnimatePresence>
+        {calendarOpen && (
+          <ReservationCalendar
+            range={dateRange}
+            onChange={setDateRange}
+            onClose={() => setCalendarOpen(false)}
+            selectedVilla={formData.villa}
+            onSelectVilla={(v) => setFormData((p) => ({ ...p, villa: v }))}
+          />
+        )}
+        {termsOpen && <TermsModal onAccept={handleAcceptTerms} onClose={() => setTermsOpen(false)} />}
+      </AnimatePresence>
+    </section>
+  );
+}
