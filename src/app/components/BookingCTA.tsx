@@ -363,7 +363,7 @@ export function BookingCTA() {
   return (
     <section id="booking" className="py-24 relative overflow-hidden">
       <div className="absolute inset-0">
-        <img src="https://images.unsplash.com/photo-1585730989347-1cffe553c948?w=1800&h=900&fit=crop&auto=format" alt="Pool" className="w-full h-full object-cover" />
+        <img src="/images/misc/booking-cta.jpg" alt="Pool" className="w-full h-full object-cover" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(0,91,110,0.88) 0%, rgba(45,106,79,0.82) 100%)" }} />
       </div>
 

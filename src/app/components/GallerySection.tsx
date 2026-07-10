@@ -5,15 +5,15 @@ import { useState } from "react";
 import { X } from "lucide-react";
 
 const photos = [
-  { id: 1, src: "https://images.unsplash.com/photo-1594099462046-1df31fd4a66c?w=600&h=700&fit=crop&auto=format", alt: "Hotspring pool with mountain backdrop" },
-  { id: 2, src: "https://images.unsplash.com/photo-1729391512126-c799d8d3f378?w=600&h=450&fit=crop&auto=format", alt: "Palm trees by the pool" },
-  { id: 3, src: "https://images.unsplash.com/photo-1776762893034-c437e452f1be?w=600&h=400&fit=crop&auto=format", alt: "Lounge chairs by the lawn" },
-  { id: 4, src: "https://images.unsplash.com/photo-1766937754720-4d30de201fd1?w=600&h=650&fit=crop&auto=format", alt: "Villa surrounded by tropical foliage" },
-  { id: 5, src: "https://images.unsplash.com/photo-1565190503580-3fe10c3f12db?w=600&h=500&fit=crop&auto=format", alt: "Fun pool floaty in crystal-clear water" },
-  { id: 6, src: "https://images.unsplash.com/photo-1562131470-af37433ba70c?w=600&h=420&fit=crop&auto=format", alt: "Lush tropical garden plants" },
-  { id: 7, src: "https://images.unsplash.com/photo-1694885090746-d90472e11c0e?w=600&h=480&fit=crop&auto=format", alt: "Covered BBQ patio area" },
-  { id: 8, src: "https://images.unsplash.com/photo-1756802156662-d0fa771ba255?w=600&h=520&fit=crop&auto=format", alt: "Resort pool lounge with chairs" },
-  { id: 9, src: "https://images.unsplash.com/photo-1709390083401-4fdbc56970d9?w=600&h=460&fit=crop&auto=format", alt: "Aerial view of resort and gardens" },
+  { id: 1, src: "/images/gallery/gallery1.jpg", alt: "Aerial drone view of Casa Primera Resort" },
+  { id: 2, src: "/images/gallery/gallery2.jpg", alt: "Villa 1 swimming pool" },
+  { id: 3, src: "/images/gallery/gallery3.jpg", alt: "Garden waterfall feature" },
+  { id: 4, src: "/images/gallery/gallery4.jpg", alt: "Gazebo and outdoor games area" },
+  { id: 5, src: "/images/gallery/gallery5.jpg", alt: "Covered dining and lounge area by the pool" },
+  { id: 6, src: "/images/gallery/gallery6.jpg", alt: "Villa balcony with mountain view" },
+  { id: 7, src: "/images/gallery/gallery7.jpg", alt: "Billiards and darts area" },
+  { id: 8, src: "/images/gallery/gallery8.jpg", alt: "Kids play area" },
+  { id: 9, src: "/images/gallery/gallery9.jpg", alt: "Villa 5 swimming area" },
 ];
 
 export function GallerySection() {
@@ -81,7 +81,7 @@ export function GallerySection() {
             <X size={20} />
           </button>
           <motion.img
-            src={lightbox.src.replace("w=600", "w=1200")}
+            src={lightbox.src}
             alt={lightbox.alt}
             className="max-w-full max-h-[90vh] rounded-2xl shadow-2xl object-contain"
             initial={{ opacity: 0, scale: 0.9 }}
