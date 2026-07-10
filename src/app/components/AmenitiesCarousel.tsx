@@ -8,7 +8,7 @@ const amenities = [
     icon: Waves,
     title: "Natural Hotspring Pool",
     desc: "Soak in mineral-rich volcanic spring water renowned for its therapeutic benefits, open day and night.",
-    image: "https://images.unsplash.com/photo-1594099462046-1df31fd4a66c?w=600&h=400&fit=crop&auto=format",
+    image: "/images/amenities/hotspring-pool.jpg",
     color: "#00b4d8",
   },
   {
@@ -16,7 +16,7 @@ const amenities = [
     icon: Home,
     title: "Private Villas",
     desc: "Cozy, fully-furnished villas with air conditioning, private bathrooms, and breathtaking garden views.",
-    image: "https://images.unsplash.com/photo-1766937754720-4d30de201fd1?w=600&h=400&fit=crop&auto=format",
+    image: "/images/amenities/private-villas.jpg",
     color: "#2d6a4f",
   },
   {
@@ -24,7 +24,7 @@ const amenities = [
     icon: Mic2,
     title: "Karaoke Area",
     desc: "Belt out your favorite songs with friends and family in our fully-equipped karaoke rooms.",
-    image: "https://images.unsplash.com/photo-1776762893034-c437e452f1be?w=600&h=400&fit=crop&auto=format",
+    image: "/images/amenities/karaoke.jpg",
     color: "#f4721b",
   },
   {
@@ -32,7 +32,7 @@ const amenities = [
     icon: Flame,
     title: "BBQ Grill Station",
     desc: "Fire up the grill under the stars. All cooking equipment provided for the perfect outdoor feast.",
-    image: "https://images.unsplash.com/photo-1694885090746-d90472e11c0e?w=600&h=400&fit=crop&auto=format",
+    image: "/images/amenities/bbq-grill.jpg",
     color: "#e76f51",
   },
   {
@@ -40,7 +40,7 @@ const amenities = [
     icon: Wifi,
     title: "Free High-Speed WiFi",
     desc: "Stay connected throughout the resort with complimentary fast and reliable internet access.",
-    image: "https://images.unsplash.com/photo-1729391512126-c799d8d3f378?w=600&h=400&fit=crop&auto=format",
+    image: "/images/amenities/wifi-room.jpg",
     color: "#00b4d8",
   },
   {
@@ -48,7 +48,7 @@ const amenities = [
     icon: TreePine,
     title: "Tropical Garden",
     desc: "Stroll through our lush, manicured tropical gardens — a living sanctuary of calm and natural beauty.",
-    image: "https://images.unsplash.com/photo-1562131470-af37433ba70c?w=600&h=400&fit=crop&auto=format",
+    image: "/images/amenities/garden.jpg",
     color: "#52b788",
   },
   {
@@ -56,7 +56,7 @@ const amenities = [
     icon: Star,
     title: "Events Area",
     desc: "Host birthdays, reunions, and celebrations in our spacious covered events hall with full catering support.",
-    image: "https://images.unsplash.com/photo-1756802156662-d0fa771ba255?w=600&h=400&fit=crop&auto=format",
+    image: "/images/amenities/events-area.jpg",
     color: "#f4a261",
   },
   {
@@ -64,7 +64,7 @@ const amenities = [
     icon: Users,
     title: "Family-Friendly Pools",
     desc: "Separate shallow pools for kids and adults — safe, clean, and perfect for all-day family fun.",
-    image: "https://images.unsplash.com/photo-1565190503580-3fe10c3f12db?w=600&h=400&fit=crop&auto=format",
+    image: "/images/amenities/family-pools.jpg",
     color: "#2d6a4f",
   },
 ];

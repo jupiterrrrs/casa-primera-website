@@ -5,33 +5,33 @@ import { motion, AnimatePresence } from "motion/react";
 const slides = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1594099462046-1df31fd4a66c?w=1600&h=900&fit=crop&auto=format",
-    alt: "Natural hotspring pool surrounded by lush greenery",
-    label: "Natural Hotspring Pools",
+    image: "/images/villas/villa1.jpg",
+    alt: "Casa Primera Villa 1 exterior",
+    label: "La Palma Villa",
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1766937754720-4d30de201fd1?w=1600&h=900&fit=crop&auto=format",
-    alt: "Private villa nestled in tropical foliage",
-    label: "Private Tropical Villas",
+    image: "/images/villas/villa2.jpg",
+    alt: "Casa Primera Villa 2 exterior",
+    label: "Villa Sampaguita",
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1776762893034-c437e452f1be?w=1600&h=900&fit=crop&auto=format",
-    alt: "Lush resort garden with lounge chairs by the pool",
-    label: "Serene Garden Escapes",
+    image: "/images/villas/villa3.jpg",
+    alt: "Casa Primera Villa 3 exterior",
+    label: "Villa Ilang-Ilang",
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1565190503580-3fe10c3f12db?w=1600&h=900&fit=crop&auto=format",
-    alt: "Night swimming in illuminated pool",
-    label: "Night Swimming Experience",
+    image: "/images/villas/villa4.jpg",
+    alt: "Casa Primera Villa 4 exterior",
+    label: "Bougainvillea Suite",
   },
   {
     id: 5,
-    image: "https://images.unsplash.com/photo-1756802156662-d0fa771ba255?w=1600&h=900&fit=crop&auto=format",
-    alt: "Resort events area and pool lounge",
-    label: "Events & Celebrations",
+    image: "/images/villas/villa5.jpg",
+    alt: "Casa Primera Villa 5 exterior",
+    label: "Casa Bamboo",
   },
 ];
 

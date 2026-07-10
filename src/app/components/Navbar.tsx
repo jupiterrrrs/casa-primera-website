@@ -11,21 +11,16 @@ const links = [
   { href: "#booking", label: "Contact" },
 ];
 
-function LogoMark({ scrolled }: { scrolled: boolean }) {
+function LogoMark() {
   return (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="18" cy="18" r="18" fill={scrolled ? "#00b4d8" : "rgba(0,180,216,0.85)"} />
-      {/* Sun rays */}
-      <circle cx="18" cy="12" r="4" fill="#f5c42c" />
-      <line x1="18" y1="6" x2="18" y2="7.5" stroke="#f5c42c" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="22.5" y1="7.5" x2="21.5" y2="8.5" stroke="#f5c42c" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="24" y1="12" x2="22.5" y2="12" stroke="#f5c42c" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="13.5" y1="7.5" x2="14.5" y2="8.5" stroke="#f5c42c" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="12" y1="12" x2="13.5" y2="12" stroke="#f5c42c" strokeWidth="1.5" strokeLinecap="round" />
-      {/* Wave */}
-      <path d="M7 23 Q9.5 20 12 23 Q14.5 26 17 23 Q19.5 20 22 23 Q24.5 26 27 23" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-      <path d="M8 27 Q10.5 24 13 27 Q15.5 30 18 27 Q20.5 24 23 27 Q25.5 30 28 27" stroke="rgba(255,255,255,0.55)" strokeWidth="1.4" fill="none" strokeLinecap="round" />
-    </svg>
+    <img
+      src="/images/logo.jpg"
+      alt="Casa Primera Hotspring Resort logo"
+      width={36}
+      height={36}
+      className="rounded-full object-cover"
+      style={{ width: 36, height: 36 }}
+    />
   );
 }
 
@@ -55,7 +50,7 @@ export function Navbar() {
           <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.05rem", color: scrolled ? "#1a2e1a" : "#fff", letterSpacing: "0.05em" }}>
             CASA
           </span>
-          <span className="mx-2"><LogoMark scrolled={scrolled} /></span>
+          <span className="mx-2"><LogoMark /></span>
           <div className="flex flex-col leading-none">
             <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.05rem", color: scrolled ? "#1a2e1a" : "#fff", letterSpacing: "0.05em" }}>
               PRIMERA

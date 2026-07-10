@@ -23,8 +23,8 @@ export function AboutSection() {
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[500px]">
               <img
-                src="https://images.unsplash.com/photo-1594099462046-1df31fd4a66c?w=800&h=700&fit=crop&auto=format"
-                alt="Guests enjoying the natural hotspring pool at Casa Primera"
+                src="/images/misc/about.jpg"
+                alt="Casa Primera Resort villa exterior and pool"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-[#2d6a4f]/30 to-transparent" />
