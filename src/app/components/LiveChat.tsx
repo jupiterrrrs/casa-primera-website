@@ -11,8 +11,8 @@ interface Message {
 const faqMap: Array<{ keywords: string[]; answer: string }> = [
   { keywords: ["check-in", "checkin", "check in", "arrival", "arrive"], answer: "Check-in time is 3:00 PM. Early check-in may be arranged subject to availability — please contact us in advance!" },
   { keywords: ["check-out", "checkout", "check out", "departure", "leave"], answer: "Check-out time is 12:00 NN (noon). Late check-out can be requested for an additional fee." },
-  { keywords: ["price", "rate", "cost", "how much", "magkano"], answer: "Our villa rates range from ₱2,200 to ₱8,500/night. Special packages (3 Villas / Reconnecting Venue) start at ₱16,000. Scroll up to see all villa details! 😊" },
-  { keywords: ["capacity", "pax", "guests", "how many", "max"], answer: "Individual villas accommodate 34–50 pax. For larger groups (up to 100 pax), ask about our 3 Villas Package or Reconnecting Venue! 🎉" },
+  { keywords: ["price", "rate", "cost", "how much", "magkano"], answer: "Our villa rates start at ₱18,000 for Villas 1–3 and ₱21,000 for Villas 4–5, depending on your headcount. Scroll up to see the full rate breakdown for each villa! 😊" },
+  { keywords: ["capacity", "pax", "guests", "how many", "max"], answer: "Our villas accommodate 34–50 pax each. Scroll up to see the exact capacity for each villa! 🎉" },
   { keywords: ["payment", "pay", "gcash", "maya", "bank transfer", "cash"], answer: "We accept GCash, Maya, BDO/BPI Bank Transfer, and Cash. A 50% down payment is required to confirm your reservation." },
   { keywords: ["cancel", "refund", "cancellation"], answer: "Cancellations 7+ days before check-in may be refunded less 10%. Cancellations within 7 days are non-refundable. Contact us ASAP if plans change!" },
   { keywords: ["book", "reserve", "reservation", "how to"], answer: "To book: 1️⃣ Check availability on the calendar 2️⃣ Fill out the reservation form or message us 3️⃣ Pay 50% down payment 4️⃣ Receive confirmation. Easy! 🌊" },
@@ -24,7 +24,7 @@ const faqMap: Array<{ keywords: string[]; answer: string }> = [
   { keywords: ["location", "address", "where", "how to get", "directions"], answer: "We're at Brgy. Pansol, Calamba City, Laguna. From Manila via SLEX, take the Calamba exit (~1hr 15min). Use Google Maps or Waze — search 'Casa Primera Hotspring Resort'! 📍" },
   { keywords: ["kids", "children", "family", "baby"], answer: "Absolutely! We are a family-friendly resort. 👨‍👩‍👧‍👦 Children must be supervised near pools. We have shallow pools safe for kids too!" },
   { keywords: ["karaoke", "sing"], answer: "Yes! We have fully-equipped karaoke rooms — great for barkadas and family celebrations! 🎤🎵" },
-  { keywords: ["villa", "room", "accommodation"], answer: "We have 5 private villas (La Palma, Sampaguita, Ilang-Ilang, Bougainvillea, Casa Bamboo) plus 2 event packages. Scroll up to see full details and photos! 🏡" },
+  { keywords: ["villa", "room", "accommodation"], answer: "We have 5 private villas (Casa Primera Villa 1 to Villa 5) plus 2 event packages. Scroll up to see full details and photos! 🏡" },
 ];
 
 const quickReplies = ["Check-in time?", "Payment options?", "How to book?", "Rates?", "Location?"];
@@ -34,7 +34,7 @@ function getAnswer(input: string): string {
   for (const { keywords, answer } of faqMap) {
     if (keywords.some((k) => lower.includes(k))) return answer;
   }
-  return "Thanks for your question! For more details, please message us directly via our official Facebook page, WhatsApp, or Viber. Our team responds within minutes! 😊 You can also call us at +63 917 123 4567.";
+  return "Thanks for your question! For more details, please message us directly via our official Facebook page, WhatsApp, or Viber. Our team responds within minutes! 😊 You can also call us at 0917.114.6956.";
 }
 
 export function LiveChat() {

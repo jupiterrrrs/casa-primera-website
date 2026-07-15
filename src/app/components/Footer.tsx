@@ -13,7 +13,7 @@ const socials = [
   },
   {
     label: "Instagram",
-    href: "https://instagram.com/casaprimera",
+    href: "https://instagram.com/casaprimeravilla",
     color: "#e1306c",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="white">
@@ -109,7 +109,7 @@ export function Footer() {
         <div>
           <h4 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#fff", fontSize: "1rem" }} className="mb-5">Quick Links</h4>
           <ul className="space-y-3">
-            {["Home", "About Us", "Our Villas", "Amenities", "How to Book", "Reviews", "Gallery", "Location", "Book Now"].map((link) => (
+            {["Home", "About Us", "Our Villas", "Amenities", "How to Book", "Reviews", "Gallery", "FAQs", "Location", "Book Now"].map((link) => (
               <li key={link}>
                 <a href="#" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem" }} className="hover:text-[#00b4d8] transition-colors duration-200">{link}</a>
               </li>
@@ -122,13 +122,11 @@ export function Footer() {
           <h4 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#fff", fontSize: "1rem" }} className="mb-5">Our Villas</h4>
           <ul className="space-y-3">
             {[
-              "La Palma Villa · 34 pax",
-              "Villa Sampaguita · 40 pax",
-              "Villa Ilang-Ilang · 50 pax",
-              "Bougainvillea Suite · 40 pax",
-              "Casa Bamboo · 34 pax",
-              "3 Villas Package · 100 pax",
-              "Reconnecting Venue · 100 pax",
+              "Casa Primera Villa 1 · 34 pax",
+              "Casa Primera Villa 2 · 40 pax",
+              "Casa Primera Villa 3 · 50 pax",
+              "Casa Primera Villa 4 · 40 pax",
+              "Casa Primera Villa 5 · 34 pax",
             ].map((v) => (
               <li key={v}>
                 <a href="#villas" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem" }} className="hover:text-[#f5c42c] transition-colors duration-200">{v}</a>
@@ -144,16 +142,20 @@ export function Footer() {
             <li className="flex gap-3 items-start">
               <MapPin size={15} color="#00b4d8" className="mt-0.5 flex-shrink-0" />
               <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.65 }}>
-                Brgy. Pansol, Calamba City,<br />Laguna 4027, Philippines
+                Purok 7, Nayong Maharlika Village,<br />Brgy. Pansol, Calamba City, Laguna
+              </span>
+            </li>
+            <li className="flex gap-3 items-start">
+              <Phone size={15} color="#00b4d8" className="mt-0.5 flex-shrink-0" />
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.65 }}>
+                Globe: 0917.114.6956 / 0956.836.6100<br />
+                Smart: 0919.007.8821 / 0960.381.7151<br />
+                Landline: (049) 502-3746
               </span>
             </li>
             <li className="flex gap-3 items-center">
-              <Phone size={15} color="#00b4d8" />
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem" }}>+63 917 123 4567</span>
-            </li>
-            <li className="flex gap-3 items-center">
               <Mail size={15} color="#00b4d8" />
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem" }}>reservations@casaprimera.ph</span>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem" }}>sales@casaprimeravilla.com</span>
             </li>
           </ul>
           <div>

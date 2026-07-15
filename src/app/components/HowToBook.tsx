@@ -52,15 +52,6 @@ const steps = [
   },
 ];
 
-const faqs = [
-  { q: "Can I book same-day?", a: "Yes, subject to availability. Call or message us on WhatsApp or Viber for immediate confirmation." },
-  { q: "Is there a minimum stay?", a: "Minimum stay is 1 night (24 hours). Day tours are also available — check with our front desk." },
-  { q: "Do I need to bring my own food?", a: "You may bring food for personal consumption. We also have in-house catering available upon request." },
-  { q: "Are children allowed?", a: "Absolutely! We are a family-friendly resort. Children must be supervised near pools at all times." },
-  { q: "Can I add more guests on the day?", a: "Additional guests may be accommodated subject to villa capacity. Walk-in rates apply for day guests." },
-  { q: "What if I need to cancel?", a: "Cancellations 7+ days before check-in may be refunded less 10% processing. Less than 7 days is non-refundable." },
-];
-
 export function HowToBook() {
   return (
     <section id="how-to-book" className="py-20 overflow-hidden" style={{ background: "linear-gradient(180deg, #e0f7fa 0%, #fdf6ec 100%)" }}>
@@ -111,29 +102,12 @@ export function HowToBook() {
             { label: "Down Payment", value: "50%", note: "to secure booking", color: "#00b4d8" },
             { label: "Check-in", value: "3:00 PM", note: "earliest arrival", color: "#2d6a4f" },
             { label: "Check-out", value: "12:00 NN", note: "latest departure", color: "#f5c42c" },
-            { label: "Max Guests", value: "50 / 100", note: "villa / event package", color: "#00b4d8" },
+            { label: "Max Guests", value: "50", note: "guests per villa", color: "#00b4d8" },
           ].map(({ label, value, note, color }) => (
             <div key={label} className="rounded-2xl p-4 text-center shadow-sm" style={{ backgroundColor: "#fff" }}>
               <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.5rem", fontWeight: 800, color }}>{value}</p>
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 600, color: "#1a2e1a" }}>{label}</p>
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "#9aaa8e" }}>{note}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* FAQs */}
-        <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.5rem", fontWeight: 700, color: "#1a2e1a", textAlign: "center", marginBottom: "1.5rem" }}>
-          Frequently Asked Questions
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-          {faqs.map(({ q, a }) => (
-            <div key={q} className="rounded-2xl p-5 shadow-sm" style={{ backgroundColor: "#fff", border: "1px solid rgba(0,180,216,0.1)" }}>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", fontWeight: 700, color: "#007a9a", marginBottom: "0.4rem" }}>
-                Q: {q}
-              </p>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.65 }}>
-                {a}
-              </p>
             </div>
           ))}
         </div>

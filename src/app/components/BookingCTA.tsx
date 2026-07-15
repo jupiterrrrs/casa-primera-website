@@ -9,11 +9,11 @@ import "react-day-picker/dist/style.css";
 // Villa data with blocked dates
 const allVillas = [
   {
-    label: "La Palma Villa",
-    short: "La Palma",
+    label: "Casa Primera Villa 1",
+    short: "Villa 1",
     pax: 34,
-    price: 8500,
-    tag: "Luxury",
+    price: 18000,
+    tag: "Pioneer",
     blocked: [
       { from: new Date(2026, 6, 4), to: new Date(2026, 6, 6) },
       { from: new Date(2026, 6, 18), to: new Date(2026, 6, 22) },
@@ -21,10 +21,10 @@ const allVillas = [
     ],
   },
   {
-    label: "Villa Sampaguita",
-    short: "Sampaguita",
+    label: "Casa Primera Villa 2",
+    short: "Villa 2",
     pax: 40,
-    price: 5500,
+    price: 18000,
     tag: "Family",
     blocked: [
       { from: new Date(2026, 6, 5), to: new Date(2026, 6, 8) },
@@ -32,51 +32,35 @@ const allVillas = [
     ],
   },
   {
-    label: "Villa Ilang-Ilang",
-    short: "Ilang-Ilang",
+    label: "Casa Primera Villa 3",
+    short: "Villa 3",
     pax: 50,
-    price: 3800,
-    tag: "Standard",
+    price: 18000,
+    tag: "Garden",
     blocked: [
       { from: new Date(2026, 6, 10), to: new Date(2026, 6, 13) },
     ],
   },
   {
-    label: "Bougainvillea Suite",
-    short: "Bougainvillea",
+    label: "Casa Primera Villa 4",
+    short: "Villa 4",
     pax: 40,
-    price: 4200,
-    tag: "Romantic",
+    price: 21000,
+    tag: "Mountain View",
     blocked: [
       { from: new Date(2026, 6, 15), to: new Date(2026, 6, 17) },
       { from: new Date(2026, 7, 8), to: new Date(2026, 7, 10) },
     ],
   },
   {
-    label: "Casa Bamboo",
-    short: "Bamboo",
+    label: "Casa Primera Villa 5",
+    short: "Villa 5",
     pax: 34,
-    price: 2200,
-    tag: "Budget",
+    price: 21000,
+    tag: "Modern",
     blocked: [
       { from: new Date(2026, 6, 20), to: new Date(2026, 6, 23) },
     ],
-  },
-  {
-    label: "3 Villas Package",
-    short: "3 Villas",
-    pax: 100,
-    price: 16000,
-    tag: "Grand Event",
-    blocked: [],
-  },
-  {
-    label: "Reconnecting Venue",
-    short: "Reconnecting",
-    pax: 100,
-    price: 18000,
-    tag: "Events",
-    blocked: [],
   },
 ];
 
@@ -270,7 +254,7 @@ function ReservationCalendar({
                           <Users size={11} className="inline mr-1" />Up to {villa.pax} pax
                         </span>
                         <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.82rem", fontWeight: 700, color: "#00b4d8" }}>
-                          ₱{villa.price.toLocaleString()}/night
+                          From ₱{villa.price.toLocaleString()}
                         </span>
                       </div>
                     </div>
@@ -346,7 +330,7 @@ export function BookingCTA() {
       setCalendarUrl(buildGoogleCalendarUrl(
         `Casa Primera Hotspring Resort — ${formData.villa || "Villa Stay"}`,
         checkIn, checkOut,
-        `Reservation for ${formData.guests} guest(s).\nCasa Primera Hotspring Resort, Calamba, Laguna.\nContact: +63 917 123 4567`,
+        `Reservation for ${formData.guests} guest(s).\nCasa Primera Hotspring Resort, Calamba, Laguna.\nContact: 0917.114.6956`,
         "Brgy. Pansol, Calamba City, Laguna, Philippines"
       ));
     }
@@ -382,10 +366,10 @@ export function BookingCTA() {
             </p>
             <div className="space-y-5">
               {[
-                { icon: Phone, label: "Call Us", value: "+63 917 123 4567" },
-                { icon: Mail, label: "Email Us", value: "reservations@casaprimera.ph" },
+                { icon: Phone, label: "Call Us", value: "0917.114.6956" },
+                { icon: Mail, label: "Email Us", value: "sales@casaprimeravilla.com" },
                 { icon: CalendarDays, label: "Check-in / Check-out", value: "3:00 PM / 12:00 NN" },
-                { icon: Users, label: "Max Capacity", value: "50 pax/villa · 100 pax events" },
+                { icon: Users, label: "Max Capacity", value: "Up to 50 pax/villa" },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-center gap-4">
                   <div className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "rgba(0,180,216,0.25)" }}>

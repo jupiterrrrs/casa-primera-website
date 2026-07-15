@@ -7,6 +7,7 @@ const links = [
   { href: "#how-to-book", label: "How to Book" },
   { href: "#reviews", label: "Reviews" },
   { href: "#gallery", label: "Gallery" },
+  { href: "#faq", label: "FAQs" },
   { href: "#location", label: "Location" },
   { href: "#booking", label: "Contact" },
 ];
