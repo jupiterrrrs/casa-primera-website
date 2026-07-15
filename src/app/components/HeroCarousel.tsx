@@ -7,31 +7,31 @@ const slides = [
     id: 1,
     image: "/images/villas/villa1.jpg",
     alt: "Casa Primera Villa 1 exterior",
-    label: "La Palma Villa",
+    label: "Casa Primera Villa 1",
   },
   {
     id: 2,
     image: "/images/villas/villa2.jpg",
     alt: "Casa Primera Villa 2 exterior",
-    label: "Villa Sampaguita",
+    label: "Casa Primera Villa 2",
   },
   {
     id: 3,
     image: "/images/villas/villa3.jpg",
     alt: "Casa Primera Villa 3 exterior",
-    label: "Villa Ilang-Ilang",
+    label: "Casa Primera Villa 3",
   },
   {
     id: 4,
     image: "/images/villas/villa4.jpg",
     alt: "Casa Primera Villa 4 exterior",
-    label: "Bougainvillea Suite",
+    label: "Casa Primera Villa 4",
   },
   {
     id: 5,
     image: "/images/villas/villa5.jpg",
     alt: "Casa Primera Villa 5 exterior",
-    label: "Casa Bamboo",
+    label: "Casa Primera Villa 5",
   },
 ];
 

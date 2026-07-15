@@ -1,18 +1,35 @@
 import { Users, Star, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+
+// Standard rate tiers shared by Villa 1, 2 & 3
+export const rateTiersABC = [
+  { label: "A", price: 18000, pax: "1–10 pax", rooms: "2 Rooms" },
+  { label: "B", price: 20000, pax: "11–15 pax", rooms: "3 Rooms" },
+  { label: "C", price: 22000, pax: "16–20 pax", rooms: "4 Rooms", note: "+ ₱500/head for 21–25 pax" },
+  { label: "D–E", price: 27000, pax: "26–30 pax", rooms: "5 Rooms", note: "+ ₱500/head in excess of 30 pax (Villa 2 or Villa 3 only)" },
+];
+
+// Standard rate tiers for Villa 4 & 5
+export const rateTiersDE = [
+  { label: "A", price: 21000, pax: "1–10 pax", rooms: "2 Rooms" },
+  { label: "B", price: 23000, pax: "11–15 pax", rooms: "3 Rooms" },
+  { label: "C", price: 25000, pax: "16–20 pax", rooms: "4 Rooms", note: "+ ₱500/head for 21–25 pax" },
+  { label: "D–E", price: 30000, pax: "26–30 pax", rooms: "5 Rooms", note: "+ ₱500/head in excess of 30 pax" },
+];
 
 export const villas = [
   {
     id: 1,
-    name: "La Palma Villa",
-    tag: "Luxury Suite",
-    pricePerNight: 8500,
+    name: "Casa Primera Villa 1",
+    tag: "Pioneer Villa",
+    startingPrice: rateTiersABC[0].price,
+    rateTiers: rateTiersABC,
     capacity: 34,
     rating: 4.9,
     image: "/images/villas/villa1.jpg",
-    features: ["Private Pool", "Full Kitchen", "4 Bedrooms", "Jacuzzi"],
-    desc: "Our flagship villa with a private heated pool, premium furnishings, and a wraparound terrace with panoramic garden views.",
+    features: ["5 Air-Con Bedrooms", "Adult & Kiddie Pool", "Garden & Playground", "Senior/PWD-Friendly"],
+    desc: "As the pioneer villa of Casa Primera Hot Spring Resorts, Villa 1 is a 2-storey private villa perfect for family vacations, reunions, and intimate celebrations. It features a vast garden, a children's playground, a spacious dining hall, and a kitchen area. Guests can enjoy a private hot spring adult pool (4–5.5 ft deep) and a kiddie pool (2–3 ft deep). Designed to accommodate up to 34 guests, the villa offers five fully air-conditioned bedrooms, each with a private bathroom, shower heater, and hair dryer. With two ground-floor bedrooms and a wheelchair ramp, the villa is senior and PWD-friendly. Also includes FREE Wi-Fi, TVs, FREE videoke, a dining hall, kitchen, grilling area, and indoor parking for 1–2 vehicles.",
     highlight: true,
     blocked: [
       { from: new Date(2026, 6, 4), to: new Date(2026, 6, 6) },
@@ -22,14 +39,15 @@ export const villas = [
   },
   {
     id: 2,
-    name: "Villa Sampaguita",
+    name: "Casa Primera Villa 2",
     tag: "Family Deluxe",
-    pricePerNight: 5500,
+    startingPrice: rateTiersABC[0].price,
+    rateTiers: rateTiersABC,
     capacity: 40,
     rating: 4.8,
     image: "/images/villas/villa2.jpg",
-    features: ["Pool Access", "3 Bedrooms", "Garden View", "BBQ Area"],
-    desc: "Spacious and elegantly designed for families, featuring a full sala, dedicated dining area, and easy pool access.",
+    features: ["5 Air-Con Bedrooms", "Adult & Kiddie Pool", "Children's Playground", "Senior/PWD-Friendly"],
+    desc: "Create unforgettable moments with family and friends at Villa 2, a private villa designed for reunions, celebrations, and relaxing group getaways. It features a spacious children's playground and a private hot spring adult pool (4–5.5 ft deep) with kiddie pool (2–3 ft deep). Designed to accommodate up to 40 guests, the villa offers five fully air-conditioned bedrooms, including one ground-floor bedroom, making it senior and PWD-friendly. Each bedroom has a private bathroom, shower heater, and hair dryer. Includes a spacious dining hall, kitchen area, grilling area, FREE Wi-Fi, TVs, FREE videoke, and indoor parking for 4–5 vehicles.",
     highlight: false,
     blocked: [
       { from: new Date(2026, 6, 5), to: new Date(2026, 6, 8) },
@@ -38,14 +56,15 @@ export const villas = [
   },
   {
     id: 3,
-    name: "Villa Ilang-Ilang",
-    tag: "Standard Comfort",
-    pricePerNight: 3800,
+    name: "Casa Primera Villa 3",
+    tag: "Garden Retreat",
+    startingPrice: rateTiersABC[0].price,
+    rateTiers: rateTiersABC,
     capacity: 50,
     rating: 4.7,
     image: "/images/villas/villa3.jpg",
-    features: ["Pool Access", "2 Bedrooms", "Air-Con", "WiFi"],
-    desc: "A charming mid-range villa perfect for small groups, with all essential comforts and a lovely garden-facing porch.",
+    features: ["6 Air-Con Bedrooms", "Jacuzzi Available", "Adult & Kiddie Pool", "Senior/PWD-Friendly"],
+    desc: "Surrounded by lush trees and greenery, Villa 3 provides a peaceful setting to relax, reconnect, and create lasting memories. It features larger bedrooms, a private hot spring adult pool (4–4.5 ft deep), a kiddie pool (2–2.5 ft deep), and a jacuzzi available for rent. Designed to accommodate up to 50 guests, the villa offers six fully air-conditioned bedrooms, including two ground-floor bedrooms, making it senior and PWD-friendly. Four bedrooms have their own private bathroom, while two share a nearby common bathroom. Includes a dining area, kitchen, grilling area, FREE Wi-Fi, TVs, FREE videoke, table tennis, billiards, darts, water volleyball, a playground, and indoor parking for 2–3 vehicles.",
     highlight: false,
     blocked: [
       { from: new Date(2026, 6, 10), to: new Date(2026, 6, 13) },
@@ -53,14 +72,15 @@ export const villas = [
   },
   {
     id: 4,
-    name: "Bougainvillea Suite",
-    tag: "Romantic Getaway",
-    pricePerNight: 4200,
+    name: "Casa Primera Villa 4",
+    tag: "Mountain View",
+    startingPrice: rateTiersDE[0].price,
+    rateTiers: rateTiersDE,
     capacity: 40,
     rating: 4.9,
     image: "/images/villas/villa4.jpg",
-    features: ["Private Terrace", "1 King Bed", "Soaking Tub", "Breakfast"],
-    desc: "Designed for couples seeking a serene escape — intimate, lush, and quietly tucked away in the heart of the garden.",
+    features: ["5 Air-Con Bedrooms", "Mountain View Terrace", "Adult & Kiddie Pool", "Senior/PWD-Friendly"],
+    desc: "Combining modern comfort with scenic surroundings, Villa 4 is a 2-storey private villa designed for families, reunions, and group gatherings. It features larger bedrooms, a spacious dining area, and a large terrace overlooking a beautiful mountain view. Guests can enjoy a private hot spring adult pool (3.2–5.2 ft deep) and a kiddie pool (2.7 ft deep). Designed to accommodate up to 40 guests, the villa offers five fully air-conditioned bedrooms, including one ground-floor bedroom, making it senior and PWD-friendly. Three bedrooms have their own private bathroom with shower heater, while two rooms share a bathroom with shower heater. Includes a dining area, kitchen, grilling area, FREE Wi-Fi, TVs, FREE videoke, table tennis, billiards, darts, water volleyball, a playground, and indoor parking for 5–6 vehicles.",
     highlight: false,
     blocked: [
       { from: new Date(2026, 6, 15), to: new Date(2026, 6, 17) },
@@ -69,14 +89,15 @@ export const villas = [
   },
   {
     id: 5,
-    name: "Casa Bamboo",
-    tag: "Budget Friendly",
-    pricePerNight: 2200,
+    name: "Casa Primera Villa 5",
+    tag: "Modern Retreat",
+    startingPrice: rateTiersDE[0].price,
+    rateTiers: rateTiersDE,
     capacity: 34,
     rating: 4.6,
     image: "/images/villas/villa5.jpg",
-    features: ["Pool Access", "1 Bedroom", "Fan Room", "WiFi"],
-    desc: "Our most affordable option — clean, cozy, and full of character. Ideal for budget travelers who still want a tropical retreat.",
+    features: ["5 Air-Con Bedrooms", "Jacuzzi Available", "Color-Changing Pool Lights", "Senior/PWD-Friendly"],
+    desc: "As the latest addition to Casa Primera Hot Spring Resorts, Villa 5 offers a modern and stylish retreat for families, reunions, and group getaways. It features a wide garden, a children's playground, a private hot spring adult pool (3–5 ft deep) with kiddie pool (2 ft deep), color-changing pool lights, and a jacuzzi available for rent. Designed to accommodate up to 34 guests, the villa offers five fully air-conditioned bedrooms, each with a private bathroom and shower heater. With two ground-floor bedrooms and a wheelchair ramp, the villa is senior and PWD-friendly. Includes a dining area, kitchen, grilling area, FREE Wi-Fi, TVs, FREE videoke, table tennis, billiards, darts, water volleyball, a playground, and indoor parking for 2–4 vehicles.",
     highlight: false,
     blocked: [
       { from: new Date(2026, 6, 20), to: new Date(2026, 6, 23) },
@@ -84,65 +105,61 @@ export const villas = [
   },
 ];
 
-export const specialPackages = [
-  {
-    id: 6,
-    name: "3 Villas Package",
-    tag: "Grand Event",
-    pricePerNight: 16000,
-    capacity: 100,
-    rating: 5.0,
-    image: "/images/villas/package-3villas.jpg",
-    features: ["3 Villas Combined", "All Amenities", "Events Coordinator", "BBQ + Karaoke"],
-    desc: "Book three villas together for grand celebrations. Ideal for big family reunions, company outings, and group trips of up to 100 guests.",
-    highlight: false,
-    blocked: [],
-  },
-  {
-    id: 7,
-    name: "Reconnecting Venue",
-    tag: "100 Pax Events",
-    pricePerNight: 18000,
-    capacity: 100,
-    rating: 4.9,
-    image: "/images/villas/package-events.jpg",
-    features: ["100 Pax Capacity", "Full Sound System", "Catering Available", "Pool Access"],
-    desc: "Our dedicated events venue perfect for weddings, debuts, corporate retreats, and milestone celebrations of up to 100 guests.",
-    highlight: false,
-    blocked: [],
-  },
-];
-
 type Villa = typeof villas[0];
 
 function VillaModal({ villa, onClose }: { villa: Villa; onClose: () => void }) {
+  // Lock background scroll while modal is open
+  useEffect(() => {
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, []);
+
+  // Close on Escape key
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [onClose]);
+
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${villa.name} details`}
         onClick={onClose}
       >
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
         <motion.div
-          className="relative max-w-2xl w-full rounded-3xl overflow-hidden shadow-2xl"
-          style={{ backgroundColor: "#fff" }}
+          className="relative w-full max-w-4xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row"
+          style={{ backgroundColor: "#fff", maxHeight: "92vh" }}
           initial={{ scale: 0.92, y: 20 }}
           animate={{ scale: 1, y: 0 }}
           exit={{ scale: 0.92, y: 20 }}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="relative h-64">
-            <img src={villa.image} alt={villa.name} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-gray-700 transition-colors text-lg font-bold"
-            >
-              ×
-            </button>
+          {/* Close button — always visible, easy to tap on mobile */}
+          <button
+            onClick={onClose}
+            aria-label="Close villa details"
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-gray-700 shadow-md transition-transform duration-200 hover:scale-110 active:scale-95 text-lg font-bold"
+          >
+            ×
+          </button>
+
+          {/* Landscape photo — full-width banner on mobile, fixed side column on desktop */}
+          <div className="relative w-full lg:w-[42%] flex-shrink-0 aspect-video lg:aspect-auto lg:h-auto lg:self-stretch">
+            <img src={villa.image} alt={villa.name} className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
             <div className="absolute bottom-4 left-6">
               <span
                 className="px-3 py-1 rounded-full text-xs uppercase tracking-widest"
@@ -152,16 +169,20 @@ function VillaModal({ villa, onClose }: { villa: Villa; onClose: () => void }) {
               </span>
             </div>
           </div>
-          <div className="p-7">
-            <div className="flex items-start justify-between mb-3">
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.6rem", fontWeight: 700, color: "#1a2e1a" }}>
+
+          {/* Scrollable content column */}
+          <div className="p-6 sm:p-7 overflow-y-auto flex-1" style={{ minWidth: 0 }}>
+            <div className="flex items-start justify-between gap-3 mb-3">
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.5rem", fontWeight: 700, color: "#1a2e1a" }}>
                 {villa.name}
               </h3>
-              <div className="text-right">
-                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.5rem", fontWeight: 800, color: "#00b4d8" }}>
-                  ₱{villa.pricePerNight.toLocaleString()}
+              <div className="text-right flex-shrink-0">
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "#9aaa8e", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                  Starting at
                 </p>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "#6b7a5e" }}>per night</p>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.4rem", fontWeight: 800, color: "#00b4d8" }}>
+                  ₱{villa.startingPrice.toLocaleString()}
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-4 mb-4">
@@ -170,7 +191,7 @@ function VillaModal({ villa, onClose }: { villa: Villa; onClose: () => void }) {
                 Up to <strong style={{ color: "#1a2e1a" }}>{villa.capacity} pax</strong>
               </span>
             </div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", color: "#4a5e40", lineHeight: 1.75, fontSize: "0.95rem" }} className="mb-5">
+            <p style={{ fontFamily: "'DM Sans', sans-serif", color: "#4a5e40", lineHeight: 1.75, fontSize: "0.92rem" }} className="mb-5">
               {villa.desc}
             </p>
             <div className="flex flex-wrap gap-2 mb-6">
@@ -180,6 +201,40 @@ function VillaModal({ villa, onClose }: { villa: Villa; onClose: () => void }) {
                 </span>
               ))}
             </div>
+
+            {villa.rateTiers.length > 0 && (
+              <div className="rounded-2xl overflow-hidden border mb-5" style={{ borderColor: "#e0f7fa" }}>
+                <div className="px-4 py-2.5" style={{ backgroundColor: "#f0fafe" }}>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", fontWeight: 700, color: "#007a9a" }}>
+                    Standard Rates
+                  </span>
+                </div>
+                <div className="divide-y" style={{ borderColor: "#f0fafe" }}>
+                  {villa.rateTiers.map((tier) => (
+                    <div key={tier.label} className="px-4 py-2.5 flex items-center justify-between gap-3" style={{ borderBottom: "1px solid #f0fafe" }}>
+                      <div className="flex items-baseline gap-2 flex-wrap">
+                        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", fontWeight: 700, color: "#1a2e1a" }}>
+                          ₱{tier.price.toLocaleString()}
+                        </span>
+                        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "#6b7a5e" }}>
+                          {tier.pax} · {tier.rooms}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {villa.rateTiers.some((t) => "note" in t && t.note) && (
+                  <div className="px-4 py-2.5" style={{ backgroundColor: "#fff8e1" }}>
+                    {villa.rateTiers.filter((t): t is typeof t & { note: string } => "note" in t && !!t.note).map((t) => (
+                      <p key={t.label} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.74rem", color: "#7a6000", lineHeight: 1.5 }}>
+                        {t.label}: {t.note}
+                      </p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
             <div className="flex items-center gap-3 p-3 rounded-xl mb-5" style={{ backgroundColor: "#fff8e1" }}>
               <span style={{ fontSize: "1.1rem" }}>🕐</span>
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#7a6000" }}>
@@ -203,7 +258,6 @@ function VillaModal({ villa, onClose }: { villa: Villa; onClose: () => void }) {
 
 export function VillaShowcase() {
   const [selected, setSelected] = useState<Villa | null>(null);
-  const allListings = [...villas, ...specialPackages] as Villa[];
 
   return (
     <section id="villas" className="py-20" style={{ background: "linear-gradient(180deg, #fdf6ec 0%, #e0f7fa 100%)" }}>
@@ -219,13 +273,11 @@ export function VillaShowcase() {
             Our <span style={{ color: "#00b4d8" }}>Villa</span> Collection
           </h2>
           <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'DM Sans', sans-serif", color: "#6b7a5e", fontSize: "1.05rem", lineHeight: 1.7 }}>
-            Five private villas plus grand event packages — each designed for comfort, joy, and unforgettable memories.
+            Five private villas — each designed for comfort, joy, and unforgettable memories.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-5">
             {[
               { label: "Max 50 pax/villa", color: "#e0f7fa", text: "#007a9a" },
-              { label: "3 Villas Package · 100 pax", color: "#fff8e1", text: "#7a6000" },
-              { label: "Reconnecting Venue · 100 pax", color: "#fce4ec", text: "#880e4f" },
             ].map(({ label, color, text }) => (
               <span key={label} className="px-4 py-1.5 rounded-full text-sm font-medium" style={{ backgroundColor: color, color: text, fontFamily: "'DM Sans', sans-serif" }}>
                 {label}
@@ -235,10 +287,7 @@ export function VillaShowcase() {
         </div>
 
         {/* Individual villas */}
-        <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.25rem", color: "#1a2e1a", fontWeight: 700, marginBottom: "1rem" }}>
-          Private Villas
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
           {villas.map((villa, i) => (
             <motion.div
               key={villa.id}
@@ -272,9 +321,9 @@ export function VillaShowcase() {
                 </div>
                 <div className="flex items-center gap-3 mb-3">
                   <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.35rem", fontWeight: 800, color: "#00b4d8" }}>
-                    ₱{villa.pricePerNight.toLocaleString()}
+                    ₱{villa.startingPrice.toLocaleString()}
                   </span>
-                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "#9aaa8e" }}>/night</span>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "#9aaa8e" }}>starting rate</span>
                   <span className="flex items-center gap-1 ml-auto" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#6b7a5e" }}>
                     <Users size={13} color="#00b4d8" />
                     up to {villa.capacity} pax
@@ -294,71 +343,9 @@ export function VillaShowcase() {
             </motion.div>
           ))}
         </div>
-
-        {/* Special packages */}
-        <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.25rem", color: "#1a2e1a", fontWeight: 700, marginBottom: "1rem" }}>
-          Grand Event Packages
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
-          {specialPackages.map((pkg, i) => (
-            <motion.div
-              key={pkg.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.55 }}
-              className="rounded-2xl overflow-hidden shadow-md group cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
-              style={{ backgroundColor: "#fff", border: "2px solid #f5c42c" }}
-              onClick={() => setSelected(pkg as Vila)}
-            >
-              <div className="text-center py-1.5 text-xs font-semibold tracking-widest uppercase" style={{ backgroundColor: "#f5c42c", color: "#1a2e1a", fontFamily: "'DM Sans', sans-serif" }}>
-                ★ Up to 100 Pax
-              </div>
-              <div className="relative h-52 overflow-hidden">
-                <img src={pkg.image} alt={pkg.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                <span className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs uppercase tracking-wide" style={{ backgroundColor: "rgba(245,196,44,0.9)", color: "#1a2e1a", fontFamily: "'DM Sans', sans-serif" }}>
-                  {pkg.tag}
-                </span>
-              </div>
-              <div className="p-5">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.2rem", fontWeight: 700, color: "#1a2e1a" }}>{pkg.name}</h3>
-                  <div className="flex items-center gap-1">
-                    <Star size={13} fill="#f5c42c" stroke="none" />
-                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#6b7a5e" }}>{pkg.rating}</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 mb-3">
-                  <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.35rem", fontWeight: 800, color: "#00b4d8" }}>
-                    ₱{pkg.pricePerNight.toLocaleString()}
-                  </span>
-                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "#9aaa8e" }}>/night</span>
-                  <span className="flex items-center gap-1 ml-auto" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#6b7a5e" }}>
-                    <Users size={13} color="#f5c42c" />
-                    up to {pkg.capacity} pax
-                  </span>
-                </div>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", color: "#6b7a5e", fontSize: "0.88rem", lineHeight: 1.65 }} className="mb-4">
-                  {pkg.desc}
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {pkg.features.map((f) => (
-                    <span key={f} className="px-2.5 py-0.5 rounded-full text-xs" style={{ backgroundColor: "#fff8e1", color: "#7a6000", fontFamily: "'DM Sans', sans-serif" }}>
-                      {f}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
 
       {selected && <VillaModal villa={selected} onClose={() => setSelected(null)} />}
     </section>
   );
 }
-
-// type alias to avoid TS error on specialPackages
-type Vila = typeof villas[0];

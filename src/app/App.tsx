@@ -7,6 +7,7 @@ import { HowToBook } from "./components/HowToBook";
 import { AboutSection } from "./components/AboutSection";
 import { ReviewsSection } from "./components/ReviewsSection";
 import { GallerySection } from "./components/GallerySection";
+import { FAQSection } from "./components/FAQSection";
 import { LocationSection } from "./components/LocationSection";
 import { BookingCTA } from "./components/BookingCTA";
 import { Footer } from "./components/Footer";
@@ -21,6 +22,7 @@ export default function App() {
       <AmenitiesCarousel />
       <VillaShowcase />
       <HowToBook />
+      <FAQSection />
       <AboutSection />
       <ReviewsSection />
       <GallerySection />

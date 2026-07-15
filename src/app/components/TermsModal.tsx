@@ -67,12 +67,11 @@ export function TermsModal({ onAccept, onClose }: Props) {
             </h3>
             <ul style={{ fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.85 }} className="list-disc pl-4 space-y-1">
               <li><strong>Maximum per standard villa:</strong> 50 pax</li>
-              <li><strong>La Palma Villa:</strong> Up to 34 guests</li>
-              <li><strong>Villa Sampaguita:</strong> Up to 40 guests</li>
-              <li><strong>Villa Ilang-Ilang:</strong> Up to 50 guests</li>
-              <li><strong>Bougainvillea Suite:</strong> Up to 40 guests</li>
-              <li><strong>Casa Bamboo:</strong> Up to 34 guests</li>
-              <li><strong>3 Villas Package / Reconnecting Venue:</strong> Up to 100 guests</li>
+              <li><strong>Casa Primera Villa 1:</strong> Up to 34 guests</li>
+              <li><strong>Casa Primera Villa 2:</strong> Up to 40 guests</li>
+              <li><strong>Casa Primera Villa 3:</strong> Up to 50 guests</li>
+              <li><strong>Casa Primera Villa 4:</strong> Up to 40 guests</li>
+              <li><strong>Casa Primera Villa 5:</strong> Up to 34 guests</li>
             </ul>
             <p style={{ fontSize: "0.85rem", color: "#c0392b", marginTop: "0.5rem" }}>
               ⚠ Exceeding the stated capacity is strictly prohibited and may result in cancellation without refund.
