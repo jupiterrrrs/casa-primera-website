@@ -16,7 +16,7 @@ function LogoMark() {
   return (
     <img
       src="/images/logo.jpg"
-      alt="Casa Primera Hotspring Resort logo"
+      alt="Casa Primera Hotspring Resorts logo"
       width={48}
       height={48}
       className="rounded-full object-cover"
@@ -39,9 +39,9 @@ export function Navbar() {
     <nav
       className="fixed top-0 left-0 right-0 z-40 transition-all duration-400"
       style={{
-        backgroundColor: scrolled ? "rgba(253,246,236,0.97)" : "transparent",
+        backgroundColor: scrolled ? "rgba(234,247,248,0.97)" : "transparent",
         backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(0,180,216,0.15)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(69,179,192,0.15)" : "none",
         boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.07)" : "none",
       }}
     >
@@ -57,7 +57,7 @@ export function Navbar() {
             <a
               key={href}
               href={href}
-              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: scrolled ? "#4a5e40" : "rgba(255,255,255,0.88)", fontWeight: 500 }}
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: scrolled ? "#4d4d4d" : "rgba(255,255,255,0.88)", fontWeight: 500 }}
               className="hover:opacity-70 transition-opacity duration-200 whitespace-nowrap"
             >
               {label}
@@ -65,8 +65,8 @@ export function Navbar() {
           ))}
           <a
             href="#booking"
-            className="px-5 py-2 rounded-full text-white text-sm font-semibold transition-all duration-200 hover:scale-105"
-            style={{ backgroundColor: "#00b4d8", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            className="px-5 py-2 rounded-full text-sm font-bold transition-all duration-200 hover:scale-105"
+            style={{ backgroundColor: "#FFEB3B", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             Book Now
           </a>
@@ -76,21 +76,21 @@ export function Navbar() {
         <button
           className="lg:hidden"
           onClick={() => setMenuOpen((m) => !m)}
-          style={{ color: scrolled ? "#1a2e1a" : "#fff" }}
+          style={{ color: scrolled ? "#333333" : "#fff" }}
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {menuOpen && (
-        <div className="lg:hidden px-6 pb-6 pt-2 space-y-4" style={{ backgroundColor: "#fdf6ec" }}>
+        <div className="lg:hidden px-6 pb-6 pt-2 space-y-4" style={{ backgroundColor: "#EAF7F8" }}>
           {links.map(({ href, label }) => (
             <a
               key={href}
               href={href}
               onClick={() => setMenuOpen(false)}
               className="block"
-              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "1rem", color: "#4a5e40", fontWeight: 500 }}
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "1rem", color: "#4d4d4d", fontWeight: 500 }}
             >
               {label}
             </a>
@@ -98,8 +98,8 @@ export function Navbar() {
           <a
             href="#booking"
             onClick={() => setMenuOpen(false)}
-            className="block px-5 py-2.5 rounded-full text-white text-center font-semibold"
-            style={{ backgroundColor: "#00b4d8", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            className="block px-5 py-2.5 rounded-full text-center font-bold"
+            style={{ backgroundColor: "#FFEB3B", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             Book Now
           </a>

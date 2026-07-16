@@ -64,7 +64,7 @@ export function SocialFloat() {
       <button
         onClick={() => setExpanded((e) => !e)}
         className="w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110"
-        style={{ backgroundColor: "#2d6a4f" }}
+        style={{ backgroundColor: "#333333" }}
         aria-label="Toggle social links"
       >
         <AnimatePresence mode="wait">

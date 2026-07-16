@@ -189,19 +189,19 @@ export function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-20" style={{ background: "#fdf6ec" }}>
+    <section id="faq" className="py-20" style={{ background: "#EAF7F8" }}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-14">
           <span
             className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4"
-            style={{ backgroundColor: "#fff8e1", color: "#7a6000", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            style={{ backgroundColor: "#EAF7F8", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             Good to Know
           </span>
-          <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#1a2e1a", fontWeight: 700 }}>
-            Frequently Asked <span style={{ color: "#e8a33d" }}>Questions</span>
+          <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#333333", fontWeight: 700 }}>
+            Frequently Asked <span style={{ color: "#45B3C0" }}>Questions</span>
           </h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#6b7a5e", fontSize: "1.05rem", lineHeight: 1.7 }}>
+          <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "1.05rem", lineHeight: 1.7 }}>
             Everything you need to know before booking your stay at Casa Primera. Tap a question to see the answer.
           </p>
         </div>
@@ -217,7 +217,7 @@ export function FAQSection() {
                 viewport={{ once: true }}
                 transition={{ delay: (i % 2) * 0.08, duration: 0.45 }}
                 className="rounded-2xl shadow-sm overflow-hidden cursor-pointer transition-shadow duration-200 hover:shadow-md"
-                style={{ backgroundColor: "#fff", border: isOpen ? "1px solid rgba(0,180,216,0.35)" : "1px solid rgba(0,180,216,0.1)" }}
+                style={{ backgroundColor: "#fff", border: isOpen ? "1px solid rgba(69,179,192,0.35)" : "1px solid rgba(69,179,192,0.1)" }}
                 onClick={() => toggleItem(item.q)}
               >
                 <button
@@ -229,7 +229,7 @@ export function FAQSection() {
                       fontFamily: "'Fraunces', serif",
                       fontSize: "1.02rem",
                       fontWeight: 700,
-                      color: "#007a9a",
+                      color: "#333333",
                       lineHeight: 1.4,
                     }}
                   >
@@ -239,9 +239,9 @@ export function FAQSection() {
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
                     className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center mt-0.5"
-                    style={{ backgroundColor: isOpen ? "#00b4d8" : "#e0f7fa" }}
+                    style={{ backgroundColor: isOpen ? "#45B3C0" : "#DCF1F3" }}
                   >
-                    <ChevronDown size={15} color={isOpen ? "#fff" : "#007a9a"} />
+                    <ChevronDown size={15} color={isOpen ? "#fff" : "#333333"} />
                   </motion.span>
                 </button>
                 <AnimatePresence initial={false}>
@@ -255,7 +255,7 @@ export function FAQSection() {
                     >
                       <div
                         className="px-6 pb-6"
-                        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.7 }}
+                        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#4d4d4d", lineHeight: 1.7 }}
                       >
                         {item.a}
                       </div>

@@ -9,7 +9,7 @@ const amenities = [
     title: "Natural Hotspring Pool",
     desc: "Soak in mineral-rich volcanic spring water renowned for its therapeutic benefits, open day and night.",
     image: "/images/amenities/hotspring-pool.jpg",
-    color: "#00b4d8",
+    color: "#45B3C0",
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const amenities = [
     title: "Private Villas",
     desc: "Cozy, fully-furnished villas with air conditioning, private bathrooms, and breathtaking garden views.",
     image: "/images/amenities/private-villas.jpg",
-    color: "#2d6a4f",
+    color: "#333333",
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ const amenities = [
     title: "Karaoke Area",
     desc: "Belt out your favorite songs with friends and family in our fully-equipped karaoke rooms.",
     image: "/images/amenities/karaoke.jpg",
-    color: "#e8a33d",
+    color: "#45B3C0",
   },
   {
     id: 4,
@@ -41,7 +41,7 @@ const amenities = [
     title: "Free High-Speed WiFi",
     desc: "Stay connected throughout the resort with complimentary fast and reliable internet access.",
     image: "/images/amenities/wifi-room.jpg",
-    color: "#00b4d8",
+    color: "#45B3C0",
   },
   {
     id: 6,
@@ -57,7 +57,7 @@ const amenities = [
     title: "Events Area",
     desc: "Host birthdays, reunions, and celebrations in our spacious covered events hall with full catering support.",
     image: "/images/amenities/events-area.jpg",
-    color: "#e8a33d",
+    color: "#45B3C0",
   },
   {
     id: 8,
@@ -65,7 +65,7 @@ const amenities = [
     title: "Family-Friendly Pools",
     desc: "Separate shallow pools for kids and adults — safe, clean, and perfect for all-day family fun.",
     image: "/images/amenities/family-pools.jpg",
-    color: "#2d6a4f",
+    color: "#333333",
   },
 ];
 
@@ -124,7 +124,7 @@ function AmenityLightbox({
         className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95"
         style={{ backgroundColor: "#fff" }}
       >
-        <X size={22} color="#1a2e1a" />
+        <X size={22} color="#333333" />
       </button>
 
       {/* Prev arrow */}
@@ -137,7 +137,7 @@ function AmenityLightbox({
         className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95"
         style={{ backgroundColor: "rgba(255,255,255,0.92)" }}
       >
-        <ChevronLeft size={24} color="#1a2e1a" />
+        <ChevronLeft size={24} color="#333333" />
       </button>
 
       {/* Next arrow */}
@@ -150,7 +150,7 @@ function AmenityLightbox({
         className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95"
         style={{ backgroundColor: "rgba(255,255,255,0.92)" }}
       >
-        <ChevronRight size={24} color="#1a2e1a" />
+        <ChevronRight size={24} color="#333333" />
       </button>
 
       <motion.div
@@ -175,23 +175,23 @@ function AmenityLightbox({
         </div>
         <div className="p-5 sm:p-7">
           <h3
-            style={{ fontFamily: "'Fraunces', serif", fontSize: "1.35rem", fontWeight: 700, color: "#1a2e1a" }}
+            style={{ fontFamily: "'Fraunces', serif", fontSize: "1.35rem", fontWeight: 700, color: "#333333" }}
             className="mb-2"
           >
             {amenity.title}
           </h3>
-          <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#6b7a5e", fontSize: "0.95rem", lineHeight: 1.7 }}>
+          <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "0.95rem", lineHeight: 1.7 }}>
             {amenity.desc}
           </p>
           <p
             className="mt-4 text-center sm:hidden"
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#9aaa8e" }}
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#999999" }}
           >
             {index + 1} / {amenities.length} · Swipe or tap the arrows to browse
           </p>
           <p
             className="mt-4 hidden sm:block"
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#9aaa8e" }}
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#999999" }}
           >
             {index + 1} of {amenities.length}
           </p>
@@ -218,23 +218,23 @@ export function AmenitiesCarousel() {
   }, []);
 
   return (
-    <section className="py-20 overflow-hidden" style={{ background: "#fdf6ec" }}>
+    <section className="py-20 overflow-hidden" style={{ background: "linear-gradient(180deg, #FFF9C4 0%, #EAF7F8 100%)" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-14">
           <span
             className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4"
-            style={{ backgroundColor: "#e8f5e9", color: "#2d6a4f", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            style={{ backgroundColor: "#FFEB3B", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}
           >
             What We Offer
           </span>
           <h2
-            style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#1a2e1a", fontWeight: 700 }}
+            style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#333333", fontWeight: 700 }}
           >
-            Resort <span style={{ color: "#e8a33d" }}>Amenities</span>
+            Resort <span style={{ color: "#45B3C0" }}>Amenities</span>
           </h2>
           <p
             className="mt-4 max-w-2xl mx-auto"
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#6b7a5e", fontSize: "1.05rem", lineHeight: 1.7 }}
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "1.05rem", lineHeight: 1.7 }}
           >
             Everything you need for a perfect tropical getaway — all in one beautiful place.
           </p>
@@ -246,7 +246,7 @@ export function AmenitiesCarousel() {
             onClick={() => setStartIdx((i) => Math.max(0, i - 1))}
             disabled={!canPrev}
             className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
-            style={{ backgroundColor: "#e8a33d", color: "#fff" }}
+            style={{ backgroundColor: "#45B3C0", color: "#fff" }}
           >
             <ChevronLeft size={20} />
           </button>
@@ -254,7 +254,7 @@ export function AmenitiesCarousel() {
             onClick={() => setStartIdx((i) => Math.min(amenities.length - cardsVisible, i + 1))}
             disabled={!canNext}
             className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
-            style={{ backgroundColor: "#e8a33d", color: "#fff" }}
+            style={{ backgroundColor: "#45B3C0", color: "#fff" }}
           >
             <ChevronRight size={20} />
           </button>
@@ -299,12 +299,12 @@ export function AmenitiesCarousel() {
                     </div>
                     <div className="p-5">
                       <h3
-                        style={{ fontFamily: "'Fraunces', serif", fontSize: "1.15rem", fontWeight: 700, color: "#1a2e1a" }}
+                        style={{ fontFamily: "'Fraunces', serif", fontSize: "1.15rem", fontWeight: 700, color: "#333333" }}
                         className="mb-2"
                       >
                         {a.title}
                       </h3>
-                      <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#6b7a5e", fontSize: "0.9rem", lineHeight: 1.65 }}>
+                      <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "0.9rem", lineHeight: 1.65 }}>
                         {a.desc}
                       </p>
                     </div>
@@ -325,7 +325,7 @@ export function AmenitiesCarousel() {
               style={{
                 width: i === startIdx ? "1.5rem" : "0.5rem",
                 height: "0.5rem",
-                backgroundColor: i === startIdx ? "#e8a33d" : "#d6c9a8",
+                backgroundColor: i === startIdx ? "#45B3C0" : "#A8DDE3",
               }}
               aria-label={`Go to position ${i + 1}`}
             />

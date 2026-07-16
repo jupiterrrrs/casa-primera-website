@@ -118,7 +118,7 @@ function ReservationCalendar({
       >
         {/* ── LEFT: Calendar ── */}
         <div className="flex flex-col" style={{ minWidth: 0, flex: "0 0 auto" }}>
-          <div className="flex items-center justify-between px-5 py-4" style={{ backgroundColor: "#00b4d8" }}>
+          <div className="flex items-center justify-between px-5 py-4" style={{ backgroundColor: "#45B3C0" }}>
             <div>
               <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: "1.05rem", color: "#fff" }}>
                 Select Stay Dates
@@ -134,13 +134,13 @@ function ReservationCalendar({
 
           <div className="px-3 py-2 overflow-auto">
             <style>{`
-              .rdp { --rdp-accent-color: #00b4d8; --rdp-background-color: #e0f7fa; margin: 0 auto; font-family: 'Plus Jakarta Sans', sans-serif; }
-              .rdp-day_selected, .rdp-day_range_start, .rdp-day_range_end { background-color: #00b4d8 !important; color: #fff !important; border-radius: 50% !important; }
-              .rdp-day_range_middle { background-color: #e0f7fa !important; color: #007a9a !important; border-radius: 0 !important; }
-              .rdp-day:hover:not(.rdp-day_selected):not(.rdp-day_range_middle):not(.rdp-day_disabled) { background-color: #b2ebf2 !important; border-radius: 50% !important; }
+              .rdp { --rdp-accent-color: #45B3C0; --rdp-background-color: #DCF1F3; margin: 0 auto; font-family: 'Plus Jakarta Sans', sans-serif; }
+              .rdp-day_selected, .rdp-day_range_start, .rdp-day_range_end { background-color: #45B3C0 !important; color: #fff !important; border-radius: 50% !important; }
+              .rdp-day_range_middle { background-color: #DCF1F3 !important; color: #333333 !important; border-radius: 0 !important; }
+              .rdp-day:hover:not(.rdp-day_selected):not(.rdp-day_range_middle):not(.rdp-day_disabled) { background-color: #A8DDE3 !important; border-radius: 50% !important; }
               .rdp-day_disabled { color: #e57373 !important; text-decoration: line-through !important; opacity: 0.55 !important; }
-              .rdp-caption_label { font-family: 'Fraunces', serif; font-weight: 700; color: #1a2e1a; font-size: 1rem; }
-              .rdp-head_cell { font-family: 'Plus Jakarta Sans', sans-serif; color: #6b7a5e; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+              .rdp-caption_label { font-family: 'Fraunces', serif; font-weight: 700; color: #333333; font-size: 1rem; }
+              .rdp-head_cell { font-family: 'Plus Jakarta Sans', sans-serif; color: #666666; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
             `}</style>
             <DayPicker
               mode="range"
@@ -154,38 +154,38 @@ function ReservationCalendar({
 
           {/* Date summary bar */}
           {range?.from && range?.to && (
-            <div className="mx-4 mb-4 p-3 rounded-2xl grid grid-cols-3 gap-1 text-center" style={{ backgroundColor: "#e0f7fa" }}>
+            <div className="mx-4 mb-4 p-3 rounded-2xl grid grid-cols-3 gap-1 text-center" style={{ backgroundColor: "#DCF1F3" }}>
               <div>
-                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.65rem", color: "#6b7a5e", textTransform: "uppercase", letterSpacing: "0.06em" }}>Check-in</p>
-                <p style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "0.82rem" }}>{format(range.from, "MMM d, yyyy")}</p>
-                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.65rem", color: "#007a9a" }}>3:00 PM</p>
+                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.65rem", color: "#666666", textTransform: "uppercase", letterSpacing: "0.06em" }}>Check-in</p>
+                <p style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#333333", fontSize: "0.82rem" }}>{format(range.from, "MMM d, yyyy")}</p>
+                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.65rem", color: "#333333" }}>3:00 PM</p>
               </div>
-              <div style={{ borderLeft: "1px solid #b2ebf2", borderRight: "1px solid #b2ebf2" }}>
-                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.65rem", color: "#6b7a5e", textTransform: "uppercase", letterSpacing: "0.06em" }}>Nights</p>
-                <p style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, color: "#00b4d8", fontSize: "1.3rem", lineHeight: 1 }}>{nights}</p>
+              <div style={{ borderLeft: "1px solid #A8DDE3", borderRight: "1px solid #A8DDE3" }}>
+                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.65rem", color: "#666666", textTransform: "uppercase", letterSpacing: "0.06em" }}>Nights</p>
+                <p style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, color: "#45B3C0", fontSize: "1.3rem", lineHeight: 1 }}>{nights}</p>
               </div>
               <div>
-                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.65rem", color: "#6b7a5e", textTransform: "uppercase", letterSpacing: "0.06em" }}>Check-out</p>
-                <p style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "0.82rem" }}>{format(range.to, "MMM d, yyyy")}</p>
-                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.65rem", color: "#007a9a" }}>12:00 NN</p>
+                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.65rem", color: "#666666", textTransform: "uppercase", letterSpacing: "0.06em" }}>Check-out</p>
+                <p style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#333333", fontSize: "0.82rem" }}>{format(range.to, "MMM d, yyyy")}</p>
+                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.65rem", color: "#333333" }}>12:00 NN</p>
               </div>
             </div>
           )}
 
           {!range?.from && (
-            <p className="text-center pb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#9aaa8e" }}>
+            <p className="text-center pb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#999999" }}>
               👆 Click a date to start selecting
             </p>
           )}
         </div>
 
         {/* ── RIGHT: Villa Availability Panel ── */}
-        <div className="flex flex-col border-t lg:border-t-0 lg:border-l overflow-y-auto" style={{ borderColor: "#e0f7fa", flex: 1, minWidth: 0 }}>
-          <div className="px-5 py-4 sticky top-0 z-10" style={{ backgroundColor: "#f8fdff", borderBottom: "1px solid #e0f7fa" }}>
-            <h4 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: "1rem", color: "#1a2e1a" }}>
+        <div className="flex flex-col border-t lg:border-t-0 lg:border-l overflow-y-auto" style={{ borderColor: "#DCF1F3", flex: 1, minWidth: 0 }}>
+          <div className="px-5 py-4 sticky top-0 z-10" style={{ backgroundColor: "#f8fdff", borderBottom: "1px solid #DCF1F3" }}>
+            <h4 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: "1rem", color: "#333333" }}>
               Villa Availability
             </h4>
-            <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#6b7a5e" }}>
+            <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#666666" }}>
               {anySelected
                 ? range?.to
                   ? `For ${format(range.from!, "MMM d")} – ${format(range.to, "MMM d, yyyy")}`
@@ -206,8 +206,8 @@ function ReservationCalendar({
                   onClick={() => { onSelectVilla(villa.label); onClose(); }}
                   className="w-full text-left rounded-2xl px-4 py-3 transition-all duration-200 border"
                   style={{
-                    backgroundColor: isSelected ? "#e0f7fa" : available ? "#fff" : "#fafafa",
-                    borderColor: isSelected ? "#00b4d8" : available ? "rgba(0,180,216,0.15)" : "#f0f0f0",
+                    backgroundColor: isSelected ? "#DCF1F3" : available ? "#fff" : "#fafafa",
+                    borderColor: isSelected ? "#45B3C0" : available ? "rgba(69,179,192,0.15)" : "#f0f0f0",
                     opacity: !range?.from ? 0.6 : 1,
                     cursor: !available || !range?.from ? "not-allowed" : "pointer",
                   }}
@@ -235,14 +235,14 @@ function ReservationCalendar({
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: "0.88rem", color: "#1a2e1a" }}>
+                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: "0.88rem", color: "#333333" }}>
                           {villa.label}
                         </span>
                         <span
                           className="px-2 py-0.5 rounded-full text-xs"
                           style={{
-                            backgroundColor: villa.pax >= 100 ? "#fff8e1" : "#f0fafe",
-                            color: villa.pax >= 100 ? "#7a6000" : "#007a9a",
+                            backgroundColor: villa.pax >= 100 ? "#EAF7F8" : "#EAF7F8",
+                            color: villa.pax >= 100 ? "#333333" : "#333333",
                             fontFamily: "'Plus Jakarta Sans', sans-serif",
                           }}
                         >
@@ -250,10 +250,10 @@ function ReservationCalendar({
                         </span>
                       </div>
                       <div className="flex items-center gap-3 mt-0.5">
-                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#6b7a5e" }}>
+                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#666666" }}>
                           <Users size={11} className="inline mr-1" />30–50 pax
                         </span>
-                        <span style={{ fontFamily: "'Fraunces', serif", fontSize: "0.82rem", fontWeight: 700, color: "#00b4d8" }}>
+                        <span style={{ fontFamily: "'Fraunces', serif", fontSize: "0.82rem", fontWeight: 700, color: "#45B3C0" }}>
                           From ₱{villa.price.toLocaleString()}
                         </span>
                       </div>
@@ -275,7 +275,7 @@ function ReservationCalendar({
                   </div>
 
                   {isSelected && available && (
-                    <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#007a9a", marginTop: "0.4rem", paddingLeft: "2.5rem" }}>
+                    <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#333333", marginTop: "0.4rem", paddingLeft: "2.5rem" }}>
                       ✓ Selected — click Confirm to apply
                     </p>
                   )}
@@ -284,12 +284,12 @@ function ReservationCalendar({
             })}
           </div>
 
-          <div className="px-4 py-3 mt-auto sticky bottom-0" style={{ backgroundColor: "#f8fdff", borderTop: "1px solid #e0f7fa" }}>
+          <div className="px-4 py-3 mt-auto sticky bottom-0" style={{ backgroundColor: "#f8fdff", borderTop: "1px solid #DCF1F3" }}>
             <button
               onClick={onClose}
               disabled={!range?.from || !range?.to}
               className="w-full py-3 rounded-full font-semibold text-white transition-all duration-200 hover:opacity-90 disabled:opacity-35 disabled:cursor-not-allowed"
-              style={{ backgroundColor: "#00b4d8", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              style={{ backgroundColor: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               {range?.from && range?.to ? "Confirm Dates →" : "Select Check-in & Check-out"}
             </button>
@@ -328,9 +328,9 @@ export function BookingCTA() {
       const checkIn = new Date(dateRange.from); checkIn.setHours(15, 0, 0, 0);
       const checkOut = new Date(dateRange.to); checkOut.setHours(12, 0, 0, 0);
       setCalendarUrl(buildGoogleCalendarUrl(
-        `Casa Primera Hotspring Resort — ${formData.villa || "Villa Stay"}`,
+        `Casa Primera Hotspring Resorts — ${formData.villa || "Villa Stay"}`,
         checkIn, checkOut,
-        `Reservation for ${formData.guests} guest(s).\nCasa Primera Hotspring Resort, Calamba, Laguna.\nContact: 0917.114.6956`,
+        `Reservation for ${formData.guests} guest(s).\nCasa Primera Hotspring Resorts, Calamba, Laguna.\nContact: 0917.114.6956`,
         "Brgy. Pansol, Calamba City, Laguna, Philippines"
       ));
     }
@@ -348,18 +348,18 @@ export function BookingCTA() {
     <section id="booking" className="py-24 relative overflow-hidden">
       <div className="absolute inset-0">
         <img src="/images/misc/booking-cta.jpg" alt="Pool" className="w-full h-full object-cover" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(0,91,110,0.88) 0%, rgba(45,106,79,0.82) 100%)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(24,64,70,0.88) 0%, rgba(51,51,51,0.85) 100%)" }} />
       </div>
 
       <div className="relative max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left info */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-            <span className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-6" style={{ backgroundColor: "rgba(0,180,216,0.25)", color: "#7eeaf7", fontFamily: "'Plus Jakarta Sans', sans-serif", border: "1px solid rgba(0,180,216,0.35)" }}>
+            <span className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-6" style={{ backgroundColor: "#FFEB3B", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}>
               Reservations
             </span>
             <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2.2rem, 4.5vw, 3.2rem)", color: "#fff", fontWeight: 800, lineHeight: 1.2 }} className="mb-6">
-              Plan Your Perfect<br /><span style={{ color: "#f5c42c" }}>Getaway Today</span>
+              Plan Your Perfect<br /><span style={{ color: "#FFEB3B" }}>Getaway Today</span>
             </h2>
             <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "rgba(255,255,255,0.82)", lineHeight: 1.8, fontSize: "1.05rem" }} className="mb-10">
               Reserve your slice of tropical paradise at Casa Primera. Whether it's a weekend with family or a romantic escape for two, we have the perfect villa waiting for you.
@@ -372,8 +372,8 @@ export function BookingCTA() {
                 { icon: Users, label: "Guest Capacity", value: "30–50 pax per villa" },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "rgba(0,180,216,0.25)" }}>
-                    <Icon size={18} color="#7eeaf7" />
+                  <div className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "rgba(69,179,192,0.25)" }}>
+                    <Icon size={18} color="#9FE0E6" />
                   </div>
                   <div>
                     <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.55)", textTransform: "uppercase", letterSpacing: "0.08em" }}>{label}</p>
@@ -393,71 +393,71 @@ export function BookingCTA() {
             {submitted ? (
               <div className="text-center py-8">
                 <CheckCircle className="mx-auto mb-4" size={48} color="#16a34a" />
-                <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.6rem", color: "#1a2e1a", fontWeight: 700 }} className="mb-3">Reservation Sent!</h3>
-                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#6b7a5e", lineHeight: 1.7 }} className="mb-4">
+                <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.6rem", color: "#333333", fontWeight: 700 }} className="mb-3">Reservation Sent!</h3>
+                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", lineHeight: 1.7 }} className="mb-4">
                   Thank you, <strong>{formData.name}</strong>! We'll contact you within 24 hours to confirm your booking.
                 </p>
                 {dateRange?.from && dateRange?.to && (
-                  <div className="mt-4 px-5 py-3 rounded-2xl inline-block mb-5" style={{ backgroundColor: "#e0f7fa" }}>
-                    <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#007a9a", fontWeight: 600 }}>
+                  <div className="mt-4 px-5 py-3 rounded-2xl inline-block mb-5" style={{ backgroundColor: "#DCF1F3" }}>
+                    <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#333333", fontWeight: 600 }}>
                       📅 {format(dateRange.from, "MMM d")} – {format(dateRange.to, "MMM d, yyyy")} · {nights} night{nights !== 1 ? "s" : ""}
                     </p>
-                    <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#6b7a5e" }}>Check-in 3:00 PM · Check-out 12:00 NN</p>
+                    <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#666666" }}>Check-in 3:00 PM · Check-out 12:00 NN</p>
                   </div>
                 )}
                 {calendarUrl && (
                   <a href={calendarUrl} target="_blank" rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 w-full py-3.5 rounded-full font-semibold text-white transition-all duration-200 hover:opacity-90"
-                    style={{ backgroundColor: "#00b4d8", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    style={{ backgroundColor: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                     📅 Add to Google Calendar
                   </a>
                 )}
               </div>
             ) : (
               <>
-                <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.5rem", color: "#1a2e1a", fontWeight: 700 }} className="mb-6">Reserve Now</h3>
+                <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.5rem", color: "#333333", fontWeight: 700 }} className="mb-6">Reserve Now</h3>
                 <form onSubmit={handleReserveClick} className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4a5e40", fontWeight: 600 }} className="block mb-1.5">Full Name</label>
+                      <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4d4d4d", fontWeight: 600 }} className="block mb-1.5">Full Name</label>
                       <input type="text" required placeholder="Juan dela Cruz" value={formData.name}
                         onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
-                        className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#00b4d8] focus:ring-2 focus:ring-[#00b4d8]/20"
-                        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", borderColor: "#d6c9a8", backgroundColor: "#fdf6ec" }} />
+                        className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#45B3C0] focus:ring-2 focus:ring-[#45B3C0]/20"
+                        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", borderColor: "#A8DDE3", backgroundColor: "#EAF7F8" }} />
                     </div>
                     <div>
-                      <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4a5e40", fontWeight: 600 }} className="block mb-1.5">Phone</label>
+                      <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4d4d4d", fontWeight: 600 }} className="block mb-1.5">Phone</label>
                       <input type="tel" required placeholder="+63 9XX XXX XXXX" value={formData.phone}
                         onChange={(e) => setFormData((p) => ({ ...p, phone: e.target.value }))}
-                        className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#00b4d8] focus:ring-2 focus:ring-[#00b4d8]/20"
-                        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", borderColor: "#d6c9a8", backgroundColor: "#fdf6ec" }} />
+                        className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#45B3C0] focus:ring-2 focus:ring-[#45B3C0]/20"
+                        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", borderColor: "#A8DDE3", backgroundColor: "#EAF7F8" }} />
                     </div>
                   </div>
 
                   <div>
-                    <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4a5e40", fontWeight: 600 }} className="block mb-1.5">Email Address</label>
+                    <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4d4d4d", fontWeight: 600 }} className="block mb-1.5">Email Address</label>
                     <input type="email" required placeholder="you@email.com" value={formData.email}
                       onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
-                      className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#00b4d8] focus:ring-2 focus:ring-[#00b4d8]/20"
-                      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", borderColor: "#d6c9a8", backgroundColor: "#fdf6ec" }} />
+                      className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#45B3C0] focus:ring-2 focus:ring-[#45B3C0]/20"
+                      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", borderColor: "#A8DDE3", backgroundColor: "#EAF7F8" }} />
                   </div>
 
                   {/* Date picker trigger */}
                   <div>
-                    <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4a5e40", fontWeight: 600 }} className="block mb-1.5">Stay Dates & Villa Availability</label>
+                    <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4d4d4d", fontWeight: 600 }} className="block mb-1.5">Stay Dates & Villa Availability</label>
                     <button type="button" onClick={() => setCalendarOpen(true)}
-                      className="w-full px-4 py-2.5 rounded-xl border text-left flex items-center gap-3 transition-all duration-200 hover:border-[#00b4d8]"
-                      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", borderColor: dateRange?.from ? "#00b4d8" : "#d6c9a8", backgroundColor: dateRange?.from ? "#e0f7fa" : "#fdf6ec", color: dateRange?.from ? "#007a9a" : "#9aaa8e" }}>
-                      <CalendarDays size={16} color={dateRange?.from ? "#00b4d8" : "#9aaa8e"} />
+                      className="w-full px-4 py-2.5 rounded-xl border text-left flex items-center gap-3 transition-all duration-200 hover:border-[#45B3C0]"
+                      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", borderColor: dateRange?.from ? "#45B3C0" : "#A8DDE3", backgroundColor: dateRange?.from ? "#DCF1F3" : "#EAF7F8", color: dateRange?.from ? "#333333" : "#999999" }}>
+                      <CalendarDays size={16} color={dateRange?.from ? "#45B3C0" : "#999999"} />
                       <span className="flex-1">{dateLabel}</span>
                       {dateRange?.from && (
-                        <span style={{ fontSize: "0.75rem", color: "#007a9a", fontWeight: 600 }}>
+                        <span style={{ fontSize: "0.75rem", color: "#333333", fontWeight: 600 }}>
                           {availableCount}/{allVillas.length} villas free
                         </span>
                       )}
                     </button>
                     {nights > 0 && (
-                      <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#007a9a", marginTop: "4px" }}>
+                      <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#333333", marginTop: "4px" }}>
                         ✓ {nights} night{nights !== 1 ? "s" : ""} · Check-in 3PM · Check-out 12NN
                       </p>
                     )}
@@ -465,10 +465,10 @@ export function BookingCTA() {
 
                   {/* Compact availability list (once dates chosen) */}
                   {availabilityRows.length > 0 && (
-                    <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "#e0f7fa" }}>
-                      <div className="px-4 py-2 flex items-center justify-between" style={{ backgroundColor: "#f0fafe" }}>
-                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", fontWeight: 700, color: "#007a9a" }}>All Villa Availability</span>
-                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#6b7a5e" }}>Tap to select</span>
+                    <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "#DCF1F3" }}>
+                      <div className="px-4 py-2 flex items-center justify-between" style={{ backgroundColor: "#EAF7F8" }}>
+                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", fontWeight: 700, color: "#333333" }}>All Villa Availability</span>
+                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#666666" }}>Tap to select</span>
                       </div>
                       <div className="divide-y">
                         {availabilityRows.map((v) => (
@@ -479,19 +479,19 @@ export function BookingCTA() {
                             onClick={() => setFormData((p) => ({ ...p, villa: v.label }))}
                             className="w-full px-4 py-2.5 flex items-center gap-3 transition-colors duration-150 text-left"
                             style={{
-                              backgroundColor: formData.villa === v.label ? "#e0f7fa" : v.available ? "#fff" : "#fafafa",
+                              backgroundColor: formData.villa === v.label ? "#DCF1F3" : v.available ? "#fff" : "#fafafa",
                               cursor: v.available ? "pointer" : "not-allowed",
-                              borderBottom: "1px solid #f0fafe",
+                              borderBottom: "1px solid #EAF7F8",
                             }}
                           >
                             <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
                               style={{ backgroundColor: v.available ? "#dcfce7" : "#fee2e2" }}>
                               {v.available ? <Check size={11} color="#16a34a" strokeWidth={2.5} /> : <Ban size={10} color="#dc2626" />}
                             </div>
-                            <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.84rem", fontWeight: 600, color: v.available ? "#1a2e1a" : "#9ca3af", flex: 1 }}>
+                            <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.84rem", fontWeight: 600, color: v.available ? "#333333" : "#9ca3af", flex: 1 }}>
                               {v.label}
                             </span>
-                            <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#9aaa8e" }}>
+                            <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#999999" }}>
                               30–50 pax
                             </span>
                             <span
@@ -507,30 +507,30 @@ export function BookingCTA() {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4a5e40", fontWeight: 600 }} className="block mb-1.5">Selected Villa</label>
+                      <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4d4d4d", fontWeight: 600 }} className="block mb-1.5">Selected Villa</label>
                       <select value={formData.villa} onChange={(e) => setFormData((p) => ({ ...p, villa: e.target.value }))}
-                        className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#00b4d8]"
-                        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", borderColor: "#d6c9a8", backgroundColor: "#fdf6ec" }}>
+                        className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#45B3C0]"
+                        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", borderColor: "#A8DDE3", backgroundColor: "#EAF7F8" }}>
                         <option value="">Any Villa</option>
                         {allVillas.map((v) => <option key={v.label} value={v.label}>{v.label} (30–50 pax)</option>)}
                       </select>
                     </div>
                     <div>
-                      <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4a5e40", fontWeight: 600 }} className="block mb-1.5">Guests (Max 50)</label>
+                      <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4d4d4d", fontWeight: 600 }} className="block mb-1.5">Guests (Max 50)</label>
                       <select value={formData.guests} onChange={(e) => setFormData((p) => ({ ...p, guests: e.target.value }))}
-                        className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#00b4d8]"
-                        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", borderColor: "#d6c9a8", backgroundColor: "#fdf6ec" }}>
+                        className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#45B3C0]"
+                        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", borderColor: "#A8DDE3", backgroundColor: "#EAF7F8" }}>
                         {Array.from({ length: 50 }, (_, i) => i + 1).map((n) => <option key={n}>{n}</option>)}
                       </select>
                     </div>
                   </div>
 
                   <button type="submit"
-                    className="w-full py-4 rounded-full font-semibold text-white transition-all duration-300 hover:opacity-90 hover:scale-[1.02] hover:shadow-lg mt-2"
-                    style={{ backgroundColor: "#00b4d8", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "1rem" }}>
+                    className="w-full py-4 rounded-full font-bold transition-all duration-300 hover:opacity-90 hover:scale-[1.02] hover:shadow-lg mt-2"
+                    style={{ backgroundColor: "#FFEB3B", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "1rem" }}>
                     Reserve Now — View T&C →
                   </button>
-                  <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#9aaa8e", textAlign: "center" }}>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#999999", textAlign: "center" }}>
                     Terms & Conditions shown before final confirmation
                   </p>
                 </form>

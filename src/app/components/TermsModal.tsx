@@ -28,7 +28,7 @@ export function TermsModal({ onAccept, onClose }: Props) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b flex-shrink-0" style={{ borderColor: "#e0f7fa", backgroundColor: "#00b4d8" }}>
+        <div className="flex items-center justify-between px-6 py-4 border-b flex-shrink-0" style={{ borderColor: "#DCF1F3", backgroundColor: "#45B3C0" }}>
           <h2 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: "1.2rem", color: "#fff" }}>
             Terms & Conditions
           </h2>
@@ -42,30 +42,30 @@ export function TermsModal({ onAccept, onClose }: Props) {
 
           {/* Check-in/out */}
           <div>
-            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#333333", fontSize: "1rem" }} className="mb-2">
               🕐 Check-in & Check-out
             </h3>
             <div className="grid grid-cols-2 gap-3">
-              <div className="p-3 rounded-xl text-center" style={{ backgroundColor: "#e0f7fa" }}>
-                <p style={{ fontSize: "1.6rem", fontWeight: 800, color: "#00b4d8" }}>3:00 PM</p>
-                <p style={{ fontSize: "0.8rem", color: "#6b7a5e" }}>Check-in time</p>
+              <div className="p-3 rounded-xl text-center" style={{ backgroundColor: "#DCF1F3" }}>
+                <p style={{ fontSize: "1.6rem", fontWeight: 800, color: "#45B3C0" }}>3:00 PM</p>
+                <p style={{ fontSize: "0.8rem", color: "#666666" }}>Check-in time</p>
               </div>
-              <div className="p-3 rounded-xl text-center" style={{ backgroundColor: "#fff8e1" }}>
-                <p style={{ fontSize: "1.6rem", fontWeight: 800, color: "#f5c42c" }}>12:00 NN</p>
-                <p style={{ fontSize: "0.8rem", color: "#6b7a5e" }}>Check-out time</p>
+              <div className="p-3 rounded-xl text-center" style={{ backgroundColor: "#EAF7F8" }}>
+                <p style={{ fontSize: "1.6rem", fontWeight: 800, color: "#FFEB3B" }}>12:00 NN</p>
+                <p style={{ fontSize: "0.8rem", color: "#666666" }}>Check-out time</p>
               </div>
             </div>
-            <p style={{ fontSize: "0.85rem", color: "#6b7a5e", marginTop: "0.5rem" }}>
+            <p style={{ fontSize: "0.85rem", color: "#666666", marginTop: "0.5rem" }}>
               Early check-in and late check-out are subject to availability and may incur additional fees. Please arrange in advance.
             </p>
           </div>
 
           {/* Capacity */}
           <div>
-            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#333333", fontSize: "1rem" }} className="mb-2">
               👥 Guest Capacity
             </h3>
-            <ul style={{ fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.85 }} className="list-disc pl-4 space-y-1">
+            <ul style={{ fontSize: "0.88rem", color: "#4d4d4d", lineHeight: 1.85 }} className="list-disc pl-4 space-y-1">
               <li><strong>Capacity per villa:</strong> 30–50 pax</li>
               <li><strong>Casa Primera Villa 1:</strong> 30–50 guests</li>
               <li><strong>Casa Primera Villa 2:</strong> 30–50 guests</li>
@@ -80,18 +80,18 @@ export function TermsModal({ onAccept, onClose }: Props) {
 
           {/* Mode of Payment */}
           <div>
-            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-3">
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#333333", fontSize: "1rem" }} className="mb-3">
               💳 Mode of Payment
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {paymentModes.map(({ icon: Icon, label, detail }) => (
-                <div key={label} className="flex items-start gap-3 p-3 rounded-xl" style={{ backgroundColor: "#f8feff", border: "1px solid #e0f7fa" }}>
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: "#e0f7fa" }}>
-                    <Icon size={15} color="#00b4d8" />
+                <div key={label} className="flex items-start gap-3 p-3 rounded-xl" style={{ backgroundColor: "#f8feff", border: "1px solid #DCF1F3" }}>
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: "#DCF1F3" }}>
+                    <Icon size={15} color="#45B3C0" />
                   </div>
                   <div>
-                    <p style={{ fontSize: "0.88rem", fontWeight: 600, color: "#1a2e1a" }}>{label}</p>
-                    <p style={{ fontSize: "0.78rem", color: "#6b7a5e" }}>{detail}</p>
+                    <p style={{ fontSize: "0.88rem", fontWeight: 600, color: "#333333" }}>{label}</p>
+                    <p style={{ fontSize: "0.78rem", color: "#666666" }}>{detail}</p>
                   </div>
                 </div>
               ))}
@@ -100,10 +100,10 @@ export function TermsModal({ onAccept, onClose }: Props) {
 
           {/* Payment limitation */}
           <div>
-            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#333333", fontSize: "1rem" }} className="mb-2">
               ⚠ Payment Policy & Limitations
             </h3>
-            <ul style={{ fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.85 }} className="list-disc pl-4 space-y-1">
+            <ul style={{ fontSize: "0.88rem", color: "#4d4d4d", lineHeight: 1.85 }} className="list-disc pl-4 space-y-1">
               <li>A <strong>50% down payment</strong> is required to confirm your reservation.</li>
               <li>The remaining balance must be settled <strong>upon check-in</strong>.</li>
               <li>Reservations without payment confirmation within <strong>24 hours</strong> will be automatically released.</li>
@@ -115,10 +115,10 @@ export function TermsModal({ onAccept, onClose }: Props) {
 
           {/* House rules */}
           <div>
-            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#333333", fontSize: "1rem" }} className="mb-2">
               🏡 House Rules
             </h3>
-            <ul style={{ fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.85 }} className="list-disc pl-4 space-y-1">
+            <ul style={{ fontSize: "0.88rem", color: "#4d4d4d", lineHeight: 1.85 }} className="list-disc pl-4 space-y-1">
               <li>No outside food and drinks without prior arrangement.</li>
               <li>Strictly <strong>no pets</strong> allowed inside the villas.</li>
               <li>Quiet hours from <strong>10:00 PM to 7:00 AM</strong>.</li>
@@ -131,28 +131,28 @@ export function TermsModal({ onAccept, onClose }: Props) {
 
           {/* Data & Privacy */}
           <div>
-            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#333333", fontSize: "1rem" }} className="mb-2">
               🔒 Data Privacy
             </h3>
-            <p style={{ fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.75 }}>
+            <p style={{ fontSize: "0.88rem", color: "#4d4d4d", lineHeight: 1.75 }}>
               By submitting a reservation, you consent to the collection and use of your personal information in accordance with the Data Privacy Act of 2012 (R.A. 10173). Your data will only be used for reservation management and resort communications.
             </p>
           </div>
         </div>
 
         {/* Footer actions */}
-        <div className="px-6 py-4 border-t flex gap-3 flex-shrink-0" style={{ borderColor: "#e0f7fa" }}>
+        <div className="px-6 py-4 border-t flex gap-3 flex-shrink-0" style={{ borderColor: "#DCF1F3" }}>
           <button
             onClick={onClose}
             className="flex-1 py-3 rounded-full font-semibold border transition-all duration-200 hover:bg-gray-50"
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", color: "#6b7a5e", borderColor: "#d6c9a8" }}
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", color: "#666666", borderColor: "#A8DDE3" }}
           >
             Cancel
           </button>
           <button
             onClick={onAccept}
             className="flex-1 py-3 rounded-full font-semibold text-white transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-            style={{ backgroundColor: "#00b4d8", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem" }}
+            style={{ backgroundColor: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem" }}
           >
             I Agree & Reserve Now
           </button>

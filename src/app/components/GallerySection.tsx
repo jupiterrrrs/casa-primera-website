@@ -27,6 +27,39 @@ const photos = [
   { id: 22, src: "/images/gallery/gallery22.jpg", alt: "Casa Primera Villa 5 pool with mountain view" },
   { id: 23, src: "/images/gallery/gallery23.jpg", alt: "Casa Primera Villa 5 kids' play area" },
   { id: 24, src: "/images/gallery/gallery24.jpg", alt: "Casa Primera Villa 5 recreation hall with darts" },
+  { id: 25, src: "/images/gallery/gallery25.jpg", alt: "Casa Primera Villa 2 interior view" },
+  { id: 26, src: "/images/gallery/gallery26.jpg", alt: "Casa Primera Villa 2 interior view" },
+  { id: 27, src: "/images/gallery/gallery27.jpg", alt: "Casa Primera Villa 2 interior view" },
+  { id: 28, src: "/images/gallery/gallery28.jpg", alt: "Casa Primera Villa 2 interior view" },
+  { id: 29, src: "/images/gallery/gallery29.jpg", alt: "Casa Primera Villa 2 interior view" },
+  { id: 30, src: "/images/gallery/gallery30.jpg", alt: "Casa Primera Villa 2 interior view" },
+  { id: 31, src: "/images/gallery/gallery31.jpg", alt: "Casa Primera Villa 2 interior view" },
+  { id: 32, src: "/images/gallery/gallery32.jpg", alt: "Casa Primera Villa 2 interior view" },
+  { id: 33, src: "/images/gallery/gallery33.jpg", alt: "Casa Primera Villa 2 interior view" },
+  { id: 34, src: "/images/gallery/gallery34.jpg", alt: "Casa Primera Villa 3 interior view" },
+  { id: 35, src: "/images/gallery/gallery35.jpg", alt: "Casa Primera Villa 3 interior view" },
+  { id: 36, src: "/images/gallery/gallery36.jpg", alt: "Casa Primera Villa 3 interior view" },
+  { id: 37, src: "/images/gallery/gallery37.jpg", alt: "Casa Primera Villa 3 interior view" },
+  { id: 38, src: "/images/gallery/gallery38.jpg", alt: "Casa Primera Villa 3 interior view" },
+  { id: 39, src: "/images/gallery/gallery39.jpg", alt: "Casa Primera Villa 3 interior view" },
+  { id: 40, src: "/images/gallery/gallery40.jpg", alt: "Casa Primera Villa 3 interior view" },
+  { id: 41, src: "/images/gallery/gallery41.jpg", alt: "Casa Primera Villa 3 interior view" },
+  { id: 42, src: "/images/gallery/gallery42.jpg", alt: "Casa Primera Villa 3 interior view" },
+  { id: 43, src: "/images/gallery/gallery43.jpg", alt: "Casa Primera Villa 3 interior view" },
+  { id: 44, src: "/images/gallery/gallery44.jpg", alt: "Casa Primera Villa 4 interior view" },
+  { id: 45, src: "/images/gallery/gallery45.jpg", alt: "Casa Primera Villa 4 interior view" },
+  { id: 46, src: "/images/gallery/gallery46.jpg", alt: "Casa Primera Villa 4 interior view" },
+  { id: 47, src: "/images/gallery/gallery47.jpg", alt: "Casa Primera Villa 4 interior view" },
+  { id: 48, src: "/images/gallery/gallery48.jpg", alt: "Casa Primera Villa 4 interior view" },
+  { id: 49, src: "/images/gallery/gallery49.jpg", alt: "Casa Primera Villa 4 interior view" },
+  { id: 50, src: "/images/gallery/gallery50.jpg", alt: "Casa Primera Villa 4 interior view" },
+  { id: 51, src: "/images/gallery/gallery51.jpg", alt: "Casa Primera Villa 4 interior view" },
+  { id: 52, src: "/images/gallery/gallery52.jpg", alt: "Casa Primera Villa 4 interior view" },
+  { id: 53, src: "/images/gallery/gallery53.jpg", alt: "Casa Primera Villa 5 interior view" },
+  { id: 54, src: "/images/gallery/gallery54.jpg", alt: "Casa Primera Villa 5 interior view" },
+  { id: 55, src: "/images/gallery/gallery55.jpg", alt: "Casa Primera Villa 5 interior view" },
+  { id: 56, src: "/images/gallery/gallery56.jpg", alt: "Casa Primera Villa 5 interior view" },
+  { id: 57, src: "/images/gallery/gallery57.jpg", alt: "Casa Primera Villa 5 interior view" },
 ];
 
 function Lightbox({
@@ -131,19 +164,19 @@ export function GallerySection() {
   }, []);
 
   return (
-    <section id="gallery" className="py-20" style={{ background: "#e8f5e9" }}>
+    <section id="gallery" className="py-20" style={{ background: "#DCF1F3" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-14">
           <span
             className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4"
-            style={{ backgroundColor: "#fff8e1", color: "#e8a33d", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            style={{ backgroundColor: "#EAF7F8", color: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             Gallery
           </span>
-          <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#1a2e1a", fontWeight: 700 }}>
-            A Glimpse of <span style={{ color: "#2d6a4f" }}>Paradise</span>
+          <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#333333", fontWeight: 700 }}>
+            A Glimpse of <span style={{ color: "#333333" }}>Paradise</span>
           </h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#4a5e40", fontSize: "1.05rem", lineHeight: 1.7 }}>
+          <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#4d4d4d", fontSize: "1.05rem", lineHeight: 1.7 }}>
             Every corner of Casa Primera is a photo waiting to happen.
           </p>
         </div>
@@ -169,7 +202,7 @@ export function GallerySection() {
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-300 flex items-center justify-center">
                 <span
                   className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-center"
-                  style={{ backgroundColor: "rgba(244,114,27,0.85)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                  style={{ backgroundColor: "rgba(69,179,192,0.9)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
                   View Photo
                 </span>

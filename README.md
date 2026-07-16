@@ -1,6 +1,6 @@
-# Casa Primera Hotspring Resort — Website
+# Casa Primera Hotspring Resorts — Website
 
-A resort booking website for Casa Primera Hotspring Resort in Calamba, Laguna. Built with React, TypeScript, Vite, and Tailwind CSS.
+A resort booking website for Casa Primera Hotspring Resorts in Calamba, Laguna. Built with React, TypeScript, Vite, and Tailwind CSS.
 
 ## Features
 
