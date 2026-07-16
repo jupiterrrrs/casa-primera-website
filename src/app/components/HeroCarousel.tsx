@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 const slides = [
   {
     id: 1,
-    image: "/images/villas/villa1.jpg",
+    image: "/images/hero/carousel1.jpg",
     alt: "Casa Primera Villa 1 exterior",
     label: "Casa Primera Villa 1",
   },
@@ -29,7 +29,7 @@ const slides = [
   },
   {
     id: 5,
-    image: "/images/villas/villa5.jpg",
+    image: "/images/hero/carousel5.jpg",
     alt: "Casa Primera Villa 5 exterior",
     label: "Casa Primera Villa 5",
   },
@@ -49,7 +49,7 @@ export function HeroCarousel() {
   }, [isAutoPlaying, next]);
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#1a2e1a]">
+    <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#333333]">
       <AnimatePresence mode="wait">
         <motion.div
           key={slides[current].id}
@@ -74,18 +74,18 @@ export function HeroCarousel() {
           initial={{ opacity: 0, y: -16, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 0.15, duration: 0.7, ease: "easeOut" }}
-          className="mb-6 rounded-full flex items-center justify-center"
+          className="mb-7 rounded-full flex items-center justify-center mx-auto"
           style={{
-            width: "clamp(88px, 12vw, 128px)",
-            height: "clamp(88px, 12vw, 128px)",
+            width: "clamp(100px, 14vw, 152px)",
+            height: "clamp(100px, 14vw, 152px)",
             backgroundColor: "rgba(255,255,255,0.95)",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.25), 0 0 0 6px rgba(255,255,255,0.15)",
-            padding: "6px",
+            boxShadow: "0 10px 36px rgba(0,0,0,0.28), 0 0 0 7px rgba(255,255,255,0.18)",
+            padding: "7px",
           }}
         >
           <img
             src="/images/logo.jpg"
-            alt="Casa Primera Hotspring Resort logo"
+            alt="Casa Primera Hotspring Resorts logo"
             className="w-full h-full object-cover rounded-full"
           />
         </motion.div>
@@ -94,11 +94,11 @@ export function HeroCarousel() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="mb-4"
+          className="mb-4 w-full flex justify-center"
         >
           <span
-            className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase text-white/90"
-            style={{ backgroundColor: "rgba(244,114,27,0.75)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            className="inline-block px-5 py-2 rounded-full text-sm font-bold tracking-widest uppercase text-center"
+            style={{ backgroundColor: "#45B3C0", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             {slides[current].label}
           </span>
@@ -112,7 +112,7 @@ export function HeroCarousel() {
           className="mb-4 max-w-4xl"
         >
           Casa Primera<br />
-          <span style={{ color: "#e8a33d" }}>Hotspring Resort</span>
+          <span style={{ color: "#45B3C0" }}>Hotspring Resorts</span>
         </motion.h1>
         <motion.p
           key={`tag-${current}`}
@@ -133,7 +133,7 @@ export function HeroCarousel() {
           <a
             href="#booking"
             className="px-8 py-3.5 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
-            style={{ backgroundColor: "#e8a33d", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "1rem" }}
+            style={{ backgroundColor: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "1rem" }}
           >
             Book Now
           </a>
@@ -173,7 +173,7 @@ export function HeroCarousel() {
             style={{
               width: i === current ? "2rem" : "0.5rem",
               height: "0.5rem",
-              backgroundColor: i === current ? "#e8a33d" : "rgba(255,255,255,0.55)",
+              backgroundColor: i === current ? "#45B3C0" : "rgba(255,255,255,0.55)",
             }}
             aria-label={`Go to slide ${i + 1}`}
           />

@@ -1,4 +1,4 @@
-import { Users, Star, ArrowRight, PlayCircle, X } from "lucide-react";
+import { Users, Star, ArrowRight, Play, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -163,7 +163,7 @@ function VideoModal({ src, title, onClose }: { src: string; title: string; onClo
         >
           Sorry, your browser doesn't support embedded videos.
         </video>
-        <div className="px-5 py-3" style={{ backgroundColor: "#1a2e1a" }}>
+        <div className="px-5 py-3" style={{ backgroundColor: "#333333" }}>
           <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#fff", fontSize: "0.9rem", fontWeight: 600 }}>
             {title} — Villa Tour
           </p>
@@ -197,7 +197,7 @@ function VillaModal({ villa, onClose }: { villa: Villa; onClose: () => void }) {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
+        className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -208,8 +208,8 @@ function VillaModal({ villa, onClose }: { villa: Villa; onClose: () => void }) {
       >
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
         <motion.div
-          className="relative w-full max-w-4xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row"
-          style={{ backgroundColor: "#fff", maxHeight: "92vh" }}
+          className="relative w-full h-full sm:h-auto sm:max-w-4xl sm:max-h-[92vh] rounded-none sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row"
+          style={{ backgroundColor: "#fff", maxHeight: "100dvh" }}
           initial={{ scale: 0.92, y: 20 }}
           animate={{ scale: 1, y: 0 }}
           exit={{ scale: 0.92, y: 20 }}
@@ -219,72 +219,72 @@ function VillaModal({ villa, onClose }: { villa: Villa; onClose: () => void }) {
           <button
             onClick={onClose}
             aria-label="Close villa details"
-            className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-gray-700 shadow-md transition-transform duration-200 hover:scale-110 active:scale-95 text-lg font-bold"
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-gray-700 shadow-md transition-transform duration-200 hover:scale-110 active:scale-95 text-lg font-bold"
           >
             ×
           </button>
 
-          {/* Landscape photo — full-width banner on mobile, fixed side column on desktop */}
-          <div className="relative w-full lg:w-[42%] flex-shrink-0 aspect-video lg:aspect-auto lg:h-auto lg:self-stretch">
+          {/* Landscape photo — compact banner on mobile, fixed side column on desktop */}
+          <div className="relative w-full lg:w-[42%] flex-shrink-0 aspect-[16/10] sm:aspect-video lg:aspect-auto lg:h-auto lg:self-stretch">
             <img src={villa.image} alt={villa.name} className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
-            <div className="absolute bottom-4 left-6">
+            <div className="absolute bottom-4 left-5 sm:left-6">
               <span
                 className="px-3 py-1 rounded-full text-xs uppercase tracking-widest"
-                style={{ backgroundColor: "#00b4d8", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                style={{ backgroundColor: "#45B3C0", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
                 {villa.tag}
               </span>
             </div>
           </div>
 
-          {/* Scrollable content column */}
-          <div className="p-6 sm:p-7 overflow-y-auto flex-1" style={{ minWidth: 0 }}>
+          {/* Scrollable content column — stretches full width on mobile for a roomier, more legible description */}
+          <div className="px-5 py-5 sm:p-7 overflow-y-auto flex-1 w-full" style={{ minWidth: 0 }}>
             <div className="flex items-start justify-between gap-3 mb-3">
-              <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.5rem", fontWeight: 700, color: "#1a2e1a" }}>
+              <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.5rem", fontWeight: 700, color: "#333333" }}>
                 {villa.name}
               </h3>
               <div className="text-right flex-shrink-0">
-                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#9aaa8e", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#999999", textTransform: "uppercase", letterSpacing: "0.06em" }}>
                   Starting at
                 </p>
-                <p style={{ fontFamily: "'Fraunces', serif", fontSize: "1.4rem", fontWeight: 800, color: "#00b4d8" }}>
+                <p style={{ fontFamily: "'Fraunces', serif", fontSize: "1.4rem", fontWeight: 800, color: "#45B3C0" }}>
                   ₱{villa.startingPrice.toLocaleString()}
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-4 mb-4">
-              <span className="flex items-center gap-1.5" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#6b7a5e" }}>
-                <Users size={14} color="#00b4d8" />
-                <strong style={{ color: "#1a2e1a" }}>{villa.capacity} Pax</strong> capacity
+              <span className="flex items-center gap-1.5" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#666666" }}>
+                <Users size={14} color="#45B3C0" />
+                <strong style={{ color: "#333333" }}>{villa.capacity} Pax</strong> capacity
               </span>
             </div>
-            <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#4a5e40", lineHeight: 1.75, fontSize: "0.92rem" }} className="mb-5">
+            <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#4d4d4d", lineHeight: 1.75, fontSize: "0.92rem" }} className="mb-5">
               {villa.desc}
             </p>
             <div className="flex flex-wrap gap-2 mb-6">
               {villa.features.map((f) => (
-                <span key={f} className="px-3 py-1 rounded-full text-sm" style={{ backgroundColor: "#e0f7fa", color: "#007a9a", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <span key={f} className="px-3 py-1 rounded-full text-sm" style={{ backgroundColor: "#DCF1F3", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                   {f}
                 </span>
               ))}
             </div>
 
             {villa.rateTiers.length > 0 && (
-              <div className="rounded-2xl overflow-hidden border mb-5" style={{ borderColor: "#e0f7fa" }}>
-                <div className="px-4 py-2.5" style={{ backgroundColor: "#f0fafe" }}>
-                  <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", fontWeight: 700, color: "#007a9a" }}>
+              <div className="rounded-2xl overflow-hidden border mb-5" style={{ borderColor: "#DCF1F3" }}>
+                <div className="px-4 py-2.5" style={{ backgroundColor: "#EAF7F8" }}>
+                  <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", fontWeight: 700, color: "#333333" }}>
                     Standard Rates
                   </span>
                 </div>
-                <div className="divide-y" style={{ borderColor: "#f0fafe" }}>
+                <div className="divide-y" style={{ borderColor: "#EAF7F8" }}>
                   {villa.rateTiers.map((tier) => (
-                    <div key={tier.label} className="px-4 py-2.5 flex items-center justify-between gap-3" style={{ borderBottom: "1px solid #f0fafe" }}>
+                    <div key={tier.label} className="px-4 py-2.5 flex items-center justify-between gap-3" style={{ borderBottom: "1px solid #EAF7F8" }}>
                       <div className="flex items-baseline gap-2 flex-wrap">
-                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", fontWeight: 700, color: "#1a2e1a" }}>
+                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", fontWeight: 700, color: "#333333" }}>
                           ₱{tier.price.toLocaleString()}
                         </span>
-                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#6b7a5e" }}>
+                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#666666" }}>
                           {tier.pax} · {tier.rooms}
                         </span>
                       </div>
@@ -292,9 +292,9 @@ function VillaModal({ villa, onClose }: { villa: Villa; onClose: () => void }) {
                   ))}
                 </div>
                 {villa.rateTiers.some((t) => "note" in t && t.note) && (
-                  <div className="px-4 py-2.5" style={{ backgroundColor: "#fff8e1" }}>
+                  <div className="px-4 py-2.5" style={{ backgroundColor: "#EAF7F8" }}>
                     {villa.rateTiers.filter((t): t is typeof t & { note: string } => "note" in t && !!t.note).map((t) => (
-                      <p key={t.label} style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.74rem", color: "#7a6000", lineHeight: 1.5 }}>
+                      <p key={t.label} style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.74rem", color: "#333333", lineHeight: 1.5 }}>
                         {t.label}: {t.note}
                       </p>
                     ))}
@@ -303,30 +303,46 @@ function VillaModal({ villa, onClose }: { villa: Villa; onClose: () => void }) {
               </div>
             )}
 
-            <div className="flex items-center gap-3 p-3 rounded-xl mb-5" style={{ backgroundColor: "#fff8e1" }}>
+            {/* YouTube-style villa tour thumbnail */}
+            <button
+              onClick={() => setShowVideo(true)}
+              className="relative w-full rounded-2xl overflow-hidden mb-5 group/tour"
+              aria-label={`Watch ${villa.name} tour video`}
+            >
+              <div className="relative w-full aspect-video">
+                <img src={villa.image} alt={`${villa.name} tour thumbnail`} className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover/tour:scale-105" />
+                <div className="absolute inset-0 bg-black/35 group-hover/tour:bg-black/45 transition-colors duration-300" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span
+                    className="flex items-center justify-center rounded-full shadow-xl transition-transform duration-200 group-hover/tour:scale-110"
+                    style={{ width: 64, height: 64, backgroundColor: "rgba(255,0,0,0.92)" }}
+                  >
+                    <Play size={26} color="#fff" fill="#fff" style={{ marginLeft: 4 }} />
+                  </span>
+                </div>
+                <span
+                  className="absolute bottom-3 left-3 px-2.5 py-1 rounded text-xs font-semibold"
+                  style={{ backgroundColor: "rgba(0,0,0,0.75)", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                >
+                  ▶ {villa.name} — Villa Tour
+                </span>
+              </div>
+            </button>
+
+            <div className="flex items-center gap-3 p-3 rounded-xl mb-5" style={{ backgroundColor: "#EAF7F8" }}>
               <span style={{ fontSize: "1.1rem" }}>🕐</span>
-              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: "#7a6000" }}>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: "#333333" }}>
                 <strong>Check-in:</strong> 3:00 PM &nbsp;|&nbsp; <strong>Check-out:</strong> 12:00 NN
               </p>
             </div>
-            <div className="flex gap-3">
-              <button
-                onClick={() => setShowVideo(true)}
-                className="flex items-center justify-center gap-2 px-5 py-3.5 rounded-full font-semibold transition-all duration-200 hover:scale-[1.02]"
-                style={{ backgroundColor: "#fff8e1", color: "#7a6000", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-              >
-                <PlayCircle size={18} />
-                Villa Tour
-              </button>
-              <a
-                href="#booking"
-                onClick={onClose}
-                className="flex-1 block text-center py-3.5 rounded-full font-semibold text-white transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-                style={{ backgroundColor: "#00b4d8", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-              >
-                Reserve This Villa
-              </a>
-            </div>
+            <a
+              href="#booking"
+              onClick={onClose}
+              className="block w-full text-center py-3.5 rounded-full font-semibold text-white transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+              style={{ backgroundColor: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            >
+              Reserve This Villa
+            </a>
           </div>
         </motion.div>
       </motion.div>
@@ -340,24 +356,24 @@ export function VillaShowcase() {
   const [videoVilla, setVideoVilla] = useState<Villa | null>(null);
 
   return (
-    <section id="villas" className="py-20" style={{ background: "linear-gradient(180deg, #fdf6ec 0%, #e0f7fa 100%)" }}>
+    <section id="villas" className="py-20" style={{ background: "linear-gradient(180deg, #EAF7F8 0%, #DCF1F3 100%)" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-14">
           <span
             className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4"
-            style={{ backgroundColor: "#e0f7fa", color: "#007a9a", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            style={{ backgroundColor: "#DCF1F3", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             Accommodations
           </span>
-          <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#1a2e1a", fontWeight: 700 }}>
-            Our <span style={{ color: "#00b4d8" }}>Villa</span> Collection
+          <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#333333", fontWeight: 700 }}>
+            Our <span style={{ color: "#45B3C0" }}>Private</span> Villas
           </h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#6b7a5e", fontSize: "1.05rem", lineHeight: 1.7 }}>
+          <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "1.05rem", lineHeight: 1.7 }}>
             Five private villas — each designed for comfort, joy, and unforgettable memories.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-5">
             {[
-              { label: "30–50 Pax per Villa", color: "#e0f7fa", text: "#007a9a" },
+              { label: "30–50 Pax per Villa", color: "#DCF1F3", text: "#333333" },
             ].map(({ label, color, text }) => (
               <span key={label} className="px-4 py-1.5 rounded-full text-sm font-medium" style={{ backgroundColor: color, color: text, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                 {label}
@@ -376,59 +392,71 @@ export function VillaShowcase() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.55 }}
               className="rounded-2xl overflow-hidden shadow-md group cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
-              style={{ backgroundColor: "#fff", border: villa.highlight ? "2px solid #00b4d8" : "none" }}
+              style={{ backgroundColor: "#fff", border: villa.highlight ? "2px solid #45B3C0" : "none" }}
               onClick={() => setSelected(villa)}
             >
               {villa.highlight && (
-                <div className="text-center py-1.5 text-xs font-semibold tracking-widest uppercase text-white" style={{ backgroundColor: "#00b4d8", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <div className="text-center py-1.5 text-xs font-semibold tracking-widest uppercase text-white" style={{ backgroundColor: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                   ★ Most Popular
                 </div>
               )}
               <div className="relative h-52 overflow-hidden">
                 <img src={villa.image} alt={villa.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                <span className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs uppercase tracking-wide" style={{ backgroundColor: "rgba(0,180,216,0.85)", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <span className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs uppercase tracking-wide" style={{ backgroundColor: "rgba(69,179,192,0.85)", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                   {villa.tag}
                 </span>
+
+                {/* YouTube-style video thumbnail trigger */}
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     setVideoVilla(villa);
                   }}
-                  className="absolute bottom-3 right-3 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 hover:scale-105"
-                  style={{ backgroundColor: "rgba(255,255,255,0.95)", color: "#1a2e1a", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                  className="absolute inset-0 flex items-center justify-center group/play"
                   aria-label={`Watch ${villa.name} tour video`}
                 >
-                  <PlayCircle size={15} color="#e8a33d" />
-                  Villa Tour
+                  <div className="absolute inset-0 bg-black/0 group-hover/play:bg-black/20 transition-colors duration-300" />
+                  <span
+                    className="relative flex items-center justify-center rounded-full shadow-lg transition-transform duration-200 group-hover/play:scale-110"
+                    style={{ width: 52, height: 52, backgroundColor: "rgba(255,0,0,0.92)" }}
+                  >
+                    <Play size={20} color="#fff" fill="#fff" style={{ marginLeft: 3 }} />
+                  </span>
+                  <span
+                    className="absolute bottom-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-semibold"
+                    style={{ backgroundColor: "rgba(0,0,0,0.75)", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                  >
+                    Villa Tour
+                  </span>
                 </button>
               </div>
               <div className="p-5">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.2rem", fontWeight: 700, color: "#1a2e1a" }}>{villa.name}</h3>
+                  <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.2rem", fontWeight: 700, color: "#333333" }}>{villa.name}</h3>
                   <div className="flex items-center gap-1">
-                    <Star size={13} fill="#f5c42c" stroke="none" />
-                    <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: "#6b7a5e" }}>{villa.rating}</span>
+                    <Star size={13} fill="#FFEB3B" stroke="none" />
+                    <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: "#666666" }}>{villa.rating}</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 mb-3">
-                  <span style={{ fontFamily: "'Fraunces', serif", fontSize: "1.35rem", fontWeight: 800, color: "#00b4d8" }}>
+                  <span style={{ fontFamily: "'Fraunces', serif", fontSize: "1.35rem", fontWeight: 800, color: "#45B3C0" }}>
                     ₱{villa.startingPrice.toLocaleString()}
                   </span>
-                  <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#9aaa8e" }}>starting rate</span>
-                  <span className="flex items-center gap-1 ml-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: "#6b7a5e" }}>
-                    <Users size={13} color="#00b4d8" />
+                  <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#999999" }}>starting rate</span>
+                  <span className="flex items-center gap-1 ml-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: "#666666" }}>
+                    <Users size={13} color="#45B3C0" />
                     {villa.capacity} pax
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {villa.features.slice(0, 3).map((f) => (
-                    <span key={f} className="px-2.5 py-0.5 rounded-full text-xs" style={{ backgroundColor: "#e0f7fa", color: "#007a9a", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    <span key={f} className="px-2.5 py-0.5 rounded-full text-xs" style={{ backgroundColor: "#DCF1F3", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                       {f}
                     </span>
                   ))}
                 </div>
-                <button className="flex items-center gap-2 text-sm font-semibold transition-all duration-200 group-hover:gap-3" style={{ color: "#00b4d8", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <button className="flex items-center gap-2 text-sm font-semibold transition-all duration-200 group-hover:gap-3" style={{ color: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                   View Details <ArrowRight size={15} />
                 </button>
               </div>

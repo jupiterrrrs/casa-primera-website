@@ -24,7 +24,7 @@ const faqMap: Array<{ keywords: string[]; answer: string }> = [
   { keywords: ["parking", "park", "car"], answer: "Yes, we have free parking available for resort guests. Limited spaces, so arriving early is recommended especially on weekends!" },
   { keywords: ["food", "eat", "bbq", "grill", "catering"], answer: "We have BBQ grill stations available! You may bring personal food. In-house catering can also be arranged for large groups — just ask us in advance." },
   { keywords: ["pet", "dog", "cat", "animal"], answer: "We're sorry — pets are not allowed inside the villas and resort premises. 🐾" },
-  { keywords: ["location", "address", "where", "how to get", "directions"], answer: "We're at Brgy. Pansol, Calamba City, Laguna. From Manila via SLEX, take the Calamba exit (~1hr 15min). Use Google Maps or Waze — search 'Casa Primera Hotspring Resort'! 📍" },
+  { keywords: ["location", "address", "where", "how to get", "directions"], answer: "We're at Brgy. Pansol, Calamba City, Laguna. From Manila via SLEX, take the Calamba exit (~1hr 15min). Use Google Maps or Waze — search 'Casa Primera Hotspring Resorts'! 📍" },
   { keywords: ["kids", "children", "family", "baby"], answer: "Absolutely! We are a family-friendly resort. 👨‍👩‍👧‍👦 Children must be supervised near pools. We have shallow pools safe for kids too!" },
   { keywords: ["karaoke", "sing"], answer: "Yes! We have fully-equipped karaoke rooms — great for barkadas and family celebrations! 🎤🎵" },
   { keywords: ["villa", "room", "accommodation"], answer: "We have 5 private villas (Casa Primera Villa 1 to Villa 5), each accommodating 30–50 pax. Scroll up to see full details and photos! 🏡" },
@@ -46,7 +46,7 @@ function getAnswer(input: string): { text: string; showMessenger: boolean } {
 export function LiveChat() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { id: 0, from: "bot", text: "Hi! 👋 Welcome to Casa Primera Hotspring Resort. I'm your virtual assistant! Ask me anything about our villas, rates, bookings, or amenities." },
+    { id: 0, from: "bot", text: "Hi! 👋 Welcome to Casa Primera Hotspring Resorts. I'm your virtual assistant! Ask me anything about our villas, rates, bookings, or amenities." },
   ]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
@@ -75,7 +75,7 @@ export function LiveChat() {
       <button
         onClick={() => setOpen((o) => !o)}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110"
-        style={{ backgroundColor: "#00b4d8" }}
+        style={{ backgroundColor: "#45B3C0" }}
         aria-label="Open live chat"
       >
         <AnimatePresence mode="wait">
@@ -90,7 +90,7 @@ export function LiveChat() {
           )}
         </AnimatePresence>
         {!open && (
-          <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full text-white flex items-center justify-center text-xs" style={{ backgroundColor: "#f5c42c", color: "#1a2e1a", fontWeight: 700 }}>
+          <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full text-white flex items-center justify-center text-xs" style={{ backgroundColor: "#FFEB3B", color: "#333333", fontWeight: 700 }}>
             1
           </span>
         )}
@@ -108,7 +108,7 @@ export function LiveChat() {
             transition={{ type: "spring", stiffness: 300, damping: 28 }}
           >
             {/* Header */}
-            <div className="px-4 py-3 flex items-center gap-3" style={{ backgroundColor: "#00b4d8" }}>
+            <div className="px-4 py-3 flex items-center gap-3" style={{ backgroundColor: "#45B3C0" }}>
               <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(255,255,255,0.2)" }}>
                 <Bot size={18} color="#fff" />
               </div>
@@ -138,15 +138,15 @@ export function LiveChat() {
                 <div key={msg.id} className={`flex flex-col ${msg.from === "user" ? "items-end" : "items-start"}`}>
                   <div className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"} w-full`}>
                     {msg.from === "bot" && (
-                      <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mr-2 mt-0.5" style={{ backgroundColor: "#e0f7fa" }}>
-                        <Bot size={13} color="#00b4d8" />
+                      <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mr-2 mt-0.5" style={{ backgroundColor: "#DCF1F3" }}>
+                        <Bot size={13} color="#45B3C0" />
                       </div>
                     )}
                     <div
                       className="max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed"
                       style={{
-                        backgroundColor: msg.from === "user" ? "#00b4d8" : "#f0fafe",
-                        color: msg.from === "user" ? "#fff" : "#1a2e1a",
+                        backgroundColor: msg.from === "user" ? "#45B3C0" : "#EAF7F8",
+                        color: msg.from === "user" ? "#fff" : "#333333",
                         fontFamily: "'Plus Jakarta Sans', sans-serif",
                         borderBottomRightRadius: msg.from === "user" ? 4 : undefined,
                         borderBottomLeftRadius: msg.from === "bot" ? 4 : undefined,
@@ -171,12 +171,12 @@ export function LiveChat() {
               ))}
               {typing && (
                 <div className="flex justify-start">
-                  <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mr-2 mt-0.5" style={{ backgroundColor: "#e0f7fa" }}>
-                    <Bot size={13} color="#00b4d8" />
+                  <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mr-2 mt-0.5" style={{ backgroundColor: "#DCF1F3" }}>
+                    <Bot size={13} color="#45B3C0" />
                   </div>
-                  <div className="px-4 py-3 rounded-2xl flex gap-1.5 items-center" style={{ backgroundColor: "#f0fafe" }}>
+                  <div className="px-4 py-3 rounded-2xl flex gap-1.5 items-center" style={{ backgroundColor: "#EAF7F8" }}>
                     {[0, 1, 2].map((i) => (
-                      <span key={i} className="w-2 h-2 rounded-full" style={{ backgroundColor: "#00b4d8", animation: `bounce 1.2s ${i * 0.2}s infinite` }} />
+                      <span key={i} className="w-2 h-2 rounded-full" style={{ backgroundColor: "#45B3C0", animation: `bounce 1.2s ${i * 0.2}s infinite` }} />
                     ))}
                   </div>
                 </div>
@@ -191,7 +191,7 @@ export function LiveChat() {
                   key={q}
                   onClick={() => sendMessage(q)}
                   className="px-3 py-1 rounded-full text-xs transition-all duration-200 hover:scale-105"
-                  style={{ backgroundColor: "#e0f7fa", color: "#007a9a", fontFamily: "'Plus Jakarta Sans', sans-serif", border: "1px solid #b2ebf2" }}
+                  style={{ backgroundColor: "#DCF1F3", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif", border: "1px solid #A8DDE3" }}
                 >
                   {q}
                 </button>
@@ -203,20 +203,20 @@ export function LiveChat() {
               <form
                 onSubmit={(e) => { e.preventDefault(); sendMessage(input); }}
                 className="flex gap-2 items-center px-4 py-2 rounded-full"
-                style={{ backgroundColor: "#f0fafe", border: "1px solid #b2ebf2" }}
+                style={{ backgroundColor: "#EAF7F8", border: "1px solid #A8DDE3" }}
               >
                 <input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask anything..."
                   className="flex-1 bg-transparent outline-none text-sm"
-                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#1a2e1a" }}
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#333333" }}
                 />
                 <button
                   type="submit"
                   disabled={!input.trim()}
                   className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-40"
-                  style={{ backgroundColor: "#00b4d8" }}
+                  style={{ backgroundColor: "#45B3C0" }}
                 >
                   <Send size={14} color="#fff" />
                 </button>

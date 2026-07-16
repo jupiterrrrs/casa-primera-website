@@ -132,7 +132,7 @@ function StarRow({ rating }: { rating: number }) {
   return (
     <div className="flex gap-0.5">
       {[1, 2, 3, 4, 5].map((s) => (
-        <Star key={s} size={13} fill={s <= rating ? "#f5c42c" : "#e5e7eb"} stroke="none" />
+        <Star key={s} size={13} fill={s <= rating ? "#FFEB3B" : "#e5e7eb"} stroke="none" />
       ))}
     </div>
   );
@@ -141,19 +141,19 @@ function StarRow({ rating }: { rating: number }) {
 function ReviewCard({ review, source }: { review: typeof googleReviews[0]; source: "google" | "fb" }) {
   const [liked, setLiked] = useState(false);
   return (
-    <div className="rounded-2xl p-5 shadow-sm h-full flex flex-col" style={{ backgroundColor: "#fff", border: "1px solid rgba(0,180,216,0.12)" }}>
+    <div className="rounded-2xl p-5 shadow-sm h-full flex flex-col" style={{ backgroundColor: "#fff", border: "1px solid rgba(69,179,192,0.12)" }}>
       <div className="flex items-start gap-3 mb-3">
         <div
           className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"
-          style={{ backgroundColor: source === "google" ? "#00b4d8" : "#1877f2" }}
+          style={{ backgroundColor: source === "google" ? "#45B3C0" : "#1877f2" }}
         >
           {review.avatar}
         </div>
         <div className="flex-1 min-w-0">
-          <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600, fontSize: "0.9rem", color: "#1a2e1a" }}>{review.name}</p>
+          <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600, fontSize: "0.9rem", color: "#333333" }}>{review.name}</p>
           <div className="flex items-center gap-2">
             <StarRow rating={review.rating} />
-            <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#9aaa8e" }}>{review.date}</span>
+            <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#999999" }}>{review.date}</span>
           </div>
         </div>
         <span
@@ -167,15 +167,15 @@ function ReviewCard({ review, source }: { review: typeof googleReviews[0]; sourc
           {source === "google" ? "G" : "f"}
         </span>
       </div>
-      <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.75, flex: 1 }}>
+      <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#4d4d4d", lineHeight: 1.75, flex: 1 }}>
         "{review.text}"
       </p>
       <button
         onClick={() => setLiked((l) => !l)}
         className="flex items-center gap-1.5 mt-3 transition-colors duration-200"
-        style={{ color: liked ? "#00b4d8" : "#9aaa8e", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem" }}
+        style={{ color: liked ? "#45B3C0" : "#999999", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem" }}
       >
-        <ThumbsUp size={12} fill={liked ? "#00b4d8" : "none"} />
+        <ThumbsUp size={12} fill={liked ? "#45B3C0" : "none"} />
         Helpful ({liked ? review.helpful + 1 : review.helpful})
       </button>
     </div>
@@ -187,48 +187,48 @@ export function ReviewsSection() {
   const reviews = tab === "google" ? googleReviews : fbReviews;
 
   return (
-    <section id="reviews" className="py-20" style={{ background: "#fdf6ec" }}>
+    <section id="reviews" className="py-20" style={{ background: "#EAF7F8" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-10">
-          <span className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4" style={{ backgroundColor: "#fff8e1", color: "#7a6000", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+          <span className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4" style={{ backgroundColor: "#EAF7F8", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
             Guest Feedback
           </span>
-          <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#1a2e1a", fontWeight: 700 }}>
-            What Our Guests <span style={{ color: "#00b4d8" }}>Say</span>
+          <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#333333", fontWeight: 700 }}>
+            What Our Guests <span style={{ color: "#45B3C0" }}>Say</span>
           </h2>
-          <p className="mt-3 max-w-lg mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#6b7a5e", fontSize: "0.95rem" }}>
+          <p className="mt-3 max-w-lg mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "0.95rem" }}>
             The most trusted private resort in Pansol since 2008 — rated by thousands of happy guests.
           </p>
 
           {/* Real stats bar */}
           <div className="flex flex-wrap justify-center gap-5 mt-8 mb-6">
-            <div className="px-7 py-4 rounded-2xl shadow-sm" style={{ backgroundColor: "#fff", border: "1px solid #e0f7fa" }}>
+            <div className="px-7 py-4 rounded-2xl shadow-sm" style={{ backgroundColor: "#fff", border: "1px solid #DCF1F3" }}>
               <div className="flex items-center gap-2 mb-0.5">
-                <span style={{ fontFamily: "'Fraunces', serif", fontSize: "2rem", fontWeight: 800, color: "#00b4d8" }}>{stats.google.avg}</span>
-                <Star size={18} fill="#f5c42c" stroke="none" />
+                <span style={{ fontFamily: "'Fraunces', serif", fontSize: "2rem", fontWeight: 800, color: "#45B3C0" }}>{stats.google.avg}</span>
+                <Star size={18} fill="#FFEB3B" stroke="none" />
               </div>
-              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#6b7a5e" }}>Google Reviews</p>
-              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#9aaa8e" }}>{stats.google.count} verified reviews</p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#666666" }}>Google Reviews</p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#999999" }}>{stats.google.count} verified reviews</p>
             </div>
             <div className="px-7 py-4 rounded-2xl shadow-sm" style={{ backgroundColor: "#fff", border: "1px solid #e7f0fd" }}>
               <div className="flex items-center gap-2 mb-0.5">
                 <span style={{ fontFamily: "'Fraunces', serif", fontSize: "2rem", fontWeight: 800, color: "#1877f2" }}>{stats.fb.avg}</span>
-                <Star size={18} fill="#f5c42c" stroke="none" />
+                <Star size={18} fill="#FFEB3B" stroke="none" />
               </div>
-              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#6b7a5e" }}>Facebook Page</p>
-              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#9aaa8e" }}>{stats.fb.count} likes · {stats.checkins} check-ins</p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#666666" }}>Facebook Page</p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#999999" }}>{stats.fb.count} likes · {stats.checkins} check-ins</p>
             </div>
-            <div className="px-7 py-4 rounded-2xl shadow-sm" style={{ backgroundColor: "#fff", border: "1px solid #e8f5e9" }}>
-              <p style={{ fontFamily: "'Fraunces', serif", fontSize: "2rem", fontWeight: 800, color: "#2d6a4f", marginBottom: "0.1rem" }}>{stats.established}</p>
-              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#6b7a5e" }}>Est. Pansol Pioneer</p>
-              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#9aaa8e" }}>15+ years trusted resort</p>
+            <div className="px-7 py-4 rounded-2xl shadow-sm" style={{ backgroundColor: "#fff", border: "1px solid #DCF1F3" }}>
+              <p style={{ fontFamily: "'Fraunces', serif", fontSize: "2rem", fontWeight: 800, color: "#333333", marginBottom: "0.1rem" }}>{stats.established}</p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#666666" }}>Est. Pansol Pioneer</p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#999999" }}>15+ years trusted resort</p>
             </div>
           </div>
         </div>
 
         {/* Tab switcher */}
         <div className="flex justify-center mb-8">
-          <div className="flex p-1 rounded-full" style={{ backgroundColor: "#e0f7fa" }}>
+          <div className="flex p-1 rounded-full" style={{ backgroundColor: "#DCF1F3" }}>
             {(["google", "fb"] as const).map((t) => (
               <button
                 key={t}
@@ -236,8 +236,8 @@ export function ReviewsSection() {
                 className="px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200"
                 style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
-                  backgroundColor: tab === t ? (t === "google" ? "#00b4d8" : "#1877f2") : "transparent",
-                  color: tab === t ? "#fff" : "#6b7a5e",
+                  backgroundColor: tab === t ? (t === "google" ? "#45B3C0" : "#1877f2") : "transparent",
+                  color: tab === t ? "#fff" : "#666666",
                 }}
               >
                 {t === "google" ? "🔍 Google Reviews" : "📘 Facebook Reviews"}
@@ -261,7 +261,7 @@ export function ReviewsSection() {
 
         {/* Real links */}
         <div className="text-center mt-10 space-y-2">
-          <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#6b7a5e" }}>
+          <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#666666" }}>
             Read all reviews from our guests:
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -269,7 +269,7 @@ export function ReviewsSection() {
               href="https://www.google.com/search?q=Casa+Primera+Hotspring+Resort+Calamba+reviews"
               target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-all hover:scale-105"
-              style={{ backgroundColor: "#00b4d8", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              style={{ backgroundColor: "#45B3C0", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               View on Google <ExternalLink size={13} />
             </a>

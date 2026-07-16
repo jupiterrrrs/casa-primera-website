@@ -10,7 +10,7 @@ const pillars = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24 overflow-hidden" style={{ background: "#fdf6ec" }}>
+    <section id="about" className="py-24 overflow-hidden" style={{ background: "#EAF7F8" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Image side */}
@@ -27,12 +27,12 @@ export function AboutSection() {
                 alt="Casa Primera Resort villa exterior and pool"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#2d6a4f]/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#333333]/30 to-transparent" />
             </div>
             {/* Floating badge */}
             <div
               className="absolute -bottom-6 -right-6 w-36 h-36 rounded-full flex flex-col items-center justify-center shadow-xl"
-              style={{ backgroundColor: "#e8a33d" }}
+              style={{ backgroundColor: "#45B3C0" }}
             >
               <span style={{ fontFamily: "'Fraunces', serif", fontSize: "2rem", fontWeight: 800, color: "#fff", lineHeight: 1 }}>15+</span>
               <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.9)", textAlign: "center", lineHeight: 1.3, marginTop: "4px" }}>Years of Happy<br />Guests</span>
@@ -40,7 +40,7 @@ export function AboutSection() {
             {/* Floating stat */}
             <div
               className="absolute -top-5 -left-5 px-5 py-3 rounded-2xl shadow-lg"
-              style={{ backgroundColor: "#2d6a4f" }}
+              style={{ backgroundColor: "#333333" }}
             >
               <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: "rgba(255,255,255,0.85)" }}>📍 Calamba, Laguna</span>
             </div>
@@ -55,25 +55,25 @@ export function AboutSection() {
           >
             <span
               className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-5"
-              style={{ backgroundColor: "#fff8e1", color: "#e8a33d", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              style={{ backgroundColor: "#EAF7F8", color: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               Our Story
             </span>
             <h2
-              style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 2.8rem)", color: "#1a2e1a", fontWeight: 700, lineHeight: 1.25 }}
+              style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 2.8rem)", color: "#333333", fontWeight: 700, lineHeight: 1.25 }}
               className="mb-6"
             >
               A Tropical Sanctuary<br />
-              <span style={{ color: "#2d6a4f" }}>Built for Your Soul</span>
+              <span style={{ color: "#333333" }}>Built for Your Soul</span>
             </h2>
             <p
-              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#4a5e40", lineHeight: 1.85, fontSize: "1.05rem" }}
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#4d4d4d", lineHeight: 1.85, fontSize: "1.05rem" }}
               className="mb-5"
             >
-              Tucked away in the lush landscapes of Calamba, Laguna, Casa Primera Hotspring Resort was born from a simple belief: everyone deserves a place to truly unwind. Since opening, we have welcomed thousands of families, couples, and friends seeking the restorative magic of natural mineral springs.
+              Tucked away in the lush landscapes of Calamba, Laguna, Casa Primera Hotspring Resorts was born from a simple belief: everyone deserves a place to truly unwind. Since opening, we have welcomed thousands of families, couples, and friends seeking the restorative magic of natural mineral springs.
             </p>
             <p
-              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#4a5e40", lineHeight: 1.85, fontSize: "1.05rem" }}
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#4d4d4d", lineHeight: 1.85, fontSize: "1.05rem" }}
               className="mb-10"
             >
               Our resort blends the warmth of Filipino hospitality with world-class amenities — natural hotspring pools, private villas nestled in tropical gardens, and a host of activities that make every visit unforgettable.
@@ -84,12 +84,12 @@ export function AboutSection() {
                 <div key={label} className="flex gap-3 items-start">
                   <div
                     className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center mt-0.5"
-                    style={{ backgroundColor: "#e8f5e9" }}
+                    style={{ backgroundColor: "#DCF1F3" }}
                   >
-                    <Icon size={18} color="#2d6a4f" />
+                    <Icon size={18} color="#333333" />
                   </div>
                   <div>
-                    <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", fontWeight: 600, color: "#1a2e1a" }}>{label}</p>
+                    <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", fontWeight: 600, color: "#333333" }}>{label}</p>
                     <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#7a8c6e", lineHeight: 1.55 }}>{desc}</p>
                   </div>
                 </div>
