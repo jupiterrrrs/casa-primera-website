@@ -57,13 +57,13 @@ export function HowToBook() {
     <section id="how-to-book" className="py-20 overflow-hidden" style={{ background: "linear-gradient(180deg, #e0f7fa 0%, #fdf6ec 100%)" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-14">
-          <span className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4" style={{ backgroundColor: "#e0f7fa", color: "#007a9a", fontFamily: "'DM Sans', sans-serif" }}>
+          <span className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4" style={{ backgroundColor: "#e0f7fa", color: "#007a9a", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
             Easy as 1-2-3
           </span>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#1a2e1a", fontWeight: 700 }}>
+          <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#1a2e1a", fontWeight: 700 }}>
             How to <span style={{ color: "#00b4d8" }}>Book</span> & Reserve
           </h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'DM Sans', sans-serif", color: "#6b7a5e", fontSize: "1.05rem", lineHeight: 1.7 }}>
+          <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#6b7a5e", fontSize: "1.05rem", lineHeight: 1.7 }}>
             Booking your tropical getaway at Casa Primera is quick and simple. Follow these easy steps to secure your villa.
           </p>
         </div>
@@ -86,10 +86,10 @@ export function HowToBook() {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.8rem", fontWeight: 700, color: color }}>{number}</span>
-                    <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.05rem", fontWeight: 700, color: "#1a2e1a" }}>{title}</h3>
+                    <span style={{ fontFamily: "'Fraunces', serif", fontSize: "0.8rem", fontWeight: 700, color: color }}>{number}</span>
+                    <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.05rem", fontWeight: 700, color: "#1a2e1a" }}>{title}</h3>
                   </div>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "#6b7a5e", lineHeight: 1.7 }}>{desc}</p>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#6b7a5e", lineHeight: 1.7 }}>{desc}</p>
                 </div>
               </div>
             </motion.div>
@@ -102,12 +102,12 @@ export function HowToBook() {
             { label: "Down Payment", value: "50%", note: "to secure booking", color: "#00b4d8" },
             { label: "Check-in", value: "3:00 PM", note: "earliest arrival", color: "#2d6a4f" },
             { label: "Check-out", value: "12:00 NN", note: "latest departure", color: "#f5c42c" },
-            { label: "Max Guests", value: "50", note: "guests per villa", color: "#00b4d8" },
+            { label: "Guest Capacity", value: "30–50", note: "pax per villa", color: "#00b4d8" },
           ].map(({ label, value, note, color }) => (
             <div key={label} className="rounded-2xl p-4 text-center shadow-sm" style={{ backgroundColor: "#fff" }}>
-              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.5rem", fontWeight: 800, color }}>{value}</p>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 600, color: "#1a2e1a" }}>{label}</p>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "#9aaa8e" }}>{note}</p>
+              <p style={{ fontFamily: "'Fraunces', serif", fontSize: "1.5rem", fontWeight: 800, color }}>{value}</p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", fontWeight: 600, color: "#1a2e1a" }}>{label}</p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#9aaa8e" }}>{note}</p>
             </div>
           ))}
         </div>
