@@ -74,13 +74,13 @@ export function HeroCarousel() {
           initial={{ opacity: 0, y: -16, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 0.15, duration: 0.7, ease: "easeOut" }}
-          className="mb-7 rounded-full flex items-center justify-center mx-auto"
+          className="mb-5 rounded-full flex items-center justify-center mx-auto"
           style={{
-            width: "clamp(100px, 14vw, 152px)",
-            height: "clamp(100px, 14vw, 152px)",
-            backgroundColor: "rgba(255,255,255,0.95)",
-            boxShadow: "0 10px 36px rgba(0,0,0,0.28), 0 0 0 7px rgba(255,255,255,0.18)",
-            padding: "7px",
+            width: "clamp(140px, 20vw, 220px)",
+            height: "clamp(140px, 20vw, 220px)",
+            backgroundColor: "rgba(255,255,255,0.97)",
+            boxShadow: "0 12px 44px rgba(0,0,0,0.3), 0 0 0 8px rgba(255,255,255,0.18)",
+            padding: "10px",
           }}
         >
           <img
@@ -94,7 +94,7 @@ export function HeroCarousel() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="mb-4 w-full flex justify-center"
+          className="mb-9 w-full flex justify-center"
         >
           <span
             className="inline-block px-5 py-2 rounded-full text-sm font-bold tracking-widest uppercase text-center"
@@ -103,23 +103,12 @@ export function HeroCarousel() {
             {slides[current].label}
           </span>
         </motion.div>
-        <motion.h1
-          key={`title-${current}`}
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45, duration: 0.7 }}
-          style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", fontWeight: 800, color: "#fff", lineHeight: 1.15, textShadow: "0 2px 24px rgba(0,0,0,0.35)" }}
-          className="mb-4 max-w-4xl"
-        >
-          Casa Primera<br />
-          <span style={{ color: "#45B3C0" }}>Hotspring Resorts</span>
-        </motion.h1>
         <motion.p
           key={`tag-${current}`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "clamp(1rem, 2.5vw, 1.4rem)", color: "rgba(255,255,255,0.88)", letterSpacing: "0.08em" }}
+          transition={{ delay: 0.45, duration: 0.6 }}
+          style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "clamp(1rem, 2.5vw, 1.4rem)", color: "rgba(255,255,255,0.9)", letterSpacing: "0.08em", textShadow: "0 2px 16px rgba(0,0,0,0.35)" }}
           className="mb-10 tracking-wide"
         >
           Relax, Refresh, Reconnect
@@ -127,7 +116,7 @@ export function HeroCarousel() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.75, duration: 0.6 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
           className="flex gap-4 flex-wrap justify-center"
         >
           <a
@@ -150,17 +139,17 @@ export function HeroCarousel() {
       {/* Prev/Next */}
       <button
         onClick={() => { prev(); setIsAutoPlaying(false); }}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
+        className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
         aria-label="Previous slide"
       >
-        <ChevronLeft size={22} />
+        <ChevronLeft size={20} />
       </button>
       <button
         onClick={() => { next(); setIsAutoPlaying(false); }}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
+        className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
         aria-label="Next slide"
       >
-        <ChevronRight size={22} />
+        <ChevronRight size={20} />
       </button>
 
       {/* Dots */}
