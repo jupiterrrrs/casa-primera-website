@@ -14,7 +14,7 @@ const steps = [
     number: "02",
     icon: MessageCircle,
     title: "Inquire & Reserve",
-    desc: "Fill out the reservation form on this page, or message us via Messenger, Viber, or WhatsApp to confirm your preferred villa, dates, and guest count.",
+    desc: "Fill out the reservation form on this page, or message us via Messenger or Viber to confirm your preferred villa, dates, and guest count.",
     color: "#FFEB3B",
     bg: "#EAF7F8",
   },
