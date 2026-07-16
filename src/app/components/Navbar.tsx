@@ -17,10 +17,10 @@ function LogoMark() {
     <img
       src="/images/logo.jpg"
       alt="Casa Primera Hotspring Resort logo"
-      width={36}
-      height={36}
+      width={48}
+      height={48}
       className="rounded-full object-cover"
-      style={{ width: 36, height: 36 }}
+      style={{ width: 48, height: 48 }}
     />
   );
 }
@@ -47,19 +47,8 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-0 group">
-          <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.05rem", color: scrolled ? "#1a2e1a" : "#fff", letterSpacing: "0.05em" }}>
-            CASA
-          </span>
-          <span className="mx-2"><LogoMark /></span>
-          <div className="flex flex-col leading-none">
-            <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.05rem", color: scrolled ? "#1a2e1a" : "#fff", letterSpacing: "0.05em" }}>
-              PRIMERA
-            </span>
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.55rem", color: scrolled ? "#00b4d8" : "#f5c42c", letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 600 }}>
-              Hotspring Resort
-            </span>
-          </div>
+        <a href="#" className="flex items-center group">
+          <LogoMark />
         </a>
 
         {/* Desktop nav */}
@@ -68,7 +57,7 @@ export function Navbar() {
             <a
               key={href}
               href={href}
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: scrolled ? "#4a5e40" : "rgba(255,255,255,0.88)", fontWeight: 500 }}
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: scrolled ? "#4a5e40" : "rgba(255,255,255,0.88)", fontWeight: 500 }}
               className="hover:opacity-70 transition-opacity duration-200 whitespace-nowrap"
             >
               {label}
@@ -77,7 +66,7 @@ export function Navbar() {
           <a
             href="#booking"
             className="px-5 py-2 rounded-full text-white text-sm font-semibold transition-all duration-200 hover:scale-105"
-            style={{ backgroundColor: "#00b4d8", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ backgroundColor: "#00b4d8", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             Book Now
           </a>
@@ -101,7 +90,7 @@ export function Navbar() {
               href={href}
               onClick={() => setMenuOpen(false)}
               className="block"
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", color: "#4a5e40", fontWeight: 500 }}
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "1rem", color: "#4a5e40", fontWeight: 500 }}
             >
               {label}
             </a>
@@ -110,7 +99,7 @@ export function Navbar() {
             href="#booking"
             onClick={() => setMenuOpen(false)}
             className="block px-5 py-2.5 rounded-full text-white text-center font-semibold"
-            style={{ backgroundColor: "#00b4d8", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ backgroundColor: "#00b4d8", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             Book Now
           </a>

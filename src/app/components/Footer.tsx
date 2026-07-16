@@ -73,18 +73,18 @@ export function Footer() {
             <div className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold" style={{ backgroundColor: "#00b4d8" }}>CP</div>
             <div>
               <div className="flex items-center gap-1">
-                <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "0.95rem", color: "#fff" }}>CASA</span>
-                <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "0.95rem", color: "#f5c42c" }}>PRIMERA</span>
+                <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: "0.95rem", color: "#fff" }}>CASA</span>
+                <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: "0.95rem", color: "#f5c42c" }}>PRIMERA</span>
               </div>
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.6rem", color: "#00b4d8", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+              <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.6rem", color: "#00b4d8", letterSpacing: "0.15em", textTransform: "uppercase" }}>
                 Hotspring Resort
               </span>
             </div>
           </div>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", fontStyle: "italic", color: "#f5c42c", marginBottom: "0.5rem", marginTop: "0.25rem" }}>
+          <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", fontStyle: "italic", color: "#f5c42c", marginBottom: "0.5rem", marginTop: "0.25rem" }}>
             "Relax, Refresh, Reconnect"
           </p>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.75 }} className="mb-5">
+          <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.75 }} className="mb-5">
             Your tropical sanctuary in the heart of Calamba, Laguna. Natural hotspring pools, private villas, and unforgettable moments.
           </p>
           {/* Social links */}
@@ -107,11 +107,11 @@ export function Footer() {
 
         {/* Quick Links */}
         <div>
-          <h4 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#fff", fontSize: "1rem" }} className="mb-5">Quick Links</h4>
+          <h4 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#fff", fontSize: "1rem" }} className="mb-5">Quick Links</h4>
           <ul className="space-y-3">
             {["Home", "About Us", "Our Villas", "Amenities", "How to Book", "Reviews", "Gallery", "FAQs", "Location", "Book Now"].map((link) => (
               <li key={link}>
-                <a href="#" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem" }} className="hover:text-[#00b4d8] transition-colors duration-200">{link}</a>
+                <a href="#" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem" }} className="hover:text-[#00b4d8] transition-colors duration-200">{link}</a>
               </li>
             ))}
           </ul>
@@ -119,17 +119,17 @@ export function Footer() {
 
         {/* Villas */}
         <div>
-          <h4 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#fff", fontSize: "1rem" }} className="mb-5">Our Villas</h4>
+          <h4 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#fff", fontSize: "1rem" }} className="mb-5">Our Villas</h4>
           <ul className="space-y-3">
             {[
-              "Casa Primera Villa 1 · 34 pax",
-              "Casa Primera Villa 2 · 40 pax",
-              "Casa Primera Villa 3 · 50 pax",
-              "Casa Primera Villa 4 · 40 pax",
-              "Casa Primera Villa 5 · 34 pax",
+              "Casa Primera Villa 1 · 30–50 pax",
+              "Casa Primera Villa 2 · 30–50 pax",
+              "Casa Primera Villa 3 · 30–50 pax",
+              "Casa Primera Villa 4 · 30–50 pax",
+              "Casa Primera Villa 5 · 30–50 pax",
             ].map((v) => (
               <li key={v}>
-                <a href="#villas" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem" }} className="hover:text-[#f5c42c] transition-colors duration-200">{v}</a>
+                <a href="#villas" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem" }} className="hover:text-[#f5c42c] transition-colors duration-200">{v}</a>
               </li>
             ))}
           </ul>
@@ -137,17 +137,17 @@ export function Footer() {
 
         {/* Contact */}
         <div>
-          <h4 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#fff", fontSize: "1rem" }} className="mb-5">Contact Us</h4>
+          <h4 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#fff", fontSize: "1rem" }} className="mb-5">Contact Us</h4>
           <ul className="space-y-4 mb-6">
             <li className="flex gap-3 items-start">
               <MapPin size={15} color="#00b4d8" className="mt-0.5 flex-shrink-0" />
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.65 }}>
+              <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.65 }}>
                 Purok 7, Nayong Maharlika Village,<br />Brgy. Pansol, Calamba City, Laguna
               </span>
             </li>
             <li className="flex gap-3 items-start">
               <Phone size={15} color="#00b4d8" className="mt-0.5 flex-shrink-0" />
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.65 }}>
+              <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.65 }}>
                 Globe: 0917.114.6956 / 0956.836.6100<br />
                 Smart: 0919.007.8821 / 0960.381.7151<br />
                 Landline: (049) 502-3746
@@ -155,18 +155,18 @@ export function Footer() {
             </li>
             <li className="flex gap-3 items-center">
               <Mail size={15} color="#00b4d8" />
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem" }}>sales@casaprimeravilla.com</span>
+              <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem" }}>sales@casaprimeravilla.com</span>
             </li>
           </ul>
           <div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.4)", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>Reach Us On</p>
+            <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.4)", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>Reach Us On</p>
             <div className="flex flex-wrap gap-2">
               {["Messenger", "WhatsApp", "Viber", "Instagram", "TikTok"].map((c) => {
                 const s = socials.find((x) => x.label === c)!;
                 return (
                   <a key={c} href={s.href} target="_blank" rel="noopener noreferrer"
                     className="px-2.5 py-1 rounded-full text-xs font-medium transition-all hover:scale-105"
-                    style={{ backgroundColor: s.color, color: "#fff", fontFamily: "'DM Sans', sans-serif" }}
+                    style={{ backgroundColor: s.color, color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                   >
                     {c}
                   </a>
@@ -178,10 +178,10 @@ export function Footer() {
       </div>
 
       <div className="border-t px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-3" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem" }}>
+        <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem" }}>
           © 2026 Casa Primera Hotspring Resort. All rights reserved.
         </p>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem" }}>
+        <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem" }}>
           Made with ❤️ in Calamba, Laguna · <span style={{ color: "#00b4d8" }}>Relax, Refresh, Reconnect</span>
         </p>
       </div>

@@ -16,7 +16,7 @@ import { SocialFloat } from "./components/SocialFloat";
 
 export default function App() {
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", backgroundColor: "#fdf6ec", overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", backgroundColor: "#fdf6ec", overflowX: "hidden" }}>
       <Navbar />
       <HeroCarousel />
       <AmenitiesCarousel />

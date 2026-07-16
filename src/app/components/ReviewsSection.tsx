@@ -150,10 +150,10 @@ function ReviewCard({ review, source }: { review: typeof googleReviews[0]; sourc
           {review.avatar}
         </div>
         <div className="flex-1 min-w-0">
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.9rem", color: "#1a2e1a" }}>{review.name}</p>
+          <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600, fontSize: "0.9rem", color: "#1a2e1a" }}>{review.name}</p>
           <div className="flex items-center gap-2">
             <StarRow rating={review.rating} />
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "#9aaa8e" }}>{review.date}</span>
+            <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#9aaa8e" }}>{review.date}</span>
           </div>
         </div>
         <span
@@ -161,19 +161,19 @@ function ReviewCard({ review, source }: { review: typeof googleReviews[0]; sourc
           style={{
             backgroundColor: source === "google" ? "#fce8e6" : "#e7f0fd",
             color: source === "google" ? "#c5221f" : "#1877f2",
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "'Plus Jakarta Sans', sans-serif",
           }}
         >
           {source === "google" ? "G" : "f"}
         </span>
       </div>
-      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.75, flex: 1 }}>
+      <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.75, flex: 1 }}>
         "{review.text}"
       </p>
       <button
         onClick={() => setLiked((l) => !l)}
         className="flex items-center gap-1.5 mt-3 transition-colors duration-200"
-        style={{ color: liked ? "#00b4d8" : "#9aaa8e", fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem" }}
+        style={{ color: liked ? "#00b4d8" : "#9aaa8e", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem" }}
       >
         <ThumbsUp size={12} fill={liked ? "#00b4d8" : "none"} />
         Helpful ({liked ? review.helpful + 1 : review.helpful})
@@ -190,13 +190,13 @@ export function ReviewsSection() {
     <section id="reviews" className="py-20" style={{ background: "#fdf6ec" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-10">
-          <span className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4" style={{ backgroundColor: "#fff8e1", color: "#7a6000", fontFamily: "'DM Sans', sans-serif" }}>
+          <span className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4" style={{ backgroundColor: "#fff8e1", color: "#7a6000", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
             Guest Feedback
           </span>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#1a2e1a", fontWeight: 700 }}>
+          <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#1a2e1a", fontWeight: 700 }}>
             What Our Guests <span style={{ color: "#00b4d8" }}>Say</span>
           </h2>
-          <p className="mt-3 max-w-lg mx-auto" style={{ fontFamily: "'DM Sans', sans-serif", color: "#6b7a5e", fontSize: "0.95rem" }}>
+          <p className="mt-3 max-w-lg mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#6b7a5e", fontSize: "0.95rem" }}>
             The most trusted private resort in Pansol since 2008 — rated by thousands of happy guests.
           </p>
 
@@ -204,24 +204,24 @@ export function ReviewsSection() {
           <div className="flex flex-wrap justify-center gap-5 mt-8 mb-6">
             <div className="px-7 py-4 rounded-2xl shadow-sm" style={{ backgroundColor: "#fff", border: "1px solid #e0f7fa" }}>
               <div className="flex items-center gap-2 mb-0.5">
-                <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", fontWeight: 800, color: "#00b4d8" }}>{stats.google.avg}</span>
+                <span style={{ fontFamily: "'Fraunces', serif", fontSize: "2rem", fontWeight: 800, color: "#00b4d8" }}>{stats.google.avg}</span>
                 <Star size={18} fill="#f5c42c" stroke="none" />
               </div>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "#6b7a5e" }}>Google Reviews</p>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "#9aaa8e" }}>{stats.google.count} verified reviews</p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#6b7a5e" }}>Google Reviews</p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#9aaa8e" }}>{stats.google.count} verified reviews</p>
             </div>
             <div className="px-7 py-4 rounded-2xl shadow-sm" style={{ backgroundColor: "#fff", border: "1px solid #e7f0fd" }}>
               <div className="flex items-center gap-2 mb-0.5">
-                <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", fontWeight: 800, color: "#1877f2" }}>{stats.fb.avg}</span>
+                <span style={{ fontFamily: "'Fraunces', serif", fontSize: "2rem", fontWeight: 800, color: "#1877f2" }}>{stats.fb.avg}</span>
                 <Star size={18} fill="#f5c42c" stroke="none" />
               </div>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "#6b7a5e" }}>Facebook Page</p>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "#9aaa8e" }}>{stats.fb.count} likes · {stats.checkins} check-ins</p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#6b7a5e" }}>Facebook Page</p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#9aaa8e" }}>{stats.fb.count} likes · {stats.checkins} check-ins</p>
             </div>
             <div className="px-7 py-4 rounded-2xl shadow-sm" style={{ backgroundColor: "#fff", border: "1px solid #e8f5e9" }}>
-              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", fontWeight: 800, color: "#2d6a4f", marginBottom: "0.1rem" }}>{stats.established}</p>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "#6b7a5e" }}>Est. Pansol Pioneer</p>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "#9aaa8e" }}>15+ years trusted resort</p>
+              <p style={{ fontFamily: "'Fraunces', serif", fontSize: "2rem", fontWeight: 800, color: "#2d6a4f", marginBottom: "0.1rem" }}>{stats.established}</p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#6b7a5e" }}>Est. Pansol Pioneer</p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#9aaa8e" }}>15+ years trusted resort</p>
             </div>
           </div>
         </div>
@@ -235,7 +235,7 @@ export function ReviewsSection() {
                 onClick={() => setTab(t)}
                 className="px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200"
                 style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
                   backgroundColor: tab === t ? (t === "google" ? "#00b4d8" : "#1877f2") : "transparent",
                   color: tab === t ? "#fff" : "#6b7a5e",
                 }}
@@ -261,7 +261,7 @@ export function ReviewsSection() {
 
         {/* Real links */}
         <div className="text-center mt-10 space-y-2">
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "#6b7a5e" }}>
+          <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#6b7a5e" }}>
             Read all reviews from our guests:
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -269,7 +269,7 @@ export function ReviewsSection() {
               href="https://www.google.com/search?q=Casa+Primera+Hotspring+Resort+Calamba+reviews"
               target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-all hover:scale-105"
-              style={{ backgroundColor: "#00b4d8", color: "#fff", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ backgroundColor: "#00b4d8", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               View on Google <ExternalLink size={13} />
             </a>
@@ -277,7 +277,7 @@ export function ReviewsSection() {
               href="https://www.facebook.com/casaprimeravilla2020/"
               target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-all hover:scale-105"
-              style={{ backgroundColor: "#1877f2", color: "#fff", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ backgroundColor: "#1877f2", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               Visit Facebook Page <ExternalLink size={13} />
             </a>

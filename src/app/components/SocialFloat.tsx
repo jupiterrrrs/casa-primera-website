@@ -99,7 +99,7 @@ export function SocialFloat() {
               >
                 <span
                   className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 px-2.5 py-1 rounded-full text-xs font-semibold text-white shadow-sm whitespace-nowrap"
-                  style={{ backgroundColor: "rgba(0,0,0,0.55)", fontFamily: "'DM Sans', sans-serif" }}
+                  style={{ backgroundColor: "rgba(0,0,0,0.55)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
                   {label}
                 </span>

@@ -71,6 +71,25 @@ export function HeroCarousel() {
       {/* Overlay content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
         <motion.div
+          initial={{ opacity: 0, y: -16, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 0.15, duration: 0.7, ease: "easeOut" }}
+          className="mb-6 rounded-full flex items-center justify-center"
+          style={{
+            width: "clamp(88px, 12vw, 128px)",
+            height: "clamp(88px, 12vw, 128px)",
+            backgroundColor: "rgba(255,255,255,0.95)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.25), 0 0 0 6px rgba(255,255,255,0.15)",
+            padding: "6px",
+          }}
+        >
+          <img
+            src="/images/logo.jpg"
+            alt="Casa Primera Hotspring Resort logo"
+            className="w-full h-full object-cover rounded-full"
+          />
+        </motion.div>
+        <motion.div
           key={`label-${current}`}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -79,7 +98,7 @@ export function HeroCarousel() {
         >
           <span
             className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase text-white/90"
-            style={{ backgroundColor: "rgba(244,114,27,0.75)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ backgroundColor: "rgba(244,114,27,0.75)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             {slides[current].label}
           </span>
@@ -89,18 +108,18 @@ export function HeroCarousel() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.7 }}
-          style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", fontWeight: 800, color: "#fff", lineHeight: 1.15, textShadow: "0 2px 24px rgba(0,0,0,0.35)" }}
+          style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", fontWeight: 800, color: "#fff", lineHeight: 1.15, textShadow: "0 2px 24px rgba(0,0,0,0.35)" }}
           className="mb-4 max-w-4xl"
         >
           Casa Primera<br />
-          <span style={{ color: "#f4a261" }}>Hotspring Resort</span>
+          <span style={{ color: "#e8a33d" }}>Hotspring Resort</span>
         </motion.h1>
         <motion.p
           key={`tag-${current}`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "clamp(1rem, 2.5vw, 1.4rem)", color: "rgba(255,255,255,0.88)", letterSpacing: "0.08em" }}
+          style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "clamp(1rem, 2.5vw, 1.4rem)", color: "rgba(255,255,255,0.88)", letterSpacing: "0.08em" }}
           className="mb-10 tracking-wide"
         >
           Relax, Refresh, Reconnect
@@ -114,14 +133,14 @@ export function HeroCarousel() {
           <a
             href="#booking"
             className="px-8 py-3.5 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
-            style={{ backgroundColor: "#f4721b", fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
+            style={{ backgroundColor: "#e8a33d", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "1rem" }}
           >
             Book Now
           </a>
           <a
             href="#villas"
             className="px-8 py-3.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl border-2 border-white/70 text-white hover:bg-white/10"
-            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem" }}
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "1rem" }}
           >
             Explore Villas
           </a>
@@ -154,7 +173,7 @@ export function HeroCarousel() {
             style={{
               width: i === current ? "2rem" : "0.5rem",
               height: "0.5rem",
-              backgroundColor: i === current ? "#f4721b" : "rgba(255,255,255,0.55)",
+              backgroundColor: i === current ? "#e8a33d" : "rgba(255,255,255,0.55)",
             }}
             aria-label={`Go to slide ${i + 1}`}
           />

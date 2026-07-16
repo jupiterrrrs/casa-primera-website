@@ -29,7 +29,7 @@ export function TermsModal({ onAccept, onClose }: Props) {
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b flex-shrink-0" style={{ borderColor: "#e0f7fa", backgroundColor: "#00b4d8" }}>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.2rem", color: "#fff" }}>
+          <h2 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: "1.2rem", color: "#fff" }}>
             Terms & Conditions
           </h2>
           <button onClick={onClose} className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition-colors">
@@ -38,11 +38,11 @@ export function TermsModal({ onAccept, onClose }: Props) {
         </div>
 
         {/* Scrollable content */}
-        <div className="overflow-y-auto flex-1 px-6 py-5 space-y-6" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+        <div className="overflow-y-auto flex-1 px-6 py-5 space-y-6" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
 
           {/* Check-in/out */}
           <div>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
               🕐 Check-in & Check-out
             </h3>
             <div className="grid grid-cols-2 gap-3">
@@ -62,16 +62,16 @@ export function TermsModal({ onAccept, onClose }: Props) {
 
           {/* Capacity */}
           <div>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
               👥 Guest Capacity
             </h3>
             <ul style={{ fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.85 }} className="list-disc pl-4 space-y-1">
-              <li><strong>Maximum per standard villa:</strong> 50 pax</li>
-              <li><strong>Casa Primera Villa 1:</strong> Up to 34 guests</li>
-              <li><strong>Casa Primera Villa 2:</strong> Up to 40 guests</li>
-              <li><strong>Casa Primera Villa 3:</strong> Up to 50 guests</li>
-              <li><strong>Casa Primera Villa 4:</strong> Up to 40 guests</li>
-              <li><strong>Casa Primera Villa 5:</strong> Up to 34 guests</li>
+              <li><strong>Capacity per villa:</strong> 30–50 pax</li>
+              <li><strong>Casa Primera Villa 1:</strong> 30–50 guests</li>
+              <li><strong>Casa Primera Villa 2:</strong> 30–50 guests</li>
+              <li><strong>Casa Primera Villa 3:</strong> 30–50 guests</li>
+              <li><strong>Casa Primera Villa 4:</strong> 30–50 guests</li>
+              <li><strong>Casa Primera Villa 5:</strong> 30–50 guests</li>
             </ul>
             <p style={{ fontSize: "0.85rem", color: "#c0392b", marginTop: "0.5rem" }}>
               ⚠ Exceeding the stated capacity is strictly prohibited and may result in cancellation without refund.
@@ -80,7 +80,7 @@ export function TermsModal({ onAccept, onClose }: Props) {
 
           {/* Mode of Payment */}
           <div>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-3">
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-3">
               💳 Mode of Payment
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -100,7 +100,7 @@ export function TermsModal({ onAccept, onClose }: Props) {
 
           {/* Payment limitation */}
           <div>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
               ⚠ Payment Policy & Limitations
             </h3>
             <ul style={{ fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.85 }} className="list-disc pl-4 space-y-1">
@@ -115,7 +115,7 @@ export function TermsModal({ onAccept, onClose }: Props) {
 
           {/* House rules */}
           <div>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
               🏡 House Rules
             </h3>
             <ul style={{ fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.85 }} className="list-disc pl-4 space-y-1">
@@ -131,7 +131,7 @@ export function TermsModal({ onAccept, onClose }: Props) {
 
           {/* Data & Privacy */}
           <div>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#1a2e1a", fontSize: "1rem" }} className="mb-2">
               🔒 Data Privacy
             </h3>
             <p style={{ fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.75 }}>
@@ -145,14 +145,14 @@ export function TermsModal({ onAccept, onClose }: Props) {
           <button
             onClick={onClose}
             className="flex-1 py-3 rounded-full font-semibold border transition-all duration-200 hover:bg-gray-50"
-            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", color: "#6b7a5e", borderColor: "#d6c9a8" }}
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", color: "#6b7a5e", borderColor: "#d6c9a8" }}
           >
             Cancel
           </button>
           <button
             onClick={onAccept}
             className="flex-1 py-3 rounded-full font-semibold text-white transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-            style={{ backgroundColor: "#00b4d8", fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem" }}
+            style={{ backgroundColor: "#00b4d8", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem" }}
           >
             I Agree & Reserve Now
           </button>

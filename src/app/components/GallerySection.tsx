@@ -112,7 +112,7 @@ function Lightbox({
       />
       <p
         className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-xs sm:text-sm px-3 py-1 rounded-full"
-        style={{ backgroundColor: "rgba(0,0,0,0.5)", fontFamily: "'DM Sans', sans-serif" }}
+        style={{ backgroundColor: "rgba(0,0,0,0.5)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
       >
         {index + 1} / {photos.length}
       </p>
@@ -136,14 +136,14 @@ export function GallerySection() {
         <div className="text-center mb-14">
           <span
             className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4"
-            style={{ backgroundColor: "#fff3e0", color: "#f4721b", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ backgroundColor: "#fff8e1", color: "#e8a33d", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             Gallery
           </span>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#1a2e1a", fontWeight: 700 }}>
+          <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#1a2e1a", fontWeight: 700 }}>
             A Glimpse of <span style={{ color: "#2d6a4f" }}>Paradise</span>
           </h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'DM Sans', sans-serif", color: "#4a5e40", fontSize: "1.05rem", lineHeight: 1.7 }}>
+          <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#4a5e40", fontSize: "1.05rem", lineHeight: 1.7 }}>
             Every corner of Casa Primera is a photo waiting to happen.
           </p>
         </div>
@@ -169,7 +169,7 @@ export function GallerySection() {
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-300 flex items-center justify-center">
                 <span
                   className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-center"
-                  style={{ backgroundColor: "rgba(244,114,27,0.85)", fontFamily: "'DM Sans', sans-serif" }}
+                  style={{ backgroundColor: "rgba(244,114,27,0.85)", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
                   View Photo
                 </span>

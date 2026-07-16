@@ -32,17 +32,17 @@ export function AboutSection() {
             {/* Floating badge */}
             <div
               className="absolute -bottom-6 -right-6 w-36 h-36 rounded-full flex flex-col items-center justify-center shadow-xl"
-              style={{ backgroundColor: "#f4721b" }}
+              style={{ backgroundColor: "#e8a33d" }}
             >
-              <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", fontWeight: 800, color: "#fff", lineHeight: 1 }}>15+</span>
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.9)", textAlign: "center", lineHeight: 1.3, marginTop: "4px" }}>Years of Happy<br />Guests</span>
+              <span style={{ fontFamily: "'Fraunces', serif", fontSize: "2rem", fontWeight: 800, color: "#fff", lineHeight: 1 }}>15+</span>
+              <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.9)", textAlign: "center", lineHeight: 1.3, marginTop: "4px" }}>Years of Happy<br />Guests</span>
             </div>
             {/* Floating stat */}
             <div
               className="absolute -top-5 -left-5 px-5 py-3 rounded-2xl shadow-lg"
               style={{ backgroundColor: "#2d6a4f" }}
             >
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "rgba(255,255,255,0.85)" }}>📍 Calamba, Laguna</span>
+              <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: "rgba(255,255,255,0.85)" }}>📍 Calamba, Laguna</span>
             </div>
           </motion.div>
 
@@ -55,25 +55,25 @@ export function AboutSection() {
           >
             <span
               className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-5"
-              style={{ backgroundColor: "#fff3e0", color: "#f4721b", fontFamily: "'DM Sans', sans-serif" }}
+              style={{ backgroundColor: "#fff8e1", color: "#e8a33d", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               Our Story
             </span>
             <h2
-              style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 4vw, 2.8rem)", color: "#1a2e1a", fontWeight: 700, lineHeight: 1.25 }}
+              style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 2.8rem)", color: "#1a2e1a", fontWeight: 700, lineHeight: 1.25 }}
               className="mb-6"
             >
               A Tropical Sanctuary<br />
               <span style={{ color: "#2d6a4f" }}>Built for Your Soul</span>
             </h2>
             <p
-              style={{ fontFamily: "'DM Sans', sans-serif", color: "#4a5e40", lineHeight: 1.85, fontSize: "1.05rem" }}
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#4a5e40", lineHeight: 1.85, fontSize: "1.05rem" }}
               className="mb-5"
             >
               Tucked away in the lush landscapes of Calamba, Laguna, Casa Primera Hotspring Resort was born from a simple belief: everyone deserves a place to truly unwind. Since opening, we have welcomed thousands of families, couples, and friends seeking the restorative magic of natural mineral springs.
             </p>
             <p
-              style={{ fontFamily: "'DM Sans', sans-serif", color: "#4a5e40", lineHeight: 1.85, fontSize: "1.05rem" }}
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#4a5e40", lineHeight: 1.85, fontSize: "1.05rem" }}
               className="mb-10"
             >
               Our resort blends the warmth of Filipino hospitality with world-class amenities — natural hotspring pools, private villas nestled in tropical gardens, and a host of activities that make every visit unforgettable.
@@ -89,8 +89,8 @@ export function AboutSection() {
                     <Icon size={18} color="#2d6a4f" />
                   </div>
                   <div>
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", fontWeight: 600, color: "#1a2e1a" }}>{label}</p>
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#7a8c6e", lineHeight: 1.55 }}>{desc}</p>
+                    <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", fontWeight: 600, color: "#1a2e1a" }}>{label}</p>
+                    <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#7a8c6e", lineHeight: 1.55 }}>{desc}</p>
                   </div>
                 </div>
               ))}

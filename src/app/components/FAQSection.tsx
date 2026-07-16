@@ -122,11 +122,11 @@ const faqs: FAQItem[] = [
     a: (
       <>
         <ul className="list-disc pl-5 space-y-1 mb-2">
-          <li>Villa 1 — up to 34 pax</li>
-          <li>Villa 2 — up to 40 pax</li>
-          <li>Villa 3 — up to 50 pax</li>
-          <li>Villa 4 — up to 40 pax</li>
-          <li>Villa 5 — up to 34 pax</li>
+          <li>Villa 1 — 30–50 pax</li>
+          <li>Villa 2 — 30–50 pax</li>
+          <li>Villa 3 — 30–50 pax</li>
+          <li>Villa 4 — 30–50 pax</li>
+          <li>Villa 5 — 30–50 pax</li>
         </ul>
         <p>
           Guests aged 6 and above are included in the headcount, whether staying overnight or visiting for the day.
@@ -194,14 +194,14 @@ export function FAQSection() {
         <div className="text-center mb-14">
           <span
             className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4"
-            style={{ backgroundColor: "#fff8e1", color: "#7a6000", fontFamily: "'DM Sans', sans-serif" }}
+            style={{ backgroundColor: "#fff8e1", color: "#7a6000", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             Good to Know
           </span>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#1a2e1a", fontWeight: 700 }}>
-            Frequently Asked <span style={{ color: "#f4721b" }}>Questions</span>
+          <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#1a2e1a", fontWeight: 700 }}>
+            Frequently Asked <span style={{ color: "#e8a33d" }}>Questions</span>
           </h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'DM Sans', sans-serif", color: "#6b7a5e", fontSize: "1.05rem", lineHeight: 1.7 }}>
+          <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#6b7a5e", fontSize: "1.05rem", lineHeight: 1.7 }}>
             Everything you need to know before booking your stay at Casa Primera. Tap a question to see the answer.
           </p>
         </div>
@@ -226,7 +226,7 @@ export function FAQSection() {
                 >
                   <p
                     style={{
-                      fontFamily: "'Playfair Display', serif",
+                      fontFamily: "'Fraunces', serif",
                       fontSize: "1.02rem",
                       fontWeight: 700,
                       color: "#007a9a",
@@ -255,7 +255,7 @@ export function FAQSection() {
                     >
                       <div
                         className="px-6 pb-6"
-                        style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.7 }}
+                        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#4a5e40", lineHeight: 1.7 }}
                       >
                         {item.a}
                       </div>
