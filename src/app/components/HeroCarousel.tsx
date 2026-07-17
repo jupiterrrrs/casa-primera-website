@@ -92,7 +92,7 @@ export function HeroCarousel() {
           transition={{ delay: 0.3, duration: 0.7, ease: "easeOut" }}
           className="mb-10 mx-auto px-7 py-7 sm:px-12 sm:py-10 rounded-[2rem] max-w-xl w-full"
           style={{
-            backgroundColor: "rgba(69,179,192,0.28)",
+            background: "linear-gradient(180deg, rgba(160,219,237,0.55) 0%, rgba(88,172,187,0.5) 35%, rgba(36,148,158,0.55) 65%, rgba(27,144,159,0.6) 100%)",
             backdropFilter: "blur(18px)",
             WebkitBackdropFilter: "blur(18px)",
             border: "1px solid rgba(255,255,255,0.22)",
