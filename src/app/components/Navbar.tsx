@@ -15,12 +15,10 @@ const links = [
 function LogoMark() {
   return (
     <img
-      src="/images/logo-mark.png"
+      src="/images/logo-transparent.png"
       alt="Casa Primera Hotspring Resorts logo"
-      width={48}
-      height={48}
-      className="rounded-full object-cover"
-      style={{ width: 48, height: 48, filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.35))" }}
+      className="object-contain"
+      style={{ height: 40, width: "auto", filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.35))" }}
     />
   );
 }
