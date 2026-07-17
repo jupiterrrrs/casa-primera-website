@@ -85,18 +85,14 @@ export function HeroCarousel() {
           </span>
         </motion.div>
 
-        {/* Tagline — frosted blue glass card, centered */}
+        {/* Tagline — soft glow, no card edges, blends into photo */}
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.7, ease: "easeOut" }}
-          className="mb-10 mx-auto px-7 py-7 sm:px-12 sm:py-10 rounded-[2rem] max-w-xl w-full"
+          className="mb-10 mx-auto px-7 py-10 sm:px-14 sm:py-14 max-w-xl w-full"
           style={{
-            background: "linear-gradient(180deg, rgba(160,219,237,0.55) 0%, rgba(88,172,187,0.5) 35%, rgba(36,148,158,0.55) 65%, rgba(27,144,159,0.6) 100%)",
-            backdropFilter: "blur(18px)",
-            WebkitBackdropFilter: "blur(18px)",
-            border: "1px solid rgba(255,255,255,0.22)",
-            boxShadow: "0 10px 44px rgba(0,0,0,0.28)",
+            background: "radial-gradient(ellipse 85% 80% at center, rgba(15,90,100,0.38) 0%, rgba(15,90,100,0.22) 45%, rgba(15,90,100,0.08) 70%, rgba(15,90,100,0) 88%)",
           }}
         >
           <p
