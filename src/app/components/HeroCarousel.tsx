@@ -74,19 +74,19 @@ export function HeroCarousel() {
           initial={{ opacity: 0, y: -16, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 0.15, duration: 0.7, ease: "easeOut" }}
-          className="mb-5 rounded-full flex items-center justify-center mx-auto"
+          className="mb-5 rounded-3xl flex items-center justify-center mx-auto"
           style={{
-            width: "clamp(140px, 20vw, 220px)",
-            height: "clamp(140px, 20vw, 220px)",
-            backgroundColor: "rgba(255,255,255,0.97)",
+            width: "clamp(220px, 34vw, 340px)",
+            height: "clamp(90px, 12vw, 120px)",
+            backgroundColor: "rgba(255,255,255,0.95)",
             boxShadow: "0 12px 44px rgba(0,0,0,0.3), 0 0 0 8px rgba(255,255,255,0.18)",
-            padding: "10px",
+            padding: "14px 20px",
           }}
         >
           <img
-            src="/images/logo.jpg"
+            src="/images/logo-transparent.png"
             alt="Casa Primera Hotspring Resorts logo"
-            className="w-full h-full object-cover rounded-full"
+            className="w-full h-full object-contain"
           />
         </motion.div>
         <motion.div
