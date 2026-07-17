@@ -71,28 +71,11 @@ export function HeroCarousel() {
       {/* Overlay content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
         <motion.div
-          initial={{ opacity: 0, y: -16, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: 0.15, duration: 0.7, ease: "easeOut" }}
-          className="mb-5 flex items-center justify-center mx-auto"
-          style={{
-            width: "clamp(220px, 34vw, 340px)",
-            height: "clamp(75px, 11vw, 115px)",
-          }}
-        >
-          <img
-            src="/images/logo-transparent.png"
-            alt="Casa Primera Hotspring Resorts logo"
-            className="w-full h-full object-contain"
-            style={{ filter: "drop-shadow(0 4px 14px rgba(0,0,0,0.45))" }}
-          />
-        </motion.div>
-        <motion.div
           key={`label-${current}`}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="mb-9 w-full flex justify-center"
+          transition={{ delay: 0.15, duration: 0.6 }}
+          className="mb-5 w-full flex justify-center"
         >
           <span
             className="inline-block px-5 py-2 rounded-full text-sm font-bold tracking-widest uppercase text-center"
@@ -101,16 +84,69 @@ export function HeroCarousel() {
             {slides[current].label}
           </span>
         </motion.div>
-        <motion.p
-          key={`tag-${current}`}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45, duration: 0.6 }}
-          style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "clamp(1rem, 2.5vw, 1.4rem)", color: "rgba(255,255,255,0.9)", letterSpacing: "0.08em", textShadow: "0 2px 16px rgba(0,0,0,0.35)" }}
-          className="mb-10 tracking-wide"
+
+        {/* Tagline — frosted blue glass card, centered */}
+        <motion.div
+          initial={{ opacity: 0, y: 20, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 0.3, duration: 0.7, ease: "easeOut" }}
+          className="mb-10 mx-auto px-7 py-7 sm:px-12 sm:py-10 rounded-[2rem] max-w-xl w-full"
+          style={{
+            backgroundColor: "rgba(69,179,192,0.28)",
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
+            border: "1px solid rgba(255,255,255,0.22)",
+            boxShadow: "0 10px 44px rgba(0,0,0,0.28)",
+          }}
         >
-          Relax, Refresh, Reconnect
-        </motion.p>
+          <p
+            style={{
+              fontFamily: "'Alex Brush', cursive",
+              fontSize: "clamp(1.5rem, 4.2vw, 2.5rem)",
+              color: "#FFEB3B",
+              lineHeight: 1.1,
+              textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+            }}
+          >
+            Your Private Escape.
+          </p>
+          <h1
+            style={{
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontWeight: 800,
+              fontSize: "clamp(1.9rem, 6.5vw, 3.4rem)",
+              color: "#fff",
+              letterSpacing: "0.01em",
+              lineHeight: 1.08,
+              textShadow: "0 3px 14px rgba(0,0,0,0.4)",
+              margin: "0.15em 0",
+            }}
+          >
+            SOAK. RELAX.
+          </h1>
+          <p
+            style={{
+              fontFamily: "'Alex Brush', cursive",
+              fontSize: "clamp(2.1rem, 7vw, 3.6rem)",
+              color: "#FFEB3B",
+              lineHeight: 1,
+              textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+              marginBottom: "0.55em",
+            }}
+          >
+            Reconnect.
+          </p>
+          <p
+            style={{
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontSize: "clamp(0.82rem, 2.1vw, 1.05rem)",
+              color: "rgba(255,255,255,0.95)",
+              lineHeight: 1.65,
+            }}
+          >
+            Natural hot spring. <strong style={{ fontWeight: 700 }}>Spacious private villas.</strong> The perfect getaway for family, friends, and <strong style={{ fontWeight: 700 }}>unforgettable memories.</strong>
+          </p>
+        </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
