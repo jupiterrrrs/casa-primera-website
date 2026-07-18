@@ -37,7 +37,10 @@ export function Navbar() {
     <nav
       className="fixed top-0 left-0 right-0 z-40 transition-all duration-400"
       style={{
-        backgroundColor: scrolled || menuOpen ? "#ffffff" : "transparent",
+        background: scrolled || menuOpen
+          ? "#ffffff"
+          : "linear-gradient(to bottom, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.06) 70%, rgba(255,255,255,0) 100%)",
+        backdropFilter: scrolled || menuOpen ? "none" : "blur(2px)",
         borderBottom: scrolled || menuOpen ? "1px solid rgba(0,0,0,0.06)" : "none",
         boxShadow: scrolled || menuOpen ? "0 2px 20px rgba(0,0,0,0.07)" : "none",
       }}
