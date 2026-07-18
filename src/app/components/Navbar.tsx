@@ -17,8 +17,8 @@ function LogoMark() {
     <img
       src="/images/logo-transparent.png"
       alt="Casa Primera Hotspring Resorts logo"
-      className="object-contain"
-      style={{ height: 68, width: "auto", filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.35))" }}
+      className="object-contain h-11 sm:h-14 lg:h-[68px] w-auto"
+      style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.35))" }}
     />
   );
 }
@@ -37,13 +37,12 @@ export function Navbar() {
     <nav
       className="fixed top-0 left-0 right-0 z-40 transition-all duration-400"
       style={{
-        backgroundColor: scrolled ? "rgba(234,247,248,0.97)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(69,179,192,0.15)" : "none",
-        boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.07)" : "none",
+        backgroundColor: scrolled || menuOpen ? "#ffffff" : "transparent",
+        borderBottom: scrolled || menuOpen ? "1px solid rgba(0,0,0,0.06)" : "none",
+        boxShadow: scrolled || menuOpen ? "0 2px 20px rgba(0,0,0,0.07)" : "none",
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center group">
           <LogoMark />
@@ -74,14 +73,17 @@ export function Navbar() {
         <button
           className="lg:hidden"
           onClick={() => setMenuOpen((m) => !m)}
-          style={{ color: scrolled ? "#333333" : "#fff" }}
+          style={{ color: scrolled || menuOpen ? "#333333" : "#fff" }}
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {menuOpen && (
-        <div className="lg:hidden px-6 pb-6 pt-2 space-y-4" style={{ backgroundColor: "#EAF7F8" }}>
+        <div
+          className="lg:hidden px-6 pb-6 pt-2 space-y-4"
+          style={{ backgroundColor: "#ffffff", borderTop: "1px solid rgba(0,0,0,0.06)", boxShadow: "0 8px 20px rgba(0,0,0,0.08)" }}
+        >
           {links.map(({ href, label }) => (
             <a
               key={href}

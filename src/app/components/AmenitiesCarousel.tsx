@@ -201,11 +201,34 @@ function AmenityLightbox({
   );
 }
 
+function useCardsVisible() {
+  const [cardsVisible, setCardsVisible] = useState(1);
+
+  useEffect(() => {
+    const compute = () => {
+      const w = window.innerWidth;
+      if (w >= 1024) setCardsVisible(3);
+      else if (w >= 640) setCardsVisible(2);
+      else setCardsVisible(1);
+    };
+    compute();
+    window.addEventListener("resize", compute);
+    return () => window.removeEventListener("resize", compute);
+  }, []);
+
+  return cardsVisible;
+}
+
 export function AmenitiesCarousel() {
   const [startIdx, setStartIdx] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const cardsVisible = 3;
+  const cardsVisible = useCardsVisible();
   const trackRef = useRef<HTMLDivElement>(null);
+
+  // Keep startIdx in range whenever the visible count changes (e.g. rotating a device)
+  useEffect(() => {
+    setStartIdx((i) => Math.min(i, Math.max(0, amenities.length - cardsVisible)));
+  }, [cardsVisible]);
 
   const canPrev = startIdx > 0;
   const canNext = startIdx < amenities.length - cardsVisible;
@@ -218,9 +241,9 @@ export function AmenitiesCarousel() {
   }, []);
 
   return (
-    <section className="py-20 overflow-hidden" style={{ background: "linear-gradient(180deg, #FFF9C4 0%, #EAF7F8 100%)" }}>
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-14">
+    <section className="py-12 sm:py-20 overflow-hidden" style={{ background: "linear-gradient(180deg, #FFF9C4 0%, #EAF7F8 100%)" }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-14">
           <span
             className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4"
             style={{ backgroundColor: "#FFEB3B", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}
@@ -245,24 +268,24 @@ export function AmenitiesCarousel() {
           <button
             onClick={() => setStartIdx((i) => Math.max(0, i - 1))}
             disabled={!canPrev}
-            className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="absolute left-0 sm:-left-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
             style={{ backgroundColor: "#45B3C0", color: "#fff" }}
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={18} />
           </button>
           <button
             onClick={() => setStartIdx((i) => Math.min(amenities.length - cardsVisible, i + 1))}
             disabled={!canNext}
-            className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="absolute right-0 sm:-right-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
             style={{ backgroundColor: "#45B3C0", color: "#fff" }}
           >
-            <ChevronRight size={20} />
+            <ChevronRight size={18} />
           </button>
 
-          <div className="overflow-hidden mx-4" ref={trackRef}>
+          <div className="overflow-hidden mx-9 sm:mx-4" ref={trackRef}>
             <motion.div
               className="flex gap-6"
-              animate={{ x: `calc(-${startIdx} * (100% / ${cardsVisible} + 8px))` }}
+              animate={{ x: `calc(-${startIdx} * (100% + 24px) / ${cardsVisible})` }}
               transition={{ type: "spring", stiffness: 280, damping: 32 }}
             >
               {amenities.map((a) => {
@@ -316,7 +339,7 @@ export function AmenitiesCarousel() {
         </div>
 
         {/* Dot indicators */}
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="flex flex-wrap justify-center gap-2 mt-8 px-4">
           {Array.from({ length: amenities.length - cardsVisible + 1 }).map((_, i) => (
             <button
               key={i}

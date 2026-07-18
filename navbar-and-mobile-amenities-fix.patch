@@ -1,0 +1,173 @@
+From 75fb1ca4a2d193ae49878c025d93fdc460267823 Mon Sep 17 00:00:00 2001
+From: Claude <claude@anthropic.com>
+Date: Sat, 18 Jul 2026 13:40:28 +0000
+Subject: [PATCH] Fix navbar scroll style and mobile amenities carousel
+ responsiveness
+
+- Navbar: solid white background on scroll (and when mobile menu is
+  open) instead of translucent teal, matching the reference site's
+  white nav-on-scroll pattern. Text/icons stay dark and readable
+  against it at all times.
+- Navbar: logo is now responsively sized (smaller on phones) so it
+  no longer overflows/overlaps page content on mobile.
+- AmenitiesCarousel: number of visible cards is now responsive
+  (1 on phones, 2 on tablets, 3 on desktop) instead of a hardcoded
+  3, which was crushing card width on mobile and truncating titles
+  and descriptions. Fixed the slide-offset math to match the actual
+  card gap, tucked the prev/next arrows onto screen on mobile, and
+  let the dot indicators wrap instead of overflow.
+---
+ src/app/components/AmenitiesCarousel.tsx | 45 ++++++++++++++++++------
+ src/app/components/Navbar.tsx            | 20 ++++++-----
+ 2 files changed, 45 insertions(+), 20 deletions(-)
+
+diff --git a/src/app/components/AmenitiesCarousel.tsx b/src/app/components/AmenitiesCarousel.tsx
+index 14be5db..10f4343 100644
+--- a/src/app/components/AmenitiesCarousel.tsx
++++ b/src/app/components/AmenitiesCarousel.tsx
+@@ -201,12 +201,35 @@ function AmenityLightbox({
+   );
+ }
+ 
++function useCardsVisible() {
++  const [cardsVisible, setCardsVisible] = useState(1);
++
++  useEffect(() => {
++    const compute = () => {
++      const w = window.innerWidth;
++      if (w >= 1024) setCardsVisible(3);
++      else if (w >= 640) setCardsVisible(2);
++      else setCardsVisible(1);
++    };
++    compute();
++    window.addEventListener("resize", compute);
++    return () => window.removeEventListener("resize", compute);
++  }, []);
++
++  return cardsVisible;
++}
++
+ export function AmenitiesCarousel() {
+   const [startIdx, setStartIdx] = useState(0);
+   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+-  const cardsVisible = 3;
++  const cardsVisible = useCardsVisible();
+   const trackRef = useRef<HTMLDivElement>(null);
+ 
++  // Keep startIdx in range whenever the visible count changes (e.g. rotating a device)
++  useEffect(() => {
++    setStartIdx((i) => Math.min(i, Math.max(0, amenities.length - cardsVisible)));
++  }, [cardsVisible]);
++
+   const canPrev = startIdx > 0;
+   const canNext = startIdx < amenities.length - cardsVisible;
+ 
+@@ -218,9 +241,9 @@ export function AmenitiesCarousel() {
+   }, []);
+ 
+   return (
+-    <section className="py-20 overflow-hidden" style={{ background: "linear-gradient(180deg, #FFF9C4 0%, #EAF7F8 100%)" }}>
+-      <div className="max-w-7xl mx-auto px-6">
+-        <div className="text-center mb-14">
++    <section className="py-12 sm:py-20 overflow-hidden" style={{ background: "linear-gradient(180deg, #FFF9C4 0%, #EAF7F8 100%)" }}>
++      <div className="max-w-7xl mx-auto px-4 sm:px-6">
++        <div className="text-center mb-8 sm:mb-14">
+           <span
+             className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4"
+             style={{ backgroundColor: "#FFEB3B", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}
+@@ -245,24 +268,24 @@ export function AmenitiesCarousel() {
+           <button
+             onClick={() => setStartIdx((i) => Math.max(0, i - 1))}
+             disabled={!canPrev}
+-            className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
++            className="absolute left-0 sm:-left-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
+             style={{ backgroundColor: "#45B3C0", color: "#fff" }}
+           >
+-            <ChevronLeft size={20} />
++            <ChevronLeft size={18} />
+           </button>
+           <button
+             onClick={() => setStartIdx((i) => Math.min(amenities.length - cardsVisible, i + 1))}
+             disabled={!canNext}
+-            className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
++            className="absolute right-0 sm:-right-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
+             style={{ backgroundColor: "#45B3C0", color: "#fff" }}
+           >
+-            <ChevronRight size={20} />
++            <ChevronRight size={18} />
+           </button>
+ 
+-          <div className="overflow-hidden mx-4" ref={trackRef}>
++          <div className="overflow-hidden mx-9 sm:mx-4" ref={trackRef}>
+             <motion.div
+               className="flex gap-6"
+-              animate={{ x: `calc(-${startIdx} * (100% / ${cardsVisible} + 8px))` }}
++              animate={{ x: `calc(-${startIdx} * (100% + 24px) / ${cardsVisible})` }}
+               transition={{ type: "spring", stiffness: 280, damping: 32 }}
+             >
+               {amenities.map((a) => {
+@@ -316,7 +339,7 @@ export function AmenitiesCarousel() {
+         </div>
+ 
+         {/* Dot indicators */}
+-        <div className="flex justify-center gap-2 mt-8">
++        <div className="flex flex-wrap justify-center gap-2 mt-8 px-4">
+           {Array.from({ length: amenities.length - cardsVisible + 1 }).map((_, i) => (
+             <button
+               key={i}
+diff --git a/src/app/components/Navbar.tsx b/src/app/components/Navbar.tsx
+index 6f6f35e..b61a833 100644
+--- a/src/app/components/Navbar.tsx
++++ b/src/app/components/Navbar.tsx
+@@ -17,8 +17,8 @@ function LogoMark() {
+     <img
+       src="/images/logo-transparent.png"
+       alt="Casa Primera Hotspring Resorts logo"
+-      className="object-contain"
+-      style={{ height: 68, width: "auto", filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.35))" }}
++      className="object-contain h-11 sm:h-14 lg:h-[68px] w-auto"
++      style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.35))" }}
+     />
+   );
+ }
+@@ -37,13 +37,12 @@ export function Navbar() {
+     <nav
+       className="fixed top-0 left-0 right-0 z-40 transition-all duration-400"
+       style={{
+-        backgroundColor: scrolled ? "rgba(234,247,248,0.97)" : "transparent",
+-        backdropFilter: scrolled ? "blur(12px)" : "none",
+-        borderBottom: scrolled ? "1px solid rgba(69,179,192,0.15)" : "none",
+-        boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.07)" : "none",
++        backgroundColor: scrolled || menuOpen ? "#ffffff" : "transparent",
++        borderBottom: scrolled || menuOpen ? "1px solid rgba(0,0,0,0.06)" : "none",
++        boxShadow: scrolled || menuOpen ? "0 2px 20px rgba(0,0,0,0.07)" : "none",
+       }}
+     >
+-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
++      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+         {/* Logo */}
+         <a href="#" className="flex items-center group">
+           <LogoMark />
+@@ -74,14 +73,17 @@ export function Navbar() {
+         <button
+           className="lg:hidden"
+           onClick={() => setMenuOpen((m) => !m)}
+-          style={{ color: scrolled ? "#333333" : "#fff" }}
++          style={{ color: scrolled || menuOpen ? "#333333" : "#fff" }}
+         >
+           {menuOpen ? <X size={22} /> : <Menu size={22} />}
+         </button>
+       </div>
+ 
+       {menuOpen && (
+-        <div className="lg:hidden px-6 pb-6 pt-2 space-y-4" style={{ backgroundColor: "#EAF7F8" }}>
++        <div
++          className="lg:hidden px-6 pb-6 pt-2 space-y-4"
++          style={{ backgroundColor: "#ffffff", borderTop: "1px solid rgba(0,0,0,0.06)", boxShadow: "0 8px 20px rgba(0,0,0,0.08)" }}
++        >
+           {links.map(({ href, label }) => (
+             <a
+               key={href}
+-- 
+2.43.0
+
