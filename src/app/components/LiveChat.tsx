@@ -34,10 +34,18 @@ const faqMap: Array<{ keywords: string[]; answer: string; isLocation?: boolean }
 
 const quickReplies = ["Check-in time?", "Payment options?", "How to book?", "Rates?", "Location?"];
 
+function escapeRegExp(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function matchesKeyword(lower: string, keyword: string): boolean {
+  return new RegExp(`\\b${escapeRegExp(keyword)}\\b`, "i").test(lower);
+}
+
 function getAnswer(input: string): { text: string; showMessenger: boolean; showMap: boolean } {
   const lower = input.toLowerCase();
   for (const { keywords, answer, isLocation } of faqMap) {
-    if (keywords.some((k) => lower.includes(k))) {
+    if (keywords.some((k) => matchesKeyword(lower, k))) {
       return { text: answer, showMessenger: false, showMap: !!isLocation };
     }
   }
