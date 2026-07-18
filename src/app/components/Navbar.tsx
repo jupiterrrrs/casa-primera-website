@@ -72,14 +72,24 @@ export function Navbar() {
           </a>
         </div>
 
-        {/* Mobile */}
-        <button
-          className="lg:hidden"
-          onClick={() => setMenuOpen((m) => !m)}
-          style={{ color: "#1a1a1a" }}
-        >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        {/* Mobile: Book Now stays visible in the bar at all times, dropdown toggle beside it */}
+        <div className="lg:hidden flex items-center gap-3">
+          <a
+            href="#booking"
+            onClick={() => setMenuOpen(false)}
+            className="px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 hover:scale-105 whitespace-nowrap"
+            style={{ backgroundColor: "#FFEB3B", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+          >
+            Book Now
+          </a>
+          <button
+            onClick={() => setMenuOpen((m) => !m)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            style={{ color: "#1a1a1a" }}
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {menuOpen && (
@@ -98,14 +108,6 @@ export function Navbar() {
               {label}
             </a>
           ))}
-          <a
-            href="#booking"
-            onClick={() => setMenuOpen(false)}
-            className="block px-5 py-2.5 rounded-full text-center font-bold"
-            style={{ backgroundColor: "#FFEB3B", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-          >
-            Book Now
-          </a>
         </div>
       )}
     </nav>
