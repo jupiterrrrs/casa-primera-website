@@ -69,13 +69,13 @@ export function HeroCarousel() {
       </AnimatePresence>
 
       {/* Overlay content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 pt-16 sm:pt-14">
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 pt-28 sm:pt-24">
         <motion.div
           key={`label-${current}`}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.6 }}
-          className="mb-5 mt-6 sm:mt-2 w-full flex justify-center"
+          className="mb-5 mt-2 w-full flex justify-center"
         >
           <span
             className="inline-block px-5 py-2 rounded-full text-sm font-bold tracking-widest uppercase text-center"

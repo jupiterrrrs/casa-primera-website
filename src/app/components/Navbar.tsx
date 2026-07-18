@@ -39,9 +39,9 @@ export function Navbar() {
       style={{
         background: scrolled || menuOpen
           ? "#ffffff"
-          : "linear-gradient(to bottom, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.06) 70%, rgba(255,255,255,0) 100%)",
-        backdropFilter: scrolled || menuOpen ? "none" : "blur(2px)",
-        borderBottom: scrolled || menuOpen ? "1px solid rgba(0,0,0,0.06)" : "none",
+          : "rgba(255,255,255,0.55)",
+        backdropFilter: "blur(10px)",
+        borderBottom: scrolled || menuOpen ? "1px solid rgba(0,0,0,0.06)" : "1px solid rgba(0,0,0,0.04)",
         boxShadow: scrolled || menuOpen ? "0 2px 20px rgba(0,0,0,0.07)" : "none",
       }}
     >
@@ -57,7 +57,7 @@ export function Navbar() {
             <a
               key={href}
               href={href}
-              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: scrolled ? "#4d4d4d" : "rgba(255,255,255,0.88)", fontWeight: 500 }}
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#1a1a1a", fontWeight: 500 }}
               className="hover:opacity-70 transition-opacity duration-200 whitespace-nowrap"
             >
               {label}
@@ -76,7 +76,7 @@ export function Navbar() {
         <button
           className="lg:hidden"
           onClick={() => setMenuOpen((m) => !m)}
-          style={{ color: scrolled || menuOpen ? "#333333" : "#fff" }}
+          style={{ color: "#1a1a1a" }}
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
