@@ -92,11 +92,11 @@ export function Footer() {
           <h4 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#fff", fontSize: "1rem" }} className="mb-5">Our Villas</h4>
           <ul className="space-y-3">
             {[
-              "Casa Primera Villa 1 · 30–50 pax",
-              "Casa Primera Villa 2 · 30–50 pax",
-              "Casa Primera Villa 3 · 30–50 pax",
-              "Casa Primera Villa 4 · 30–50 pax",
-              "Casa Primera Villa 5 · 30–50 pax",
+              "Casa Primera Villa 1 · Up to 34 pax",
+              "Casa Primera Villa 2 · Up to 40 pax",
+              "Casa Primera Villa 3 · Up to 50 pax",
+              "Casa Primera Villa 4 · Up to 40 pax",
+              "Casa Primera Villa 5 · Up to 34 pax",
             ].map((v) => (
               <li key={v}>
                 <a href="#villas" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem" }} className="hover:text-[#FFEB3B] transition-colors duration-200">{v}</a>

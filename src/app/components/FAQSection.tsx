@@ -122,11 +122,11 @@ const faqs: FAQItem[] = [
     a: (
       <>
         <ul className="list-disc pl-5 space-y-1 mb-2">
-          <li>Villa 1 — 30–50 pax</li>
-          <li>Villa 2 — 30–50 pax</li>
-          <li>Villa 3 — 30–50 pax</li>
-          <li>Villa 4 — 30–50 pax</li>
-          <li>Villa 5 — 30–50 pax</li>
+          <li>Villa 1 — Up to 34 pax</li>
+          <li>Villa 2 — Up to 40 pax</li>
+          <li>Villa 3 — Up to 50 pax</li>
+          <li>Villa 4 — Up to 40 pax</li>
+          <li>Villa 5 — Up to 34 pax</li>
         </ul>
         <p>
           Guests aged 6 and above are included in the headcount, whether staying overnight or visiting for the day.
