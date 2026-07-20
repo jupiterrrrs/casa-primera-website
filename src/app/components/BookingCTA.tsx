@@ -11,7 +11,7 @@ const allVillas = [
   {
     label: "Casa Primera Villa 1",
     short: "Villa 1",
-    pax: 50,
+    pax: 34,
     price: 18000,
     tag: "Pioneer",
     blocked: [
@@ -23,7 +23,7 @@ const allVillas = [
   {
     label: "Casa Primera Villa 2",
     short: "Villa 2",
-    pax: 50,
+    pax: 40,
     price: 18000,
     tag: "Family",
     blocked: [
@@ -34,7 +34,7 @@ const allVillas = [
   {
     label: "Casa Primera Villa 3",
     short: "Villa 3",
-    pax: 50,
+    pax: 50, // max 50 pax
     price: 18000,
     tag: "Garden",
     blocked: [
@@ -44,7 +44,7 @@ const allVillas = [
   {
     label: "Casa Primera Villa 4",
     short: "Villa 4",
-    pax: 50,
+    pax: 40,
     price: 21000,
     tag: "Mountain View",
     blocked: [
@@ -55,7 +55,7 @@ const allVillas = [
   {
     label: "Casa Primera Villa 5",
     short: "Villa 5",
-    pax: 50,
+    pax: 34,
     price: 21000,
     tag: "Modern",
     blocked: [
@@ -251,7 +251,7 @@ function ReservationCalendar({
                       </div>
                       <div className="flex items-center gap-3 mt-0.5">
                         <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#666666" }}>
-                          <Users size={11} className="inline mr-1" />30–50 pax
+                          <Users size={11} className="inline mr-1" />Up to {villa.pax} pax
                         </span>
                         <span style={{ fontFamily: "'Fraunces', serif", fontSize: "0.82rem", fontWeight: 700, color: "#45B3C0" }}>
                           From ₱{villa.price.toLocaleString()}
@@ -369,7 +369,7 @@ export function BookingCTA() {
                 { icon: Phone, label: "Call Us", value: "Globe: 0917.114.6956 / 0956.836.6100\nSmart: 0919.007.8821 / 0960.381.7151\nLandline: (049) 502-3746" },
                 { icon: Mail, label: "Email Us", value: "sales@casaprimeravilla.com" },
                 { icon: CalendarDays, label: "Check-in / Check-out", value: "3:00 PM / 12:00 NN" },
-                { icon: Users, label: "Guest Capacity", value: "30–50 pax per villa" },
+                { icon: Users, label: "Guest Capacity", value: "34–50 pax per villa" },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-center gap-4">
                   <div className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "rgba(69,179,192,0.25)" }}>
@@ -492,7 +492,7 @@ export function BookingCTA() {
                               {v.label}
                             </span>
                             <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#999999" }}>
-                              30–50 pax
+                              Up to {v.pax} pax
                             </span>
                             <span
                               className="text-xs font-semibold px-2 py-0.5 rounded-full"
@@ -512,7 +512,7 @@ export function BookingCTA() {
                         className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#45B3C0]"
                         style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", borderColor: "#A8DDE3", backgroundColor: "#EAF7F8" }}>
                         <option value="">Any Villa</option>
-                        {allVillas.map((v) => <option key={v.label} value={v.label}>{v.label} (30–50 pax)</option>)}
+                        {allVillas.map((v) => <option key={v.label} value={v.label}>{v.label} (Up to {v.pax} pax)</option>)}
                       </select>
                     </div>
                     <div>

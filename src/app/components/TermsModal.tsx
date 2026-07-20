@@ -66,12 +66,12 @@ export function TermsModal({ onAccept, onClose }: Props) {
               👥 Guest Capacity
             </h3>
             <ul style={{ fontSize: "0.88rem", color: "#4d4d4d", lineHeight: 1.85 }} className="list-disc pl-4 space-y-1">
-              <li><strong>Capacity per villa:</strong> 30–50 pax</li>
-              <li><strong>Casa Primera Villa 1:</strong> 30–50 guests</li>
-              <li><strong>Casa Primera Villa 2:</strong> 30–50 guests</li>
-              <li><strong>Casa Primera Villa 3:</strong> 30–50 guests</li>
-              <li><strong>Casa Primera Villa 4:</strong> 30–50 guests</li>
-              <li><strong>Casa Primera Villa 5:</strong> 30–50 guests</li>
+              <li><strong>Capacity per villa:</strong> 34–50 pax (varies by villa)</li>
+              <li><strong>Casa Primera Villa 1:</strong> Up to 34 guests</li>
+              <li><strong>Casa Primera Villa 2:</strong> Up to 40 guests</li>
+              <li><strong>Casa Primera Villa 3:</strong> Up to 50 guests</li>
+              <li><strong>Casa Primera Villa 4:</strong> Up to 40 guests</li>
+              <li><strong>Casa Primera Villa 5:</strong> Up to 34 guests</li>
             </ul>
             <p style={{ fontSize: "0.85rem", color: "#c0392b", marginTop: "0.5rem" }}>
               ⚠ Exceeding the stated capacity is strictly prohibited and may result in cancellation without refund.

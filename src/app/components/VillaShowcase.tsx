@@ -27,7 +27,7 @@ export const villas = [
     tag: "Pioneer Villa",
     startingPrice: rateTiersABC[0].price,
     rateTiers: rateTiersABC,
-    capacity: "30–50",
+    capacity: "Up to 34",
     rating: 4.9,
     image: "/images/villas/villa1.jpg",
     photos: [
@@ -44,7 +44,7 @@ export const villas = [
       "/images/villas/villa1-gallery/villa1-31.jpg", "/images/villas/villa1-gallery/villa1-32.jpg",
     ] as string[],
     features: ["5 Air-Con Bedrooms", "Adult & Kiddie Pool", "Garden & Playground", "Senior/PWD-Friendly"],
-    desc: "As the pioneer villa of Casa Primera Hot Spring Resorts, Villa 1 is a 2-storey private villa perfect for family vacations, reunions, and intimate celebrations. It features a vast garden, a children's playground, a spacious dining hall, and a kitchen area. Guests can enjoy a private hot spring adult pool (4–5.5 ft deep) and a kiddie pool (2–3 ft deep). Designed to accommodate 30–50 guests, the villa offers five fully air-conditioned bedrooms, each with a private bathroom, shower heater, and hair dryer. With two ground-floor bedrooms and a wheelchair ramp, the villa is senior and PWD-friendly. Also includes FREE Wi-Fi, TVs, FREE videoke, a dining hall, kitchen, grilling area, and indoor parking for 1–2 vehicles.",
+    desc: "As the pioneer villa of Casa Primera Hot Spring Resorts, Villa 1 is a 2-storey private villa perfect for family vacations, reunions, and intimate celebrations. It features a vast garden, a children's playground, a spacious dining hall, and a kitchen area. Guests can enjoy a private hot spring adult pool (4–5.5 ft deep) and a kiddie pool (2–3 ft deep). Designed to accommodate up to 34 guests, the villa offers five fully air-conditioned bedrooms, each with a private bathroom, shower heater, and hair dryer. With two ground-floor bedrooms and a wheelchair ramp, the villa is senior and PWD-friendly. Also includes FREE Wi-Fi, TVs, FREE videoke, a dining hall, kitchen, grilling area, and indoor parking for 1–2 vehicles.",
     highlight: true,
     blocked: [
       { from: new Date(2026, 6, 4), to: new Date(2026, 6, 6) },
@@ -59,7 +59,7 @@ export const villas = [
     tag: "Family Deluxe",
     startingPrice: rateTiersABC[0].price,
     rateTiers: rateTiersABC,
-    capacity: "30–50",
+    capacity: "Up to 40",
     rating: 4.8,
     image: "/images/villas/villa2.jpg",
     photos: [
@@ -79,7 +79,7 @@ export const villas = [
       "/images/villas/villa2-gallery/villa2-40.jpg", "/images/villas/villa2-gallery/villa2-41.jpg",
     ] as string[],
     features: ["5 Air-Con Bedrooms", "Adult & Kiddie Pool", "Children's Playground", "Senior/PWD-Friendly"],
-    desc: "Create unforgettable moments with family and friends at Villa 2, a private villa designed for reunions, celebrations, and relaxing group getaways. It features a spacious children's playground and a private hot spring adult pool (4–5.5 ft deep) with kiddie pool (2–3 ft deep). Designed to accommodate 30–50 guests, the villa offers five fully air-conditioned bedrooms, including one ground-floor bedroom, making it senior and PWD-friendly. Each bedroom has a private bathroom, shower heater, and hair dryer. Includes a spacious dining hall, kitchen area, grilling area, FREE Wi-Fi, TVs, FREE videoke, and indoor parking for 4–5 vehicles.",
+    desc: "Create unforgettable moments with family and friends at Villa 2, a private villa designed for reunions, celebrations, and relaxing group getaways. It features a spacious children's playground and a private hot spring adult pool (4–5.5 ft deep) with kiddie pool (2–3 ft deep). Designed to accommodate up to 40 guests, the villa offers five fully air-conditioned bedrooms, including one ground-floor bedroom, making it senior and PWD-friendly. Each bedroom has a private bathroom, shower heater, and hair dryer. Includes a spacious dining hall, kitchen area, grilling area, FREE Wi-Fi, TVs, FREE videoke, and indoor parking for 4–5 vehicles.",
     highlight: false,
     blocked: [
       { from: new Date(2026, 6, 5), to: new Date(2026, 6, 8) },
@@ -93,7 +93,7 @@ export const villas = [
     tag: "Garden Retreat",
     startingPrice: rateTiersABC[0].price,
     rateTiers: rateTiersABC,
-    capacity: "30–50",
+    capacity: "Up to 50",
     rating: 4.7,
     image: "/images/villas/villa3.jpg",
     photos: [
@@ -114,7 +114,7 @@ export const villas = [
       "/images/villas/villa3-gallery/villa3-43.jpg", "/images/villas/villa3-gallery/villa3-44.jpg",
     ] as string[],
     features: ["6 Air-Con Bedrooms", "Jacuzzi Available", "Adult & Kiddie Pool", "Senior/PWD-Friendly"],
-    desc: "Surrounded by lush trees and greenery, Villa 3 provides a peaceful setting to relax, reconnect, and create lasting memories. It features larger bedrooms, a private hot spring adult pool (4–4.5 ft deep), a kiddie pool (2–2.5 ft deep), and a jacuzzi available for rent. Designed to accommodate 30–50 guests, the villa offers six fully air-conditioned bedrooms, including two ground-floor bedrooms, making it senior and PWD-friendly. Four bedrooms have their own private bathroom, while two share a nearby common bathroom. Includes a dining area, kitchen, grilling area, FREE Wi-Fi, TVs, FREE videoke, table tennis, billiards, darts, water volleyball, a playground, and indoor parking for 2–3 vehicles.",
+    desc: "Surrounded by lush trees and greenery, Villa 3 provides a peaceful setting to relax, reconnect, and create lasting memories. It features larger bedrooms, a private hot spring adult pool (4–4.5 ft deep), a kiddie pool (2–2.5 ft deep), and a jacuzzi available for rent. Designed to accommodate up to 50 guests, the villa offers six fully air-conditioned bedrooms, including two ground-floor bedrooms, making it senior and PWD-friendly. Four bedrooms have their own private bathroom, while two share a nearby common bathroom. Includes a dining area, kitchen, grilling area, FREE Wi-Fi, TVs, FREE videoke, table tennis, billiards, darts, water volleyball, a playground, and indoor parking for 2–3 vehicles.",
     highlight: false,
     blocked: [
       { from: new Date(2026, 6, 10), to: new Date(2026, 6, 13) },
@@ -127,7 +127,7 @@ export const villas = [
     tag: "Mountain View",
     startingPrice: rateTiersDE[0].price,
     rateTiers: rateTiersDE,
-    capacity: "30–50",
+    capacity: "Up to 40",
     rating: 4.9,
     image: "/images/villas/villa4.jpg",
     photos: [
@@ -143,7 +143,7 @@ export const villas = [
       "/images/villas/villa4-gallery/villa4-28.jpg",
     ] as string[],
     features: ["5 Air-Con Bedrooms", "Mountain View Terrace", "Adult & Kiddie Pool", "Senior/PWD-Friendly"],
-    desc: "Combining modern comfort with scenic surroundings, Villa 4 is a 2-storey private villa designed for families, reunions, and group gatherings. It features larger bedrooms, a spacious dining area, and a large terrace overlooking a beautiful mountain view. Guests can enjoy a private hot spring adult pool (3.2–5.2 ft deep) and a kiddie pool (2.7 ft deep). Designed to accommodate 30–50 guests, the villa offers five fully air-conditioned bedrooms, including one ground-floor bedroom, making it senior and PWD-friendly. Three bedrooms have their own private bathroom with shower heater, while two rooms share a bathroom with shower heater. Includes a dining area, kitchen, grilling area, FREE Wi-Fi, TVs, FREE videoke, table tennis, billiards, darts, water volleyball, a playground, and indoor parking for 5–6 vehicles.",
+    desc: "Combining modern comfort with scenic surroundings, Villa 4 is a 2-storey private villa designed for families, reunions, and group gatherings. It features larger bedrooms, a spacious dining area, and a large terrace overlooking a beautiful mountain view. Guests can enjoy a private hot spring adult pool (3.2–5.2 ft deep) and a kiddie pool (2.7 ft deep). Designed to accommodate up to 40 guests, the villa offers five fully air-conditioned bedrooms, including one ground-floor bedroom, making it senior and PWD-friendly. Three bedrooms have their own private bathroom with shower heater, while two rooms share a bathroom with shower heater. Includes a dining area, kitchen, grilling area, FREE Wi-Fi, TVs, FREE videoke, table tennis, billiards, darts, water volleyball, a playground, and indoor parking for 5–6 vehicles.",
     highlight: false,
     blocked: [
       { from: new Date(2026, 6, 15), to: new Date(2026, 6, 17) },
@@ -157,7 +157,7 @@ export const villas = [
     tag: "Modern Retreat",
     startingPrice: rateTiersDE[0].price,
     rateTiers: rateTiersDE,
-    capacity: "30–50",
+    capacity: "Up to 34",
     rating: 4.6,
     image: "/images/villas/villa5.jpg",
     photos: [
@@ -186,7 +186,7 @@ export const villas = [
       "/images/villas/villa5-gallery/villa5-67.jpg", "/images/villas/villa5-gallery/villa5-68.jpg", "/images/villas/villa5-gallery/villa5-69.jpg",
     ] as string[],
     features: ["5 Air-Con Bedrooms", "Jacuzzi Available", "Color-Changing Pool Lights", "Senior/PWD-Friendly"],
-    desc: "As the latest addition to Casa Primera Hot Spring Resorts, Villa 5 offers a modern and stylish retreat for families, reunions, and group getaways. It features a wide garden, a children's playground, a private hot spring adult pool (3–5 ft deep) with kiddie pool (2 ft deep), color-changing pool lights, and a jacuzzi available for rent. Designed to accommodate 30–50 guests, the villa offers five fully air-conditioned bedrooms, each with a private bathroom and shower heater. With two ground-floor bedrooms and a wheelchair ramp, the villa is senior and PWD-friendly. Includes a dining area, kitchen, grilling area, FREE Wi-Fi, TVs, FREE videoke, table tennis, billiards, darts, water volleyball, a playground, and indoor parking for 2–4 vehicles.",
+    desc: "As the latest addition to Casa Primera Hot Spring Resorts, Villa 5 offers a modern and stylish retreat for families, reunions, and group getaways. It features a wide garden, a children's playground, a private hot spring adult pool (3–5 ft deep) with kiddie pool (2 ft deep), color-changing pool lights, and a jacuzzi available for rent. Designed to accommodate up to 34 guests, the villa offers five fully air-conditioned bedrooms, each with a private bathroom and shower heater. With two ground-floor bedrooms and a wheelchair ramp, the villa is senior and PWD-friendly. Includes a dining area, kitchen, grilling area, FREE Wi-Fi, TVs, FREE videoke, table tennis, billiards, darts, water volleyball, a playground, and indoor parking for 2–4 vehicles.",
     highlight: false,
     blocked: [
       { from: new Date(2026, 6, 20), to: new Date(2026, 6, 23) },
@@ -460,7 +460,7 @@ export function VillaShowcase() {
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-5">
             {[
-              { label: "30–50 Pax per Villa", color: "#DCF1F3", text: "#333333" },
+              { label: "34–50 Pax per Villa", color: "#DCF1F3", text: "#333333" },
             ].map(({ label, color, text }) => (
               <span key={label} className="px-4 py-1.5 rounded-full text-sm font-medium" style={{ backgroundColor: color, color: text, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                 {label}

@@ -102,7 +102,7 @@ export function HowToBook() {
             { label: "Down Payment", value: "50%", note: "to secure booking", color: "#45B3C0" },
             { label: "Check-in", value: "3:00 PM", note: "earliest arrival", color: "#333333" },
             { label: "Check-out", value: "12:00 NN", note: "latest departure", color: "#FFEB3B" },
-            { label: "Guest Capacity", value: "30–50", note: "pax per villa", color: "#45B3C0" },
+            { label: "Guest Capacity", value: "34–50", note: "pax per villa", color: "#45B3C0" },
           ].map(({ label, value, note, color }) => (
             <div key={label} className="rounded-2xl p-4 text-center shadow-sm" style={{ backgroundColor: "#fff" }}>
               <p style={{ fontFamily: "'Fraunces', serif", fontSize: "1.5rem", fontWeight: 800, color }}>{value}</p>
