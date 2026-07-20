@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 const slides = [
   {
     id: 1,
-    image: "/images/hero/carousel1.jpg",
+    image: "/images/hero/carousel5.jpg",
     alt: "Casa Primera Villa 1 exterior",
     label: "Casa Primera Villa 1",
   },
@@ -29,7 +29,7 @@ const slides = [
   },
   {
     id: 5,
-    image: "/images/hero/carousel5.jpg",
+    image: "/images/hero/carousel1.jpg",
     alt: "Casa Primera Villa 5 exterior",
     label: "Casa Primera Villa 5",
   },
