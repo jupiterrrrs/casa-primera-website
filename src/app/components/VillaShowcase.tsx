@@ -23,7 +23,7 @@ export const villas = [
   {
     id: 1,
     name: "Casa Primera Villa 1",
-    tourVideo: "/videos/villa1-tour.mp4",
+    tourVideo: "https://www.youtube.com/embed/n3ePjSwWJOA?autoplay=1&rel=0",
     tag: "Pioneer Villa",
     startingPrice: rateTiersABC[0].price,
     rateTiers: rateTiersABC,
@@ -55,7 +55,7 @@ export const villas = [
   {
     id: 2,
     name: "Casa Primera Villa 2",
-    tourVideo: "/videos/villa2-tour.mp4",
+    tourVideo: "https://www.youtube.com/embed/XkJTKyfAStM?autoplay=1&rel=0&start=64",
     tag: "Family Deluxe",
     startingPrice: rateTiersABC[0].price,
     rateTiers: rateTiersABC,
@@ -89,7 +89,7 @@ export const villas = [
   {
     id: 3,
     name: "Casa Primera Villa 3",
-    tourVideo: "https://www.youtube.com/embed/Og2Sobyg2ok?autoplay=1&rel=0",
+    tourVideo: "https://www.youtube.com/embed/Mr_V3ZC_cMA?autoplay=1&rel=0",
     tag: "Garden Retreat",
     startingPrice: rateTiersABC[0].price,
     rateTiers: rateTiersABC,
