@@ -6,6 +6,9 @@ import { format, differenceInCalendarDays, isWithinInterval, addDays } from "dat
 import { TermsModal } from "./TermsModal";
 import "react-day-picker/dist/style.css";
 
+// Google Apps Script webhook: creates a Calendar event + emails sales@casaprimeravilla.com
+const BOOKING_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwMFqNUZKecSv_DfshIdTLIRn9cEHYNup3nZdWdrFNnb0ifRcYLJM33_feoVEdBReBQ7g/exec";
+
 // Villa data with blocked dates
 const allVillas = [
   {
@@ -333,6 +336,28 @@ export function BookingCTA() {
         `Reservation for ${formData.guests} guest(s).\nCasa Primera Hotspring Resorts, Calamba, Laguna.\nContact: 0917.114.6956`,
         "Brgy. Pansol, Calamba City, Laguna, Philippines"
       ));
+
+      // Send the booking request to the Casa Primera booking webhook
+      // (creates a calendar event + emails sales@casaprimeravilla.com)
+      fetch(BOOKING_WEBHOOK_URL, {
+        method: "POST",
+        mode: "no-cors", // Apps Script web apps don't return CORS headers;
+        // "no-cors" lets the request go through, we just can't read the response.
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          villa: formData.villa,
+          guests: formData.guests,
+          nights,
+          checkIn: checkIn.toISOString(),
+          checkOut: checkOut.toISOString(),
+        }),
+      }).catch((err) => {
+        // Fails silently for the guest, but logs for debugging.
+        console.error("Booking webhook failed:", err);
+      });
     }
     setSubmitted(true);
     setTimeout(() => { setSubmitted(false); setCalendarUrl(""); }, 12000);
