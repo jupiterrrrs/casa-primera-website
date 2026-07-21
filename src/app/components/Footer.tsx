@@ -39,12 +39,12 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Brand */}
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <div className="w-11 h-11 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#fff" }}>
+          <div className="flex items-center gap-2.5 mb-1">
+            <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0 p-1.5" style={{ backgroundColor: "#fff" }}>
               <img
-                src="/images/logo-mark.png"
+                src="/images/logo-full.png"
                 alt="Casa Primera Hotspring Resorts logo"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
             <div>
