@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "motion/react";
 import { CalendarDays, Phone, Mail, ChevronLeft, ChevronRight, X, Users, CheckCircle, Check, Ban } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DayPicker, DateRange } from "react-day-picker";
 import { format, differenceInCalendarDays, isWithinInterval, addDays } from "date-fns";
 import { TermsModal } from "./TermsModal";
@@ -9,65 +9,62 @@ import "react-day-picker/dist/style.css";
 // Google Apps Script webhook: creates a Calendar event + emails sales@casaprimeravilla.com
 const BOOKING_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwMFqNUZKecSv_DfshldTLIRn9cEHYNup3nZdWdrFNnb0ifRcYLJM33_feoVEdBReBQ7g/exec";
 
-// Villa data with blocked dates
-const allVillas = [
-  {
-    label: "Casa Primera Villa 1",
-    short: "Villa 1",
-    pax: 34,
-    price: 18000,
-    tag: "Pioneer",
-    blocked: [
-      { from: new Date(2026, 6, 4), to: new Date(2026, 6, 6) },
-      { from: new Date(2026, 6, 18), to: new Date(2026, 6, 22) },
-      { from: new Date(2026, 7, 1), to: new Date(2026, 7, 4) },
-    ],
-  },
-  {
-    label: "Casa Primera Villa 2",
-    short: "Villa 2",
-    pax: 40,
-    price: 18000,
-    tag: "Family",
-    blocked: [
-      { from: new Date(2026, 6, 5), to: new Date(2026, 6, 8) },
-      { from: new Date(2026, 6, 25), to: new Date(2026, 6, 27) },
-    ],
-  },
-  {
-    label: "Casa Primera Villa 3",
-    short: "Villa 3",
-    pax: 50, // max 50 pax
-    price: 18000,
-    tag: "Garden",
-    blocked: [
-      { from: new Date(2026, 6, 10), to: new Date(2026, 6, 13) },
-    ],
-  },
-  {
-    label: "Casa Primera Villa 4",
-    short: "Villa 4",
-    pax: 40,
-    price: 21000,
-    tag: "Mountain View",
-    blocked: [
-      { from: new Date(2026, 6, 15), to: new Date(2026, 6, 17) },
-      { from: new Date(2026, 7, 8), to: new Date(2026, 7, 10) },
-    ],
-  },
-  {
-    label: "Casa Primera Villa 5",
-    short: "Villa 5",
-    pax: 34,
-    price: 21000,
-    tag: "Modern",
-    blocked: [
-      { from: new Date(2026, 6, 20), to: new Date(2026, 6, 23) },
-    ],
-  },
+// Static villa info — this doesn't change, so it stays hardcoded.
+// "blocked" starts empty; it's filled in live from Google Calendar (see
+// useVillaAvailability below) once the page loads.
+const VILLA_META = [
+  { label: "Casa Primera Villa 1", short: "Villa 1", pax: 34, price: 18000, tag: "Pioneer" },
+  { label: "Casa Primera Villa 2", short: "Villa 2", pax: 40, price: 18000, tag: "Family" },
+  { label: "Casa Primera Villa 3", short: "Villa 3", pax: 50, price: 18000, tag: "Garden" },
+  { label: "Casa Primera Villa 4", short: "Villa 4", pax: 40, price: 21000, tag: "Mountain View" },
+  { label: "Casa Primera Villa 5", short: "Villa 5", pax: 34, price: 21000, tag: "Modern" },
 ];
 
-function isVillaAvailable(villa: typeof allVillas[0], range: DateRange | undefined): boolean {
+type BlockedRange = { from: Date; to: Date };
+type Villa = (typeof VILLA_META)[number] & { blocked: BlockedRange[] };
+
+const EMPTY_VILLAS: Villa[] = VILLA_META.map((v) => ({ ...v, blocked: [] }));
+
+// Fetches live booking data from the Casa Primera Apps Script webhook
+// (doGet), which reads each villa's Google Calendar and reports back which
+// dates are marked "Fully Booked". Falls back to "nothing blocked" if the
+// fetch fails, so the booking form still works (just without live data)
+// rather than breaking entirely.
+function useVillaAvailability() {
+  const [villas, setVillas] = useState<Villa[]>(EMPTY_VILLAS);
+  const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(BOOKING_WEBHOOK_URL);
+        const data = await res.json();
+        if (data.status !== "success") throw new Error(data.message || "Unknown error");
+
+        const merged = VILLA_META.map((meta) => {
+          const ranges: { from: string; to: string }[] = data.villas?.[meta.label] || [];
+          return {
+            ...meta,
+            blocked: ranges.map((r) => ({ from: new Date(r.from + "T00:00:00"), to: new Date(r.to + "T00:00:00") })),
+          };
+        });
+        if (!cancelled) {
+          setVillas(merged);
+          setStatus("ready");
+        }
+      } catch (err) {
+        console.error("Failed to load live villa availability:", err);
+        if (!cancelled) setStatus("error");
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
+  return { villas, status };
+}
+
+function isVillaAvailable(villa: Villa, range: DateRange | undefined): boolean {
   if (!range?.from) return true;
   const end = range.to ?? range.from;
   for (let d = new Date(range.from); d <= end; d = addDays(d, 1)) {
@@ -81,8 +78,8 @@ function isVillaAvailable(villa: typeof allVillas[0], range: DateRange | undefin
 // A date should only be crossed out on the calendar if EVERY villa is
 // booked on it. If at least one villa is still free, the date stays
 // clickable so guests can pick it and see which villa(s) are available.
-function isDateFullyBooked(date: Date): boolean {
-  return allVillas.every((villa) =>
+function isDateFullyBooked(date: Date, villas: Villa[]): boolean {
+  return villas.every((villa) =>
     villa.blocked.some((b) => isWithinInterval(date, { start: b.from, end: b.to }))
   );
 }
@@ -100,12 +97,16 @@ function ReservationCalendar({
   onClose,
   selectedVilla,
   onSelectVilla,
+  villas,
+  availabilityStatus,
 }: {
   range: DateRange | undefined;
   onChange: (r: DateRange | undefined) => void;
   onClose: () => void;
   selectedVilla: string;
   onSelectVilla: (v: string) => void;
+  villas: Villa[];
+  availabilityStatus: "loading" | "ready" | "error";
 }) {
   const nights = range?.from && range?.to ? differenceInCalendarDays(range.to, range.from) : 0;
   const anySelected = !!range?.from;
@@ -130,7 +131,11 @@ function ReservationCalendar({
                 Select Stay Dates
               </h3>
               <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "rgba(255,255,255,0.82)" }}>
-                🔴 Crossed-out dates are unavailable
+                {availabilityStatus === "loading"
+                  ? "⏳ Checking live availability…"
+                  : availabilityStatus === "error"
+                  ? "⚠️ Couldn't load live availability — please confirm by calling us"
+                  : "🔴 Crossed-out dates are fully booked"}
               </p>
             </div>
             <button onClick={onClose} className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition-colors">
@@ -152,7 +157,7 @@ function ReservationCalendar({
               mode="range"
               selected={range}
               onSelect={onChange}
-              disabled={[{ before: new Date() }, isDateFullyBooked]}
+              disabled={[{ before: new Date() }, (date: Date) => isDateFullyBooked(date, villas)]}
               numberOfMonths={1}
               components={{ IconLeft: () => <ChevronLeft size={15} />, IconRight: () => <ChevronRight size={15} /> }}
             />
@@ -201,7 +206,7 @@ function ReservationCalendar({
           </div>
 
           <div className="px-4 py-3 space-y-2.5">
-            {allVillas.map((villa) => {
+            {villas.map((villa) => {
               const available = isVillaAvailable(villa, range);
               const isSelected = selectedVilla === villa.label;
               return (
@@ -308,6 +313,7 @@ function ReservationCalendar({
 
 // ── Main section ──────────────────────────────────────────────────────────
 export function BookingCTA() {
+  const { villas: allVillas, status: availabilityStatus } = useVillaAvailability();
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", villa: "", guests: "2" });
   const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
   const [calendarOpen, setCalendarOpen] = useState(false);
@@ -576,6 +582,8 @@ export function BookingCTA() {
             onClose={() => setCalendarOpen(false)}
             selectedVilla={formData.villa}
             onSelectVilla={(v) => setFormData((p) => ({ ...p, villa: v }))}
+            villas={allVillas}
+            availabilityStatus={availabilityStatus}
           />
         )}
         {termsOpen && <TermsModal onAccept={handleAcceptTerms} onClose={() => setTermsOpen(false)} />}
