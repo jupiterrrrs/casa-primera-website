@@ -110,12 +110,13 @@ export function HeroCarousel() {
             style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontWeight: 800,
-              fontSize: "clamp(1.9rem, 6.5vw, 3.4rem)",
+              fontSize: "clamp(1.4rem, 7.5vw, 3.4rem)",
               color: "#fff",
               letterSpacing: "0.01em",
               lineHeight: 1.08,
               textShadow: "0 3px 14px rgba(0,0,0,0.4)",
               margin: "0.15em 0",
+              whiteSpace: "nowrap",
             }}
           >
             RELAX. REFRESH.
