@@ -89,7 +89,7 @@ export const villas = [
   {
     id: 3,
     name: "Casa Primera Villa 3",
-    tourVideo: "https://www.youtube.com/embed/Og2Sobyg2ok?autoplay=1&rel=0",
+    tourVideo: "/videos/villa3-tour.mp4",
     tag: "Garden Retreat",
     startingPrice: rateTiersABC[0].price,
     rateTiers: rateTiersABC,
