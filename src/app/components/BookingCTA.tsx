@@ -66,8 +66,13 @@ function useVillaAvailability() {
 
 function isVillaAvailable(villa: Villa, range: DateRange | undefined): boolean {
   if (!range?.from) return true;
-  const end = range.to ?? range.from;
-  for (let d = new Date(range.from); d <= end; d = addDays(d, 1)) {
+  // Only check the NIGHTS actually being booked: from check-in through the
+  // night before checkout. The checkout day itself is a turnover day, not an
+  // occupied night — a guest can check out that morning while a different
+  // guest checks into the same villa that afternoon, so it must never be
+  // compared against other bookings' blocked nights.
+  const lastNight = range.to ? addDays(range.to, -1) : range.from;
+  for (let d = new Date(range.from); d <= lastNight; d = addDays(d, 1)) {
     if (villa.blocked.some((b) => isWithinInterval(d, { start: b.from, end: b.to }))) {
       return false;
     }
