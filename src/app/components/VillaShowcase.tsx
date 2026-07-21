@@ -55,7 +55,7 @@ export const villas = [
   {
     id: 2,
     name: "Casa Primera Villa 2",
-    tourVideo: "https://www.youtube.com/embed/Q4i7IJ_PXQs?autoplay=1&rel=0",
+    tourVideo: "/videos/villa2-tour.mp4",
     tag: "Family Deluxe",
     startingPrice: rateTiersABC[0].price,
     rateTiers: rateTiersABC,
