@@ -7,7 +7,7 @@ import { TermsModal } from "./TermsModal";
 import "react-day-picker/dist/style.css";
 
 // Google Apps Script webhook: creates a Calendar event + emails sales@casaprimeravilla.com
-const BOOKING_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwMFqNUZKecSv_DfshIdTLIRn9cEHYNup3nZdWdrFNnb0ifRcYLJM33_feoVEdBReBQ7g/exec";
+const BOOKING_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwMFqNUZKecSv_DfshldTLIRn9cEHYNup3nZdWdrFNnb0ifRcYLJM33_feoVEdBReBQ7g/exec";
 
 // Villa data with blocked dates
 const allVillas = [
