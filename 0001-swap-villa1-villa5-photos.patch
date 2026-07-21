@@ -1,0 +1,39 @@
+From bae4dc3624fc5e7f9b894349f55dcaa50d13947d Mon Sep 17 00:00:00 2001
+From: Ashanti Nichole Montano <montano.214520@globalcity.sti.edu.ph>
+Date: Mon, 20 Jul 2026 02:42:01 +0000
+Subject: [PATCH] Swap hero carousel photos between Villa 1 and Villa 5
+
+Villa 1's slide now shows the photo previously used for Villa 5, and
+Villa 5's slide shows the photo previously used for Villa 1. Labels
+and slide order (1-2-3-4-5) are unchanged -- only the two image
+sources were swapped. The carousel already cycled in the requested
+order (Villa 1 -> 2 -> 3 -> 4 -> 5), so no reordering was needed.
+---
+ src/app/components/HeroCarousel.tsx | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/app/components/HeroCarousel.tsx b/src/app/components/HeroCarousel.tsx
+index f138779..c18e187 100644
+--- a/src/app/components/HeroCarousel.tsx
++++ b/src/app/components/HeroCarousel.tsx
+@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
+ const slides = [
+   {
+     id: 1,
+-    image: "/images/hero/carousel1.jpg",
++    image: "/images/hero/carousel5.jpg",
+     alt: "Casa Primera Villa 1 exterior",
+     label: "Casa Primera Villa 1",
+   },
+@@ -29,7 +29,7 @@ const slides = [
+   },
+   {
+     id: 5,
+-    image: "/images/hero/carousel5.jpg",
++    image: "/images/hero/carousel1.jpg",
+     alt: "Casa Primera Villa 5 exterior",
+     label: "Casa Primera Villa 5",
+   },
+-- 
+2.43.0
+

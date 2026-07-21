@@ -89,7 +89,7 @@ export const villas = [
   {
     id: 3,
     name: "Casa Primera Villa 3",
-    tourVideo: "/videos/villa3-tour.mp4",
+    tourVideo: "https://www.youtube.com/embed/Og2Sobyg2ok?autoplay=1&rel=0",
     tag: "Garden Retreat",
     startingPrice: rateTiersABC[0].price,
     rateTiers: rateTiersABC,
@@ -238,15 +238,28 @@ function VideoModal({ src, title, onClose }: { src: string; title: string; onClo
         exit={{ scale: 0.94, opacity: 0 }}
         onClick={(e) => e.stopPropagation()}
       >
-        <video
-          src={src}
-          controls
-          autoPlay
-          playsInline
-          className="w-full h-auto max-h-[85vh] bg-black"
-        >
-          Sorry, your browser doesn't support embedded videos.
-        </video>
+        {src.includes("youtube.com") || src.includes("youtu.be") ? (
+          <div className="w-full bg-black" style={{ aspectRatio: "16 / 9", maxHeight: "85vh" }}>
+            <iframe
+              src={src}
+              title={`${title} tour video`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+              style={{ border: 0 }}
+            />
+          </div>
+        ) : (
+          <video
+            src={src}
+            controls
+            autoPlay
+            playsInline
+            className="w-full h-auto max-h-[85vh] bg-black"
+          >
+            Sorry, your browser doesn't support embedded videos.
+          </video>
+        )}
         <div className="px-5 py-3" style={{ backgroundColor: "#333333" }}>
           <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#fff", fontSize: "0.9rem", fontWeight: 600 }}>
             {title} — Villa Tour
