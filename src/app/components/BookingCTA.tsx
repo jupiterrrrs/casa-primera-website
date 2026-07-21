@@ -78,10 +78,13 @@ function isVillaAvailable(villa: typeof allVillas[0], range: DateRange | undefin
   return true;
 }
 
-function getAllBlockedDates() {
-  const all: { from: Date; to: Date }[] = [];
-  allVillas.forEach((v) => all.push(...v.blocked));
-  return all;
+// A date should only be crossed out on the calendar if EVERY villa is
+// booked on it. If at least one villa is still free, the date stays
+// clickable so guests can pick it and see which villa(s) are available.
+function isDateFullyBooked(date: Date): boolean {
+  return allVillas.every((villa) =>
+    villa.blocked.some((b) => isWithinInterval(date, { start: b.from, end: b.to }))
+  );
 }
 
 function buildGoogleCalendarUrl(title: string, checkIn: Date, checkOut: Date, details: string, location: string): string {
@@ -149,7 +152,7 @@ function ReservationCalendar({
               mode="range"
               selected={range}
               onSelect={onChange}
-              disabled={[{ before: new Date() }, ...getAllBlockedDates()]}
+              disabled={[{ before: new Date() }, isDateFullyBooked]}
               numberOfMonths={1}
               components={{ IconLeft: () => <ChevronLeft size={15} />, IconRight: () => <ChevronRight size={15} /> }}
             />
