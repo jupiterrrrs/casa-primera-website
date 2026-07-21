@@ -40,7 +40,13 @@ export function Footer() {
         {/* Brand */}
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <div className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold" style={{ backgroundColor: "#45B3C0" }}>CP</div>
+            <div className="w-11 h-11 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#fff" }}>
+              <img
+                src="/images/logo-mark.png"
+                alt="Casa Primera Hotspring Resorts logo"
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div>
               <div className="flex items-center gap-1">
                 <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: "0.95rem", color: "#fff" }}>CASA</span>

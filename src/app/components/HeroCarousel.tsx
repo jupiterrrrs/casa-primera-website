@@ -118,7 +118,7 @@ export function HeroCarousel() {
               margin: "0.15em 0",
             }}
           >
-            SOAK. RELAX.
+            RELAX. REFRESH.
           </h1>
           <p
             style={{
@@ -140,7 +140,7 @@ export function HeroCarousel() {
               lineHeight: 1.65,
             }}
           >
-            Natural hot spring. <strong style={{ fontWeight: 700 }}>Spacious private villas.</strong> The perfect getaway for family, friends, and <strong style={{ fontWeight: 700 }}>unforgettable memories.</strong>
+            Natural Hot Spring. A place where comfort feels like home — to <strong style={{ fontWeight: 700 }}>gather, sing, laugh,</strong> and create <strong style={{ fontWeight: 700 }}>memories your heart will always return to.</strong>
           </p>
         </motion.div>
         <motion.div

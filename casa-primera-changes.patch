@@ -1,0 +1,92 @@
+diff --git a/src/app/components/Footer.tsx b/src/app/components/Footer.tsx
+index 7c274d9..6e2f998 100644
+--- a/src/app/components/Footer.tsx
++++ b/src/app/components/Footer.tsx
+@@ -40,7 +40,13 @@ export function Footer() {
+         {/* Brand */}
+         <div>
+           <div className="flex items-center gap-2 mb-1">
+-            <div className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold" style={{ backgroundColor: "#45B3C0" }}>CP</div>
++            <div className="w-11 h-11 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#fff" }}>
++              <img
++                src="/images/logo-mark.png"
++                alt="Casa Primera Hotspring Resorts logo"
++                className="w-full h-full object-cover"
++              />
++            </div>
+             <div>
+               <div className="flex items-center gap-1">
+                 <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: "0.95rem", color: "#fff" }}>CASA</span>
+diff --git a/src/app/components/HeroCarousel.tsx b/src/app/components/HeroCarousel.tsx
+index c18e187..f2b5ba3 100644
+--- a/src/app/components/HeroCarousel.tsx
++++ b/src/app/components/HeroCarousel.tsx
+@@ -118,7 +118,7 @@ export function HeroCarousel() {
+               margin: "0.15em 0",
+             }}
+           >
+-            SOAK. RELAX.
++            RELAX. REFRESH.
+           </h1>
+           <p
+             style={{
+@@ -140,7 +140,7 @@ export function HeroCarousel() {
+               lineHeight: 1.65,
+             }}
+           >
+-            Natural hot spring. <strong style={{ fontWeight: 700 }}>Spacious private villas.</strong> The perfect getaway for family, friends, and <strong style={{ fontWeight: 700 }}>unforgettable memories.</strong>
++            Natural Hot Spring. A place where comfort feels like home — to <strong style={{ fontWeight: 700 }}>gather, sing, laugh,</strong> and create <strong style={{ fontWeight: 700 }}>memories your heart will always return to.</strong>
+           </p>
+         </motion.div>
+         <motion.div
+diff --git a/src/app/components/VillaShowcase.tsx b/src/app/components/VillaShowcase.tsx
+index 8193eed..102a88e 100644
+--- a/src/app/components/VillaShowcase.tsx
++++ b/src/app/components/VillaShowcase.tsx
+@@ -89,7 +89,7 @@ export const villas = [
+   {
+     id: 3,
+     name: "Casa Primera Villa 3",
+-    tourVideo: "/videos/villa3-tour.mp4",
++    tourVideo: "https://www.youtube.com/embed/Og2Sobyg2ok?autoplay=1&rel=0",
+     tag: "Garden Retreat",
+     startingPrice: rateTiersABC[0].price,
+     rateTiers: rateTiersABC,
+@@ -238,15 +238,28 @@ function VideoModal({ src, title, onClose }: { src: string; title: string; onClo
+         exit={{ scale: 0.94, opacity: 0 }}
+         onClick={(e) => e.stopPropagation()}
+       >
+-        <video
+-          src={src}
+-          controls
+-          autoPlay
+-          playsInline
+-          className="w-full h-auto max-h-[85vh] bg-black"
+-        >
+-          Sorry, your browser doesn't support embedded videos.
+-        </video>
++        {src.includes("youtube.com") || src.includes("youtu.be") ? (
++          <div className="w-full bg-black" style={{ aspectRatio: "16 / 9", maxHeight: "85vh" }}>
++            <iframe
++              src={src}
++              title={`${title} tour video`}
++              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
++              allowFullScreen
++              className="w-full h-full"
++              style={{ border: 0 }}
++            />
++          </div>
++        ) : (
++          <video
++            src={src}
++            controls
++            autoPlay
++            playsInline
++            className="w-full h-auto max-h-[85vh] bg-black"
++          >
++            Sorry, your browser doesn't support embedded videos.
++          </video>
++        )}
+         <div className="px-5 py-3" style={{ backgroundColor: "#333333" }}>
+           <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#fff", fontSize: "0.9rem", fontWeight: 600 }}>
+             {title} — Villa Tour
