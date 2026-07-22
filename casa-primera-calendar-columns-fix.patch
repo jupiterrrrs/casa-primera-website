@@ -1,0 +1,16 @@
+diff --git a/src/app/components/BookingCTA.tsx b/src/app/components/BookingCTA.tsx
+index e582970..1a09374 100644
+--- a/src/app/components/BookingCTA.tsx
++++ b/src/app/components/BookingCTA.tsx
+@@ -152,8 +152,9 @@ function ReservationCalendar({
+               }
+               .rdp-months { justify-content: center; width: 100%; }
+               .rdp-month { width: 100%; margin: 0; }
+-              .rdp-table { width: 100%; max-width: none; margin: 0 auto; }
+-              .rdp-head_cell, .rdp-cell, .rdp-day { width: 100%; max-width: var(--rdp-cell-size); }
++              .rdp-table { width: 100%; max-width: none; margin: 0 auto; table-layout: fixed; border-collapse: collapse; }
++              .rdp-head_cell, .rdp-cell { width: 14.2857%; max-width: none; padding: 0; text-align: center; }
++              .rdp-day { width: var(--rdp-cell-size); max-width: var(--rdp-cell-size); height: var(--rdp-cell-size); margin: 0 auto; }
+               .rdp-caption { padding: 0 0.15rem; }
+               .rdp-nav_button { width: 2.25rem; height: 2.25rem; }
+               .rdp-day_selected, .rdp-day_range_start, .rdp-day_range_end { background-color: #45B3C0 !important; color: #fff !important; border-radius: 50% !important; }
