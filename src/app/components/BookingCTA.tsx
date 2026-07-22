@@ -527,7 +527,7 @@ export function BookingCTA() {
                             <span
                               className="text-xs font-semibold px-2 py-0.5 rounded-full"
                               style={{ backgroundColor: v.available ? "#dcfce7" : "#fee2e2", color: v.available ? "#16a34a" : "#dc2626", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                              {v.available ? "✓ Free" : "Booked"}
+                              {v.available ? "✓ Available" : "Booked"}
                             </span>
                           </button>
                         ))}
