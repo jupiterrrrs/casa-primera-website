@@ -80,7 +80,7 @@ export function TermsModal({ onAccept, onClose }: Props) {
               </div>
               <div>
                 <p style={{ fontSize: "0.88rem", fontWeight: 600, color: "#333333" }}>BDO Bank Transfer</p>
-                <p style={{ fontSize: "0.78rem", color: "#666666" }}>Acct No: 1234-5678-9012 · Casa Primera Resort</p>
+                <p style={{ fontSize: "0.78rem", color: "#666666" }}>Casa Primera Resort</p>
               </div>
             </div>
           </div>
