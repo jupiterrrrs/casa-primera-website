@@ -556,8 +556,8 @@ export function VillaShowcase() {
                     </span>
                   ))}
                 </div>
-                <button className="flex items-center gap-2 text-sm font-semibold transition-all duration-200 group-hover:gap-3" style={{ color: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                  View Details <ArrowRight size={15} />
+                <button className="flex items-center gap-2 font-bold transition-all duration-200 group-hover:gap-3" style={{ color: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "1rem" }}>
+                  View Details <ArrowRight size={17} />
                 </button>
               </div>
             </motion.div>

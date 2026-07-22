@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { DayPicker, DateRange } from "react-day-picker";
 import { format, differenceInCalendarDays, isWithinInterval, addDays } from "date-fns";
 import { TermsModal } from "./TermsModal";
+import { villas as ratedVillas } from "./VillaShowcase";
 import "react-day-picker/dist/style.css";
 
 // Google Apps Script webhook: creates a Calendar event + emails sales@casaprimeravilla.com
@@ -84,6 +85,36 @@ function buildGoogleCalendarUrl(title: string, checkIn: Date, checkOut: Date, de
   const fmt = (d: Date) => d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
   const params = new URLSearchParams({ action: "TEMPLATE", text: title, dates: `${fmt(checkIn)}/${fmt(checkOut)}`, details, location });
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+// Works out the rate tier + room count for a villa based on guest count,
+// using the same rate tiers shown on the Villas section of the site.
+function computeQuote(villaLabel: string, guestsStr: string) {
+  const villaData = ratedVillas.find((v) => v.name === villaLabel);
+  if (!villaData) return null;
+  const guests = parseInt(guestsStr, 10) || 1;
+  const tiers = villaData.rateTiers;
+
+  let tier = tiers[0];
+  let extraHeads = 0;
+  if (guests <= 10) tier = tiers[0];
+  else if (guests <= 15) tier = tiers[1];
+  else if (guests <= 20) tier = tiers[2];
+  else if (guests <= 25) { tier = tiers[2]; extraHeads = guests - 20; }
+  else if (guests <= 30) tier = tiers[3];
+  else { tier = tiers[3]; extraHeads = guests - 30; }
+
+  const extraCost = extraHeads * 500;
+  return {
+    villaName: villaData.name,
+    tierLabel: tier.label,
+    rooms: tier.rooms,
+    basePrice: tier.price,
+    extraHeads,
+    extraCost,
+    total: tier.price + extraCost,
+    guests,
+  };
 }
 
 // ── Calendar modal with inline villa availability ──────────────────────────
@@ -334,6 +365,7 @@ export function BookingCTA() {
   const [calendarUrl, setCalendarUrl] = useState("");
 
   const nights = dateRange?.from && dateRange?.to ? differenceInCalendarDays(dateRange.to, dateRange.from) : 0;
+  const quote = formData.villa ? computeQuote(formData.villa, formData.guests) : null;
 
   const dateLabel = dateRange?.from && dateRange?.to
     ? `${format(dateRange.from, "MMM d")} → ${format(dateRange.to, "MMM d, yyyy")}  (${nights} night${nights !== 1 ? "s" : ""})`
@@ -381,7 +413,6 @@ export function BookingCTA() {
       });
     }
     setSubmitted(true);
-    setTimeout(() => { setSubmitted(false); setCalendarUrl(""); }, 12000);
   }
 
   // Availability summary for selected dates (shown in form)
@@ -436,36 +467,12 @@ export function BookingCTA() {
             className="rounded-3xl p-8 shadow-2xl"
             style={{ backgroundColor: "#fff" }}
           >
-            {submitted ? (
-              <div className="text-center py-8">
-                <CheckCircle className="mx-auto mb-4" size={48} color="#16a34a" />
-                <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.6rem", color: "#333333", fontWeight: 700 }} className="mb-3">Reservation Sent!</h3>
-                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", lineHeight: 1.7 }} className="mb-4">
-                  Thank you, <strong>{formData.name}</strong>! We'll contact you within 24 hours to confirm your booking.
-                </p>
-                {dateRange?.from && dateRange?.to && (
-                  <div className="mt-4 px-5 py-3 rounded-2xl inline-block mb-5" style={{ backgroundColor: "#DCF1F3" }}>
-                    <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#333333", fontWeight: 600 }}>
-                      📅 {format(dateRange.from, "MMM d")} – {format(dateRange.to, "MMM d, yyyy")} · {nights} night{nights !== 1 ? "s" : ""}
-                    </p>
-                    <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#666666" }}>Check-in 3:00 PM · Check-out 12:00 NN</p>
-                  </div>
-                )}
-                {calendarUrl && (
-                  <a href={calendarUrl} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full py-3.5 rounded-full font-semibold text-white transition-all duration-200 hover:opacity-90"
-                    style={{ backgroundColor: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                    📅 Add to Google Calendar
-                  </a>
-                )}
-              </div>
-            ) : (
-              <>
-                <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.5rem", color: "#333333", fontWeight: 700 }} className="mb-6">Reserve Now</h3>
-                <form onSubmit={handleReserveClick} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4d4d4d", fontWeight: 600 }} className="block mb-1.5">Full Name</label>
+            <>
+              <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.5rem", color: "#333333", fontWeight: 700 }} className="mb-6">Reserve Now</h3>
+              <form onSubmit={handleReserveClick} className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4d4d4d", fontWeight: 600 }} className="block mb-1.5">Full Name</label>
                       <input type="text" required placeholder="Juan dela Cruz" value={formData.name}
                         onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
                         className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#45B3C0] focus:ring-2 focus:ring-[#45B3C0]/20"
@@ -568,8 +575,44 @@ export function BookingCTA() {
                         style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", borderColor: "#A8DDE3", backgroundColor: "#EAF7F8" }}>
                         {Array.from({ length: 50 }, (_, i) => i + 1).map((n) => <option key={n}>{n}</option>)}
                       </select>
+                      <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#888888", fontStyle: "italic", marginTop: "5px" }}>
+                        Note: Children aged 5 and below are not counted, as they stay free of charge.
+                      </p>
                     </div>
                   </div>
+
+                  {/* Live rate estimate — only once a specific villa is picked */}
+                  {quote && (
+                    <div className="rounded-2xl p-4" style={{ backgroundColor: "#DCF1F3", border: "1px solid #A8DDE3" }}>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#666666", textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 700 }}>
+                          Estimated Rate
+                        </span>
+                        <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ backgroundColor: "#45B3C0", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                          Tier {quote.tierLabel}
+                        </span>
+                      </div>
+                      <div className="flex items-baseline gap-1.5">
+                        <span style={{ fontFamily: "'Fraunces', serif", fontSize: "1.65rem", fontWeight: 800, color: "#333333" }}>
+                          ₱{quote.total.toLocaleString()}
+                        </span>
+                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#666666" }}>/ night</span>
+                      </div>
+                      {nights > 0 && (
+                        <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.84rem", color: "#333333", marginTop: "2px" }}>
+                          × {nights} night{nights !== 1 ? "s" : ""} = <strong>₱{(quote.total * nights).toLocaleString()}</strong> total
+                        </p>
+                      )}
+                      {quote.extraHeads > 0 && (
+                        <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#c0392b", marginTop: "4px" }}>
+                          Includes +₱{quote.extraCost.toLocaleString()} extra-pax surcharge ({quote.extraHeads} head{quote.extraHeads !== 1 ? "s" : ""} × ₱500)
+                        </p>
+                      )}
+                      <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#666666", marginTop: "5px" }}>
+                        🛏 {quote.rooms} included in this package
+                      </p>
+                    </div>
+                  )}
 
                   <button type="submit"
                     className="w-full py-4 rounded-full font-bold transition-all duration-300 hover:opacity-90 hover:scale-[1.02] hover:shadow-lg mt-2"
@@ -581,7 +624,6 @@ export function BookingCTA() {
                   </p>
                 </form>
               </>
-            )}
           </motion.div>
         </div>
       </div>
@@ -598,7 +640,60 @@ export function BookingCTA() {
             availabilityStatus={availabilityStatus}
           />
         )}
-        {termsOpen && <TermsModal onAccept={handleAcceptTerms} onClose={() => setTermsOpen(false)} />}
+        {termsOpen && (
+          <TermsModal
+            onAccept={handleAcceptTerms}
+            onClose={() => setTermsOpen(false)}
+            villa={formData.villa}
+            guests={formData.guests}
+            dateRange={dateRange}
+            nights={nights}
+            quote={quote}
+          />
+        )}
+        {submitted && (
+          <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" onClick={() => { setSubmitted(false); setCalendarUrl(""); }}>
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            <motion.div
+              className="relative w-full max-w-sm rounded-3xl shadow-2xl p-7 text-center"
+              style={{ backgroundColor: "#fff" }}
+              initial={{ opacity: 0, scale: 0.92, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ type: "spring", stiffness: 300, damping: 26 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => { setSubmitted(false); setCalendarUrl(""); }}
+                className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-gray-100"
+                aria-label="Close"
+              >
+                <X size={16} color="#999999" />
+              </button>
+              <CheckCircle className="mx-auto mb-3" size={46} color="#16a34a" />
+              <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.25rem", fontWeight: 700, color: "#333333" }} className="mb-2">
+                Reservation Received!
+              </h3>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", color: "#4d4d4d", lineHeight: 1.65 }}>
+                Your reservation request has been received. Thank you for choosing Casa Primera! Please expect an email within 24 hours containing our Terms and Conditions, bank details, and the next steps to complete your reservation.
+              </p>
+              {calendarUrl && (
+                <a href={calendarUrl} target="_blank" rel="noopener noreferrer"
+                  className="mt-5 flex items-center justify-center gap-2 w-full py-3 rounded-full font-semibold text-white transition-all duration-200 hover:opacity-90"
+                  style={{ backgroundColor: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem" }}>
+                  📅 Add to Google Calendar
+                </a>
+              )}
+              <button
+                onClick={() => { setSubmitted(false); setCalendarUrl(""); }}
+                className="mt-3 w-full py-2.5 rounded-full font-semibold transition-colors hover:bg-gray-50"
+                style={{ border: "1px solid #A8DDE3", color: "#666666", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem" }}
+              >
+                Close
+              </button>
+            </motion.div>
+          </div>
+        )}
       </AnimatePresence>
     </section>
   );
