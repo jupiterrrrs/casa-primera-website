@@ -5,8 +5,8 @@ A resort booking website for Casa Primera Hotspring Resorts in Calamba, Laguna. 
 ## Features
 
 - Responsive villa showcase with pricing and availability
+- Dedicated rates section with per-villa package pricing
 - Interactive booking form with a date-range calendar and live villa availability
-- Google Calendar integration for confirmed reservations
 - Guest reviews section
 - Photo gallery
 - Embedded location map

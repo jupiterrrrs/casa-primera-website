@@ -1,0 +1,263 @@
+From a1636d39b046e040cab6c348302b391f0a3b669e Mon Sep 17 00:00:00 2001
+From: Ashanti Nichole Montano <ashanti@casaprimeravilla.com>
+Date: Wed, 22 Jul 2026 10:55:00 +0000
+Subject: [PATCH] Replace Terms and Conditions with full unabridged resort
+ policy text; rename Tier to Package in rate estimate
+
+---
+ src/app/components/BookingCTA.tsx |   2 +-
+ src/app/components/TermsModal.tsx | 166 +++++++++++++++++++-----------
+ 2 files changed, 105 insertions(+), 63 deletions(-)
+
+diff --git a/src/app/components/BookingCTA.tsx b/src/app/components/BookingCTA.tsx
+index 44d5dfb..01214bc 100644
+--- a/src/app/components/BookingCTA.tsx
++++ b/src/app/components/BookingCTA.tsx
+@@ -589,7 +589,7 @@ export function BookingCTA() {
+                           Estimated Rate
+                         </span>
+                         <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ backgroundColor: "#45B3C0", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+-                          Tier {quote.tierLabel}
++                          Package {quote.tierLabel}
+                         </span>
+                       </div>
+                       <div className="flex items-baseline gap-1.5">
+diff --git a/src/app/components/TermsModal.tsx b/src/app/components/TermsModal.tsx
+index 13277b0..76ee3bd 100644
+--- a/src/app/components/TermsModal.tsx
++++ b/src/app/components/TermsModal.tsx
+@@ -34,7 +34,7 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
+ 
+ function List({ items }: { items: React.ReactNode[] }) {
+   return (
+-    <ul style={{ fontSize: "0.86rem", color: "#4d4d4d", lineHeight: 1.8 }} className="list-disc pl-4 space-y-1">
++    <ul style={{ fontSize: "0.86rem", color: "#4d4d4d", lineHeight: 1.8 }} className="list-disc pl-4 space-y-1.5">
+       {items.map((item, i) => <li key={i}>{item}</li>)}
+     </ul>
+   );
+@@ -112,23 +112,23 @@ export function TermsModal({ onAccept, onClose, villa, guests, dateRange, nights
+             </div>
+           </div>
+ 
+-          {/* Reservation, Cancellation & Rebooking */}
++          {/* Reservation, Cancellation and Rebooking Policies */}
+           <div>
+-            <SectionHeading>📅 Reservation, Cancellation & Rebooking</SectionHeading>
++            <SectionHeading>📅 Reservation, Cancellation and Rebooking Policies</SectionHeading>
+             <List items={[
+-              <>Once confirmed, no downgrades or decrease in the number of pax, refunds, or rebookings made <strong>less than 10 days</strong> from your reservation date.</>,
+-              <>Reservations affected by community quarantine restrictions are only subject for rebooking or open rebooking.</>,
+-              <>Last-minute rebookings (1–9 days before your reservation date) incur a <strong>₱5,000/night</strong> penalty on top of the rental fee.</>,
+-              <>Cancel at least <strong>10 days</strong> prior and we'll refund 50% of your down payment, or you may rebook once at no extra cost (14 days given to provide a final rebooking date).</>,
+-              <>Rebookings requested less than 10 days out are subject to management approval. After your first free rebooking, a ₱5,000/night rebooking fee applies on top of the rental rate — refunds or cancellations are no longer possible at that point.</>,
+-              <>During PAGASA signal no. 3 or higher in Laguna, we allow last-minute rebooking, but cancellations and refunds are not permitted.</>,
+-              <>"No-shows" prior to check-in are non-refundable, non-transferable to other villas, and cannot be cancelled or rebooked.</>,
++              <><strong><em>Once confirmed, no downgrades or decrease in the number of pax, refunds or rebookings made less than 10 days from your date of reservation.</em></strong></>,
++              <>Reservations affected by the community quarantine restrictions are only subject for rebooking or open rebooking.</>,
++              <>In case of last minute rebookings (made 1 to 9 days before the date of reservation), a penalty of Php 5,000/night will be charged on top of the rental fee.</>,
++              <>If you cancel at least 10 days prior to your reservation date, we will refund 50% of your down payment or you could rebook once with no extra cost. You will be given 14 days to provide us with a final rebooking date.</>,
++              <>Rebookings requested less than 10 days from the date of booking are subject for approval by the management. All succeeding rebookings after the first free rebooking have a Php 5,000/night rebooking fee on top of the rental rate. Refunds or cancellations of reservations are no longer possible.</>,
++              <>In case of severe weather conditions where the province of Laguna is declared signal number three or as advised by PAGASA, we allow last minute rebookings. No cancellations and refunds are allowed under these circumstances.</>,
++              <>"No show" prior to check-in are non-refundable, non-transferable to other villas, cannot be cancelled and rebooked.</>,
+             ]} />
+           </div>
+ 
+-          {/* Check-in / Check-out */}
++          {/* Check-In / Check-Out Policies */}
+           <div>
+-            <SectionHeading>🕐 Check-in & Check-out</SectionHeading>
++            <SectionHeading>🕐 Check-In / Check-Out Policies</SectionHeading>
+             <div className="grid grid-cols-2 gap-3 mb-3">
+               <div className="p-3 rounded-xl text-center" style={{ backgroundColor: "#DCF1F3" }}>
+                 <p style={{ fontSize: "1.5rem", fontWeight: 800, color: "#45B3C0" }}>3:00 PM</p>
+@@ -140,12 +140,13 @@ export function TermsModal({ onAccept, onClose, villa, guests, dateRange, nights
+               </div>
+             </div>
+             <List items={[
+-              <>Present a printed or soft copy of your Reservation Confirmation Sheet upon check-in.</>,
+-              <>Any remaining balance must be settled with resort staff on check-in — cash or BPI bank transfer only, at the resort.</>,
+-              <>Check-in and check-out times are strictly implemented; there is no waiting area for early arrivals.</>,
+-              <>Time adjustment requests are subject to approval. Extensions are ₱1,000/hour if the villa is available.</>,
+-              <>Every villa has its own caretaker — feel free to reach out to them directly.</>,
+-              <>The resort issues the official receipt; guests are responsible for securing a copy before leaving.</>,
++              <>Present a printed or soft copy of the Reservation Confirmation Sheet.</>,
++              <>Upon check-in, settle your remaining balance, if any, by handing it over to the resort's staff. Also, note that we only accept cash or bank transfers (BPI) at the resort.</>,
++              <>Check-in and check-out time is strictly implemented at our private villas. We do not have a waiting area in case the guests arrive early.</>,
++              <>Time adjustment requests are subject for approval.</>,
++              <>Extensions at Php 1,000/hour if the villa is available.</>,
++              <>Every villa has its own caretakers, do not hesitate to contact them.</>,
++              <>The resort will issue the receipt. The guest is solely responsible for securing a copy before leaving the resort.</>,
+             ]} />
+           </div>
+ 
+@@ -153,37 +154,28 @@ export function TermsModal({ onAccept, onClose, villa, guests, dateRange, nights
+           <div>
+             <SectionHeading>🔐 Security Deposit</SectionHeading>
+             <p style={{ fontSize: "0.86rem", color: "#4d4d4d", lineHeight: 1.75 }}>
+-              A <strong>₱2,000 per villa</strong> security deposit is collected upon check-in for incidental expenses, and fully refunded at check-out if no incidental expenses are incurred.
+-            </p>
+-          </div>
+-
+-          {/* Guest Capacity */}
+-          <div>
+-            <SectionHeading>👥 Guest Capacity</SectionHeading>
+-            <List items={[
+-              <><strong>Casa Primera Villa 1:</strong> up to 34 pax</>,
+-              <><strong>Casa Primera Villa 2:</strong> up to 40 pax</>,
+-              <><strong>Casa Primera Villa 3:</strong> up to 50 pax</>,
+-              <><strong>Casa Primera Villa 4:</strong> up to 40 pax</>,
+-              <><strong>Casa Primera Villa 5:</strong> up to 34 pax</>,
+-            ]} />
+-            <p style={{ fontSize: "0.84rem", color: "#c0392b", marginTop: "0.6rem", lineHeight: 1.7 }}>
+-              ⚠ If you go over the strict maximum capacity of the villa, the overcapacity penalty charge is Php 5,000 on top of the extra pax surcharges for every person exceeding your package inclusion. If you have questions or concerns about this matter, please feel free to contact us directly.
++              The management will collect <strong>Php 2,000 per villa</strong> for incidental expenses upon check-in. Full refund will be given upon check-out if no incidental expenses are incurred.
+             </p>
+           </div>
+ 
+           {/* Resort Amenities */}
+           <div>
+-            <SectionHeading>🎁 Free Resort Amenities</SectionHeading>
++            <SectionHeading>🎁 Resort Amenities</SectionHeading>
+             <List items={[
+-              <>Private villa, private hot spring pool, kiddie pool & playground.</>,
+-              <>Fully air-conditioned rooms with TVs; bathrooms with shower heaters (toiletries not provided).</>,
+-              <>FREE Wi-Fi, videoke & sound system.</>,
+-              <>FREE beddings, blankets, and towels for your number of pax.</>,
+-              <>FREE use of basic cooking utensils and kitchen appliances (Ref, stove, LPG, oven toaster, microwave on request, rice cooker, BBQ grill, hot & cold water dispenser with one free 5-gallon bottle, ₱50 per succeeding bottle).</>,
+-              <>FREE use of billiards, table tennis, water volleyball, darts, poker, mahjong, etc.</>,
+-              <>Secured indoor & street parking with 24-hour CCTV, plus generator backup.</>,
+-              <>Roof deck (Villa 4 only) — not part of the package, but available for 30 minutes for photos.</>,
++              <>Private Villas</>,
++              <>Private Hot Spring Pool</>,
++              <>Kiddie Pool & Playground</>,
++              <>Fully-Air Conditioned Rooms w/ TVs</>,
++              <>Bathrooms with Shower Heaters <em>(toiletries such as shampoo, soap, toothbrush etc. are not provided)</em></>,
++              <>FREE WIFI</>,
++              <>FREE use of Videoke & Sound System</>,
++              <>FREE use of beddings, blankets and towels good for your number of pax</>,
++              <>FREE use of basic cooking utensils such as cooking pot, cooking wok, knife, cooking ladle, cooking spatula, grill tongs, chopping board, dish covers <em>(dishwashing liquid, kitchen hand towels and dining utensils such as plates, cups, spoons, forks, and table napkins are not provided)</em></>,
++              <>FREE use of kitchen appliances such as Ref, Stove, LPG, Oven Toaster, Microwave (upon request), Rice Cooker, BBQ Grill, Hot and Cold Water Dispenser <em>(with one free bottle/5gallons. Php 50 for each succeeding bottle)</em></>,
++              <>FREE use of Billiards, Table Tennis, Water Volleyball, Darts, Poker, Mahjong etc.</>,
++              <>Secured indoor and street parking with 24-hours CCTV monitoring</>,
++              <>Generator</>,
++              <>Roof deck <em>(for Villa 4. Not included in the package but guests will be allowed to use it for 30 minutes only and for picture-taking purposes only)</em></>,
+             ]} />
+           </div>
+ 
+@@ -191,44 +183,94 @@ export function TermsModal({ onAccept, onClose, villa, guests, dateRange, nights
+           <div>
+             <SectionHeading>💰 Additional Charges</SectionHeading>
+             <List items={[
+-              <>Extra pax: ₱500/head/night (kids below 5 excluded; everyone entering the resort is counted).</>,
+-              <>Extra room: ₱2,500/room/night.</>,
+-              <>Extension: ₱1,000/hour, in excess of 21 hours, only if the villa is available.</>,
+-              <>Pet surcharge / deep cleaning: ₱500/pet/night.</>,
+-              <>Catering corkage: ₱1,500/night.</>,
+-              <>Professional lights & sound, live bands, etc.: ₱5,000/night.</>,
+-              <>Food carts, photo booths, etc.: ₱1,000/supplier/night.</>,
+-              <>Small appliances/electronics: ₱500/item/night.</>,
+-              <>Jacuzzi (Villa 3 & 5 only): ₱500/30 minutes.</>,
++              <>Extra pax | Php 500/head/night <em>(except kids below 5 years old. We also count everyone that goes inside the resort whether they are staying overnight or not.)</em></>,
++              <>Extra room | Php 2,500/room/night</>,
++              <>Extension | Php 1,000/hour <em>(in excess of 21 hours | only if the villa is available)</em></>,
++              <>Pet surcharge/deep cleaning | Php 500/pet/night <em>(see pet-friendly policy below)</em></>,
++              <>Catering corkage | Php 1,500/night</>,
++              <>Professional lights and sounds set-up, live bands etc. | Php 5,000/night</>,
++              <>Food carts, photo booths etc. | Php 1,000/supplier/night</>,
++              <>Small appliances/electronics | Php 500/item/night</>,
++              <>Jacuzzi | Php 500/30 minutes <em>(for Villa 3 and Villa 5 only)</em></>,
+             ]} />
+           </div>
+ 
+           {/* Property Damage */}
+           <div>
+             <SectionHeading>🛠 Property Damage</SectionHeading>
++            <p style={{ fontSize: "0.86rem", color: "#4d4d4d", lineHeight: 1.75 }} className="mb-3">
++              Resort guests are responsible for any damage, abuse, excessive clean-up requirements, considered, but not limited to: vomit and/or other bodily fluids; large quantities of beverage and food debris; floors covered in sticky residue, broken appliances, damaged resort fixtures, or loss caused by any member of the resort guest's party or hired suppliers to the property or its contents during occupancy. Casa Primera Hot Spring Resorts reserves the right to further bill the guest for additional cleaning, losses, damages or repairs. Excessive clean-up fee starts at Php 500.
++            </p>
+             <p style={{ fontSize: "0.86rem", color: "#4d4d4d", lineHeight: 1.75 }}>
+-              Guests are responsible for any damage, abuse, or excessive clean-up required — including bodily fluids, large food/beverage spills, sticky residue, broken appliances, damaged fixtures, or losses caused by their party or hired suppliers. Casa Primera reserves the right to bill for additional cleaning, losses, damages, or repairs. Excessive clean-up fees start at ₱500. A detailed amenities checklist with costing is signed upon turnover.
++              A detailed agreement and resort amenities checklist (with costing) will be presented and signed upon turnover at the resort.
++            </p>
++          </div>
++
++          {/* Guest Count */}
++          <div>
++            <SectionHeading>👥 Guest Count</SectionHeading>
++            <p style={{ fontSize: "0.86rem", color: "#4d4d4d", lineHeight: 1.75 }} className="mb-2">
++              Guests agree that the premises shall be occupied by no more than the number of pax paid for and stated herein and in the Reservation Confirmation Sheet. We count both adults and kids alike, except for children below five (5) years old. We also count everyone that goes inside the resort whether they are staying overnight or not.
++            </p>
++            <p style={{ fontSize: "0.86rem", color: "#4d4d4d", lineHeight: 1.75 }} className="mb-2">
++              Occupancy by more than the stated number of guests will result in a required upgrade to the next available package. If no upgrade is available, extra pax surcharge of <strong>Php 500/head/night</strong> applies.
+             </p>
++            <p style={{ fontSize: "0.84rem", color: "#c0392b", lineHeight: 1.75, marginBottom: "0.6rem" }}>
++              <u>IMPORTANT NOTICE:</u> In compliance with the IATF Guidelines, we are only allowing 50% of the villa's maximum capacity. If you go over the strict maximum capacity of the villa, the overcapacity penalty charge is Php 5,000 on top of the extra pax surcharges for every person exceeding your package inclusion.
++            </p>
++            <List items={[
++              <>Villa 1 – up to 34 pax maximum capacity</>,
++              <>Villa 2 – up to 40 pax maximum capacity</>,
++              <>Villa 3 – up to 50 pax maximum capacity</>,
++              <>Villa 4 – up to 40 pax maximum capacity</>,
++              <>Villa 5 – up to 34 pax maximum capacity</>,
++            ]} />
+           </div>
+ 
+-          {/* Senior/PWD */}
++          {/* Senior citizen and PWD discount policy */}
+           <div>
+-            <SectionHeading>🎖 Senior Citizen & PWD Discount</SectionHeading>
++            <SectionHeading>🎖 Senior Citizen and PWD Discount Policy</SectionHeading>
++            <p style={{ fontSize: "0.86rem", color: "#4d4d4d", lineHeight: 1.75 }} className="mb-2">
++              Casa Primera Hot Spring Resorts gives a 20% discount to Senior Citizens or Persons with Disability. Discount shall only apply on the prorated share of the package rate of the entitled person. The discount will be deducted in the resort upon arrival and presentation of the required Philippine-Issued Senior Citizen's or Person with Disability Identification Card.
++            </p>
+             <p style={{ fontSize: "0.86rem", color: "#4d4d4d", lineHeight: 1.75 }}>
+-              A 20% discount applies to the prorated share of the entitled person's package rate, deducted on arrival upon presentation of a valid Philippine-issued Senior Citizen or PWD ID. This cannot be combined with ongoing promos — guests may avail either the promo or the Expanded Senior Citizens Act (2010) discount, whichever is higher.
++              Senior and PWD discount cannot be availed in conjunction with any of our on-going promos and discounted rates. The guests can either avail the promotional discount or the discount provided under the Expanded Senior Citizens Act of 2010, whichever is higher.
+             </p>
+           </div>
+ 
+-          {/* Pet Policy */}
++          {/* Pet-friendly policy */}
+           <div>
+             <SectionHeading>🐾 Pet-Friendly Policy</SectionHeading>
++            <p style={{ fontSize: "0.86rem", color: "#4d4d4d", lineHeight: 1.75 }} className="mb-2">
++              Please be informed that we allow pets inside our resort as long as the pet owner/owners are following our Pet Policy listed below:
++            </p>
++            <List items={[
++              <>The charge for every pet brought into our resort is Php 500/pet/night to cover our costs for extra cleaning. The pet charge must be settled upon your arrival at the resort.</>,
++              <>We only allow dogs and cats for a maximum of 5 in total.</>,
++              <>All pets must be well-behaved, house-trained, vaccinated, and must be kept on a leash or in a pet carrier/cage while in the common areas of our resort.</>,
++              <>If in case the pet has bitten, scratched, or hurt any person while inside the resort premises, the pet owner will be responsible for paying charges for the medical treatments of the bitten/scratched/hurt person.</>,
++              <>The pet owner will also be responsible for paying charges if the pet has caused any damage to our resort's property.</>,
++              <>Pets are only allowed in the open areas on the ground floor of the villa such as the dining hall, garden, hallways, parking, and the rooms on the ground floor only. Pets must be in diapers at all times.</>,
++              <>Pets are not allowed inside the rooms on the second floor and they are not allowed to swim in the pool.</>,
++              <>The penalty for breaking this pet policy is an additional deep-cleaning fee of Php 2,500 per timeslot.</>,
++            ]} />
++          </div>
++
++          {/* Additional Event Set-up Surcharge */}
++          <div>
++            <SectionHeading>🎉 Additional Event Set-up Surcharge</SectionHeading>
++            <p style={{ fontSize: "0.86rem", color: "#4d4d4d", lineHeight: 1.75 }} className="mb-2">
++              Additional charges may be incurred for weddings, debuts, baptisms, reunions, anniversaries, team building activities, and other parties that require additional event setup over and above our included amenities. Below are corresponding fees for some usual items:
++            </p>
+             <List items={[
+-              <>₱500/pet/night, settled upon arrival. Maximum of 5 dogs/cats total.</>,
+-              <>Pets must be well-behaved, house-trained, vaccinated, and leashed or caged in common areas.</>,
+-              <>Owners are liable for medical costs if a pet injures anyone, and for any property damage caused.</>,
+-              <>Pets are only allowed on the ground floor (dining hall, garden, hallways, parking) and must be diapered at all times — not allowed upstairs or in the pool.</>,
+-              <>Breaking this policy incurs an additional ₱2,500 deep-cleaning fee per timeslot.</>,
++              <>Professional Lights & Sounds, Live Bands, and the like: Php 5,000/night (by approval based on electrical load capacity).</>,
++              <>We do not charge any corkage fee for bringing your own food and drinks, or delivery of food trays, except if you hire a professional caterer with tables and chairs setup: Php 1,500/night catering corkage fee.</>,
++              <>Mobile Bar, Food Carts, Photo Booth etc.: Php 1,000/night per supplier.</>,
++              <>Projectors, Mini Component/Sound System, and other small appliances & electronics: Php 1,000/night per item.</>,
+             ]} />
++            <p style={{ fontSize: "0.86rem", color: "#4d4d4d", lineHeight: 1.75 }} className="mt-2">
++              Note that Casa Primera Villa Hot Spring Resorts does not supply any of the above-mentioned items, but we charge for the additional use of our facilities, electricity, and water, over and above the regular amenities that we provide.
++            </p>
+           </div>
+ 
+           {/* Mode of Payment */}
+-- 
+2.43.0
+
