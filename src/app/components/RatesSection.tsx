@@ -22,7 +22,7 @@ export function RatesSection() {
             Simple, Package-Based <span style={{ color: "#45B3C0" }}>Pricing</span>
           </h2>
           <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "1.05rem", lineHeight: 1.7 }}>
-            Pick a villa to see its rate tiers. Every package already includes the hot spring pools, Wi-Fi, videoke, and indoor parking.
+            Pick a villa to see its rate packages. Every package already includes the hot spring pools, Wi-Fi, videoke, and indoor parking.
           </p>
         </div>
 
@@ -67,7 +67,7 @@ export function RatesSection() {
           })}
         </div>
 
-        {/* Active villa's rate tiers */}
+        {/* Active villa's rate packages */}
         <AnimatePresence mode="wait">
           <motion.div
             key={active.id}
@@ -77,9 +77,9 @@ export function RatesSection() {
             transition={{ duration: 0.35 }}
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
-              {active.rateTiers.map((tier, i) => (
+              {active.rateTiers.map((pkg, i) => (
                 <motion.div
-                  key={tier.label}
+                  key={pkg.label}
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.06, duration: 0.35 }}
@@ -93,13 +93,13 @@ export function RatesSection() {
                     className="text-xs font-bold uppercase tracking-widest mb-3"
                     style={{ color: i === 0 ? "rgba(255,255,255,0.75)" : "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                   >
-                    Package {tier.label}
+                    Package {pkg.label}
                   </span>
                   <div className="flex items-baseline gap-1 mb-1">
                     <span
                       style={{ fontFamily: "'Fraunces', serif", fontSize: "1.9rem", fontWeight: 800, color: i === 0 ? "#fff" : "#333333" }}
                     >
-                      ₱{tier.price.toLocaleString()}
+                      ₱{pkg.price.toLocaleString()}
                     </span>
                   </div>
                   <span
@@ -113,23 +113,23 @@ export function RatesSection() {
                     <div className="flex items-center gap-2">
                       <Users size={14} color={i === 0 ? "#fff" : "#45B3C0"} />
                       <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: i === 0 ? "#fff" : "#4d4d4d" }}>
-                        {tier.pax}
+                        {pkg.pax}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <BedDouble size={14} color={i === 0 ? "#fff" : "#45B3C0"} />
                       <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: i === 0 ? "#fff" : "#4d4d4d" }}>
-                        {tier.rooms}
+                        {pkg.rooms}
                       </span>
                     </div>
                   </div>
 
-                  {"note" in tier && tier.note && (
+                  {"note" in pkg && pkg.note && (
                     <p
                       className="mt-3 text-xs leading-relaxed"
                       style={{ color: i === 0 ? "rgba(255,255,255,0.85)" : "#c0392b", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                     >
-                      {tier.note}
+                      {pkg.note}
                     </p>
                   )}
                 </motion.div>
