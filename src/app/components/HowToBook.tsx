@@ -22,7 +22,7 @@ const steps = [
     number: "03",
     icon: CreditCard,
     title: "Pay the Down Payment",
-    desc: "Secure your reservation by paying a 50% down payment via GCash, Maya, Bank Transfer, or Cash. Send your proof of payment to our contact number.",
+    desc: "Secure your reservation by paying 50% down payment via Bank Transfer. Send your proof of payment to our contact number.",
     color: "#45B3C0",
     bg: "#DCF1F3",
   },

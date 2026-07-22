@@ -18,7 +18,7 @@ const faqMap: Array<{ keywords: string[]; answer: string; isLocation?: boolean }
   { keywords: ["check-out", "checkout", "check out", "departure", "leave"], answer: "Check-out time is 12:00 NN (noon). Late check-out can be requested for an additional fee." },
   { keywords: ["price", "rate", "cost", "how much", "magkano"], answer: "Our villa rates start at ₱18,000 for Villas 1–3 and ₱21,000 for Villas 4–5, depending on your headcount. Scroll up to see the full rate breakdown for each villa! 😊" },
   { keywords: ["capacity", "pax", "guests", "how many", "max"], answer: "Capacity varies per villa: Villa 1 up to 34 pax, Villa 2 up to 40 pax, Villa 3 up to 50 pax, Villa 4 up to 40 pax, and Villa 5 up to 34 pax. Scroll up to see full details for each villa! 🎉" },
-  { keywords: ["payment", "pay", "gcash", "maya", "bank transfer", "cash"], answer: "We accept GCash, Maya, BDO/BPI Bank Transfer, and Cash. A 50% down payment is required to confirm your reservation." },
+  { keywords: ["payment", "pay", "gcash", "maya", "bank transfer", "cash"], answer: "We accept BDO Bank Transfer. A 50% down payment is required to confirm your reservation." },
   { keywords: ["cancel", "refund", "cancellation"], answer: "Cancellations 7+ days before check-in may be refunded less 10%. Cancellations within 7 days are non-refundable. Contact us ASAP if plans change!" },
   { keywords: ["book", "reserve", "reservation", "how to"], answer: "To book: 1️⃣ Check availability on the calendar 2️⃣ Fill out the reservation form or message us 3️⃣ Pay 50% down payment 4️⃣ Receive confirmation. Easy! 🌊" },
   { keywords: ["wifi", "internet"], answer: "Yes! We have complimentary high-speed WiFi available throughout the resort. 📶" },

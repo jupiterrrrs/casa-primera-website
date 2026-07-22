@@ -1,92 +1,101 @@
-diff --git a/src/app/components/Footer.tsx b/src/app/components/Footer.tsx
-index 7c274d9..6e2f998 100644
---- a/src/app/components/Footer.tsx
-+++ b/src/app/components/Footer.tsx
-@@ -40,7 +40,13 @@ export function Footer() {
-         {/* Brand */}
-         <div>
-           <div className="flex items-center gap-2 mb-1">
--            <div className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold" style={{ backgroundColor: "#45B3C0" }}>CP</div>
-+            <div className="w-11 h-11 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#fff" }}>
-+              <img
-+                src="/images/logo-mark.png"
-+                alt="Casa Primera Hotspring Resorts logo"
-+                className="w-full h-full object-cover"
-+              />
-+            </div>
-             <div>
-               <div className="flex items-center gap-1">
-                 <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: "0.95rem", color: "#fff" }}>CASA</span>
-diff --git a/src/app/components/HeroCarousel.tsx b/src/app/components/HeroCarousel.tsx
-index c18e187..f2b5ba3 100644
---- a/src/app/components/HeroCarousel.tsx
-+++ b/src/app/components/HeroCarousel.tsx
-@@ -118,7 +118,7 @@ export function HeroCarousel() {
-               margin: "0.15em 0",
-             }}
-           >
--            SOAK. RELAX.
-+            RELAX. REFRESH.
-           </h1>
-           <p
-             style={{
-@@ -140,7 +140,7 @@ export function HeroCarousel() {
-               lineHeight: 1.65,
-             }}
-           >
--            Natural hot spring. <strong style={{ fontWeight: 700 }}>Spacious private villas.</strong> The perfect getaway for family, friends, and <strong style={{ fontWeight: 700 }}>unforgettable memories.</strong>
-+            Natural Hot Spring. A place where comfort feels like home — to <strong style={{ fontWeight: 700 }}>gather, sing, laugh,</strong> and create <strong style={{ fontWeight: 700 }}>memories your heart will always return to.</strong>
-           </p>
-         </motion.div>
-         <motion.div
-diff --git a/src/app/components/VillaShowcase.tsx b/src/app/components/VillaShowcase.tsx
-index 8193eed..102a88e 100644
---- a/src/app/components/VillaShowcase.tsx
-+++ b/src/app/components/VillaShowcase.tsx
-@@ -89,7 +89,7 @@ export const villas = [
-   {
-     id: 3,
-     name: "Casa Primera Villa 3",
--    tourVideo: "/videos/villa3-tour.mp4",
-+    tourVideo: "https://www.youtube.com/embed/Og2Sobyg2ok?autoplay=1&rel=0",
-     tag: "Garden Retreat",
-     startingPrice: rateTiersABC[0].price,
-     rateTiers: rateTiersABC,
-@@ -238,15 +238,28 @@ function VideoModal({ src, title, onClose }: { src: string; title: string; onClo
-         exit={{ scale: 0.94, opacity: 0 }}
-         onClick={(e) => e.stopPropagation()}
-       >
--        <video
--          src={src}
--          controls
--          autoPlay
--          playsInline
--          className="w-full h-auto max-h-[85vh] bg-black"
--        >
--          Sorry, your browser doesn't support embedded videos.
--        </video>
-+        {src.includes("youtube.com") || src.includes("youtu.be") ? (
-+          <div className="w-full bg-black" style={{ aspectRatio: "16 / 9", maxHeight: "85vh" }}>
-+            <iframe
-+              src={src}
-+              title={`${title} tour video`}
-+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-+              allowFullScreen
-+              className="w-full h-full"
-+              style={{ border: 0 }}
-+            />
-+          </div>
-+        ) : (
-+          <video
-+            src={src}
-+            controls
-+            autoPlay
-+            playsInline
-+            className="w-full h-auto max-h-[85vh] bg-black"
-+          >
-+            Sorry, your browser doesn't support embedded videos.
-+          </video>
-+        )}
-         <div className="px-5 py-3" style={{ backgroundColor: "#333333" }}>
-           <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#fff", fontSize: "0.9rem", fontWeight: 600 }}>
-             {title} — Villa Tour
+diff --git a/src/app/components/BookingCTA.tsx b/src/app/components/BookingCTA.tsx
+index 9f73c0b..4fbee19 100644
+--- a/src/app/components/BookingCTA.tsx
++++ b/src/app/components/BookingCTA.tsx
+@@ -482,7 +482,7 @@ export function BookingCTA() {
+                       <span className="flex-1">{dateLabel}</span>
+                       {dateRange?.from && (
+                         <span style={{ fontSize: "0.75rem", color: "#333333", fontWeight: 600 }}>
+-                          {availableCount}/{allVillas.length} villas free
++                          {availableCount}/{allVillas.length} villas available
+                         </span>
+                       )}
+                     </button>
+diff --git a/src/app/components/HowToBook.tsx b/src/app/components/HowToBook.tsx
+index cb3f6a0..101055d 100644
+--- a/src/app/components/HowToBook.tsx
++++ b/src/app/components/HowToBook.tsx
+@@ -22,7 +22,7 @@ const steps = [
+     number: "03",
+     icon: CreditCard,
+     title: "Pay the Down Payment",
+-    desc: "Secure your reservation by paying a 50% down payment via GCash, Maya, Bank Transfer, or Cash. Send your proof of payment to our contact number.",
++    desc: "Secure your reservation by paying 50% down payment via Bank Transfer. Send your proof of payment to our contact number.",
+     color: "#45B3C0",
+     bg: "#DCF1F3",
+   },
+diff --git a/src/app/components/LiveChat.tsx b/src/app/components/LiveChat.tsx
+index 9be8408..e24c090 100644
+--- a/src/app/components/LiveChat.tsx
++++ b/src/app/components/LiveChat.tsx
+@@ -18,7 +18,7 @@ const faqMap: Array<{ keywords: string[]; answer: string; isLocation?: boolean }
+   { keywords: ["check-out", "checkout", "check out", "departure", "leave"], answer: "Check-out time is 12:00 NN (noon). Late check-out can be requested for an additional fee." },
+   { keywords: ["price", "rate", "cost", "how much", "magkano"], answer: "Our villa rates start at ₱18,000 for Villas 1–3 and ₱21,000 for Villas 4–5, depending on your headcount. Scroll up to see the full rate breakdown for each villa! 😊" },
+   { keywords: ["capacity", "pax", "guests", "how many", "max"], answer: "Capacity varies per villa: Villa 1 up to 34 pax, Villa 2 up to 40 pax, Villa 3 up to 50 pax, Villa 4 up to 40 pax, and Villa 5 up to 34 pax. Scroll up to see full details for each villa! 🎉" },
+-  { keywords: ["payment", "pay", "gcash", "maya", "bank transfer", "cash"], answer: "We accept GCash, Maya, BDO/BPI Bank Transfer, and Cash. A 50% down payment is required to confirm your reservation." },
++  { keywords: ["payment", "pay", "gcash", "maya", "bank transfer", "cash"], answer: "We accept BDO Bank Transfer. A 50% down payment is required to confirm your reservation." },
+   { keywords: ["cancel", "refund", "cancellation"], answer: "Cancellations 7+ days before check-in may be refunded less 10%. Cancellations within 7 days are non-refundable. Contact us ASAP if plans change!" },
+   { keywords: ["book", "reserve", "reservation", "how to"], answer: "To book: 1️⃣ Check availability on the calendar 2️⃣ Fill out the reservation form or message us 3️⃣ Pay 50% down payment 4️⃣ Receive confirmation. Easy! 🌊" },
+   { keywords: ["wifi", "internet"], answer: "Yes! We have complimentary high-speed WiFi available throughout the resort. 📶" },
+diff --git a/src/app/components/TermsModal.tsx b/src/app/components/TermsModal.tsx
+index f1a2bf5..d8e4e0c 100644
+--- a/src/app/components/TermsModal.tsx
++++ b/src/app/components/TermsModal.tsx
+@@ -1,4 +1,4 @@
+-import { X, CreditCard, Smartphone, Building2, Banknote } from "lucide-react";
++import { X, Building2 } from "lucide-react";
+ import { motion } from "motion/react";
+ 
+ interface Props {
+@@ -6,15 +6,6 @@ interface Props {
+   onClose: () => void;
+ }
+ 
+-const paymentModes = [
+-  { icon: Smartphone, label: "GCash", detail: "09XX XXX XXXX · Casa Primera" },
+-  { icon: Smartphone, label: "Maya (PayMaya)", detail: "09XX XXX XXXX · Casa Primera" },
+-  { icon: Building2, label: "BDO Bank Transfer", detail: "Acct No: 1234-5678-9012 · Casa Primera Resort" },
+-  { icon: Building2, label: "BPI Bank Transfer", detail: "Acct No: 9876-5432-1098 · Casa Primera Resort" },
+-  { icon: Banknote, label: "Cash on Check-in", detail: "Pay in full upon arrival at the resort" },
+-  { icon: CreditCard, label: "Credit / Debit Card", detail: "Accepted at the front desk" },
+-];
+-
+ export function TermsModal({ onAccept, onClose }: Props) {
+   return (
+     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4" onClick={onClose}>
+@@ -74,7 +65,7 @@ export function TermsModal({ onAccept, onClose }: Props) {
+               <li><strong>Casa Primera Villa 5:</strong> Up to 34 guests</li>
+             </ul>
+             <p style={{ fontSize: "0.85rem", color: "#c0392b", marginTop: "0.5rem" }}>
+-              ⚠ Exceeding the stated capacity is strictly prohibited and may result in cancellation without refund.
++              ⚠ If you go over the strict maximum capacity of the villa, the overcapacity penalty charge is Php 5,000 on top of the extra pax surcharges for every person exceeding your package inclusion. If you have question or concern about this matter, please feel free to contact us directly.
+             </p>
+           </div>
+ 
+@@ -83,18 +74,14 @@ export function TermsModal({ onAccept, onClose }: Props) {
+             <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#333333", fontSize: "1rem" }} className="mb-3">
+               💳 Mode of Payment
+             </h3>
+-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+-              {paymentModes.map(({ icon: Icon, label, detail }) => (
+-                <div key={label} className="flex items-start gap-3 p-3 rounded-xl" style={{ backgroundColor: "#f8feff", border: "1px solid #DCF1F3" }}>
+-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: "#DCF1F3" }}>
+-                    <Icon size={15} color="#45B3C0" />
+-                  </div>
+-                  <div>
+-                    <p style={{ fontSize: "0.88rem", fontWeight: 600, color: "#333333" }}>{label}</p>
+-                    <p style={{ fontSize: "0.78rem", color: "#666666" }}>{detail}</p>
+-                  </div>
+-                </div>
+-              ))}
++            <div className="flex items-start gap-3 p-3 rounded-xl" style={{ backgroundColor: "#f8feff", border: "1px solid #DCF1F3" }}>
++              <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: "#DCF1F3" }}>
++                <Building2 size={15} color="#45B3C0" />
++              </div>
++              <div>
++                <p style={{ fontSize: "0.88rem", fontWeight: 600, color: "#333333" }}>BDO Bank Transfer</p>
++                <p style={{ fontSize: "0.78rem", color: "#666666" }}>Acct No: 1234-5678-9012 · Casa Primera Resort</p>
++              </div>
+             </div>
+           </div>
+ 
