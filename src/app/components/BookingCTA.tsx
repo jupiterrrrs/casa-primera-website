@@ -482,7 +482,7 @@ export function BookingCTA() {
                       <span className="flex-1">{dateLabel}</span>
                       {dateRange?.from && (
                         <span style={{ fontSize: "0.75rem", color: "#333333", fontWeight: 600 }}>
-                          {availableCount}/{allVillas.length} villas free
+                          {availableCount}/{allVillas.length} villas available
                         </span>
                       )}
                     </button>
