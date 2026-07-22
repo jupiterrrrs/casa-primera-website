@@ -589,7 +589,7 @@ export function BookingCTA() {
                           Estimated Rate
                         </span>
                         <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ backgroundColor: "#45B3C0", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                          Tier {quote.tierLabel}
+                          Package {quote.tierLabel}
                         </span>
                       </div>
                       <div className="flex items-baseline gap-1.5">
