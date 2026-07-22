@@ -1,4 +1,4 @@
-import { MapPin, Navigation, Clock, Phone } from "lucide-react";
+import { MapPin, Navigation, Clock, Phone, Bus } from "lucide-react";
 
 export function LocationSection() {
   return (
@@ -29,6 +29,45 @@ export function LocationSection() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
+          </div>
+
+          {/* Commute directions */}
+          <div className="lg:col-span-2 rounded-3xl p-6 shadow-sm" style={{ backgroundColor: "#fff" }}>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#EAF7F8" }}>
+                <Bus size={19} color="#45B3C0" />
+              </div>
+              <div>
+                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#999999", textTransform: "uppercase", letterSpacing: "0.07em" }}>
+                  Traveling By Commute
+                </p>
+                <p style={{ fontFamily: "'Fraunces', serif", fontSize: "1.15rem", color: "#333333", fontWeight: 700 }}>
+                  By Bus (From Manila)
+                </p>
+              </div>
+            </div>
+
+            <ol className="space-y-4">
+              {[
+                "Take an HM Transport, JAC Liner, or LLI Bus bound for Sta. Cruz, Laguna. Their terminals are located at Buendia and Taft Avenue.",
+                "Inform the conductor that you'll be getting off at Betania Retreat House in Pansol, Calamba. Once you reach the National Highway of Pansol, watch out for Southwinds Resort on your right and the Iglesia ni Cristo Church on your left — these are the nearest landmarks to your drop-off point.",
+                "Ask the driver to drop you off at Betania Retreat House — you'll also see the PTT Gas Station nearby.",
+                "Cross the street to reach the Nayong Maharlika Village entrance, where you'll spot our Casa Primera signage at the corner.",
+                "Villas 1, 2, and 5 are just a short walk from the entrance, while Villas 3 and 4 are located on nearby streets within walking distance.",
+              ].map((step, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span
+                    className="flex items-center justify-center flex-shrink-0 rounded-full text-xs font-bold"
+                    style={{ width: 24, height: 24, backgroundColor: "#DCF1F3", color: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif", marginTop: "0.1rem" }}
+                  >
+                    {i + 1}
+                  </span>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#4d4d4d", lineHeight: 1.65 }}>
+                    {step}
+                  </p>
+                </li>
+              ))}
+            </ol>
           </div>
 
           {/* Info panel */}
