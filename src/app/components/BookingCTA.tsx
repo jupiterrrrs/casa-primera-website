@@ -81,12 +81,6 @@ function isVillaAvailable(villa: Villa, range: DateRange | undefined): boolean {
   return true;
 }
 
-function buildGoogleCalendarUrl(title: string, checkIn: Date, checkOut: Date, details: string, location: string): string {
-  const fmt = (d: Date) => d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
-  const params = new URLSearchParams({ action: "TEMPLATE", text: title, dates: `${fmt(checkIn)}/${fmt(checkOut)}`, details, location });
-  return `https://calendar.google.com/calendar/render?${params.toString()}`;
-}
-
 // Works out the rate tier + room count for a villa based on guest count,
 // using the same rate tiers shown on the Villas section of the site.
 function computeQuote(villaLabel: string, guestsStr: string) {
@@ -362,7 +356,6 @@ export function BookingCTA() {
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [termsOpen, setTermsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [calendarUrl, setCalendarUrl] = useState("");
 
   const nights = dateRange?.from && dateRange?.to ? differenceInCalendarDays(dateRange.to, dateRange.from) : 0;
   const quote = formData.villa ? computeQuote(formData.villa, formData.guests) : null;
@@ -383,12 +376,6 @@ export function BookingCTA() {
     if (dateRange?.from && dateRange?.to) {
       const checkIn = new Date(dateRange.from); checkIn.setHours(15, 0, 0, 0);
       const checkOut = new Date(dateRange.to); checkOut.setHours(12, 0, 0, 0);
-      setCalendarUrl(buildGoogleCalendarUrl(
-        `Casa Primera Hotspring Resorts — ${formData.villa || "Villa Stay"}`,
-        checkIn, checkOut,
-        `Reservation for ${formData.guests} guest(s).\nCasa Primera Hotspring Resorts, Calamba, Laguna.\nContact: 0917.114.6956`,
-        "Brgy. Pansol, Calamba City, Laguna, Philippines"
-      ));
 
       // Send the booking request to the Casa Primera booking webhook
       // (creates a calendar event + emails sales@casaprimeravilla.com)
@@ -652,7 +639,7 @@ export function BookingCTA() {
           />
         )}
         {submitted && (
-          <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" onClick={() => { setSubmitted(false); setCalendarUrl(""); }}>
+          <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" onClick={() => setSubmitted(false)}>
             <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
             <motion.div
               className="relative w-full max-w-sm rounded-3xl shadow-2xl p-7 text-center"
@@ -664,7 +651,7 @@ export function BookingCTA() {
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                onClick={() => { setSubmitted(false); setCalendarUrl(""); }}
+                onClick={() => setSubmitted(false)}
                 className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-gray-100"
                 aria-label="Close"
               >
@@ -677,16 +664,9 @@ export function BookingCTA() {
               <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", color: "#4d4d4d", lineHeight: 1.65 }}>
                 Your reservation request has been received. Thank you for choosing Casa Primera! Please expect an email within 24 hours containing our Terms and Conditions, bank details, and the next steps to complete your reservation.
               </p>
-              {calendarUrl && (
-                <a href={calendarUrl} target="_blank" rel="noopener noreferrer"
-                  className="mt-5 flex items-center justify-center gap-2 w-full py-3 rounded-full font-semibold text-white transition-all duration-200 hover:opacity-90"
-                  style={{ backgroundColor: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem" }}>
-                  📅 Add to Google Calendar
-                </a>
-              )}
               <button
-                onClick={() => { setSubmitted(false); setCalendarUrl(""); }}
-                className="mt-3 w-full py-2.5 rounded-full font-semibold transition-colors hover:bg-gray-50"
+                onClick={() => setSubmitted(false)}
+                className="mt-5 w-full py-2.5 rounded-full font-semibold transition-colors hover:bg-gray-50"
                 style={{ border: "1px solid #A8DDE3", color: "#666666", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem" }}
               >
                 Close

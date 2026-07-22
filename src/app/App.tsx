@@ -3,6 +3,7 @@ import { Navbar } from "./components/Navbar";
 import { HeroCarousel } from "./components/HeroCarousel";
 import { AmenitiesCarousel } from "./components/AmenitiesCarousel";
 import { VillaShowcase } from "./components/VillaShowcase";
+import { RatesSection } from "./components/RatesSection";
 import { HowToBook } from "./components/HowToBook";
 import { AboutSection } from "./components/AboutSection";
 import { ReviewsSection } from "./components/ReviewsSection";
@@ -21,6 +22,7 @@ export default function App() {
       <HeroCarousel />
       <AmenitiesCarousel />
       <VillaShowcase />
+      <RatesSection />
       <HowToBook />
       <FAQSection />
       <AboutSection />

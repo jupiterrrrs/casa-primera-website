@@ -1,101 +1,121 @@
+diff --git a/README.md b/README.md
+index ddf87c4..33cf10a 100644
+--- a/README.md
++++ b/README.md
+@@ -5,8 +5,8 @@ A resort booking website for Casa Primera Hotspring Resorts in Calamba, Laguna.
+ ## Features
+ 
+ - Responsive villa showcase with pricing and availability
++- Dedicated rates section with per-villa package pricing
+ - Interactive booking form with a date-range calendar and live villa availability
+-- Google Calendar integration for confirmed reservations
+ - Guest reviews section
+ - Photo gallery
+ - Embedded location map
+diff --git a/src/app/App.tsx b/src/app/App.tsx
+index 5b698be..e6afe86 100644
+--- a/src/app/App.tsx
++++ b/src/app/App.tsx
+@@ -3,6 +3,7 @@ import { Navbar } from "./components/Navbar";
+ import { HeroCarousel } from "./components/HeroCarousel";
+ import { AmenitiesCarousel } from "./components/AmenitiesCarousel";
+ import { VillaShowcase } from "./components/VillaShowcase";
++import { RatesSection } from "./components/RatesSection";
+ import { HowToBook } from "./components/HowToBook";
+ import { AboutSection } from "./components/AboutSection";
+ import { ReviewsSection } from "./components/ReviewsSection";
+@@ -21,6 +22,7 @@ export default function App() {
+       <HeroCarousel />
+       <AmenitiesCarousel />
+       <VillaShowcase />
++      <RatesSection />
+       <HowToBook />
+       <FAQSection />
+       <AboutSection />
 diff --git a/src/app/components/BookingCTA.tsx b/src/app/components/BookingCTA.tsx
-index 9f73c0b..4fbee19 100644
+index 01214bc..4504681 100644
 --- a/src/app/components/BookingCTA.tsx
 +++ b/src/app/components/BookingCTA.tsx
-@@ -482,7 +482,7 @@ export function BookingCTA() {
-                       <span className="flex-1">{dateLabel}</span>
-                       {dateRange?.from && (
-                         <span style={{ fontSize: "0.75rem", color: "#333333", fontWeight: 600 }}>
--                          {availableCount}/{allVillas.length} villas free
-+                          {availableCount}/{allVillas.length} villas available
-                         </span>
-                       )}
-                     </button>
-diff --git a/src/app/components/HowToBook.tsx b/src/app/components/HowToBook.tsx
-index cb3f6a0..101055d 100644
---- a/src/app/components/HowToBook.tsx
-+++ b/src/app/components/HowToBook.tsx
-@@ -22,7 +22,7 @@ const steps = [
-     number: "03",
-     icon: CreditCard,
-     title: "Pay the Down Payment",
--    desc: "Secure your reservation by paying a 50% down payment via GCash, Maya, Bank Transfer, or Cash. Send your proof of payment to our contact number.",
-+    desc: "Secure your reservation by paying 50% down payment via Bank Transfer. Send your proof of payment to our contact number.",
-     color: "#45B3C0",
-     bg: "#DCF1F3",
-   },
-diff --git a/src/app/components/LiveChat.tsx b/src/app/components/LiveChat.tsx
-index 9be8408..e24c090 100644
---- a/src/app/components/LiveChat.tsx
-+++ b/src/app/components/LiveChat.tsx
-@@ -18,7 +18,7 @@ const faqMap: Array<{ keywords: string[]; answer: string; isLocation?: boolean }
-   { keywords: ["check-out", "checkout", "check out", "departure", "leave"], answer: "Check-out time is 12:00 NN (noon). Late check-out can be requested for an additional fee." },
-   { keywords: ["price", "rate", "cost", "how much", "magkano"], answer: "Our villa rates start at ₱18,000 for Villas 1–3 and ₱21,000 for Villas 4–5, depending on your headcount. Scroll up to see the full rate breakdown for each villa! 😊" },
-   { keywords: ["capacity", "pax", "guests", "how many", "max"], answer: "Capacity varies per villa: Villa 1 up to 34 pax, Villa 2 up to 40 pax, Villa 3 up to 50 pax, Villa 4 up to 40 pax, and Villa 5 up to 34 pax. Scroll up to see full details for each villa! 🎉" },
--  { keywords: ["payment", "pay", "gcash", "maya", "bank transfer", "cash"], answer: "We accept GCash, Maya, BDO/BPI Bank Transfer, and Cash. A 50% down payment is required to confirm your reservation." },
-+  { keywords: ["payment", "pay", "gcash", "maya", "bank transfer", "cash"], answer: "We accept BDO Bank Transfer. A 50% down payment is required to confirm your reservation." },
-   { keywords: ["cancel", "refund", "cancellation"], answer: "Cancellations 7+ days before check-in may be refunded less 10%. Cancellations within 7 days are non-refundable. Contact us ASAP if plans change!" },
-   { keywords: ["book", "reserve", "reservation", "how to"], answer: "To book: 1️⃣ Check availability on the calendar 2️⃣ Fill out the reservation form or message us 3️⃣ Pay 50% down payment 4️⃣ Receive confirmation. Easy! 🌊" },
-   { keywords: ["wifi", "internet"], answer: "Yes! We have complimentary high-speed WiFi available throughout the resort. 📶" },
-diff --git a/src/app/components/TermsModal.tsx b/src/app/components/TermsModal.tsx
-index f1a2bf5..d8e4e0c 100644
---- a/src/app/components/TermsModal.tsx
-+++ b/src/app/components/TermsModal.tsx
-@@ -1,4 +1,4 @@
--import { X, CreditCard, Smartphone, Building2, Banknote } from "lucide-react";
-+import { X, Building2 } from "lucide-react";
- import { motion } from "motion/react";
- 
- interface Props {
-@@ -6,15 +6,6 @@ interface Props {
-   onClose: () => void;
+@@ -81,12 +81,6 @@ function isVillaAvailable(villa: Villa, range: DateRange | undefined): boolean {
+   return true;
  }
  
--const paymentModes = [
--  { icon: Smartphone, label: "GCash", detail: "09XX XXX XXXX · Casa Primera" },
--  { icon: Smartphone, label: "Maya (PayMaya)", detail: "09XX XXX XXXX · Casa Primera" },
--  { icon: Building2, label: "BDO Bank Transfer", detail: "Acct No: 1234-5678-9012 · Casa Primera Resort" },
--  { icon: Building2, label: "BPI Bank Transfer", detail: "Acct No: 9876-5432-1098 · Casa Primera Resort" },
--  { icon: Banknote, label: "Cash on Check-in", detail: "Pay in full upon arrival at the resort" },
--  { icon: CreditCard, label: "Credit / Debit Card", detail: "Accepted at the front desk" },
--];
+-function buildGoogleCalendarUrl(title: string, checkIn: Date, checkOut: Date, details: string, location: string): string {
+-  const fmt = (d: Date) => d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+-  const params = new URLSearchParams({ action: "TEMPLATE", text: title, dates: `${fmt(checkIn)}/${fmt(checkOut)}`, details, location });
+-  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+-}
 -
- export function TermsModal({ onAccept, onClose }: Props) {
-   return (
-     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4" onClick={onClose}>
-@@ -74,7 +65,7 @@ export function TermsModal({ onAccept, onClose }: Props) {
-               <li><strong>Casa Primera Villa 5:</strong> Up to 34 guests</li>
-             </ul>
-             <p style={{ fontSize: "0.85rem", color: "#c0392b", marginTop: "0.5rem" }}>
--              ⚠ Exceeding the stated capacity is strictly prohibited and may result in cancellation without refund.
-+              ⚠ If you go over the strict maximum capacity of the villa, the overcapacity penalty charge is Php 5,000 on top of the extra pax surcharges for every person exceeding your package inclusion. If you have question or concern about this matter, please feel free to contact us directly.
-             </p>
-           </div>
+ // Works out the rate tier + room count for a villa based on guest count,
+ // using the same rate tiers shown on the Villas section of the site.
+ function computeQuote(villaLabel: string, guestsStr: string) {
+@@ -362,7 +356,6 @@ export function BookingCTA() {
+   const [calendarOpen, setCalendarOpen] = useState(false);
+   const [termsOpen, setTermsOpen] = useState(false);
+   const [submitted, setSubmitted] = useState(false);
+-  const [calendarUrl, setCalendarUrl] = useState("");
  
-@@ -83,18 +74,14 @@ export function TermsModal({ onAccept, onClose }: Props) {
-             <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, color: "#333333", fontSize: "1rem" }} className="mb-3">
-               💳 Mode of Payment
-             </h3>
--            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
--              {paymentModes.map(({ icon: Icon, label, detail }) => (
--                <div key={label} className="flex items-start gap-3 p-3 rounded-xl" style={{ backgroundColor: "#f8feff", border: "1px solid #DCF1F3" }}>
--                  <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: "#DCF1F3" }}>
--                    <Icon size={15} color="#45B3C0" />
--                  </div>
--                  <div>
--                    <p style={{ fontSize: "0.88rem", fontWeight: 600, color: "#333333" }}>{label}</p>
--                    <p style={{ fontSize: "0.78rem", color: "#666666" }}>{detail}</p>
--                  </div>
--                </div>
--              ))}
-+            <div className="flex items-start gap-3 p-3 rounded-xl" style={{ backgroundColor: "#f8feff", border: "1px solid #DCF1F3" }}>
-+              <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: "#DCF1F3" }}>
-+                <Building2 size={15} color="#45B3C0" />
-+              </div>
-+              <div>
-+                <p style={{ fontSize: "0.88rem", fontWeight: 600, color: "#333333" }}>BDO Bank Transfer</p>
-+                <p style={{ fontSize: "0.78rem", color: "#666666" }}>Acct No: 1234-5678-9012 · Casa Primera Resort</p>
-+              </div>
-             </div>
-           </div>
+   const nights = dateRange?.from && dateRange?.to ? differenceInCalendarDays(dateRange.to, dateRange.from) : 0;
+   const quote = formData.villa ? computeQuote(formData.villa, formData.guests) : null;
+@@ -383,12 +376,6 @@ export function BookingCTA() {
+     if (dateRange?.from && dateRange?.to) {
+       const checkIn = new Date(dateRange.from); checkIn.setHours(15, 0, 0, 0);
+       const checkOut = new Date(dateRange.to); checkOut.setHours(12, 0, 0, 0);
+-      setCalendarUrl(buildGoogleCalendarUrl(
+-        `Casa Primera Hotspring Resorts — ${formData.villa || "Villa Stay"}`,
+-        checkIn, checkOut,
+-        `Reservation for ${formData.guests} guest(s).\nCasa Primera Hotspring Resorts, Calamba, Laguna.\nContact: 0917.114.6956`,
+-        "Brgy. Pansol, Calamba City, Laguna, Philippines"
+-      ));
  
+       // Send the booking request to the Casa Primera booking webhook
+       // (creates a calendar event + emails sales@casaprimeravilla.com)
+@@ -652,7 +639,7 @@ export function BookingCTA() {
+           />
+         )}
+         {submitted && (
+-          <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" onClick={() => { setSubmitted(false); setCalendarUrl(""); }}>
++          <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" onClick={() => setSubmitted(false)}>
+             <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+             <motion.div
+               className="relative w-full max-w-sm rounded-3xl shadow-2xl p-7 text-center"
+@@ -664,7 +651,7 @@ export function BookingCTA() {
+               onClick={(e) => e.stopPropagation()}
+             >
+               <button
+-                onClick={() => { setSubmitted(false); setCalendarUrl(""); }}
++                onClick={() => setSubmitted(false)}
+                 className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-gray-100"
+                 aria-label="Close"
+               >
+@@ -677,16 +664,9 @@ export function BookingCTA() {
+               <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", color: "#4d4d4d", lineHeight: 1.65 }}>
+                 Your reservation request has been received. Thank you for choosing Casa Primera! Please expect an email within 24 hours containing our Terms and Conditions, bank details, and the next steps to complete your reservation.
+               </p>
+-              {calendarUrl && (
+-                <a href={calendarUrl} target="_blank" rel="noopener noreferrer"
+-                  className="mt-5 flex items-center justify-center gap-2 w-full py-3 rounded-full font-semibold text-white transition-all duration-200 hover:opacity-90"
+-                  style={{ backgroundColor: "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem" }}>
+-                  📅 Add to Google Calendar
+-                </a>
+-              )}
+               <button
+-                onClick={() => { setSubmitted(false); setCalendarUrl(""); }}
+-                className="mt-3 w-full py-2.5 rounded-full font-semibold transition-colors hover:bg-gray-50"
++                onClick={() => setSubmitted(false)}
++                className="mt-5 w-full py-2.5 rounded-full font-semibold transition-colors hover:bg-gray-50"
+                 style={{ border: "1px solid #A8DDE3", color: "#666666", fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem" }}
+               >
+                 Close
+diff --git a/src/app/components/Navbar.tsx b/src/app/components/Navbar.tsx
+index 708acb7..629108b 100644
+--- a/src/app/components/Navbar.tsx
++++ b/src/app/components/Navbar.tsx
+@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
+ const links = [
+   { href: "#about", label: "About" },
+   { href: "#villas", label: "Villas" },
++  { href: "#rates", label: "Rates" },
+   { href: "#how-to-book", label: "How to Book" },
+   { href: "#reviews", label: "Reviews" },
+   { href: "#gallery", label: "Gallery" },
