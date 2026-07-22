@@ -152,9 +152,10 @@ function ReservationCalendar({
               }
               .rdp-months { justify-content: center; width: 100%; }
               .rdp-month { width: 100%; margin: 0; }
-              .rdp-table { width: 100%; max-width: none; margin: 0 auto; table-layout: fixed; border-collapse: collapse; }
-              .rdp-head_cell, .rdp-cell { width: 14.2857%; max-width: none; padding: 0; text-align: center; }
-              .rdp-day { width: var(--rdp-cell-size); max-width: var(--rdp-cell-size); height: var(--rdp-cell-size); margin: 0 auto; }
+              .rdp-table { width: 100% !important; max-width: none !important; margin: 0 auto !important; table-layout: fixed !important; border-collapse: collapse !important; }
+              .rdp-head_row, .rdp-row { display: table-row !important; }
+              .rdp-head_cell, .rdp-cell { display: table-cell !important; width: 14.2857% !important; max-width: none !important; padding: 0 !important; text-align: center !important; }
+              .rdp-day { width: var(--rdp-cell-size) !important; max-width: var(--rdp-cell-size) !important; height: var(--rdp-cell-size) !important; margin: 0 auto !important; }
               .rdp-caption { padding: 0 0.15rem; }
               .rdp-nav_button { width: 2.25rem; height: 2.25rem; }
               .rdp-day_selected, .rdp-day_range_start, .rdp-day_range_end { background-color: #45B3C0 !important; color: #fff !important; border-radius: 50% !important; }
