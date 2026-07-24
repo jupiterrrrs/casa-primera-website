@@ -7,16 +7,16 @@ import { VillaPhotoCarousel } from "./VillaPhotoCarousel";
 export const rateTiersABC = [
   { label: "A", price: 18000, pax: "1–10 pax", rooms: "2 Rooms" },
   { label: "B", price: 20000, pax: "11–15 pax", rooms: "3 Rooms" },
-  { label: "C", price: 22000, pax: "16–20 pax", rooms: "4 Rooms", note: "+ ₱500/head for 21–25 pax" },
-  { label: "D–E", price: 27000, pax: "26–30 pax", rooms: "5 Rooms", note: "+ ₱500/head in excess of 30 pax (Villa 2 or Villa 3 only)" },
+  { label: "C", price: 22000, pax: "16–20 pax", rooms: "4 Rooms" },
+  { label: "D–E", price: 27000, pax: "26–30 pax", rooms: "5 Rooms" },
 ];
 
 // Standard rate packages for Villa 4 & 5
 export const rateTiersDE = [
   { label: "A", price: 21000, pax: "1–10 pax", rooms: "2 Rooms" },
   { label: "B", price: 23000, pax: "11–15 pax", rooms: "3 Rooms" },
-  { label: "C", price: 25000, pax: "16–20 pax", rooms: "4 Rooms", note: "+ ₱500/head for 21–25 pax" },
-  { label: "D–E", price: 30000, pax: "26–30 pax", rooms: "5 Rooms", note: "+ ₱500/head in excess of 30 pax" },
+  { label: "C", price: 25000, pax: "16–20 pax", rooms: "4 Rooms" },
+  { label: "D–E", price: 30000, pax: "26–30 pax", rooms: "5 Rooms" },
 ];
 
 export const villas = [
@@ -388,15 +388,6 @@ function VillaModal({ villa, onClose }: { villa: Villa; onClose: () => void }) {
                     </div>
                   ))}
                 </div>
-                {villa.rateTiers.some((t) => "note" in t && t.note) && (
-                  <div className="px-4 py-2.5" style={{ backgroundColor: "#EAF7F8" }}>
-                    {villa.rateTiers.filter((t): t is typeof t & { note: string } => "note" in t && !!t.note).map((t) => (
-                      <p key={t.label} style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.74rem", color: "#333333", lineHeight: 1.5 }}>
-                        {t.label}: {t.note}
-                      </p>
-                    ))}
-                  </div>
-                )}
               </div>
             )}
 

@@ -360,6 +360,33 @@ export function BookingCTA() {
   const nights = dateRange?.from && dateRange?.to ? differenceInCalendarDays(dateRange.to, dateRange.from) : 0;
   const quote = formData.villa ? computeQuote(formData.villa, formData.guests) : null;
 
+  const selectedVillaMeta = allVillas.find((v) => v.label === formData.villa);
+  const maxGuests = selectedVillaMeta ? selectedVillaMeta.pax : 50;
+
+  // If the selected villa becomes booked for the chosen dates (e.g. the guest
+  // changes dates after already picking a villa), drop the now-invalid selection.
+  useEffect(() => {
+    if (formData.villa && dateRange?.from) {
+      const villa = allVillas.find((v) => v.label === formData.villa);
+      if (villa && !isVillaAvailable(villa, dateRange)) {
+        setFormData((p) => ({ ...p, villa: "" }));
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dateRange, allVillas]);
+
+  // If the selected villa changes to one with a lower capacity, clamp the
+  // guest count so it never exceeds what that villa can actually hold.
+  useEffect(() => {
+    if (selectedVillaMeta) {
+      const guestsNum = parseInt(formData.guests, 10) || 1;
+      if (guestsNum > selectedVillaMeta.pax) {
+        setFormData((p) => ({ ...p, guests: String(selectedVillaMeta.pax) }));
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData.villa]);
+
   const dateLabel = dateRange?.from && dateRange?.to
     ? `${format(dateRange.from, "MMM d")} → ${format(dateRange.to, "MMM d, yyyy")}  (${nights} night${nights !== 1 ? "s" : ""})`
     : dateRange?.from
@@ -552,15 +579,22 @@ export function BookingCTA() {
                         className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#45B3C0]"
                         style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", borderColor: "#A8DDE3", backgroundColor: "#EAF7F8" }}>
                         <option value="">Any Villa</option>
-                        {allVillas.map((v) => <option key={v.label} value={v.label}>{v.label} (Up to {v.pax} pax)</option>)}
+                        {allVillas.map((v) => {
+                          const booked = dateRange?.from ? !isVillaAvailable(v, dateRange) : false;
+                          return (
+                            <option key={v.label} value={v.label} disabled={booked}>
+                              {v.label} (Up to {v.pax} pax){booked ? " — Booked" : ""}
+                            </option>
+                          );
+                        })}
                       </select>
                     </div>
                     <div>
-                      <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4d4d4d", fontWeight: 600 }} className="block mb-1.5">Guests (Max 50)</label>
+                      <label style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", color: "#4d4d4d", fontWeight: 600 }} className="block mb-1.5">Guests (Max {maxGuests})</label>
                       <select value={formData.guests} onChange={(e) => setFormData((p) => ({ ...p, guests: e.target.value }))}
                         className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#45B3C0]"
                         style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", borderColor: "#A8DDE3", backgroundColor: "#EAF7F8" }}>
-                        {Array.from({ length: 50 }, (_, i) => i + 1).map((n) => <option key={n}>{n}</option>)}
+                        {Array.from({ length: maxGuests }, (_, i) => i + 1).map((n) => <option key={n}>{n}</option>)}
                       </select>
                       <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#888888", fontStyle: "italic", marginTop: "5px" }}>
                         Note: Children aged 5 and below are not counted, as they stay free of charge.

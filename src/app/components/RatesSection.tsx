@@ -123,15 +123,6 @@ export function RatesSection() {
                       </span>
                     </div>
                   </div>
-
-                  {"note" in pkg && pkg.note && (
-                    <p
-                      className="mt-3 text-xs leading-relaxed"
-                      style={{ color: i === 0 ? "rgba(255,255,255,0.85)" : "#c0392b", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                    >
-                      {pkg.note}
-                    </p>
-                  )}
                 </motion.div>
               ))}
             </div>
