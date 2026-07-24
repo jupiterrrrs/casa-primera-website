@@ -1,0 +1,329 @@
+From 00e20aa6b980630b2e46c96b6619c885dd3df2da Mon Sep 17 00:00:00 2001
+From: Claude <claude@anthropic.com>
+Date: Fri, 24 Jul 2026 10:46:26 +0000
+Subject: [PATCH] Make rate packages clickable and pre-fill Reserve Now form
+ from selection
+
+- RatesSection: each package card (A, B, C, D-E) is now clickable for
+  every villa. The clicked package turns blue and stays selected per
+  villa (a checkmark badge shows which one is active).
+- Reserve This Villa now publishes the chosen villa + package to the
+  Reserve Now form (via a small event/sessionStorage bridge in
+  src/app/lib/reserveSelection.ts) and smooth-scrolls to #booking.
+- BookingCTA: picks up that selection on mount/event and pre-fills the
+  Selected Villa and Guests fields so the estimated rate lands back on
+  the same package the guest clicked.
+---
+ src/app/components/BookingCTA.tsx   |  29 ++++++
+ src/app/components/RatesSection.tsx | 149 ++++++++++++++++++----------
+ src/app/lib/reserveSelection.ts     |  60 +++++++++++
+ 3 files changed, 185 insertions(+), 53 deletions(-)
+ create mode 100644 src/app/lib/reserveSelection.ts
+
+diff --git a/src/app/components/BookingCTA.tsx b/src/app/components/BookingCTA.tsx
+index b279532..547385a 100644
+--- a/src/app/components/BookingCTA.tsx
++++ b/src/app/components/BookingCTA.tsx
+@@ -5,6 +5,12 @@ import { DayPicker, DateRange } from "react-day-picker";
+ import { format, differenceInCalendarDays, isWithinInterval, addDays } from "date-fns";
+ import { TermsModal } from "./TermsModal";
+ import { villas as ratedVillas } from "./VillaShowcase";
++import {
++  RESERVE_SELECTION_EVENT,
++  readStoredReserveSelection,
++  clearStoredReserveSelection,
++  type ReserveSelection,
++} from "../lib/reserveSelection";
+ import "react-day-picker/dist/style.css";
+ 
+ // Google Apps Script webhook: creates a Calendar event + emails sales@casaprimeravilla.com
+@@ -357,6 +363,29 @@ export function BookingCTA() {
+   const [termsOpen, setTermsOpen] = useState(false);
+   const [submitted, setSubmitted] = useState(false);
+ 
++  // Pre-fill the form from whatever villa + package the guest picked in the
++  // Rates section's "Reserve This Villa" button. Covers both cases: the
++  // live event (component already mounted, which is always true on this
++  // single-page site) and a stored fallback in case of a hard refresh.
++  useEffect(() => {
++    function applySelection(selection: ReserveSelection) {
++      setFormData((p) => ({ ...p, villa: selection.villa, guests: selection.guests }));
++    }
++
++    const stored = readStoredReserveSelection();
++    if (stored) {
++      applySelection(stored);
++      clearStoredReserveSelection();
++    }
++
++    function onEvent(e: Event) {
++      const detail = (e as CustomEvent<ReserveSelection>).detail;
++      if (detail) applySelection(detail);
++    }
++    window.addEventListener(RESERVE_SELECTION_EVENT, onEvent);
++    return () => window.removeEventListener(RESERVE_SELECTION_EVENT, onEvent);
++  }, []);
++
+   const nights = dateRange?.from && dateRange?.to ? differenceInCalendarDays(dateRange.to, dateRange.from) : 0;
+   const quote = formData.villa ? computeQuote(formData.villa, formData.guests) : null;
+ 
+diff --git a/src/app/components/RatesSection.tsx b/src/app/components/RatesSection.tsx
+index 83a5936..b262d2b 100644
+--- a/src/app/components/RatesSection.tsx
++++ b/src/app/components/RatesSection.tsx
+@@ -1,12 +1,31 @@
+ ﻿import { useState } from "react";
+ import { motion, AnimatePresence } from "motion/react";
+-import { Users, BedDouble, Sparkles, ArrowRight, PhoneCall } from "lucide-react";
++import { Users, BedDouble, Sparkles, ArrowRight, PhoneCall, Check } from "lucide-react";
+ import { villas, tierNote } from "./VillaShowcase";
++import { publishReserveSelection, guestsForPackageLabel } from "../lib/reserveSelection";
+ 
+ export function RatesSection() {
+   const [activeId, setActiveId] = useState(villas[0].id);
+   const active = villas.find((v) => v.id === activeId) ?? villas[0];
+ 
++  // Which package is selected per villa (keyed by villa id), so switching
++  // villas and coming back keeps each villa's own pick remembered. Defaults
++  // to each villa's first package so the section still looks "chosen" out
++  // of the box.
++  const [selectedByVilla, setSelectedByVilla] = useState<Record<number, string>>(
++    () => Object.fromEntries(villas.map((v) => [v.id, v.rateTiers[0].label]))
++  );
++  const selectedLabel = selectedByVilla[active.id] ?? active.rateTiers[0].label;
++
++  function handleReserveClick() {
++    publishReserveSelection({
++      villa: active.name,
++      packageLabel: selectedLabel,
++      guests: guestsForPackageLabel(selectedLabel),
++    });
++    document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
++  }
++
+   return (
+     <section id="rates" className="py-20" style={{ backgroundColor: "#ffffff" }}>
+       <div className="max-w-6xl mx-auto px-6">
+@@ -77,63 +96,86 @@ export function RatesSection() {
+             transition={{ duration: 0.35 }}
+           >
+             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
+-              {active.rateTiers.map((pkg, i) => (
+-                <motion.div
+-                  key={pkg.label}
+-                  initial={{ opacity: 0, y: 14 }}
+-                  animate={{ opacity: 1, y: 0 }}
+-                  transition={{ delay: i * 0.06, duration: 0.35 }}
+-                  className="relative rounded-2xl p-6 flex flex-col shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+-                  style={{
+-                    backgroundColor: i === 0 ? "#45B3C0" : "#EAF7F8",
+-                    border: i === 0 ? "none" : "1px solid rgba(69,179,192,0.2)",
+-                  }}
+-                >
+-                  <span
+-                    className="text-xs font-bold uppercase tracking-widest mb-3"
+-                    style={{ color: i === 0 ? "rgba(255,255,255,0.75)" : "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
++              {active.rateTiers.map((pkg, i) => {
++                const isSelected = selectedLabel === pkg.label;
++                return (
++                  <motion.div
++                    key={pkg.label}
++                    initial={{ opacity: 0, y: 14 }}
++                    animate={{ opacity: 1, y: 0 }}
++                    transition={{ delay: i * 0.06, duration: 0.35 }}
++                    role="button"
++                    tabIndex={0}
++                    aria-pressed={isSelected}
++                    onClick={() => setSelectedByVilla((p) => ({ ...p, [active.id]: pkg.label }))}
++                    onKeyDown={(e) => {
++                      if (e.key === "Enter" || e.key === " ") {
++                        e.preventDefault();
++                        setSelectedByVilla((p) => ({ ...p, [active.id]: pkg.label }));
++                      }
++                    }}
++                    className="relative rounded-2xl p-6 flex flex-col shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer select-none"
++                    style={{
++                      backgroundColor: isSelected ? "#45B3C0" : "#EAF7F8",
++                      border: isSelected ? "none" : "1px solid rgba(69,179,192,0.2)",
++                      outline: isSelected ? "2px solid #2f8f9a" : "none",
++                      outlineOffset: 2,
++                    }}
+                   >
+-                    Package {pkg.label}
+-                  </span>
+-                  <div className="flex items-baseline gap-1 mb-1">
++                    {isSelected && (
++                      <div
++                        className="absolute top-4 right-4 w-6 h-6 rounded-full flex items-center justify-center"
++                        style={{ backgroundColor: "rgba(255,255,255,0.25)" }}
++                      >
++                        <Check size={14} color="#fff" strokeWidth={3} />
++                      </div>
++                    )}
+                     <span
+-                      style={{ fontFamily: "'Fraunces', serif", fontSize: "1.9rem", fontWeight: 800, color: i === 0 ? "#fff" : "#333333" }}
++                      className="text-xs font-bold uppercase tracking-widest mb-3"
++                      style={{ color: isSelected ? "rgba(255,255,255,0.75)" : "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                     >
+-                      ₱{pkg.price.toLocaleString()}
++                      Package {pkg.label}
+                     </span>
+-                  </div>
+-                  <span
+-                    className="text-xs mb-4"
+-                    style={{ color: i === 0 ? "rgba(255,255,255,0.75)" : "#999999", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+-                  >
+-                    per night
+-                  </span>
+-
+-                  <div className="space-y-2 mt-auto pt-4" style={{ borderTop: i === 0 ? "1px solid rgba(255,255,255,0.25)" : "1px solid rgba(69,179,192,0.2)" }}>
+-                    <div className="flex items-center gap-2">
+-                      <Users size={14} color={i === 0 ? "#fff" : "#45B3C0"} />
+-                      <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: i === 0 ? "#fff" : "#4d4d4d" }}>
+-                        {pkg.pax}
++                    <div className="flex items-baseline gap-1 mb-1">
++                      <span
++                        style={{ fontFamily: "'Fraunces', serif", fontSize: "1.9rem", fontWeight: 800, color: isSelected ? "#fff" : "#333333" }}
++                      >
++                        ₱{pkg.price.toLocaleString()}
+                       </span>
+                     </div>
+-                    <div className="flex items-center gap-2">
+-                      <BedDouble size={14} color={i === 0 ? "#fff" : "#45B3C0"} />
+-                      <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: i === 0 ? "#fff" : "#4d4d4d" }}>
+-                        {pkg.rooms}
+-                      </span>
++                    <span
++                      className="text-xs mb-4"
++                      style={{ color: isSelected ? "rgba(255,255,255,0.75)" : "#999999", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
++                    >
++                      per night
++                    </span>
++
++                    <div className="space-y-2 mt-auto pt-4" style={{ borderTop: isSelected ? "1px solid rgba(255,255,255,0.25)" : "1px solid rgba(69,179,192,0.2)" }}>
++                      <div className="flex items-center gap-2">
++                        <Users size={14} color={isSelected ? "#fff" : "#45B3C0"} />
++                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: isSelected ? "#fff" : "#4d4d4d" }}>
++                          {pkg.pax}
++                        </span>
++                      </div>
++                      <div className="flex items-center gap-2">
++                        <BedDouble size={14} color={isSelected ? "#fff" : "#45B3C0"} />
++                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: isSelected ? "#fff" : "#4d4d4d" }}>
++                          {pkg.rooms}
++                        </span>
++                      </div>
+                     </div>
+-                  </div>
+ 
+-                  {"note" in pkg && pkg.note && (
+-                    <p
+-                      className="mt-3 text-xs leading-relaxed"
+-                      style={{ color: i === 0 ? "rgba(255,255,255,0.85)" : "#c0392b", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+-                    >
+-                      {tierNote(pkg, active.maxPax)}
+-                    </p>
+-                  )}
+-                </motion.div>
+-              ))}
++                    {"note" in pkg && pkg.note && (
++                      <p
++                        className="mt-3 text-xs leading-relaxed"
++                        style={{ color: isSelected ? "rgba(255,255,255,0.85)" : "#c0392b", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
++                      >
++                        {tierNote(pkg, active.maxPax)}
++                      </p>
++                    )}
++                  </motion.div>
++                );
++              })}
+             </div>
+           </motion.div>
+         </AnimatePresence>
+@@ -147,13 +189,14 @@ export function RatesSection() {
+               enjoy a 20% discount on their pro-rated share. A 50% down payment confirms your reservation.
+             </p>
+           </div>
+-          <a
+-            href="#booking"
++          <button
++            type="button"
++            onClick={handleReserveClick}
+             className="flex items-center gap-2 px-6 py-3 rounded-full font-bold whitespace-nowrap transition-all duration-200 hover:scale-105 hover:shadow-lg"
+             style={{ backgroundColor: "#FFEB3B", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+           >
+             Reserve This Villa <ArrowRight size={16} />
+-          </a>
++          </button>
+         </div>
+ 
+         {/* Large group notice */}
+diff --git a/src/app/lib/reserveSelection.ts b/src/app/lib/reserveSelection.ts
+new file mode 100644
+index 0000000..f7c0a7c
+--- /dev/null
++++ b/src/app/lib/reserveSelection.ts
+@@ -0,0 +1,60 @@
++// Bridges the villa + rate package chosen in the Rates section over to the
++// "Reserve Now" form in BookingCTA. Both live on the same page as separate
++// components, so we hand off the selection two ways: a live CustomEvent for
++// when BookingCTA is already mounted (always true on this single-page site),
++// and sessionStorage as a fallback so the choice isn't lost on edge cases
++// like a hard refresh right after clicking.
++export const RESERVE_SELECTION_EVENT = "casa-primera:reserve-selection";
++const STORAGE_KEY = "casa-primera:reserve-selection";
++
++export type ReserveSelection = {
++  villa: string; // full villa name, e.g. "Casa Primera Villa 4"
++  guests: string; // guest count that maps back to the chosen package tier
++  packageLabel: string; // e.g. "C"
++};
++
++export function publishReserveSelection(selection: ReserveSelection) {
++  try {
++    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(selection));
++  } catch {
++    // Ignore storage failures (e.g. private browsing) — the live event below
++    // still gets the job done.
++  }
++  window.dispatchEvent(new CustomEvent(RESERVE_SELECTION_EVENT, { detail: selection }));
++}
++
++export function readStoredReserveSelection(): ReserveSelection | null {
++  try {
++    const raw = sessionStorage.getItem(STORAGE_KEY);
++    return raw ? (JSON.parse(raw) as ReserveSelection) : null;
++  } catch {
++    return null;
++  }
++}
++
++export function clearStoredReserveSelection() {
++  try {
++    sessionStorage.removeItem(STORAGE_KEY);
++  } catch {
++    // ignore
++  }
++}
++
++// Maps a rate package label to a representative guest count that makes the
++// booking form's automatic tier calculation (see computeQuote in
++// BookingCTA.tsx) land back on that same package.
++export function guestsForPackageLabel(label: string): string {
++  switch (label) {
++    case "A":
++      return "10";
++    case "B":
++      return "15";
++    case "C":
++      return "20";
++    case "D–E":
++    case "D-E":
++      return "30";
++    default:
++      return "10";
++  }
++}
+-- 
+2.43.0
+
