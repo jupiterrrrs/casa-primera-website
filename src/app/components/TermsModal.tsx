@@ -77,17 +77,15 @@ export function TermsModal({ onAccept, onClose, villa, guests, dateRange, nights
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
               <div>
-                <p style={{ fontSize: "0.72rem", color: "#999999" }}>Booking Date</p>
-                <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>{bookingDate}</p>
-              </div>
-              <div>
-                <p style={{ fontSize: "0.72rem", color: "#999999" }}>Check-in / Check-out</p>
-                <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>3:00 PM / 12:00 NN</p>
-                <p style={{ fontSize: "0.78rem", color: "#666666" }}>{stayLabel}</p>
-              </div>
-              <div>
                 <p style={{ fontSize: "0.72rem", color: "#999999" }}>Villa</p>
                 <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>{villa || "To be selected"}</p>
+              </div>
+              <div>
+                <p style={{ fontSize: "0.72rem", color: "#999999" }}>Reservation Request Made on</p>
+                <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>{bookingDate}</p>
+                <p style={{ fontSize: "0.72rem", color: "#999999", marginTop: "0.5rem" }}>Check-in / Check-out</p>
+                <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>3:00 PM / 12:00 NN</p>
+                <p style={{ fontSize: "0.78rem", color: "#666666" }}>{stayLabel}</p>
               </div>
               <div>
                 <p style={{ fontSize: "0.72rem", color: "#999999" }}>Number of Pax</p>
@@ -173,7 +171,7 @@ export function TermsModal({ onAccept, onClose, villa, guests, dateRange, nights
               <>FREE use of basic cooking utensils such as cooking pot, cooking wok, knife, cooking ladle, cooking spatula, grill tongs, chopping board, dish covers <em>(dishwashing liquid, kitchen hand towels and dining utensils such as plates, cups, spoons, forks, and table napkins are not provided)</em></>,
               <>FREE use of kitchen appliances such as Ref, Stove, LPG, Oven Toaster, Microwave (upon request), Rice Cooker, BBQ Grill, Hot and Cold Water Dispenser <em>(with one free bottle/5gallons. Php 50 for each succeeding bottle)</em></>,
               <>FREE use of Billiards, Table Tennis, Water Volleyball, Darts, Poker, Mahjong etc.</>,
-              <>Secured indoor and street parking with 24-hours CCTV monitoring</>,
+              <>Secured indoor and street parking with 24-hours CCTV coverage</>,
               <>Generator</>,
               <>Roof deck <em>(for Villa 4. Not included in the package but guests will be allowed to use it for 30 minutes only and for picture-taking purposes only)</em></>,
             ]} />
@@ -269,7 +267,7 @@ export function TermsModal({ onAccept, onClose, villa, guests, dateRange, nights
               <>Projectors, Mini Component/Sound System, and other small appliances & electronics: Php 1,000/night per item.</>,
             ]} />
             <p style={{ fontSize: "0.86rem", color: "#4d4d4d", lineHeight: 1.75 }} className="mt-2">
-              Note that Casa Primera Villa Hot Spring Resorts does not supply any of the above-mentioned items, but we charge for the additional use of our facilities, electricity, and water, over and above the regular amenities that we provide.
+              Note that Casa Primera Hot Spring Resorts does not supply any of the above-mentioned items, but we charge for the additional use of our facilities, electricity, and water, over and above the regular amenities that we provide.
             </p>
           </div>
 
@@ -282,7 +280,7 @@ export function TermsModal({ onAccept, onClose, villa, guests, dateRange, nights
               </div>
               <div>
                 <p style={{ fontSize: "0.88rem", fontWeight: 600, color: "#333333" }}>BDO Bank Transfer</p>
-                <p style={{ fontSize: "0.78rem", color: "#666666" }}>Casa Primera Resort · A 50% down payment secures your reservation; send proof of payment to our contact number.</p>
+                <p style={{ fontSize: "0.78rem", color: "#666666" }}>Casa Primera Resort · A 50% down payment is required to reserve your slot. Please email us a screenshot or photo of your payment receipt for verification.</p>
               </div>
             </div>
           </div>
