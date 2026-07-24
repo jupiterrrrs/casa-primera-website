@@ -83,9 +83,10 @@ export function TermsModal({ onAccept, onClose, villa, guests, dateRange, nights
               <div>
                 <p style={{ fontSize: "0.72rem", color: "#999999" }}>Reservation Request Made on</p>
                 <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>{bookingDate}</p>
-                <p style={{ fontSize: "0.72rem", color: "#999999", marginTop: "0.5rem" }}>Check-in / Check-out</p>
-                <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>3:00 PM / 12:00 NN</p>
-                <p style={{ fontSize: "0.78rem", color: "#666666" }}>{stayLabel}</p>
+                <p style={{ fontSize: "0.72rem", color: "#999999", marginTop: "0.5rem" }}>Booking Date:</p>
+                <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 800 }}>{stayLabel}</p>
+                <p style={{ fontSize: "0.72rem", color: "#999999", marginTop: "0.5rem" }}>Check-in/ Check-out</p>
+                <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>3:00 PM/ 12:00 NN</p>
               </div>
               <div>
                 <p style={{ fontSize: "0.72rem", color: "#999999" }}>Number of Pax</p>
