@@ -1,0 +1,39 @@
+From 0a71f1bbbb9cdad001dabd301be4e7a1b03e88e8 Mon Sep 17 00:00:00 2001
+From: Casa Primera Dev <dev@casaprimeravilla.com>
+Date: Fri, 24 Jul 2026 07:22:58 +0000
+Subject: [PATCH] Move Booking Date and Check-in/Check-out to standalone top
+ block in booking summary
+
+---
+ src/app/components/TermsModal.tsx | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/app/components/TermsModal.tsx b/src/app/components/TermsModal.tsx
+index 6e7b844..22ff30c 100644
+--- a/src/app/components/TermsModal.tsx
++++ b/src/app/components/TermsModal.tsx
+@@ -82,16 +82,16 @@ export function TermsModal({ onAccept, onClose, villa, guests, dateRange, nights
+               Your Booking Summary
+             </p>
+             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+-              <div>
+-                <p style={{ fontSize: "0.72rem", color: "#999999" }}>Villa</p>
+-                <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>{villa || "To be selected"}</p>
+-              </div>
+-              <div>
++              <div className="sm:col-span-2">
+                 <p style={{ fontSize: "0.72rem", color: "#999999" }}>Booking Date</p>
+                 <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>{bookingDateLabel}</p>
+                 <p style={{ fontSize: "0.72rem", color: "#999999", marginTop: "0.5rem" }}>Check-in / Check-out</p>
+                 <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>3:00 PM to 12 Noon</p>
+               </div>
++              <div>
++                <p style={{ fontSize: "0.72rem", color: "#999999" }}>Villa</p>
++                <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>{villa || "To be selected"}</p>
++              </div>
+               <div>
+                 <p style={{ fontSize: "0.72rem", color: "#999999" }}>Number of Pax</p>
+                 <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>{guests}</p>
+-- 
+2.43.0
+
