@@ -5,6 +5,12 @@ import { DayPicker, DateRange } from "react-day-picker";
 import { format, differenceInCalendarDays, isWithinInterval, addDays } from "date-fns";
 import { TermsModal } from "./TermsModal";
 import { villas as ratedVillas } from "./VillaShowcase";
+import {
+  RESERVE_SELECTION_EVENT,
+  readStoredReserveSelection,
+  clearStoredReserveSelection,
+  type ReserveSelection,
+} from "../lib/reserveSelection";
 import "react-day-picker/dist/style.css";
 
 // Google Apps Script webhook: creates a Calendar event + emails sales@casaprimeravilla.com
@@ -356,6 +362,29 @@ export function BookingCTA() {
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [termsOpen, setTermsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  // Pre-fill the form from whatever villa + package the guest picked in the
+  // Rates section's "Reserve This Villa" button. Covers both cases: the
+  // live event (component already mounted, which is always true on this
+  // single-page site) and a stored fallback in case of a hard refresh.
+  useEffect(() => {
+    function applySelection(selection: ReserveSelection) {
+      setFormData((p) => ({ ...p, villa: selection.villa, guests: selection.guests }));
+    }
+
+    const stored = readStoredReserveSelection();
+    if (stored) {
+      applySelection(stored);
+      clearStoredReserveSelection();
+    }
+
+    function onEvent(e: Event) {
+      const detail = (e as CustomEvent<ReserveSelection>).detail;
+      if (detail) applySelection(detail);
+    }
+    window.addEventListener(RESERVE_SELECTION_EVENT, onEvent);
+    return () => window.removeEventListener(RESERVE_SELECTION_EVENT, onEvent);
+  }, []);
 
   const nights = dateRange?.from && dateRange?.to ? differenceInCalendarDays(dateRange.to, dateRange.from) : 0;
   const quote = formData.villa ? computeQuote(formData.villa, formData.guests) : null;
