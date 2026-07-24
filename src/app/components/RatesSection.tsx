@@ -1,11 +1,30 @@
 ﻿import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Users, BedDouble, Sparkles, ArrowRight, PhoneCall } from "lucide-react";
+import { Users, BedDouble, Sparkles, ArrowRight, PhoneCall, Check } from "lucide-react";
 import { villas, tierNote } from "./VillaShowcase";
+import { publishReserveSelection, guestsForPackageLabel } from "../lib/reserveSelection";
 
 export function RatesSection() {
   const [activeId, setActiveId] = useState(villas[0].id);
   const active = villas.find((v) => v.id === activeId) ?? villas[0];
+
+  // Which package is selected per villa (keyed by villa id), so switching
+  // villas and coming back keeps each villa's own pick remembered. Defaults
+  // to each villa's first package so the section still looks "chosen" out
+  // of the box.
+  const [selectedByVilla, setSelectedByVilla] = useState<Record<number, string>>(
+    () => Object.fromEntries(villas.map((v) => [v.id, v.rateTiers[0].label]))
+  );
+  const selectedLabel = selectedByVilla[active.id] ?? active.rateTiers[0].label;
+
+  function handleReserveClick() {
+    publishReserveSelection({
+      villa: active.name,
+      packageLabel: selectedLabel,
+      guests: guestsForPackageLabel(selectedLabel),
+    });
+    document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
+  }
 
   return (
     <section id="rates" className="py-20" style={{ backgroundColor: "#ffffff" }}>
@@ -77,63 +96,86 @@ export function RatesSection() {
             transition={{ duration: 0.35 }}
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
-              {active.rateTiers.map((pkg, i) => (
-                <motion.div
-                  key={pkg.label}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.06, duration: 0.35 }}
-                  className="relative rounded-2xl p-6 flex flex-col shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-                  style={{
-                    backgroundColor: i === 0 ? "#45B3C0" : "#EAF7F8",
-                    border: i === 0 ? "none" : "1px solid rgba(69,179,192,0.2)",
-                  }}
-                >
-                  <span
-                    className="text-xs font-bold uppercase tracking-widest mb-3"
-                    style={{ color: i === 0 ? "rgba(255,255,255,0.75)" : "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              {active.rateTiers.map((pkg, i) => {
+                const isSelected = selectedLabel === pkg.label;
+                return (
+                  <motion.div
+                    key={pkg.label}
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.06, duration: 0.35 }}
+                    role="button"
+                    tabIndex={0}
+                    aria-pressed={isSelected}
+                    onClick={() => setSelectedByVilla((p) => ({ ...p, [active.id]: pkg.label }))}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setSelectedByVilla((p) => ({ ...p, [active.id]: pkg.label }));
+                      }
+                    }}
+                    className="relative rounded-2xl p-6 flex flex-col shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer select-none"
+                    style={{
+                      backgroundColor: isSelected ? "#45B3C0" : "#EAF7F8",
+                      border: isSelected ? "none" : "1px solid rgba(69,179,192,0.2)",
+                      outline: isSelected ? "2px solid #2f8f9a" : "none",
+                      outlineOffset: 2,
+                    }}
                   >
-                    Package {pkg.label}
-                  </span>
-                  <div className="flex items-baseline gap-1 mb-1">
+                    {isSelected && (
+                      <div
+                        className="absolute top-4 right-4 w-6 h-6 rounded-full flex items-center justify-center"
+                        style={{ backgroundColor: "rgba(255,255,255,0.25)" }}
+                      >
+                        <Check size={14} color="#fff" strokeWidth={3} />
+                      </div>
+                    )}
                     <span
-                      style={{ fontFamily: "'Fraunces', serif", fontSize: "1.9rem", fontWeight: 800, color: i === 0 ? "#fff" : "#333333" }}
+                      className="text-xs font-bold uppercase tracking-widest mb-3"
+                      style={{ color: isSelected ? "rgba(255,255,255,0.75)" : "#45B3C0", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                     >
-                      ₱{pkg.price.toLocaleString()}
+                      Package {pkg.label}
                     </span>
-                  </div>
-                  <span
-                    className="text-xs mb-4"
-                    style={{ color: i === 0 ? "rgba(255,255,255,0.75)" : "#999999", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                  >
-                    per night
-                  </span>
-
-                  <div className="space-y-2 mt-auto pt-4" style={{ borderTop: i === 0 ? "1px solid rgba(255,255,255,0.25)" : "1px solid rgba(69,179,192,0.2)" }}>
-                    <div className="flex items-center gap-2">
-                      <Users size={14} color={i === 0 ? "#fff" : "#45B3C0"} />
-                      <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: i === 0 ? "#fff" : "#4d4d4d" }}>
-                        {pkg.pax}
+                    <div className="flex items-baseline gap-1 mb-1">
+                      <span
+                        style={{ fontFamily: "'Fraunces', serif", fontSize: "1.9rem", fontWeight: 800, color: isSelected ? "#fff" : "#333333" }}
+                      >
+                        ₱{pkg.price.toLocaleString()}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <BedDouble size={14} color={i === 0 ? "#fff" : "#45B3C0"} />
-                      <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: i === 0 ? "#fff" : "#4d4d4d" }}>
-                        {pkg.rooms}
-                      </span>
-                    </div>
-                  </div>
-
-                  {"note" in pkg && pkg.note && (
-                    <p
-                      className="mt-3 text-xs leading-relaxed"
-                      style={{ color: i === 0 ? "rgba(255,255,255,0.85)" : "#c0392b", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                    <span
+                      className="text-xs mb-4"
+                      style={{ color: isSelected ? "rgba(255,255,255,0.75)" : "#999999", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                     >
-                      {tierNote(pkg, active.maxPax)}
-                    </p>
-                  )}
-                </motion.div>
-              ))}
+                      per night
+                    </span>
+
+                    <div className="space-y-2 mt-auto pt-4" style={{ borderTop: isSelected ? "1px solid rgba(255,255,255,0.25)" : "1px solid rgba(69,179,192,0.2)" }}>
+                      <div className="flex items-center gap-2">
+                        <Users size={14} color={isSelected ? "#fff" : "#45B3C0"} />
+                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: isSelected ? "#fff" : "#4d4d4d" }}>
+                          {pkg.pax}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <BedDouble size={14} color={isSelected ? "#fff" : "#45B3C0"} />
+                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: isSelected ? "#fff" : "#4d4d4d" }}>
+                          {pkg.rooms}
+                        </span>
+                      </div>
+                    </div>
+
+                    {"note" in pkg && pkg.note && (
+                      <p
+                        className="mt-3 text-xs leading-relaxed"
+                        style={{ color: isSelected ? "rgba(255,255,255,0.85)" : "#c0392b", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                      >
+                        {tierNote(pkg, active.maxPax)}
+                      </p>
+                    )}
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         </AnimatePresence>
@@ -147,13 +189,14 @@ export function RatesSection() {
               enjoy a 20% discount on their pro-rated share. A 50% down payment confirms your reservation.
             </p>
           </div>
-          <a
-            href="#booking"
+          <button
+            type="button"
+            onClick={handleReserveClick}
             className="flex items-center gap-2 px-6 py-3 rounded-full font-bold whitespace-nowrap transition-all duration-200 hover:scale-105 hover:shadow-lg"
             style={{ backgroundColor: "#FFEB3B", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             Reserve This Villa <ArrowRight size={16} />
-          </a>
+          </button>
         </div>
 
         {/* Large group notice */}
