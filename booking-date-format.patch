@@ -1,0 +1,67 @@
+From 2c5b707895178445ccce55051b56c7faa647ce16 Mon Sep 17 00:00:00 2001
+From: Casa Primera Dev <dev@casaprimeravilla.com>
+Date: Fri, 24 Jul 2026 07:10:57 +0000
+Subject: [PATCH] Reformat booking date and check-in/check-out display in
+ booking summary
+
+---
+ src/app/components/BookingCTA.tsx |  2 +-
+ src/app/components/TermsModal.tsx | 21 +++++++++++++--------
+ 2 files changed, 14 insertions(+), 9 deletions(-)
+
+diff --git a/src/app/components/BookingCTA.tsx b/src/app/components/BookingCTA.tsx
+index fa2e3df..5860a11 100644
+--- a/src/app/components/BookingCTA.tsx
++++ b/src/app/components/BookingCTA.tsx
+@@ -459,7 +459,7 @@ export function BookingCTA() {
+               {[
+                 { icon: Phone, label: "Call Us", value: "Globe: 0917.114.6956 / 0956.836.6100\nSmart: 0919.007.8821 / 0960.381.7151\nLandline: (049) 502-3746" },
+                 { icon: Mail, label: "Email Us", value: "sales@casaprimeravilla.com" },
+-                { icon: CalendarDays, label: "Check-in / Check-out", value: "3:00 PM / 12:00 NN" },
++                { icon: CalendarDays, label: "Check-in / Check-out", value: "3:00 PM to 12 Noon" },
+                 { icon: Users, label: "Guest Capacity", value: "34–50 pax per villa" },
+               ].map(({ icon: Icon, label, value }) => (
+                 <div key={label} className="flex items-center gap-4">
+diff --git a/src/app/components/TermsModal.tsx b/src/app/components/TermsModal.tsx
+index e13ec89..6e7b844 100644
+--- a/src/app/components/TermsModal.tsx
++++ b/src/app/components/TermsModal.tsx
+@@ -41,10 +41,16 @@ function List({ items }: { items: React.ReactNode[] }) {
+ }
+ 
+ export function TermsModal({ onAccept, onClose, villa, guests, dateRange, nights, quote }: Props) {
+-  const bookingDate = format(new Date(), "MMM d, yyyy");
+-  const stayLabel = dateRange?.from && dateRange?.to
+-    ? `${format(dateRange.from, "MMM d")} – ${format(dateRange.to, "MMM d, yyyy")} (${nights} night${nights !== 1 ? "s" : ""})`
+-    : "To be confirmed";
++  const bookingDateLabel = (() => {
++    if (!dateRange?.from || !dateRange?.to) return "To be confirmed";
++    const { from, to } = dateRange;
++    const sameMonth = from.getMonth() === to.getMonth() && from.getFullYear() === to.getFullYear();
++    if (sameMonth) return `${format(from, "MMMM d")}-${format(to, "d")}, ${format(to, "yyyy")}`;
++    const sameYear = from.getFullYear() === to.getFullYear();
++    return sameYear
++      ? `${format(from, "MMMM d")} - ${format(to, "MMMM d")}, ${format(to, "yyyy")}`
++      : `${format(from, "MMMM d, yyyy")} - ${format(to, "MMMM d, yyyy")}`;
++  })();
+ 
+   return (
+     <div className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-4" onClick={onClose}>
+@@ -81,11 +87,10 @@ export function TermsModal({ onAccept, onClose, villa, guests, dateRange, nights
+                 <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>{villa || "To be selected"}</p>
+               </div>
+               <div>
+-                <p style={{ fontSize: "0.72rem", color: "#999999" }}>Reservation Request Made on</p>
+-                <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>{bookingDate}</p>
++                <p style={{ fontSize: "0.72rem", color: "#999999" }}>Booking Date</p>
++                <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>{bookingDateLabel}</p>
+                 <p style={{ fontSize: "0.72rem", color: "#999999", marginTop: "0.5rem" }}>Check-in / Check-out</p>
+-                <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>3:00 PM / 12:00 NN</p>
+-                <p style={{ fontSize: "0.78rem", color: "#666666" }}>{stayLabel}</p>
++                <p style={{ fontSize: "0.9rem", color: "#333333", fontWeight: 600 }}>3:00 PM to 12 Noon</p>
+               </div>
+               <div>
+                 <p style={{ fontSize: "0.72rem", color: "#999999" }}>Number of Pax</p>
+-- 
+2.43.0
+
