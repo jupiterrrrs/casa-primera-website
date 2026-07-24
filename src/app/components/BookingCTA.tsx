@@ -624,11 +624,6 @@ export function BookingCTA() {
                           × {nights} night{nights !== 1 ? "s" : ""} = <strong>₱{(quote.total * nights).toLocaleString()}</strong> total
                         </p>
                       )}
-                      {quote.extraHeads > 0 && (
-                        <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#c0392b", marginTop: "4px" }}>
-                          Includes +₱{quote.extraCost.toLocaleString()} extra-pax surcharge ({quote.extraHeads} head{quote.extraHeads !== 1 ? "s" : ""} × ₱500)
-                        </p>
-                      )}
                       <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", color: "#666666", marginTop: "5px" }}>
                         🛏 {quote.rooms} included in this package
                       </p>
