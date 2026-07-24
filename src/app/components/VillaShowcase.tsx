@@ -8,7 +8,7 @@ export const rateTiersABC = [
   { label: "A", price: 18000, pax: "1–10 pax", rooms: "2 Rooms" },
   { label: "B", price: 20000, pax: "11–15 pax", rooms: "3 Rooms" },
   { label: "C", price: 22000, pax: "16–20 pax", rooms: "4 Rooms", note: "+ ₱500/head for 21–25 pax" },
-  { label: "D–E", price: 27000, pax: "26–30 pax", rooms: "5 Rooms" },
+  { label: "D–E", price: 27000, pax: "26–30 pax", rooms: "5 Rooms", note: "+ ₱500/head for over 30 pax" },
 ];
 
 // Standard rate packages for Villa 4 & 5
@@ -16,8 +16,16 @@ export const rateTiersDE = [
   { label: "A", price: 21000, pax: "1–10 pax", rooms: "2 Rooms" },
   { label: "B", price: 23000, pax: "11–15 pax", rooms: "3 Rooms" },
   { label: "C", price: 25000, pax: "16–20 pax", rooms: "4 Rooms", note: "+ ₱500/head for 21–25 pax" },
-  { label: "D–E", price: 30000, pax: "26–30 pax", rooms: "5 Rooms" },
+  { label: "D–E", price: 30000, pax: "26–30 pax", rooms: "5 Rooms", note: "+ ₱500/head for over 30 pax" },
 ];
+
+// Helper: builds the "+₱500/head for over 30 pax" note for a package, appending
+// that specific villa's own maximum headcount so the cap is never wrong when
+// villas of different sizes share the same rate-tier array.
+export function tierNote(pkg: { label: string; note?: string }, maxPax: number) {
+  if (pkg.label !== "D–E" || !pkg.note) return pkg.note;
+  return `${pkg.note} · Maximum: ${maxPax} pax`;
+}
 
 export const villas = [
   {
@@ -28,6 +36,7 @@ export const villas = [
     startingPrice: rateTiersABC[0].price,
     rateTiers: rateTiersABC,
     capacity: "Up to 34",
+    maxPax: 34,
     rating: 4.9,
     image: "/images/villas/villa1.jpg",
     photos: [
@@ -60,6 +69,7 @@ export const villas = [
     startingPrice: rateTiersABC[0].price,
     rateTiers: rateTiersABC,
     capacity: "Up to 40",
+    maxPax: 40,
     rating: 4.8,
     image: "/images/villas/villa2.jpg",
     photos: [
@@ -94,6 +104,7 @@ export const villas = [
     startingPrice: rateTiersABC[0].price,
     rateTiers: rateTiersABC,
     capacity: "Up to 50",
+    maxPax: 50,
     rating: 4.7,
     image: "/images/villas/villa3.jpg",
     photos: [
@@ -128,6 +139,7 @@ export const villas = [
     startingPrice: rateTiersDE[0].price,
     rateTiers: rateTiersDE,
     capacity: "Up to 40",
+    maxPax: 40,
     rating: 4.9,
     image: "/images/villas/villa4.jpg",
     photos: [
@@ -158,6 +170,7 @@ export const villas = [
     startingPrice: rateTiersDE[0].price,
     rateTiers: rateTiersDE,
     capacity: "Up to 34",
+    maxPax: 34,
     rating: 4.6,
     image: "/images/villas/villa5.jpg",
     photos: [
@@ -376,15 +389,22 @@ function VillaModal({ villa, onClose }: { villa: Villa; onClose: () => void }) {
                 </div>
                 <div className="divide-y" style={{ borderColor: "#EAF7F8" }}>
                   {villa.rateTiers.map((pkg) => (
-                    <div key={pkg.label} className="px-4 py-2.5 flex items-center justify-between gap-3" style={{ borderBottom: "1px solid #EAF7F8" }}>
-                      <div className="flex items-baseline gap-2 flex-wrap">
-                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", fontWeight: 700, color: "#333333" }}>
-                          ₱{pkg.price.toLocaleString()}
-                        </span>
-                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#666666" }}>
-                          {tier.pax} · {tier.rooms}
-                        </span>
+                    <div key={pkg.label} className="px-4 py-2.5" style={{ borderBottom: "1px solid #EAF7F8" }}>
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-baseline gap-2 flex-wrap">
+                          <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", fontWeight: 700, color: "#333333" }}>
+                            ₱{pkg.price.toLocaleString()}
+                          </span>
+                          <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#666666" }}>
+                            {pkg.pax} · {pkg.rooms}
+                          </span>
+                        </div>
                       </div>
+                      {"note" in pkg && pkg.note && (
+                        <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#c0392b", marginTop: 4 }}>
+                          {tierNote(pkg, villa.maxPax)}
+                        </p>
+                      )}
                     </div>
                   ))}
                 </div>
