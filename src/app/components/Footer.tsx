@@ -3,7 +3,7 @@ import { MapPin, Phone, Mail } from "lucide-react";
 const socials = [
   {
     label: "Facebook",
-    href: "https://facebook.com/casaprimera",
+    href: "https://www.facebook.com/casaprimeravilla2020/",
     color: "#1877f2",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="white">
@@ -13,7 +13,7 @@ const socials = [
   },
   {
     label: "Messenger",
-    href: "https://m.me/casaprimera",
+    href: "https://m.me/casaprimeravilla2020",
     color: "#0084ff",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="white">
@@ -23,7 +23,7 @@ const socials = [
   },
   {
     label: "Viber",
-    href: "viber://chat?number=+639171234567",
+    href: "viber://chat?number=+639171146956",
     color: "#7360f2",
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
@@ -43,7 +43,7 @@ export function Footer() {
             <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0 p-1.5" style={{ backgroundColor: "#fff" }}>
               <img
                 src="/images/logo-full.png"
-                alt="Casa Primera Hotspring Resorts logo"
+                alt="Casa Primera Hot Spring Resorts logo"
                 className="w-full h-full object-contain"
               />
             </div>
@@ -53,7 +53,7 @@ export function Footer() {
                 <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: "0.95rem", color: "#FFEB3B" }}>PRIMERA</span>
               </div>
               <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.6rem", color: "#45B3C0", letterSpacing: "0.15em", textTransform: "uppercase" }}>
-                Hotspring Resorts
+                Hot Spring Resorts
               </span>
             </div>
           </div>
@@ -61,7 +61,7 @@ export function Footer() {
             "Relax, Refresh, Reconnect"
           </p>
           <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.75 }} className="mb-5">
-            Your tropical sanctuary in the heart of Calamba, Laguna. Natural hotspring pools, private villas, and unforgettable moments.
+            Your tropical sanctuary in the heart of Calamba, Laguna. Natural Hot Spring pools, private villas, and unforgettable moments.
           </p>
           {/* Social links */}
           <div className="flex flex-wrap gap-2">
@@ -155,10 +155,10 @@ export function Footer() {
 
       <div className="border-t px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-3" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
         <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem" }}>
-          © 2026 Casa Primera Hotspring Resorts. All rights reserved.
+          © 2026 Casa Primera Hot Spring Resorts. All rights reserved.
         </p>
         <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem" }}>
-          Made with ❤️ in Calamba, Laguna · <span style={{ color: "#45B3C0" }}>Relax, Refresh, Reconnect</span>
+          Made with ❤️ Hot Spring Resorts in Calamba, Laguna · <span style={{ color: "#45B3C0" }}>Relax, Refresh, Reconnect</span>
         </p>
       </div>
     </footer>

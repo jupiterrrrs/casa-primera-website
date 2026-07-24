@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 const channels = [
   {
     label: "Messenger",
-    href: "https://m.me/casaprimeraresorт",
+    href: "https://m.me/casaprimeravilla2020",
     bg: "#0084ff",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
@@ -15,7 +15,7 @@ const channels = [
   },
   {
     label: "Viber",
-    href: "viber://chat?number=+639171234567",
+    href: "viber://chat?number=+639171146956",
     bg: "#7360f2",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="white">

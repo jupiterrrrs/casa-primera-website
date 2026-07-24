@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { X, Send, MessageSquare, Bot, MessageCircle, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
-const MESSENGER_URL = "https://m.me/casaprimera";
+const MESSENGER_URL = "https://m.me/casaprimeravilla2020";
 const MAPS_URL = "https://maps.google.com/?q=Nayong+Maharlika+Village+Pansol+Calamba+Laguna+Philippines";
 
 interface Message {
