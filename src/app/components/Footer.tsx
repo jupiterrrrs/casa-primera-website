@@ -158,7 +158,7 @@ export function Footer() {
           © 2026 Casa Primera Hot Spring Resorts. All rights reserved.
         </p>
         <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem" }}>
-          Made with ❤️ Hot Spring Resorts in Calamba, Laguna · <span style={{ color: "#45B3C0" }}>Relax, Refresh, Reconnect</span>
+          Hot Spring Resorts in Calamba, Laguna · <span style={{ color: "#45B3C0" }}>Relax, Refresh, Reconnect</span>
         </p>
       </div>
     </footer>
