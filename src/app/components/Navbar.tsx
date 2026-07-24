@@ -17,7 +17,7 @@ function LogoMark() {
   return (
     <img
       src="/images/logo-transparent.png"
-      alt="Casa Primera Hotspring Resorts logo"
+      alt="Casa Primera Hot Spring Resorts logo"
       className="object-contain h-11 sm:h-14 lg:h-[68px] w-auto"
       style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.35))" }}
     />
