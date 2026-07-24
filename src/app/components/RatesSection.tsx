@@ -1,7 +1,7 @@
 ﻿import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Users, BedDouble, Sparkles, ArrowRight, PhoneCall } from "lucide-react";
-import { villas } from "./VillaShowcase";
+import { villas, tierNote } from "./VillaShowcase";
 
 export function RatesSection() {
   const [activeId, setActiveId] = useState(villas[0].id);
@@ -129,7 +129,7 @@ export function RatesSection() {
                       className="mt-3 text-xs leading-relaxed"
                       style={{ color: i === 0 ? "rgba(255,255,255,0.85)" : "#c0392b", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                     >
-                      {pkg.note}
+                      {tierNote(pkg, active.maxPax)}
                     </p>
                   )}
                 </motion.div>
