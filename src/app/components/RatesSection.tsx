@@ -1,6 +1,6 @@
 ﻿import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Users, BedDouble, Sparkles, ArrowRight } from "lucide-react";
+import { Users, BedDouble, Sparkles, ArrowRight, PhoneCall } from "lucide-react";
 import { villas } from "./VillaShowcase";
 
 export function RatesSection() {
@@ -123,6 +123,15 @@ export function RatesSection() {
                       </span>
                     </div>
                   </div>
+
+                  {"note" in pkg && pkg.note && (
+                    <p
+                      className="mt-3 text-xs leading-relaxed"
+                      style={{ color: i === 0 ? "rgba(255,255,255,0.85)" : "#c0392b", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                    >
+                      {pkg.note}
+                    </p>
+                  )}
                 </motion.div>
               ))}
             </div>
@@ -145,6 +154,14 @@ export function RatesSection() {
           >
             Reserve This Villa <ArrowRight size={16} />
           </a>
+        </div>
+
+        {/* Large group notice */}
+        <div className="flex items-start gap-3 mt-5 rounded-2xl p-5" style={{ backgroundColor: "#FFF7D6", border: "1px solid #FFE49A" }}>
+          <PhoneCall size={18} color="#B8860B" className="flex-shrink-0 mt-0.5" />
+          <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#7a5c00", lineHeight: 1.6, fontWeight: 600 }}>
+            For 51–100 pax, we can provide 2–3 combined villas. Please contact us directly for more details.
+          </p>
         </div>
       </div>
     </section>

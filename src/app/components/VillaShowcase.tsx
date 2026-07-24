@@ -7,7 +7,7 @@ import { VillaPhotoCarousel } from "./VillaPhotoCarousel";
 export const rateTiersABC = [
   { label: "A", price: 18000, pax: "1–10 pax", rooms: "2 Rooms" },
   { label: "B", price: 20000, pax: "11–15 pax", rooms: "3 Rooms" },
-  { label: "C", price: 22000, pax: "16–20 pax", rooms: "4 Rooms" },
+  { label: "C", price: 22000, pax: "16–20 pax", rooms: "4 Rooms", note: "+ ₱500/head for 21–25 pax" },
   { label: "D–E", price: 27000, pax: "26–30 pax", rooms: "5 Rooms" },
 ];
 
@@ -15,7 +15,7 @@ export const rateTiersABC = [
 export const rateTiersDE = [
   { label: "A", price: 21000, pax: "1–10 pax", rooms: "2 Rooms" },
   { label: "B", price: 23000, pax: "11–15 pax", rooms: "3 Rooms" },
-  { label: "C", price: 25000, pax: "16–20 pax", rooms: "4 Rooms" },
+  { label: "C", price: 25000, pax: "16–20 pax", rooms: "4 Rooms", note: "+ ₱500/head for 21–25 pax" },
   { label: "D–E", price: 30000, pax: "26–30 pax", rooms: "5 Rooms" },
 ];
 
