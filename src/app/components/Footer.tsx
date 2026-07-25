@@ -1,38 +1,5 @@
 import { MapPin, Phone, Mail } from "lucide-react";
 
-const socials = [
-  {
-    label: "Facebook",
-    href: "https://www.facebook.com/casaprimeravilla2020/",
-    color: "#1877f2",
-    icon: (
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="white">
-        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-      </svg>
-    ),
-  },
-  {
-    label: "Messenger",
-    href: "https://m.me/casaprimeravilla2020",
-    color: "#0084ff",
-    icon: (
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="white">
-        <path d="M12 2C6.477 2 2 6.145 2 11.243c0 3.11 1.58 5.876 4.063 7.683V22l3.71-2.04c.99.274 2.04.42 3.127.42 5.523 0 10-4.145 10-9.243S17.523 2 12 2zm1.093 12.453l-2.55-2.72-4.977 2.72 5.473-5.81 2.612 2.72 4.915-2.72-5.473 5.81z" />
-      </svg>
-    ),
-  },
-  {
-    label: "SMS",
-    href: "sms:+639171146956",
-    color: "#45B3C0",
-    icon: (
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="white">
-        <path d="M12 2C6.477 2 2 6.262 2 11.5c0 2.85 1.34 5.4 3.46 7.12-.12.94-.45 2.22-1.26 3.38-.12.17.02.4.23.36 1.7-.32 3.03-.98 3.87-1.5A11.9 11.9 0 0 0 12 20.5c5.523 0 10-4.262 10-9.5S17.523 2 12 2zM7 10.5h10v1.6H7v-1.6zm0 3.2h6.5v1.6H7v-1.6z" />
-      </svg>
-    ),
-  },
-];
-
 export function Footer() {
   return (
     <footer style={{ backgroundColor: "#333333", color: "rgba(255,255,255,0.75)" }}>
@@ -63,22 +30,6 @@ export function Footer() {
           <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.75 }} className="mb-5">
             Your tropical sanctuary in the heart of Calamba, Laguna. Natural Hot Spring pools, private villas, and unforgettable moments.
           </p>
-          {/* Social links */}
-          <div className="flex flex-wrap gap-2">
-            {socials.map(({ label, href, color, icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={label}
-                className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
-                style={{ backgroundColor: color }}
-              >
-                {icon}
-              </a>
-            ))}
-          </div>
         </div>
 
         {/* Quick Links */}
@@ -134,22 +85,6 @@ export function Footer() {
               <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem" }}>sales@casaprimeravilla.com</span>
             </li>
           </ul>
-          <div>
-            <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.4)", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>Reach Us On</p>
-            <div className="flex flex-wrap gap-2">
-              {["Messenger", "SMS"].map((c) => {
-                const s = socials.find((x) => x.label === c)!;
-                return (
-                  <a key={c} href={s.href} target="_blank" rel="noopener noreferrer"
-                    className="px-2.5 py-1 rounded-full text-xs font-medium transition-all hover:scale-105"
-                    style={{ backgroundColor: s.color, color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                  >
-                    {c}
-                  </a>
-                );
-              })}
-            </div>
-          </div>
         </div>
       </div>
 
