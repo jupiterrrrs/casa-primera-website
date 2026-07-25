@@ -506,8 +506,9 @@ export function BookingCTA() {
 
           {/* Form */}
           <motion.div
+            id="reserve-now"
             initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.15 }}
-            className="rounded-3xl p-8 shadow-2xl"
+            className="rounded-3xl p-8 shadow-2xl scroll-mt-24"
             style={{ backgroundColor: "#fff" }}
           >
             <>

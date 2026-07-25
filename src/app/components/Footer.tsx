@@ -22,12 +22,12 @@ const socials = [
     ),
   },
   {
-    label: "Viber",
-    href: "viber://chat?number=+639171146956",
-    color: "#7360f2",
+    label: "SMS",
+    href: "sms:+639171146956",
+    color: "#45B3C0",
     icon: (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
-        <path d="M11.398 1.999c-2.353.001-7.9.677-9.466 6.044-.633 2.199-.681 4.929-.046 8.349.77 4.118 5.082 7.29 7.69 8.09v2.5s-.017.455.282.546c.361.11.573-.231 1.354-1.095l.695-.804c3.337.28 5.891-.354 6.181-.447.674-.219 4.485-1.339 5.107-5.484.641-4.276.246-8.036-1.508-10.457C19.46 5.697 16.58 1.996 11.398 2z" />
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="white">
+        <path d="M12 2C6.477 2 2 6.262 2 11.5c0 2.85 1.34 5.4 3.46 7.12-.12.94-.45 2.22-1.26 3.38-.12.17.02.4.23.36 1.7-.32 3.03-.98 3.87-1.5A11.9 11.9 0 0 0 12 20.5c5.523 0 10-4.262 10-9.5S17.523 2 12 2zM7 10.5h10v1.6H7v-1.6zm0 3.2h6.5v1.6H7v-1.6z" />
       </svg>
     ),
   },
@@ -137,7 +137,7 @@ export function Footer() {
           <div>
             <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.4)", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>Reach Us On</p>
             <div className="flex flex-wrap gap-2">
-              {["Messenger", "Viber"].map((c) => {
+              {["Messenger", "SMS"].map((c) => {
                 const s = socials.find((x) => x.label === c)!;
                 return (
                   <a key={c} href={s.href} target="_blank" rel="noopener noreferrer"

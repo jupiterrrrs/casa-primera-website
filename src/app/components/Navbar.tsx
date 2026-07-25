@@ -76,7 +76,7 @@ export function Navbar() {
         {/* Mobile: Book Now stays visible in the bar at all times, dropdown toggle beside it */}
         <div className="lg:hidden flex items-center gap-3">
           <a
-            href="#booking"
+            href="#reserve-now"
             onClick={() => setMenuOpen(false)}
             className="px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 hover:scale-105 whitespace-nowrap"
             style={{ backgroundColor: "#FFEB3B", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
