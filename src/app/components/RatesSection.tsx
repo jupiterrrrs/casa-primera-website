@@ -143,7 +143,7 @@ export function RatesSection() {
                       <span
                         style={{ fontFamily: "'Fraunces', serif", fontSize: "1.9rem", fontWeight: 800, color: isSelected ? "#fff" : "#333333" }}
                       >
-                        ?{pkg.price.toLocaleString()}
+                        ₱{pkg.price.toLocaleString()}
                       </span>
                     </div>
                     <span
