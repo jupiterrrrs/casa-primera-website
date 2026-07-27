@@ -1,4 +1,4 @@
-ï»¿import { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Users, BedDouble, Sparkles, ArrowRight, PhoneCall, Check } from "lucide-react";
 import { villas, tierNote } from "./VillaShowcase";
@@ -44,11 +44,11 @@ export function RatesSection() {
             Choose a villa to view its available packages. Package rates and the number of rooms vary based on your group size. Children aged 5 and below stay free and are not included in the headcount.
           </p>
           <p className="mt-4 max-w-2xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "1.05rem", lineHeight: 1.7 }}>
-            Every package includes exclusive use of your private villa, natural hot spring pools, air-conditioned rooms, a kitchen with appliances and cooking utensils, Wi-Fi, indoor parking, and entertainment amenities like videoke, billiards, darts, and moreâ€”everything you need for a comfortable and memorable stay.
+            Every package includes exclusive use of your private villa, natural hot spring pools, air-conditioned rooms, a kitchen with appliances and cooking utensils, Wi-Fi, indoor parking, and entertainment amenities like videoke, billiards, darts, and more—everything you need for a comfortable and memorable stay.
           </p>
         </div>
 
-        {/* Villa switcher â€” horizontally scrollable on mobile, wraps on desktop */}
+        {/* Villa switcher — horizontally scrollable on mobile, wraps on desktop */}
         <div
           className="flex lg:flex-wrap lg:justify-center gap-3 mb-10 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 -mx-6 px-6 lg:mx-0 lg:px-0"
           style={{ scrollSnapType: "x mandatory" }}
@@ -143,7 +143,7 @@ export function RatesSection() {
                       <span
                         style={{ fontFamily: "'Fraunces', serif", fontSize: "1.9rem", fontWeight: 800, color: isSelected ? "#fff" : "#333333" }}
                       >
-                        â‚±{pkg.price.toLocaleString()}
+                        ?{pkg.price.toLocaleString()}
                       </span>
                     </div>
                     <span
@@ -206,7 +206,7 @@ export function RatesSection() {
         <div className="flex items-start gap-3 mt-5 rounded-2xl p-5" style={{ backgroundColor: "#FFF7D6", border: "1px solid #FFE49A" }}>
           <PhoneCall size={18} color="#B8860B" className="flex-shrink-0 mt-0.5" />
           <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#7a5c00", lineHeight: 1.6, fontWeight: 600 }}>
-            For 51â€“100 pax, we can provide 2â€“3 combined villas. Please contact us directly for more details.
+            For 51–100 pax, we can provide 2–3 combined villas. Please contact us directly for more details.
           </p>
         </div>
       </div>
