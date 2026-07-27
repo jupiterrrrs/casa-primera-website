@@ -40,8 +40,11 @@ export function RatesSection() {
           <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#333333", fontWeight: 700 }}>
             Simple, Package-Based <span style={{ color: "#45B3C0" }}>Pricing</span>
           </h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "1.05rem", lineHeight: 1.7 }}>
-            Pick a villa to see its rate packages. Every package already includes the hot spring pools, Wi-Fi, videoke, and indoor parking.
+          <p className="mt-5 max-w-2xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "1.05rem", lineHeight: 1.7 }}>
+            Choose a villa to view its available packages. Package rates and the number of rooms vary based on your group size. Children aged 5 and below stay free and are not included in the headcount.
+          </p>
+          <p className="mt-4 max-w-2xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "1.05rem", lineHeight: 1.7 }}>
+            Every package includes exclusive use of your private villa, natural hot spring pools, air-conditioned rooms, a kitchen with appliances and cooking utensils, Wi-Fi, indoor parking, and entertainment amenities like videoke, billiards, darts, and more—everything you need for a comfortable and memorable stay.
           </p>
         </div>
 
@@ -185,8 +188,8 @@ export function RatesSection() {
           <div className="flex items-start gap-3 max-w-xl">
             <Sparkles size={18} color="#45B3C0" className="flex-shrink-0 mt-0.5" />
             <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: "#666666", lineHeight: 1.6 }}>
-              Children aged 5 and below stay free and are not counted toward the headcount. Senior citizens and PWDs
-              enjoy a 20% discount on their pro-rated share. A 50% down payment confirms your reservation.
+              Senior citizens and PWDs enjoy a 20% discount on their pro-rated share. A 50% down payment confirms
+              your reservation.
             </p>
           </div>
           <button
