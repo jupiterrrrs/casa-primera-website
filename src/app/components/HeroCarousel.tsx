@@ -49,7 +49,7 @@ export function HeroCarousel() {
   }, [isAutoPlaying, next]);
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#333333]">
+    <section id="home" className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#333333]">
       <AnimatePresence mode="wait">
         <motion.div
           key={slides[current].id}

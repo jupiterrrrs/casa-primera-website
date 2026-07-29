@@ -1,0 +1,41 @@
+diff --git a/src/app/components/HeroCarousel.tsx b/src/app/components/HeroCarousel.tsx
+index c01d3c4..3ab35a6 100644
+--- a/src/app/components/HeroCarousel.tsx
++++ b/src/app/components/HeroCarousel.tsx
+@@ -49,7 +49,7 @@ export function HeroCarousel() {
+   }, [isAutoPlaying, next]);
+ 
+   return (
+-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#333333]">
++    <section id="home" className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#333333]">
+       <AnimatePresence mode="wait">
+         <motion.div
+           key={slides[current].id}
+diff --git a/src/app/components/Navbar.tsx b/src/app/components/Navbar.tsx
+index 2bd97f3..c4e44cb 100644
+--- a/src/app/components/Navbar.tsx
++++ b/src/app/components/Navbar.tsx
+@@ -48,17 +48,17 @@ export function Navbar() {
+     >
+       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+         {/* Logo */}
+-        <a
+-          href="#"
+-          onClick={(e) => {
+-            e.preventDefault();
+-            window.scrollTo({ top: 0, behavior: "smooth" });
++        <button
++          type="button"
++          onClick={() => {
+             setMenuOpen(false);
++            document.getElementById("home")?.scrollIntoView({ behavior: "smooth", block: "start" });
+           }}
+           className="flex items-center group"
++          aria-label="Scroll to top"
+         >
+           <LogoMark />
+-        </a>
++        </button>
+ 
+         {/* Desktop nav */}
+         <div className="hidden lg:flex items-center gap-6">

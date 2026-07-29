@@ -48,17 +48,17 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
         {/* Logo */}
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+        <button
+          type="button"
+          onClick={() => {
             setMenuOpen(false);
+            document.getElementById("home")?.scrollIntoView({ behavior: "smooth", block: "start" });
           }}
           className="flex items-center group"
+          aria-label="Scroll to top"
         >
           <LogoMark />
-        </a>
+        </button>
 
         {/* Desktop nav */}
         <div className="hidden lg:flex items-center gap-6">
