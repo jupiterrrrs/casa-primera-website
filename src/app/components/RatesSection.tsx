@@ -38,7 +38,7 @@ export function RatesSection() {
             Villa Rates
           </span>
           <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#333333", fontWeight: 700 }}>
-            Your Perfect Villa Package <span style={{ color: "#45B3C0" }}>Awaits</span>
+            Your Perfect Villa Package <span style={{ color: "#333333" }}>Awaits</span>
           </h2>
           <p className="mt-5 w-full" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "0.85rem", lineHeight: 1.55 }}>
             Choose a villa to view its available packages. Package rates and the number of rooms vary based on your group size. Children aged 5 and below stay free and are not included in the headcount.

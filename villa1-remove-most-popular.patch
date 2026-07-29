@@ -1,0 +1,13 @@
+diff --git a/src/app/components/VillaShowcase.tsx b/src/app/components/VillaShowcase.tsx
+index f4b4b00..0323504 100644
+--- a/src/app/components/VillaShowcase.tsx
++++ b/src/app/components/VillaShowcase.tsx
+@@ -54,7 +54,7 @@ export const villas = [
+     ] as string[],
+     features: ["5 Air-Con Bedrooms", "Adult & Kiddie Pool", "Garden & Playground", "Senior/PWD-Friendly"],
+     desc: "As the pioneer villa of Casa Primera Hot Spring Resorts, Villa 1 is a 2-storey private villa perfect for family vacations, reunions, and intimate celebrations. It features a vast garden, a children's playground, a spacious dining hall, and a kitchen area. Guests can enjoy a private hot spring adult pool (4–5.5 ft deep) and a kiddie pool (2–3 ft deep). Designed to accommodate up to 34 guests, the villa offers five fully air-conditioned bedrooms, each with a private bathroom, shower heater, and hair dryer. With two ground-floor bedrooms and a wheelchair ramp, the villa is senior and PWD-friendly. Also includes FREE Wi-Fi, TVs, FREE videoke, a dining hall, kitchen, grilling area, and indoor parking for 1–2 vehicles.",
+-    highlight: true,
++    highlight: false,
+     blocked: [
+       { from: new Date(2026, 6, 4), to: new Date(2026, 6, 6) },
+       { from: new Date(2026, 6, 18), to: new Date(2026, 6, 22) },
