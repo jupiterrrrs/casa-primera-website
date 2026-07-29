@@ -95,30 +95,53 @@ export function HeroCarousel() {
             background: "radial-gradient(ellipse 85% 80% at center, rgba(15,90,100,0.38) 0%, rgba(15,90,100,0.22) 45%, rgba(15,90,100,0.08) 70%, rgba(15,90,100,0) 88%)",
           }}
         >
+          <p
+            style={{
+              fontFamily: "'Alex Brush', cursive",
+              fontSize: "clamp(1.5rem, 4.2vw, 2.5rem)",
+              color: "#FFEB3B",
+              lineHeight: 1.1,
+              textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+            }}
+          >
+            Your Private Escape.
+          </p>
           <h1
             style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontWeight: 800,
-              fontSize: "clamp(1.3rem, 5.5vw, 2.4rem)",
+              fontSize: "clamp(1.4rem, 7.5vw, 3.4rem)",
               color: "#fff",
-              letterSpacing: "0.005em",
-              lineHeight: 1.25,
+              letterSpacing: "0.01em",
+              lineHeight: 1.08,
               textShadow: "0 3px 14px rgba(0,0,0,0.4)",
               margin: "0.15em 0",
+              whiteSpace: "nowrap",
             }}
           >
-            Experience the Most Trusted and Top-Rated Natural Hot Spring Resort in Pansol.
+            RELAX. REFRESH.
           </h1>
           <p
             style={{
-              fontFamily: "'Plus Jakarta Sans', sans-serif",
-              fontSize: "clamp(0.85rem, 2.2vw, 1.1rem)",
-              color: "rgba(255,255,255,0.95)",
-              lineHeight: 1.65,
-              marginTop: "0.6em",
+              fontFamily: "'Alex Brush', cursive",
+              fontSize: "clamp(2.1rem, 7vw, 3.6rem)",
+              color: "#FFEB3B",
+              lineHeight: 1,
+              textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+              marginBottom: "0.55em",
             }}
           >
-            Where families and friends gather, laughter echoes, songs are shared, and memories are made.
+            Reconnect.
+          </p>
+          <p
+            style={{
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontSize: "clamp(0.82rem, 2.1vw, 1.05rem)",
+              color: "rgba(255,255,255,0.95)",
+              lineHeight: 1.65,
+            }}
+          >
+            Experience the Most Trusted and Top-Rated Natural Hot Spring Resort in Pansol. A place where comfort feels like home — to <strong style={{ fontWeight: 700 }}>gather, sing, laugh,</strong> and create <strong style={{ fontWeight: 700 }}>memories your heart will always long to return to.</strong> ❤️
           </p>
         </motion.div>
         <motion.div
