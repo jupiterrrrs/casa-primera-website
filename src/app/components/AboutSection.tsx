@@ -5,7 +5,7 @@ const pillars = [
   { icon: Leaf, label: "Natural Springs", desc: "Mineral-rich volcanic water with healing properties, sourced straight from the earth." },
   { icon: Heart, label: "Family First", desc: "Designed for all ages — a place where family memories are made and cherished." },
   { icon: Sun, label: "Year-Round Fun", desc: "Open every day of the year with activities and amenities that never get old." },
-  { icon: Shield, label: "Safe & Clean", desc: "Pool water tested daily; our facilities are maintained to the highest hygiene standards." },
+  { icon: Shield, label: "Safe & Clean", desc: "Our facilities are maintained to the highest hygiene standards." },
 ];
 
 export function AboutSection() {
@@ -70,13 +70,13 @@ export function AboutSection() {
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#4d4d4d", lineHeight: 1.85, fontSize: "1.05rem" }}
               className="mb-5"
             >
-              Tucked away in the lush landscapes of Calamba, Laguna, Casa Primera Hotspring Resorts was born from a simple belief: everyone deserves a place to truly unwind. Since opening, we have welcomed thousands of families, couples, and friends seeking the restorative magic of natural mineral springs.
+              Tucked away in the lush landscapes of Calamba, Laguna, Casa Primera Hot Spring Resorts was born from a simple belief: everyone deserves a place to truly unwind. Since opening, we have welcomed thousands of families, couples, and friends seeking the restorative magic of natural mineral springs.
             </p>
             <p
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#4d4d4d", lineHeight: 1.85, fontSize: "1.05rem" }}
               className="mb-10"
             >
-              Our resort blends the warmth of Filipino hospitality with world-class amenities — natural hotspring pools, private villas nestled in tropical gardens, and a host of activities that make every visit unforgettable.
+              Our resort blends the warmth of Filipino hospitality with world-class amenities — natural Hot Spring pools, private villas nestled in tropical gardens, and a various of activities that make every visit unforgettable.
             </p>
 
             <div className="grid grid-cols-2 gap-5">

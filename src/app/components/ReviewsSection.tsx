@@ -70,7 +70,7 @@ const fbReviews = [
     avatar: "MV",
     rating: 5,
     date: "June 2026",
-    text: "Cleanest resort in Pansol talaga! Our family came for Villa 4 and it was PERFECT for our reunion. Ang linaw ng tubig sa pools at masarap yung natural hotspring. Staff were super accommodating. Check-in was smooth and organized. 100% babalik kami! 🌊💙",
+    text: "Cleanest resort in Pansol talaga! Our family came for Villa 4 and it was PERFECT for our reunion. Ang linaw ng tubig sa pools at masarap yung natural Hot Spring. Staff were super accommodating. Check-in was smooth and organized. 100% babalik kami! 🌊💙",
     helpful: 67,
   },
   {
@@ -115,7 +115,7 @@ const fbReviews = [
     avatar: "DO",
     rating: 5,
     date: "March 2026",
-    text: "Casa Primera has been our go-to resort since they opened Villa 2 in 2014. Now on our 8th visit! Every experience is consistent — clean pools, warm staff, natural hotspring water. The kids love the play area. Truly the most trusted resort in Pansol! 🌿",
+    text: "Casa Primera has been our go-to resort since they opened Villa 2 in 2014. Now on our 8th visit! Every experience is consistent — clean pools, warm staff, natural Hot Spring water. The kids love the play area. Truly the most trusted resort in Pansol! 🌿",
     helpful: 29,
   },
 ];

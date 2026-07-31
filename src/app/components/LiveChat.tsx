@@ -16,13 +16,28 @@ interface Message {
 const faqMap: Array<{ keywords: string[]; answer: string; isLocation?: boolean }> = [
   { keywords: ["check-in", "checkin", "check in", "arrival", "arrive"], answer: "Check-in time is 3:00 PM. Early check-in may be arranged subject to availability — please contact us in advance!" },
   { keywords: ["check-out", "checkout", "check out", "departure", "leave"], answer: "Check-out time is 12:00 NN (noon). Late check-out can be requested for an additional fee." },
-  { keywords: ["price", "rate", "cost", "how much", "magkano"], answer: "Our villa rates start at ₱18,000 for Villas 1–3 and ₱21,000 for Villas 4–5, depending on your headcount. Scroll up to see the full rate breakdown for each villa! 😊" },
+  {
+    keywords: ["price", "rate", "cost", "how much", "magkano"],
+    answer:
+      "Here are our villa rates 🏡💰\n\n" +
+      "Villa 1, 2 & 3:\n" +
+      "• A: ₱18,000 – 1–10 pax, 2 Rooms\n" +
+      "• B: ₱20,000 – 11–15 pax, 3 Rooms\n" +
+      "• C: ₱22,000 – 16–20 pax, 4 Rooms (+₱500/head for 21–25 pax)\n" +
+      "• D–E: ₱27,000 – 26–30 pax, 5 Rooms (+₱500/head over 30 pax)\n\n" +
+      "Villa 4 & 5:\n" +
+      "• A: ₱21,000 – 1–10 pax, 2 Rooms\n" +
+      "• B: ₱23,000 – 11–15 pax, 3 Rooms\n" +
+      "• C: ₱25,000 – 16–20 pax, 4 Rooms (+₱500/head for 21–25 pax)\n" +
+      "• D–E: ₱30,000 – 26–30 pax, 5 Rooms (+₱500/head over 30 pax)\n\n" +
+      "Max capacity: Villa 1 & 5 up to 34 pax, Villa 2 & 4 up to 40 pax, Villa 3 up to 50 pax. 😊",
+  },
   { keywords: ["capacity", "pax", "guests", "how many", "max"], answer: "Capacity varies per villa: Villa 1 up to 34 pax, Villa 2 up to 40 pax, Villa 3 up to 50 pax, Villa 4 up to 40 pax, and Villa 5 up to 34 pax. Scroll up to see full details for each villa! 🎉" },
   { keywords: ["payment", "pay", "gcash", "maya", "bank transfer", "cash"], answer: "We accept BDO Bank Transfer. A 50% down payment is required to confirm your reservation." },
   { keywords: ["cancel", "refund", "cancellation"], answer: "Cancellations 7+ days before check-in may be refunded less 10%. Cancellations within 7 days are non-refundable. Contact us ASAP if plans change!" },
   { keywords: ["book", "reserve", "reservation", "how to"], answer: "To book: 1️⃣ Check availability on the calendar 2️⃣ Fill out the reservation form or message us 3️⃣ Pay 50% down payment 4️⃣ Receive confirmation. Easy! 🌊" },
   { keywords: ["wifi", "internet"], answer: "Yes! We have complimentary high-speed WiFi available throughout the resort. 📶" },
-  { keywords: ["pool", "hotspring", "hot spring", "spring"], answer: "Our natural mineral hotspring pools are open day and night! The mineral-rich volcanic water is known for its therapeutic properties. 🌊✨" },
+  { keywords: ["pool", "hotspring", "hot spring", "spring"], answer: "Our natural mineral Hot Spring pools are open day and night! The mineral-rich volcanic water is known for its therapeutic properties. 🌊✨" },
   { keywords: ["parking", "park", "car"], answer: "Yes, we have free parking available for resort guests. Limited spaces, so arriving early is recommended especially on weekends!" },
   { keywords: ["food", "eat", "bbq", "grill", "catering"], answer: "We have BBQ grill stations available! You may bring personal food. In-house catering can also be arranged for large groups — just ask us in advance." },
   { keywords: ["pet", "dog", "cat", "animal"], answer: "We're sorry — pets are not allowed inside the villas and resort premises. 🐾" },
@@ -59,7 +74,7 @@ function getAnswer(input: string): { text: string; showMessenger: boolean; showM
 export function LiveChat() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { id: 0, from: "bot", text: "Hi! 👋 Welcome to Casa Primera Hotspring Resorts. I'm your virtual assistant! Ask me anything about our villas, rates, bookings, or amenities." },
+    { id: 0, from: "bot", text: "Hi! 👋 Welcome to Casa Primera Hot Spring Resorts. I'm your virtual assistant! Ask me anything about our villas, rates, bookings, or amenities." },
   ]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
@@ -85,29 +100,44 @@ export function LiveChat() {
   return (
     <>
       {/* Toggle button */}
-      <button
-        onClick={() => setOpen((o) => !o)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110"
-        style={{ backgroundColor: "#45B3C0" }}
-        aria-label="Open live chat"
-      >
-        <AnimatePresence mode="wait">
-          {open ? (
-            <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
-              <X size={22} color="#fff" />
-            </motion.span>
-          ) : (
-            <motion.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
-              <MessageSquare size={22} color="#fff" />
+      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2">
+        <AnimatePresence>
+          {!open && (
+            <motion.span
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 10 }}
+              className="px-3 py-1.5 rounded-full shadow-lg text-sm font-semibold whitespace-nowrap"
+              style={{ backgroundColor: "#fff", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            >
+              Chat with Us
             </motion.span>
           )}
         </AnimatePresence>
-        {!open && (
-          <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full text-white flex items-center justify-center text-xs" style={{ backgroundColor: "#FFEB3B", color: "#333333", fontWeight: 700 }}>
-            1
-          </span>
-        )}
-      </button>
+        <button
+          onClick={() => setOpen((o) => !o)}
+          className="relative w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 flex-shrink-0"
+          style={{ backgroundColor: "#45B3C0" }}
+          aria-label="Open live chat"
+        >
+          <AnimatePresence mode="wait">
+            {open ? (
+              <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
+                <X size={22} color="#fff" />
+              </motion.span>
+            ) : (
+              <motion.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
+                <MessageSquare size={22} color="#fff" />
+              </motion.span>
+            )}
+          </AnimatePresence>
+          {!open && (
+            <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full text-white flex items-center justify-center text-xs" style={{ backgroundColor: "#FFEB3B", color: "#333333", fontWeight: 700 }}>
+              1
+            </span>
+          )}
+        </button>
+      </div>
 
       {/* Chat window */}
       <AnimatePresence>
@@ -126,7 +156,7 @@ export function LiveChat() {
                 <Bot size={18} color="#fff" />
               </div>
               <div className="flex-1">
-                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: "0.9rem", color: "#fff" }}>Casa Primera AI</p>
+                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: "0.9rem", color: "#fff" }}>Casa Primera</p>
                 <div className="flex items-center gap-1">
                   <span className="w-2 h-2 rounded-full bg-green-300 animate-pulse" />
                   <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "rgba(255,255,255,0.85)" }}>Online · Usually replies instantly</p>
@@ -163,6 +193,7 @@ export function LiveChat() {
                         fontFamily: "'Plus Jakarta Sans', sans-serif",
                         borderBottomRightRadius: msg.from === "user" ? 4 : undefined,
                         borderBottomLeftRadius: msg.from === "bot" ? 4 : undefined,
+                        whiteSpace: "pre-line",
                       }}
                     >
                       {msg.text}
@@ -211,6 +242,16 @@ export function LiveChat() {
 
             {/* Quick replies */}
             <div className="px-3 pb-2 flex gap-2 flex-wrap">
+              <a
+                href={MESSENGER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 hover:scale-105 flex items-center gap-1.5"
+                style={{ backgroundColor: "#0084FF", color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              >
+                <MessageCircle size={12} />
+                Live Chat with Us
+              </a>
               {quickReplies.map((q) => (
                 <button
                   key={q}

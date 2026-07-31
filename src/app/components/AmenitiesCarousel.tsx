@@ -6,7 +6,7 @@ const amenities = [
   {
     id: 1,
     icon: Waves,
-    title: "Natural Hotspring Pool",
+    title: "Natural Hot Spring Pool",
     desc: "Soak in mineral-rich volcanic spring water renowned for its therapeutic benefits, open day and night.",
     image: "/images/amenities/hotspring-pool.jpg",
     color: "#45B3C0",

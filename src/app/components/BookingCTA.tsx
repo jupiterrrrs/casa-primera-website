@@ -472,9 +472,9 @@ export function BookingCTA() {
       </div>
 
       <div className="relative max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left info */}
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="lg:pt-6 lg:pr-4">
             <span className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-6" style={{ backgroundColor: "#FFEB3B", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}>
               Contact Us
             </span>
@@ -482,9 +482,9 @@ export function BookingCTA() {
               Plan Your Perfect<br /><span style={{ color: "#FFEB3B" }}>Getaway Today</span>
             </h2>
             <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "rgba(255,255,255,0.82)", lineHeight: 1.8, fontSize: "1.05rem" }} className="mb-10">
-              Reserve your slice of tropical paradise at Casa Primera. Whether it's a weekend with family or a romantic escape for two, we have the perfect villa waiting for you.
+              Reserve your private villa at Casa Primera — the perfect destination for small gatherings, family reunions, celebrations, and team-building events, all in the comfort of your own exclusive villa.
             </p>
-            <div className="space-y-5">
+            <div className="space-y-6">
               {[
                 { icon: Phone, label: "Call Us", value: "Globe: 0917.114.6956 / 0956.836.6100\nSmart: 0919.007.8821 / 0960.381.7151\nLandline: (049) 502-3746" },
                 { icon: Mail, label: "Email Us", value: "sales@casaprimeravilla.com" },
