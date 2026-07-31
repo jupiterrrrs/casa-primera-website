@@ -1,20 +1,20 @@
 import { motion } from "motion/react";
-import { CalendarDays, MessageCircle, CreditCard, CheckCircle2, MapPin, Clock } from "lucide-react";
+import { Home, CalendarDays, CreditCard, CheckCircle2, MapPin, Clock } from "lucide-react";
 
 const steps = [
   {
     number: "01",
-    icon: CalendarDays,
-    title: "Check Availability",
-    desc: "Browse our villa collection and use the booking calendar to check available dates. Blocked dates in red mean the villa is already reserved.",
+    icon: Home,
+    title: "Choose your Villa",
+    desc: "Browse our villa collection and find the perfect villa for your group. Need assistance? Click the chat icon in the bottom-right corner then choose \"Live Chat with Us.\"",
     color: "#45B3C0",
     bg: "#DCF1F3",
   },
   {
     number: "02",
-    icon: MessageCircle,
-    title: "Inquire & Reserve",
-    desc: "Fill out the reservation form on this page, or message us via Messenger or Viber to confirm your preferred villa, dates, and guest count.",
+    icon: CalendarDays,
+    title: "Check Availability & Request Booking",
+    desc: "Click Book Now and fill out the reservation form. Click the calendar to check available dates & villas. Review our Terms & Conditions before confirming your booking request.",
     color: "#FFEB3B",
     bg: "#EAF7F8",
   },
@@ -22,31 +22,31 @@ const steps = [
     number: "03",
     icon: CreditCard,
     title: "Pay the Down Payment",
-    desc: "Secure your reservation by paying 50% down payment via Bank Transfer. Send your proof of payment to our contact number.",
+    desc: "You will receive our bank details on your email. Secure your reservation by paying 50% down payment via Bank Transfer/Deposit, then email us back your payment receipt for verification.",
     color: "#45B3C0",
     bg: "#DCF1F3",
   },
   {
     number: "04",
     icon: CheckCircle2,
-    title: "Receive Confirmation",
-    desc: "Once payment is verified, you will receive a confirmation message with your booking details, villa assignment, and pre-arrival checklist.",
+    title: "Reservation Confirmation",
+    desc: "Once payment is verified, you will receive a Reservation Confirmation email.",
     color: "#333333",
     bg: "#DCF1F3",
   },
   {
     number: "05",
     icon: MapPin,
-    title: "Head to Casa Primera",
-    desc: "Navigate to our resort in Brgy. Pansol, Calamba City, Laguna using Google Maps or Waze. Check-in starts at 3:00 PM.",
+    title: "Head to Casa Primera & Check-In",
+    desc: "Navigate to our resort via Google Maps or Waze. Check-in just right on time. Kindly note that we don't have a lobby or waiting area inside the villa. Settle the remaining balance upon arrival.",
     color: "#FFEB3B",
     bg: "#EAF7F8",
   },
   {
     number: "06",
     icon: Clock,
-    title: "Enjoy & Check Out",
-    desc: "Relax, refresh, and reconnect! Check-out time is 12:00 NN. Settle remaining balance upon arrival. We hope to see you again!",
+    title: "Enjoy & Check-Out",
+    desc: "Relax, refresh, and reconnect with your family and friends! Check-out on time. We hope to see you again!",
     color: "#333333",
     bg: "#DCF1F3",
   },
@@ -61,10 +61,10 @@ export function HowToBook() {
             Easy as 1-2-3
           </span>
           <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#333333", fontWeight: 700 }}>
-            How to <span style={{ color: "#45B3C0" }}>Book</span> & Reserve
+            How to <span style={{ color: "#45B3C0" }}>Book</span>
           </h2>
           <p className="mt-4 max-w-xl mx-auto" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "1.05rem", lineHeight: 1.7 }}>
-            Booking your tropical getaway at Casa Primera is quick and simple. Follow these easy steps to secure your villa.
+            Booking your tropical getaway at Casa Primera is quick and simple. Follow these easy steps to secure your private villa.
           </p>
         </div>
 
@@ -97,17 +97,17 @@ export function HowToBook() {
         </div>
 
         {/* Quick info bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {[
-            { label: "Down Payment", value: "50%", note: "to secure booking", color: "#45B3C0" },
-            { label: "Check-in", value: "3:00 PM", note: "earliest arrival", color: "#333333" },
-            { label: "Check-out", value: "12:00 NN", note: "latest departure", color: "#FFEB3B" },
-            { label: "Guest Capacity", value: "34–50", note: "pax per villa", color: "#45B3C0" },
+            { label: "Down Payment", value: "50%", note: "to secure reservation", color: "#45B3C0" },
+            { label: "Balance", value: "50%", note: "Payable Upon Arrival", color: "#333333" },
+            { label: "Security Deposit", value: "Php 2,000", note: "Refundable Upon Check-out (if no incidental expenses are incurred)", color: "#FFEB3B" },
+            { label: "Guest Capacity", value: "34–50 pax", note: "per villa", color: "#45B3C0" },
           ].map(({ label, value, note, color }) => (
-            <div key={label} className="rounded-2xl p-4 text-center shadow-sm" style={{ backgroundColor: "#fff" }}>
+            <div key={label} className="rounded-2xl p-4 text-center shadow-sm flex flex-col" style={{ backgroundColor: "#fff" }}>
               <p style={{ fontFamily: "'Fraunces', serif", fontSize: "1.5rem", fontWeight: 800, color }}>{value}</p>
               <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.82rem", fontWeight: 600, color: "#333333" }}>{label}</p>
-              <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.75rem", color: "#999999" }}>{note}</p>
+              <p className="mt-0.5" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#999999", lineHeight: 1.4 }}>{note}</p>
             </div>
           ))}
         </div>
