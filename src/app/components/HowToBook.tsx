@@ -85,10 +85,7 @@ export function HowToBook() {
                   <Icon size={22} color={color} />
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span style={{ fontFamily: "'Fraunces', serif", fontSize: "0.8rem", fontWeight: 700, color: color }}>{number}</span>
-                    <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.05rem", fontWeight: 700, color: "#333333" }}>{title}</h3>
-                  </div>
+                  <h3 className="mb-1" style={{ fontFamily: "'Fraunces', serif", fontSize: "1.05rem", fontWeight: 700, color: "#333333" }}>{title}</h3>
                   <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#666666", lineHeight: 1.7 }}>{desc}</p>
                 </div>
               </div>

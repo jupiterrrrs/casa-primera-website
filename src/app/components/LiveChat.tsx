@@ -100,23 +100,38 @@ export function LiveChat() {
   return (
     <>
       {/* Toggle button */}
-      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2">
+      <div className="fixed bottom-6 right-6 z-50 w-14 h-14">
         <AnimatePresence>
           {!open && (
-            <motion.span
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 10 }}
-              className="px-3 py-1.5 rounded-full shadow-lg text-sm font-semibold whitespace-nowrap"
-              style={{ backgroundColor: "#fff", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            <motion.svg
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1, rotate: 360 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ opacity: { duration: 0.3 }, scale: { duration: 0.3 }, rotate: { duration: 14, repeat: Infinity, ease: "linear" } }}
+              className="absolute pointer-events-none"
+              style={{ width: 96, height: 96, top: -21, left: -21 }}
+              viewBox="0 0 96 96"
             >
-              Chat with Us
-            </motion.span>
+              <defs>
+                <path id="chatRingPath" d="M 48,48 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
+              </defs>
+              <text
+                fill="#333333"
+                stroke="#fff"
+                strokeWidth="3"
+                paintOrder="stroke"
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: "8px", letterSpacing: "1.5px" }}
+              >
+                <textPath href="#chatRingPath" startOffset="0%">
+                  • CHAT WITH US • CHAT WITH US&nbsp;
+                </textPath>
+              </text>
+            </motion.svg>
           )}
         </AnimatePresence>
         <button
           onClick={() => setOpen((o) => !o)}
-          className="relative w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 flex-shrink-0"
+          className="relative w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110"
           style={{ backgroundColor: "#45B3C0" }}
           aria-label="Open live chat"
         >
