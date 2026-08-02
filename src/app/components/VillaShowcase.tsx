@@ -54,20 +54,17 @@ export const villas = [
     ] as string[],
     features: ["5 Air-Con Bedrooms", "Adult & Kiddie Pool", "Garden & Playground", "Senior/PWD-Friendly", "Kitchen and Videoke"],
     amenities: [
-      "5 fully air-conditioned bedrooms, each with private bathroom, shower heater & hair dryer",
-      "2 ground-floor bedrooms with wheelchair ramp — Senior/PWD-friendly",
-      "Private Hot Spring adult pool (4–5.5 ft deep)",
-      "Kiddie pool (2–3 ft deep)",
-      "Vast garden & children's playground",
-      "Spacious dining hall & kitchen area",
-      "Grilling area",
-      "FREE videoke",
-      "Indoor parking for 1–2 vehicles",
-      "FREE Wi-Fi and sound system",
-      "Fully air-conditioned rooms with TVs",
-      "FREE beddings, blankets & towels for your headcount",
-      "FREE use of kitchen with basic cooking utensils, ref, stove, LPG, oven toaster, rice cooker & hot/cold water dispenser",
-      "Indoor parking spaces & generator",
+      "🌴 Private Hot Spring Pool",
+      "🌴 Kiddie Pool & Playground",
+      "🌴 Fully-Airconditioned Rooms w/ TVs",
+      "🌴 Bathrooms with Shower Heaters (toiletries such as shampoo, soap, toothbrush, etc. are not provided)",
+      "🌴 FREE WIFI",
+      "🌴 FREE use of Videoke & Sound System",
+      "🌴 FREE use of beddings, blankets, and towels good for your number of pax",
+      "🌴 FREE use of Kitchen with basic cooking utensils (dining utensils not provided), Ref, Stove, LPG, Oven Toaster, Microwave (upon request), Rice Cooker, BBQ Grill, Hot & Cold Water Dispenser (with one free bottle. Php 50 for each succeeding bottle)",
+      "🌴 FREE use of billiards, darts, table tennis, water volleyball, mahjong, bingo, chess, and cards",
+      "🌴 Indoor Parking Spaces",
+      "🌴 Generator",
     ],
     desc: "As the pioneer villa of Casa Primera Hot Spring Resorts, Villa 1 is a 2-storey private villa perfect for family vacations, reunions, and intimate celebrations. It features a vast garden, a children's playground, a spacious dining hall, and a kitchen area. Guests can enjoy a private hot spring adult pool (4–5.5 ft deep) and a kiddie pool (2–3 ft deep). Designed to accommodate up to 34 guests, the villa offers five fully air-conditioned bedrooms, each with a private bathroom, shower heater, and hair dryer. With two ground-floor bedrooms and a wheelchair ramp, the villa is senior and PWD-friendly. Also includes FREE Wi-Fi, TVs, FREE videoke, a dining hall, kitchen, grilling area, and indoor parking for 1–2 vehicles.",
     highlight: false,
@@ -106,20 +103,17 @@ export const villas = [
     ] as string[],
     features: ["5 Air-Con Bedrooms", "Adult & Kiddie Pool", "Children's Playground", "Senior/PWD-Friendly", "Kitchen and Videoke"],
     amenities: [
-      "5 fully air-conditioned bedrooms, each with private bathroom, shower heater & hair dryer",
-      "1 ground-floor bedroom — Senior/PWD-friendly",
-      "Private Hot Spring adult pool (4–5.5 ft deep)",
-      "Kiddie pool (2–3 ft deep)",
-      "Spacious children's playground",
-      "Dining hall & kitchen area",
-      "Grilling area",
-      "FREE videoke",
-      "Indoor parking for 4–5 vehicles",
-      "FREE Wi-Fi and sound system",
-      "Fully air-conditioned rooms with TVs",
-      "FREE beddings, blankets & towels for your headcount",
-      "FREE use of kitchen with basic cooking utensils, ref, stove, LPG, oven toaster, rice cooker & hot/cold water dispenser",
-      "Indoor parking spaces & generator",
+      "🌴 Private Hot Spring Pool",
+      "🌴 Kiddie Pool & Playground",
+      "🌴 Fully-Airconditioned Rooms w/ TVs",
+      "🌴 Bathrooms with Shower Heaters (toiletries such as shampoo, soap, toothbrush, etc. are not provided)",
+      "🌴 FREE WIFI",
+      "🌴 FREE use of Videoke & Sound System",
+      "🌴 FREE use of beddings, blankets, and towels good for your number of pax",
+      "🌴 FREE use of Kitchen with basic cooking utensils (dining utensils not provided), Ref, Stove, LPG, Oven Toaster, Microwave (upon request), Rice Cooker, BBQ Grill, Hot & Cold Water Dispenser (with one free bottle. Php 50 for each succeeding bottle)",
+      "🌴 FREE use of billiards, darts, table tennis, water volleyball, mahjong, bingo, chess, and cards",
+      "🌴 Indoor Parking Spaces",
+      "🌴 Generator",
     ],
     desc: "Create unforgettable moments with family and friends at Villa 2, a private villa designed for reunions, celebrations, and relaxing group getaways. It features a spacious children's playground and a private hot spring adult pool (4–5.5 ft deep) with kiddie pool (2–3 ft deep). Designed to accommodate up to 40 guests, the villa offers five fully air-conditioned bedrooms, including one ground-floor bedroom, making it senior and PWD-friendly. Each bedroom has a private bathroom, shower heater, and hair dryer. Includes a spacious dining hall, kitchen area, grilling area, FREE Wi-Fi, TVs, FREE videoke, and indoor parking for 4–5 vehicles.",
     highlight: false,
@@ -158,22 +152,18 @@ export const villas = [
     ] as string[],
     features: ["6 Air-Con Bedrooms", "Jacuzzi Available", "Adult & Kiddie Pool", "Senior/PWD-Friendly", "Kitchen and Videoke"],
     amenities: [
-      "6 fully air-conditioned bedrooms (4 with private bathroom, 2 share a common bathroom)",
-      "2 ground-floor bedrooms — Senior/PWD-friendly",
-      "Private Hot Spring adult pool (4–4.5 ft deep)",
-      "Kiddie pool (2–2.5 ft deep)",
-      "Jacuzzi available for rent (₱500/30 minutes)",
-      "Dining area & kitchen",
-      "Grilling area",
-      "FREE videoke",
-      "Table tennis, billiards, darts & water volleyball",
-      "Playground",
-      "Indoor parking for 2–3 vehicles",
-      "FREE Wi-Fi and sound system",
-      "Fully air-conditioned rooms with TVs",
-      "FREE beddings, blankets & towels for your headcount",
-      "FREE use of kitchen with basic cooking utensils, ref, stove, LPG, oven toaster, rice cooker & hot/cold water dispenser",
-      "Indoor parking spaces & generator",
+      "🌴 Private Hot Spring Pool",
+      "🌴 Kiddie Pool & Playground",
+      "🌴 Fully-Airconditioned Rooms w/ TVs",
+      "🌴 Bathrooms with Shower Heaters (toiletries such as shampoo, soap, toothbrush, etc. are not provided)",
+      "🌴 FREE WIFI",
+      "🌴 FREE use of Videoke & Sound System",
+      "🌴 FREE use of beddings, blankets, and towels good for your number of pax",
+      "🌴 FREE use of Kitchen with basic cooking utensils (dining utensils not provided), Ref, Stove, LPG, Oven Toaster, Microwave (upon request), Rice Cooker, BBQ Grill, Hot & Cold Water Dispenser (with one free bottle. Php 50 for each succeeding bottle)",
+      "🌴 FREE use of billiards, darts, table tennis, water volleyball, mahjong, bingo, chess, and cards",
+      "🌴 Indoor Parking Spaces",
+      "🌴 Generator",
+      "🌴 Jacuzzi | Php 500/30-minute use",
     ],
     desc: "Surrounded by lush trees and greenery, Villa 3 provides a peaceful setting to relax, reconnect, and create lasting memories. It features larger bedrooms, a private hot spring adult pool (4–4.5 ft deep), a kiddie pool (2–2.5 ft deep), and a jacuzzi available for rent. Designed to accommodate up to 50 guests, the villa offers six fully air-conditioned bedrooms, including two ground-floor bedrooms, making it senior and PWD-friendly. Four bedrooms have their own private bathroom, while two share a nearby common bathroom. Includes a dining area, kitchen, grilling area, FREE Wi-Fi, TVs, FREE videoke, table tennis, billiards, darts, water volleyball, a playground, and indoor parking for 2–3 vehicles.",
     highlight: false,
@@ -206,22 +196,17 @@ export const villas = [
     ] as string[],
     features: ["5 Air-Con Bedrooms", "Mountain View Terrace", "Adult & Kiddie Pool", "Senior/PWD-Friendly", "Kitchen and Videoke"],
     amenities: [
-      "5 fully air-conditioned bedrooms (3 with private bathroom, 2 share a bathroom), all with shower heater",
-      "1 ground-floor bedroom — Senior/PWD-friendly",
-      "Private Hot Spring adult pool (3.2–5.2 ft deep)",
-      "Kiddie pool (2.7 ft deep)",
-      "Large terrace with mountain view",
-      "Dining area & kitchen",
-      "Grilling area",
-      "FREE videoke",
-      "Table tennis, billiards, darts & water volleyball",
-      "Playground",
-      "Indoor parking for 5–6 vehicles",
-      "FREE Wi-Fi and sound system",
-      "Fully air-conditioned rooms with TVs",
-      "FREE beddings, blankets & towels for your headcount",
-      "FREE use of kitchen with basic cooking utensils, ref, stove, LPG, oven toaster, rice cooker & hot/cold water dispenser",
-      "Indoor parking spaces & generator",
+      "🌴 Private Hot Spring Pool",
+      "🌴 Kiddie Pool & Playground",
+      "🌴 Fully-Airconditioned Rooms w/ TVs",
+      "🌴 Bathrooms with Shower Heaters (toiletries such as shampoo, soap, toothbrush, etc. are not provided)",
+      "🌴 FREE WIFI",
+      "🌴 FREE use of Videoke & Sound System",
+      "🌴 FREE use of beddings, blankets, and towels good for your number of pax",
+      "🌴 FREE use of Kitchen with basic cooking utensils (dining utensils not provided), Ref, Stove, LPG, Oven Toaster, Microwave (upon request), Rice Cooker, BBQ Grill, Hot & Cold Water Dispenser (with one free bottle. Php 50 for each succeeding bottle)",
+      "🌴 FREE use of billiards, darts, table tennis, water volleyball, mahjong, bingo, chess, and cards",
+      "🌴 Indoor Parking Spaces",
+      "🌴 Generator",
     ],
     desc: "Combining modern comfort with scenic surroundings, Villa 4 is a 2-storey private villa designed for families, reunions, and group gatherings. It features larger bedrooms, a spacious dining area, and a large terrace overlooking a beautiful mountain view. Guests can enjoy a private hot spring adult pool (3.2–5.2 ft deep) and a kiddie pool (2.7 ft deep). Designed to accommodate up to 40 guests, the villa offers five fully air-conditioned bedrooms, including one ground-floor bedroom, making it senior and PWD-friendly. Three bedrooms have their own private bathroom with shower heater, while two rooms share a bathroom with shower heater. Includes a dining area, kitchen, grilling area, FREE Wi-Fi, TVs, FREE videoke, table tennis, billiards, darts, water volleyball, a playground, and indoor parking for 5–6 vehicles.",
     highlight: false,
@@ -268,22 +253,18 @@ export const villas = [
     ] as string[],
     features: ["5 Air-Con Bedrooms", "Jacuzzi Available", "Color-Changing Pool Lights", "Senior/PWD-Friendly", "Kitchen and Videoke"],
     amenities: [
-      "5 fully air-conditioned bedrooms, each with private bathroom & shower heater",
-      "2 ground-floor bedrooms with wheelchair ramp — Senior/PWD-friendly",
-      "Private Hot Spring adult pool (3–5 ft deep) with color-changing pool lights",
-      "Kiddie pool (2 ft deep)",
-      "Jacuzzi available for rent",
-      "Wide garden & children's playground",
-      "Dining area & kitchen",
-      "Grilling area",
-      "FREE videoke",
-      "Table tennis, billiards, darts & water volleyball",
-      "Indoor parking for 2–4 vehicles",
-      "FREE Wi-Fi and sound system",
-      "Fully air-conditioned rooms with TVs",
-      "FREE beddings, blankets & towels for your headcount",
-      "FREE use of kitchen with basic cooking utensils, ref, stove, LPG, oven toaster, rice cooker & hot/cold water dispenser",
-      "Indoor parking spaces & generator",
+      "🌴 Private Hot Spring Pool",
+      "🌴 Kiddie Pool & Playground",
+      "🌴 Fully-Airconditioned Rooms w/ TVs",
+      "🌴 Bathrooms with Shower Heaters (toiletries such as shampoo, soap, toothbrush, etc. are not provided)",
+      "🌴 FREE WIFI",
+      "🌴 FREE use of Videoke & Sound System",
+      "🌴 FREE use of beddings, blankets, and towels good for your number of pax",
+      "🌴 FREE use of Kitchen with basic cooking utensils (dining utensils not provided), Ref, Stove, LPG, Oven Toaster, Microwave (upon request), Rice Cooker, BBQ Grill, Hot & Cold Water Dispenser (with one free bottle. Php 50 for each succeeding bottle)",
+      "🌴 FREE use of billiards, darts, table tennis, water volleyball, mahjong, bingo, chess, and cards",
+      "🌴 Indoor Parking Spaces",
+      "🌴 Generator",
+      "🌴 Jacuzzi | Php 500/30-minute use",
     ],
     desc: "As the latest addition to Casa Primera Hot Spring Resorts, Villa 5 offers a modern and stylish retreat for families, reunions, and group getaways. It features a wide garden, a children's playground, a private hot spring adult pool (3–5 ft deep) with kiddie pool (2 ft deep), color-changing pool lights, and a jacuzzi available for rent. Designed to accommodate up to 34 guests, the villa offers five fully air-conditioned bedrooms, each with a private bathroom and shower heater. With two ground-floor bedrooms and a wheelchair ramp, the villa is senior and PWD-friendly. Includes a dining area, kitchen, grilling area, FREE Wi-Fi, TVs, FREE videoke, table tennis, billiards, darts, water volleyball, a playground, and indoor parking for 2–4 vehicles.",
     highlight: false,
@@ -458,61 +439,6 @@ function VillaModal({ villa, onClose }: { villa: Villa; onClose: () => void }) {
             <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#4d4d4d", lineHeight: 1.75, fontSize: "0.92rem" }} className="mb-5">
               {villa.desc}
             </p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              {villa.features.map((f) => (
-                <span key={f} className="px-3 py-1 rounded-full text-sm" style={{ backgroundColor: "#DCF1F3", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                  {f}
-                </span>
-              ))}
-            </div>
-
-            {villa.amenities && villa.amenities.length > 0 && (
-              <div className="rounded-2xl overflow-hidden border mb-5" style={{ borderColor: "#DCF1F3" }}>
-                <div className="px-4 py-2.5" style={{ backgroundColor: "#EAF7F8" }}>
-                  <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", fontWeight: 700, color: "#333333" }}>
-                    Complete List of Amenities
-                  </span>
-                </div>
-                <ul className="px-5 py-3 space-y-2 list-disc" style={{ color: "#4d4d4d" }}>
-                  {villa.amenities.map((a) => (
-                    <li key={a} style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.6 }}>
-                      {a}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {villa.rateTiers.length > 0 && (
-              <div className="rounded-2xl overflow-hidden border mb-5" style={{ borderColor: "#DCF1F3" }}>
-                <div className="px-4 py-2.5" style={{ backgroundColor: "#EAF7F8" }}>
-                  <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", fontWeight: 700, color: "#333333" }}>
-                    Standard Rates
-                  </span>
-                </div>
-                <div className="divide-y" style={{ borderColor: "#EAF7F8" }}>
-                  {villa.rateTiers.map((pkg) => (
-                    <div key={pkg.label} className="px-4 py-2.5" style={{ borderBottom: "1px solid #EAF7F8" }}>
-                      <div className="flex items-center justify-between gap-3">
-                        <div className="flex items-baseline gap-2 flex-wrap">
-                          <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", fontWeight: 700, color: "#333333" }}>
-                            ₱{pkg.price.toLocaleString()}
-                          </span>
-                          <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#666666" }}>
-                            {pkg.pax} · {pkg.rooms}
-                          </span>
-                        </div>
-                      </div>
-                      {"note" in pkg && pkg.note && (
-                        <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#c0392b", marginTop: 4 }}>
-                          {tierNote(pkg, villa.maxPax)}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
 
             {/* YouTube-style villa tour thumbnail */}
             <button
@@ -543,8 +469,56 @@ function VillaModal({ villa, onClose }: { villa: Villa; onClose: () => void }) {
             {/* Per-villa photo carousel */}
             <VillaPhotoCarousel photos={villa.photos} villaName={villa.name} />
 
+            {villa.rateTiers.length > 0 && (
+              <div className="rounded-2xl overflow-hidden border mb-5 mt-5" style={{ borderColor: "#DCF1F3" }}>
+                <div className="px-4 py-2.5" style={{ backgroundColor: "#EAF7F8" }}>
+                  <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", fontWeight: 700, color: "#333333" }}>
+                    Standard Rates
+                  </span>
+                </div>
+                <div className="divide-y" style={{ borderColor: "#EAF7F8" }}>
+                  {villa.rateTiers.map((pkg) => (
+                    <div key={pkg.label} className="px-4 py-2.5" style={{ borderBottom: "1px solid #EAF7F8" }}>
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-baseline gap-2 flex-wrap">
+                          <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.9rem", fontWeight: 700, color: "#333333" }}>
+                            ₱{pkg.price.toLocaleString()}
+                          </span>
+                          <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#666666" }}>
+                            {pkg.pax} · {pkg.rooms}
+                          </span>
+                        </div>
+                      </div>
+                      {"note" in pkg && pkg.note && (
+                        <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.72rem", color: "#c0392b", marginTop: 4 }}>
+                          {tierNote(pkg, villa.maxPax)}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {villa.amenities && villa.amenities.length > 0 && (
+              <div className="rounded-2xl overflow-hidden border mb-5" style={{ borderColor: "#DCF1F3" }}>
+                <div className="px-4 py-2.5" style={{ backgroundColor: "#EAF7F8" }}>
+                  <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.8rem", fontWeight: 700, color: "#333333" }}>
+                    Amenities
+                  </span>
+                </div>
+                <ul className="px-5 py-3 space-y-2" style={{ color: "#4d4d4d" }}>
+                  {villa.amenities.map((a) => (
+                    <li key={a} style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.6 }}>
+                      {a}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <div className="flex items-center gap-3 p-3 rounded-xl mb-5" style={{ backgroundColor: "#EAF7F8" }}>
-              <span style={{ fontSize: "1.1rem" }}>ðŸ•</span>
+              <span style={{ fontSize: "1.1rem" }}>🕐</span>
               <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.85rem", color: "#333333" }}>
                 <strong>Check-in:</strong> 3:00 PM &nbsp;|&nbsp; <strong>Check-out:</strong> 12:00 NN
               </p>

@@ -1,5 +1,13 @@
 import { motion } from "motion/react";
-import { Home, CalendarDays, CreditCard, CheckCircle2, MapPin, Clock } from "lucide-react";
+import { Home, CalendarDays, CheckCircle2, MapPin, Clock } from "lucide-react";
+
+function PesoIcon({ size = 22, color = "#333333" }: { size?: number; color?: string }) {
+  return (
+    <span style={{ fontSize: size, color, fontWeight: 800, lineHeight: 1, fontFamily: "'Fraunces', serif" }}>
+      ₱
+    </span>
+  );
+}
 
 const steps = [
   {
@@ -20,7 +28,7 @@ const steps = [
   },
   {
     number: "03",
-    icon: CreditCard,
+    icon: PesoIcon,
     title: "Pay the Down Payment",
     desc: "You will receive our bank details on your email. Secure your reservation by paying 50% down payment via Bank Transfer/Deposit, then email us back your payment receipt for verification.",
     color: "#45B3C0",
@@ -85,7 +93,10 @@ export function HowToBook() {
                   <Icon size={22} color={color} />
                 </div>
                 <div className="flex-1">
-                  <h3 className="mb-1" style={{ fontFamily: "'Fraunces', serif", fontSize: "1.05rem", fontWeight: 700, color: "#333333" }}>{title}</h3>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span style={{ fontFamily: "'Fraunces', serif", fontSize: "0.8rem", fontWeight: 700, color: color }}>{number}</span>
+                    <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: "1.05rem", fontWeight: 700, color: "#333333" }}>{title}</h3>
+                  </div>
                   <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.88rem", color: "#666666", lineHeight: 1.7 }}>{desc}</p>
                 </div>
               </div>

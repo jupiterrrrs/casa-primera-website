@@ -141,7 +141,7 @@ export function HeroCarousel() {
               lineHeight: 1.65,
             }}
           >
-            Experience the Most Trusted and Top-Rated Natural Hot Spring Resort in Pansol. A place where comfort feels like home — to <strong style={{ fontWeight: 700 }}>gather, sing, laugh,</strong> and create <strong style={{ fontWeight: 700 }}>memories your heart will always long to return to.</strong> ❤️
+            Experience the Most Trusted and Top-Rated Natural Hot Spring Resort in Pansol. A place where comfort feels like home — to <strong style={{ fontWeight: 700 }}>gather, sing, laugh,</strong> and create <strong style={{ fontWeight: 700 }}>memories your heart will always long to return to.</strong>
           </p>
         </motion.div>
         <motion.div
