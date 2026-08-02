@@ -148,7 +148,7 @@ export function HeroCarousel() {
       }} transition={{
         delay: 0.6,
         duration: 0.6
-      }} className="flex gap-4 flex-wrap justify-center">
+      }} className="flex gap-4 flex-wrap justify-center mb-14 sm:mb-16">
           <a href="#booking" className="px-8 py-3.5 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl" style={{
           backgroundColor: "#45B3C0",
           fontFamily: "'Plus Jakarta Sans', sans-serif",
