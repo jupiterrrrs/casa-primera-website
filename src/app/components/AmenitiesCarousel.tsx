@@ -1,80 +1,68 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Waves, Home, Mic2, Flame, Wifi, TreePine, Star, Users, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-
-const amenities = [
-  {
-    id: 1,
-    icon: Waves,
-    title: "Natural Hot Spring Pool",
-    desc: "Soak in mineral-rich volcanic spring water renowned for its therapeutic benefits, open day and night.",
-    image: "/images/amenities/hotspring-pool.jpg",
-    color: "#45B3C0",
-  },
-  {
-    id: 2,
-    icon: Home,
-    title: "Private Villas",
-    desc: "Cozy, fully-furnished villas with air conditioning, private bathrooms, and breathtaking garden views.",
-    image: "/images/amenities/private-villas.jpg",
-    color: "#333333",
-  },
-  {
-    id: 3,
-    icon: Mic2,
-    title: "Karaoke Area",
-    desc: "Belt out your favorite songs with friends and family in our fully-equipped karaoke rooms.",
-    image: "/images/amenities/karaoke.jpg",
-    color: "#45B3C0",
-  },
-  {
-    id: 4,
-    icon: Flame,
-    title: "BBQ Grill Station",
-    desc: "Fire up the grill under the stars. All cooking equipment provided for the perfect outdoor feast.",
-    image: "/images/amenities/bbq-grill.jpg",
-    color: "#e76f51",
-  },
-  {
-    id: 5,
-    icon: Wifi,
-    title: "Free High-Speed WiFi",
-    desc: "Stay connected throughout the resort with complimentary fast and reliable internet access.",
-    image: "/images/amenities/wifi-room.jpg",
-    color: "#45B3C0",
-  },
-  {
-    id: 6,
-    icon: TreePine,
-    title: "Tropical Garden",
-    desc: "Stroll through our lush, manicured tropical gardens — a living sanctuary of calm and natural beauty.",
-    image: "/images/amenities/garden.jpg",
-    color: "#52b788",
-  },
-  {
-    id: 7,
-    icon: Star,
-    title: "Events Area",
-    desc: "Host birthdays, reunions, and celebrations in our spacious covered events hall with full catering support.",
-    image: "/images/amenities/events-area.jpg",
-    color: "#45B3C0",
-  },
-  {
-    id: 8,
-    icon: Users,
-    title: "Family-Friendly Pools",
-    desc: "Separate shallow pools for kids and adults — safe, clean, and perfect for all-day family fun.",
-    image: "/images/amenities/family-pools.jpg",
-    color: "#333333",
-  },
-];
-
-// ── Fullscreen lightbox for browsing amenity photos ─────────────────────────
+const amenities = [{
+  id: 1,
+  icon: Waves,
+  title: "Natural Hot Spring Pool",
+  desc: "Soak in mineral-rich volcanic spring water renowned for its therapeutic benefits, open day and night.",
+  image: "/images/amenities/hotspring-pool.jpg",
+  color: "#45B3C0"
+}, {
+  id: 2,
+  icon: Home,
+  title: "Private Villas",
+  desc: "Cozy, fully-furnished villas with air conditioning, private bathrooms, and breathtaking garden views.",
+  image: "/images/amenities/private-villas.jpg",
+  color: "#333333"
+}, {
+  id: 3,
+  icon: Mic2,
+  title: "Karaoke Area",
+  desc: "Belt out your favorite songs with friends and family in our fully-equipped karaoke rooms.",
+  image: "/images/amenities/karaoke.jpg",
+  color: "#45B3C0"
+}, {
+  id: 4,
+  icon: Flame,
+  title: "BBQ Grill Station",
+  desc: "Fire up the grill under the stars. All cooking equipment provided for the perfect outdoor feast.",
+  image: "/images/amenities/bbq-grill.jpg",
+  color: "#e76f51"
+}, {
+  id: 5,
+  icon: Wifi,
+  title: "Free High-Speed WiFi",
+  desc: "Stay connected throughout the resort with complimentary fast and reliable internet access.",
+  image: "/images/amenities/wifi-room.jpg",
+  color: "#45B3C0"
+}, {
+  id: 6,
+  icon: TreePine,
+  title: "Tropical Garden",
+  desc: "Stroll through our lush, manicured tropical gardens — a living sanctuary of calm and natural beauty.",
+  image: "/images/amenities/garden.jpg",
+  color: "#52b788"
+}, {
+  id: 7,
+  icon: Star,
+  title: "Events Area",
+  desc: "Host birthdays, reunions, and celebrations in our spacious covered events hall with full catering support.",
+  image: "/images/amenities/events-area.jpg",
+  color: "#45B3C0"
+}, {
+  id: 8,
+  icon: Users,
+  title: "Family-Friendly Pools",
+  desc: "Separate shallow pools for kids and adults — safe, clean, and perfect for all-day family fun.",
+  image: "/images/amenities/family-pools.jpg",
+  color: "#333333"
+}];
 function AmenityLightbox({
   index,
   onClose,
   onPrev,
-  onNext,
+  onNext
 }: {
   index: number;
   onClose: () => void;
@@ -83,8 +71,6 @@ function AmenityLightbox({
 }) {
   const amenity = amenities[index];
   const Icon = amenity.icon;
-
-  // Lock background scroll while open
   useEffect(() => {
     const original = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -92,8 +78,6 @@ function AmenityLightbox({
       document.body.style.overflow = original;
     };
   }, []);
-
-  // Keyboard navigation: Escape to close, arrows to flip through
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -103,269 +87,249 @@ function AmenityLightbox({
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [onClose, onPrev, onNext]);
-
-  return (
-    <motion.div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      role="dialog"
-      aria-modal="true"
-      aria-label={`${amenity.title} photo viewer`}
-      onClick={onClose}
-    >
+  return <motion.div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6" initial={{
+    opacity: 0
+  }} animate={{
+    opacity: 1
+  }} exit={{
+    opacity: 0
+  }} role="dialog" aria-modal="true" aria-label={`${amenity.title} photo viewer`} onClick={onClose}>
       <div className="absolute inset-0 bg-black/85 backdrop-blur-sm" />
 
-      {/* Close button — always visible, easy to tap on mobile */}
-      <button
-        onClick={onClose}
-        aria-label="Close photo viewer"
-        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95"
-        style={{ backgroundColor: "#fff" }}
-      >
+      {}
+      <button onClick={onClose} aria-label="Close photo viewer" className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95" style={{
+      backgroundColor: "#fff"
+    }}>
         <X size={22} color="#333333" />
       </button>
 
-      {/* Prev arrow */}
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          onPrev();
-        }}
-        aria-label="Previous amenity"
-        className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95"
-        style={{ backgroundColor: "rgba(255,255,255,0.92)" }}
-      >
+      {}
+      <button onClick={e => {
+      e.stopPropagation();
+      onPrev();
+    }} aria-label="Previous amenity" className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95" style={{
+      backgroundColor: "rgba(255,255,255,0.92)"
+    }}>
         <ChevronLeft size={24} color="#333333" />
       </button>
 
-      {/* Next arrow */}
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          onNext();
-        }}
-        aria-label="Next amenity"
-        className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95"
-        style={{ backgroundColor: "rgba(255,255,255,0.92)" }}
-      >
+      {}
+      <button onClick={e => {
+      e.stopPropagation();
+      onNext();
+    }} aria-label="Next amenity" className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95" style={{
+      backgroundColor: "rgba(255,255,255,0.92)"
+    }}>
         <ChevronRight size={24} color="#333333" />
       </button>
 
-      <motion.div
-        key={amenity.id}
-        className="relative w-full max-w-3xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl"
-        style={{ backgroundColor: "#fff", maxHeight: "88vh" }}
-        initial={{ scale: 0.94, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.94, opacity: 0 }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="relative w-full" style={{ aspectRatio: "4 / 3", maxHeight: "62vh" }}>
+      <motion.div key={amenity.id} className="relative w-full max-w-3xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl" style={{
+      backgroundColor: "#fff",
+      maxHeight: "88vh"
+    }} initial={{
+      scale: 0.94,
+      opacity: 0
+    }} animate={{
+      scale: 1,
+      opacity: 1
+    }} exit={{
+      scale: 0.94,
+      opacity: 0
+    }} transition={{
+      type: "spring",
+      stiffness: 300,
+      damping: 30
+    }} onClick={e => e.stopPropagation()}>
+        <div className="relative w-full" style={{
+        aspectRatio: "4 / 3",
+        maxHeight: "62vh"
+      }}>
           <img src={amenity.image} alt={amenity.title} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-          <div
-            className="absolute top-4 left-4 w-10 h-10 rounded-full flex items-center justify-center"
-            style={{ backgroundColor: amenity.color }}
-          >
+          <div className="absolute top-4 left-4 w-10 h-10 rounded-full flex items-center justify-center" style={{
+          backgroundColor: amenity.color
+        }}>
             <Icon size={18} color="#fff" />
           </div>
         </div>
         <div className="p-5 sm:p-7">
-          <h3
-            style={{ fontFamily: "'Fraunces', serif", fontSize: "1.35rem", fontWeight: 700, color: "#333333" }}
-            className="mb-2"
-          >
+          <h3 style={{
+          fontFamily: "'Fraunces', serif",
+          fontSize: "1.35rem",
+          fontWeight: 700,
+          color: "#333333"
+        }} className="mb-2">
             {amenity.title}
           </h3>
-          <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "0.95rem", lineHeight: 1.7 }}>
+          <p style={{
+          fontFamily: "'Plus Jakarta Sans', sans-serif",
+          color: "#666666",
+          fontSize: "0.95rem",
+          lineHeight: 1.7
+        }}>
             {amenity.desc}
           </p>
-          <p
-            className="mt-4 text-center sm:hidden"
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#999999" }}
-          >
+          <p className="mt-4 text-center sm:hidden" style={{
+          fontFamily: "'Plus Jakarta Sans', sans-serif",
+          fontSize: "0.78rem",
+          color: "#999999"
+        }}>
             {index + 1} / {amenities.length} · Swipe or tap the arrows to browse
           </p>
-          <p
-            className="mt-4 hidden sm:block"
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "0.78rem", color: "#999999" }}
-          >
+          <p className="mt-4 hidden sm:block" style={{
+          fontFamily: "'Plus Jakarta Sans', sans-serif",
+          fontSize: "0.78rem",
+          color: "#999999"
+        }}>
             {index + 1} of {amenities.length}
           </p>
         </div>
       </motion.div>
-    </motion.div>
-  );
+    </motion.div>;
 }
-
 function useCardsVisible() {
   const [cardsVisible, setCardsVisible] = useState(1);
-
   useEffect(() => {
     const compute = () => {
       const w = window.innerWidth;
-      if (w >= 1024) setCardsVisible(3);
-      else if (w >= 640) setCardsVisible(2);
-      else setCardsVisible(1);
+      if (w >= 1024) setCardsVisible(3);else if (w >= 640) setCardsVisible(2);else setCardsVisible(1);
     };
     compute();
     window.addEventListener("resize", compute);
     return () => window.removeEventListener("resize", compute);
   }, []);
-
   return cardsVisible;
 }
-
 export function AmenitiesCarousel() {
   const [startIdx, setStartIdx] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const cardsVisible = useCardsVisible();
   const trackRef = useRef<HTMLDivElement>(null);
-
-  // Keep startIdx in range whenever the visible count changes (e.g. rotating a device)
   useEffect(() => {
-    setStartIdx((i) => Math.min(i, Math.max(0, amenities.length - cardsVisible)));
+    setStartIdx(i => Math.min(i, Math.max(0, amenities.length - cardsVisible)));
   }, [cardsVisible]);
-
   const canPrev = startIdx > 0;
   const canNext = startIdx < amenities.length - cardsVisible;
-
   const showPrevAmenity = useCallback(() => {
-    setLightboxIndex((i) => (i === null ? null : (i - 1 + amenities.length) % amenities.length));
+    setLightboxIndex(i => i === null ? null : (i - 1 + amenities.length) % amenities.length);
   }, []);
   const showNextAmenity = useCallback(() => {
-    setLightboxIndex((i) => (i === null ? null : (i + 1) % amenities.length));
+    setLightboxIndex(i => i === null ? null : (i + 1) % amenities.length);
   }, []);
-
-  return (
-    <section className="py-12 sm:py-20 overflow-hidden" style={{ background: "linear-gradient(180deg, #FFF9C4 0%, #EAF7F8 100%)" }}>
+  return <section className="py-12 sm:py-20 overflow-hidden" style={{
+    background: "linear-gradient(180deg, #FFF9C4 0%, #EAF7F8 100%)"
+  }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-8 sm:mb-14">
-          <span
-            className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4"
-            style={{ backgroundColor: "#FFEB3B", color: "#333333", fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}
-          >
+          <span className="inline-block px-4 py-1.5 rounded-full text-sm tracking-widest uppercase mb-4" style={{
+          backgroundColor: "#FFEB3B",
+          color: "#333333",
+          fontFamily: "'Plus Jakarta Sans', sans-serif",
+          fontWeight: 700
+        }}>
             What We Offer
           </span>
-          <h2
-            style={{ fontFamily: "'Fraunces', serif", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#333333", fontWeight: 700 }}
-          >
-            Resort <span style={{ color: "#45B3C0" }}>Amenities</span>
+          <h2 style={{
+          fontFamily: "'Fraunces', serif",
+          fontSize: "clamp(2rem, 4vw, 3rem)",
+          color: "#333333",
+          fontWeight: 700
+        }}>
+            Resort <span style={{
+            color: "#45B3C0"
+          }}>Amenities</span>
           </h2>
-          <p
-            className="mt-4 max-w-2xl mx-auto"
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "1.05rem", lineHeight: 1.7 }}
-          >
+          <p className="mt-4 max-w-2xl mx-auto" style={{
+          fontFamily: "'Plus Jakarta Sans', sans-serif",
+          color: "#666666",
+          fontSize: "1.05rem",
+          lineHeight: 1.7
+        }}>
             Everything you need for a perfect tropical getaway — all in one beautiful place.
           </p>
         </div>
 
         <div className="relative">
-          {/* Nav buttons */}
-          <button
-            onClick={() => setStartIdx((i) => Math.max(0, i - 1))}
-            disabled={!canPrev}
-            className="absolute left-0 sm:-left-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
-            style={{ backgroundColor: "#45B3C0", color: "#fff" }}
-          >
+          {}
+          <button onClick={() => setStartIdx(i => Math.max(0, i - 1))} disabled={!canPrev} className="absolute left-0 sm:-left-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed" style={{
+          backgroundColor: "#45B3C0",
+          color: "#fff"
+        }}>
             <ChevronLeft size={18} />
           </button>
-          <button
-            onClick={() => setStartIdx((i) => Math.min(amenities.length - cardsVisible, i + 1))}
-            disabled={!canNext}
-            className="absolute right-0 sm:-right-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
-            style={{ backgroundColor: "#45B3C0", color: "#fff" }}
-          >
+          <button onClick={() => setStartIdx(i => Math.min(amenities.length - cardsVisible, i + 1))} disabled={!canNext} className="absolute right-0 sm:-right-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed" style={{
+          backgroundColor: "#45B3C0",
+          color: "#fff"
+        }}>
             <ChevronRight size={18} />
           </button>
 
           <div className="overflow-hidden mx-9 sm:mx-4" ref={trackRef}>
-            <motion.div
-              className="flex gap-6"
-              animate={{ x: `calc(-${startIdx} * (100% + 24px) / ${cardsVisible})` }}
-              transition={{ type: "spring", stiffness: 280, damping: 32 }}
-            >
-              {amenities.map((a) => {
-                const Icon = a.icon;
-                return (
-                  <div
-                    key={a.id}
-                    className="flex-shrink-0 rounded-2xl overflow-hidden shadow-md group cursor-pointer transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl"
-                    style={{ width: `calc((100% - ${(cardsVisible - 1) * 24}px) / ${cardsVisible})`, backgroundColor: "#fff" }}
-                    onClick={() => setLightboxIndex(amenities.findIndex((x) => x.id === a.id))}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`View ${a.title} photo`}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        setLightboxIndex(amenities.findIndex((x) => x.id === a.id));
-                      }
-                    }}
-                  >
+            <motion.div className="flex gap-6" animate={{
+            x: `calc(-${startIdx} * (100% + 24px) / ${cardsVisible})`
+          }} transition={{
+            type: "spring",
+            stiffness: 280,
+            damping: 32
+          }}>
+              {amenities.map(a => {
+              const Icon = a.icon;
+              return <div key={a.id} className="flex-shrink-0 rounded-2xl overflow-hidden shadow-md group cursor-pointer transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl" style={{
+                width: `calc((100% - ${(cardsVisible - 1) * 24}px) / ${cardsVisible})`,
+                backgroundColor: "#fff"
+              }} onClick={() => setLightboxIndex(amenities.findIndex(x => x.id === a.id))} role="button" tabIndex={0} aria-label={`View ${a.title} photo`} onKeyDown={e => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setLightboxIndex(amenities.findIndex(x => x.id === a.id));
+                }
+              }}>
                     <div className="relative h-48 overflow-hidden">
-                      <img
-                        src={a.image}
-                        alt={a.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
+                      <img src={a.image} alt={a.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                      <div
-                        className="absolute top-4 left-4 w-10 h-10 rounded-full flex items-center justify-center"
-                        style={{ backgroundColor: a.color }}
-                      >
+                      <div className="absolute top-4 left-4 w-10 h-10 rounded-full flex items-center justify-center" style={{
+                    backgroundColor: a.color
+                  }}>
                         <Icon size={18} color="#fff" />
                       </div>
                     </div>
                     <div className="p-5">
-                      <h3
-                        style={{ fontFamily: "'Fraunces', serif", fontSize: "1.15rem", fontWeight: 700, color: "#333333" }}
-                        className="mb-2"
-                      >
+                      <h3 style={{
+                    fontFamily: "'Fraunces', serif",
+                    fontSize: "1.15rem",
+                    fontWeight: 700,
+                    color: "#333333"
+                  }} className="mb-2">
                         {a.title}
                       </h3>
-                      <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#666666", fontSize: "0.9rem", lineHeight: 1.65 }}>
+                      <p style={{
+                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                    color: "#666666",
+                    fontSize: "0.9rem",
+                    lineHeight: 1.65
+                  }}>
                         {a.desc}
                       </p>
                     </div>
-                  </div>
-                );
-              })}
+                  </div>;
+            })}
             </motion.div>
           </div>
         </div>
 
-        {/* Dot indicators */}
+        {}
         <div className="flex flex-wrap justify-center gap-2 mt-8 px-4">
-          {Array.from({ length: amenities.length - cardsVisible + 1 }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setStartIdx(i)}
-              className="rounded-full transition-all duration-300"
-              style={{
-                width: i === startIdx ? "1.5rem" : "0.5rem",
-                height: "0.5rem",
-                backgroundColor: i === startIdx ? "#45B3C0" : "#A8DDE3",
-              }}
-              aria-label={`Go to position ${i + 1}`}
-            />
-          ))}
+          {Array.from({
+          length: amenities.length - cardsVisible + 1
+        }).map((_, i) => <button key={i} onClick={() => setStartIdx(i)} className="rounded-full transition-all duration-300" style={{
+          width: i === startIdx ? "1.5rem" : "0.5rem",
+          height: "0.5rem",
+          backgroundColor: i === startIdx ? "#45B3C0" : "#A8DDE3"
+        }} aria-label={`Go to position ${i + 1}`} />)}
         </div>
       </div>
 
       <AnimatePresence>
-        {lightboxIndex !== null && (
-          <AmenityLightbox
-            index={lightboxIndex}
-            onClose={() => setLightboxIndex(null)}
-            onPrev={showPrevAmenity}
-            onNext={showNextAmenity}
-          />
-        )}
+        {lightboxIndex !== null && <AmenityLightbox index={lightboxIndex} onClose={() => setLightboxIndex(null)} onPrev={showPrevAmenity} onNext={showNextAmenity} />}
       </AnimatePresence>
-    </section>
-  );
+    </section>;
 }

@@ -14,10 +14,12 @@ import { BookingCTA } from "./components/BookingCTA";
 import { Footer } from "./components/Footer";
 import { LiveChat } from "./components/LiveChat";
 import { SocialFloat } from "./components/SocialFloat";
-
 export default function App() {
-  return (
-    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", backgroundColor: "#EAF7F8", overflowX: "hidden" }}>
+  return <div style={{
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
+    backgroundColor: "#EAF7F8",
+    overflowX: "hidden"
+  }}>
       <Navbar />
       <HeroCarousel />
       <AmenitiesCarousel />
@@ -31,9 +33,8 @@ export default function App() {
       <LocationSection />
       <BookingCTA />
       <Footer />
-      {/* Floating widgets */}
+      {}
       <SocialFloat />
       <LiveChat />
-    </div>
-  );
+    </div>;
 }
