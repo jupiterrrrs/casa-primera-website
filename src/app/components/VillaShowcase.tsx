@@ -641,7 +641,7 @@ export function VillaShowcase() {
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-1.5 mb-4">
-                  {villa.features.slice(0, 5).map(f => <span key={f} className="px-2.5 py-0.5 rounded-full text-xs" style={{
+                  {villa.features.slice(0, 6).map(f => <span key={f} className="px-2.5 py-0.5 rounded-full text-xs" style={{
                 backgroundColor: "#DCF1F3",
                 color: "#333333",
                 fontFamily: "'Plus Jakarta Sans', sans-serif"
