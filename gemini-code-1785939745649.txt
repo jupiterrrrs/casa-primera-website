@@ -1,0 +1,96 @@
+From 8f9a2b1c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s Mon Sep 17 00:00:00 2001
+From: Developer <developer@local>
+Date: Wed, 5 Aug 2026 22:22:05 +0800
+Subject: [PATCH] feat: make footer quick links and villa items clickable anchor links
+
+---
+ index.html | 62 +++++++++++++++++++++++++++++++-----------------------
+ style.css  |  4 ++++
+ 2 files changed, 40 insertions(+), 26 deletions(-)
+
+diff --git a/index.html b/index.html
+index 1234567..abcdefg 100644
+--- a/index.html
++++ b/index.html
+@@ -1,15 +1,15 @@
+ <!-- Main Page Sections Updated IDs -->
+-<section class="hero-section">...</section>
+-<section class="about-section">...</section>
+-<section class="villas-section">
+-  <div class="villa-card">Casa Primera Villa 1</div>
+-  <div class="villa-card">Casa Primera Villa 2</div>
+-  <div class="villa-card">Casa Primera Villa 3</div>
+-  <div class="villa-card">Casa Primera Villa 4</div>
+-  <div class="villa-card">Casa Primera Villa 5</div>
+-</section>
++<section id="home" class="hero-section">...</section>
++<section id="about" class="about-section">...</section>
++<section id="villas" class="villas-section">
++  <div class="villa-card" id="villa-1">Casa Primera Villa 1</div>
++  <div class="villa-card" id="villa-2">Casa Primera Villa 2</div>
++  <div class="villa-card" id="villa-3">Casa Primera Villa 3</div>
++  <div class="villa-card" id="villa-4">Casa Primera Villa 4</div>
++  <div class="villa-card" id="villa-5">Casa Primera Villa 5</div>
++</section>
+ 
+-<!-- Footer Section Updated -->
++<!-- Footer Section -->
+ <footer class="footer-section">
+   <div class="footer-container">
+     
+@@ -23,16 +23,16 @@
+     <div class="footer-col">
+       <h4>Quick Links</h4>
+       <ul class="footer-links">
+-        <li><a href="#">Home</a></li>
+-        <li><a href="#">About Us</a></li>
+-        <li><a href="#">Our Villas</a></li>
+-        <li><a href="#">Amenities</a></li>
+-        <li><a href="#">How to Book</a></li>
+-        <li><a href="#">Reviews</a></li>
+-        <li><a href="#">Gallery</a></li>
+-        <li><a href="#">FAQs</a></li>
+-        <li><a href="#">Location</a></li>
+-        <li><a href="#">Book Now</a></li>
++        <li><a href="#home">Home</a></li>
++        <li><a href="#about">About Us</a></li>
++        <li><a href="#villas">Our Villas</a></li>
++        <li><a href="#amenities">Amenities</a></li>
++        <li><a href="#how-to-book">How to Book</a></li>
++        <li><a href="#reviews">Reviews</a></li>
++        <li><a href="#gallery">Gallery</a></li>
++        <li><a href="#faqs">FAQs</a></li>
++        <li><a href="#location">Location</a></li>
++        <li><a href="#book-now">Book Now</a></li>
+       </ul>
+     </div>
+ 
+@@ -41,11 +41,11 @@
+     <div class="footer-col">
+       <h4>Our Villas</h4>
+       <ul class="footer-links">
+-        <li><a href="#">Casa Primera Villa 1 - Up to 34 pax</a></li>
+-        <li><a href="#">Casa Primera Villa 2 - Up to 40 pax</a></li>
+-        <li><a href="#">Casa Primera Villa 3 - Up to 50 pax</a></li>
+-        <li><a href="#>Casa Primera Villa 4 - Up to 40 pax</a></li>
+-        <li><a href="#">Casa Primera Villa 5 - Up to 34 pax</a></li>
++        <li><a href="#villa-1">Casa Primera Villa 1 - Up to 34 pax</a></li>
++        <li><a href="#villa-2">Casa Primera Villa 2 - Up to 40 pax</a></li>
++        <li><a href="#villa-3">Casa Primera Villa 3 - Up to 50 pax</a></li>
++        <li><a href="#villa-4">Casa Primera Villa 4 - Up to 40 pax</a></li>
++        <li><a href="#villa-5">Casa Primera Villa 5 - Up to 34 pax</a></li>
+       </ul>
+     </div>
+ 
+diff --git a/style.css b/style.css
+index 7654321..gfedcba 100644
+--- a/style.css
++++ b/style.css
+@@ -1,3 +1,7 @@
++html {
++  scroll-behavior: smooth;
++}
++
+ /* Footer Styling Adjustments */
+ .footer-links a {
+   text-decoration: none;
