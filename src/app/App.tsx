@@ -1,4 +1,5 @@
 import "../styles/fonts.css";
+import { HashNavigation } from "./components/HashNavigation";
 import { Navbar } from "./components/Navbar";
 import { HeroCarousel } from "./components/HeroCarousel";
 import { AmenitiesCarousel } from "./components/AmenitiesCarousel";
@@ -20,6 +21,7 @@ export default function App() {
     backgroundColor: "#EAF7F8",
     overflowX: "hidden"
   }}>
+      <HashNavigation />
       <Navbar />
       <HeroCarousel />
       <AmenitiesCarousel />
