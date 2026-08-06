@@ -493,6 +493,24 @@ function VillaModal({
 export function VillaShowcase() {
   const [selected, setSelected] = useState<Villa | null>(null);
   const [videoVilla, setVideoVilla] = useState<Villa | null>(null);
+
+  useEffect(() => {
+    const openFromHash = () => {
+      const match = window.location.hash.match(/^#villa-(\d+)$/);
+      if (!match) return;
+      const villa = villas.find(v => v.id === Number(match[1]));
+      if (!villa) return;
+      document.getElementById("villas")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+      setSelected(villa);
+    };
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    return () => window.removeEventListener("hashchange", openFromHash);
+  }, []);
+
   return <section id="villas" className="py-20" style={{
     background: "linear-gradient(180deg, #EAF7F8 0%, #DCF1F3 100%)"
   }}>

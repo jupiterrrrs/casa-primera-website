@@ -67,11 +67,44 @@ export function Footer() {
           fontSize: "1rem"
         }} className="mb-5">Quick Links</h4>
           <ul className="space-y-3">
-            {["Home", "About Us", "Our Villas", "Amenities", "How to Book", "Reviews", "Gallery", "FAQs", "Location", "Book Now"].map(link => <li key={link}>
-                <a href="#" style={{
+            {[{
+            label: "Home",
+            href: "#home"
+          }, {
+            label: "About Us",
+            href: "#about"
+          }, {
+            label: "Our Villas",
+            href: "#villas"
+          }, {
+            label: "Amenities",
+            href: "#amenities"
+          }, {
+            label: "How to Book",
+            href: "#how-to-book"
+          }, {
+            label: "Reviews",
+            href: "#reviews"
+          }, {
+            label: "Gallery",
+            href: "#gallery"
+          }, {
+            label: "FAQs",
+            href: "#faq"
+          }, {
+            label: "Location",
+            href: "#location"
+          }, {
+            label: "Book Now",
+            href: "#booking"
+          }].map(({
+            label,
+            href
+          }) => <li key={label}>
+                <a href={href} style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontSize: "0.88rem"
-            }} className="hover:text-[#45B3C0] transition-colors duration-200">{link}</a>
+            }} className="hover:text-[#45B3C0] transition-colors duration-200">{label}</a>
               </li>)}
           </ul>
         </div>
@@ -85,11 +118,29 @@ export function Footer() {
           fontSize: "1rem"
         }} className="mb-5">Our Villas</h4>
           <ul className="space-y-3">
-            {["Casa Primera Villa 1 · Up to 34 pax", "Casa Primera Villa 2 · Up to 40 pax", "Casa Primera Villa 3 · Up to 50 pax", "Casa Primera Villa 4 · Up to 40 pax", "Casa Primera Villa 5 · Up to 34 pax"].map(v => <li key={v}>
-                <a href="#villas" style={{
+            {[{
+            id: 1,
+            label: "Casa Primera Villa 1 · Up to 34 pax"
+          }, {
+            id: 2,
+            label: "Casa Primera Villa 2 · Up to 40 pax"
+          }, {
+            id: 3,
+            label: "Casa Primera Villa 3 · Up to 50 pax"
+          }, {
+            id: 4,
+            label: "Casa Primera Villa 4 · Up to 40 pax"
+          }, {
+            id: 5,
+            label: "Casa Primera Villa 5 · Up to 34 pax"
+          }].map(({
+            id,
+            label
+          }) => <li key={id}>
+                <a href={`#villa-${id}`} style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontSize: "0.85rem"
-            }} className="hover:text-[#FFEB3B] transition-colors duration-200">{v}</a>
+            }} className="hover:text-[#FFEB3B] transition-colors duration-200">{label}</a>
               </li>)}
           </ul>
         </div>
