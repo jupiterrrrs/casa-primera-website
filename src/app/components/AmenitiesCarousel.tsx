@@ -216,7 +216,7 @@ export function AmenitiesCarousel() {
   const showNextAmenity = useCallback(() => {
     setLightboxIndex(i => i === null ? null : (i + 1) % amenities.length);
   }, []);
-  return <section className="py-12 sm:py-20 overflow-hidden" style={{
+  return <section id="amenities" className="py-12 sm:py-20 overflow-hidden" style={{
     background: "linear-gradient(180deg, #FFF9C4 0%, #EAF7F8 100%)"
   }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
