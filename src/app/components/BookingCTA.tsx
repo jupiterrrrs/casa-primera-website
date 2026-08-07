@@ -7,7 +7,7 @@ import { TermsModal } from "./TermsModal";
 import { villas as ratedVillas } from "./VillaShowcase";
 import { RESERVE_SELECTION_EVENT, readStoredReserveSelection, clearStoredReserveSelection, type ReserveSelection } from "../lib/reserveSelection";
 import "react-day-picker/dist/style.css";
-const BOOKING_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwMFqNUZKecSv_DfshldTLIRn9cEHYNup3nZdWdrFNnb0ifRcYLJM33_feoVEdBReBQ7g/exec";
+const BOOKING_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzkrpUBRpQCRFOCQJKwCkrkVeituTKeiPGqRupxQz5Pz6cPhXkfpI3CTr8YazLt5bVx/exec";
 const VILLA_META = [{
   label: "Casa Primera Villa 1",
   short: "Villa 1",
