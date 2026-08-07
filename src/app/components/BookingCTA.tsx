@@ -97,7 +97,7 @@ function isVillaAvailable(villa: Villa, range: DateRange | undefined): boolean {
   for (let d = new Date(range.from); d <= lastNight; d = addDays(d, 1)) {
     if (villa.blocked.some(b => isWithinInterval(d, {
       start: b.from,
-      end: b.to
+      end: addDays(b.to, -1)
     }))) {
       return false;
     }
