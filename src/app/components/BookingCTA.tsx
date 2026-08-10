@@ -446,6 +446,10 @@ export function BookingCTA() {
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [termsOpen, setTermsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({
+    email: "",
+    phone: ""
+  });
   useEffect(() => {
     function applySelection(selection: ReserveSelection) {
       setFormData(p => ({
@@ -493,8 +497,29 @@ export function BookingCTA() {
     }
   }, [formData.villa]);
   const dateLabel = dateRange?.from && dateRange?.to ? `${format(dateRange.from, "MMM d")} → ${format(dateRange.to, "MMM d, yyyy")}  (${nights} night${nights !== 1 ? "s" : ""})` : dateRange?.from ? `${format(dateRange.from, "MMM d, yyyy")} → Pick check-out` : "Select check-in & check-out";
+  function isValidEmail(value: string) {
+    return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/.test(value.trim());
+  }
+  function isValidPhone(value: string) {
+    const digitsOnly = value.replace(/\D/g, "");
+    // Accepts PH mobile numbers: 09XXXXXXXXX (11 digits) or 9XXXXXXXXX (10 digits, e.g. after +63)
+    return /^(0\d{10}|\d{10})$/.test(digitsOnly) && (digitsOnly.length === 11 || digitsOnly.length === 10);
+  }
   function handleReserveClick(e: React.FormEvent) {
     e.preventDefault();
+    const emailValid = isValidEmail(formData.email);
+    const phoneValid = isValidPhone(formData.phone);
+    if (!emailValid || !phoneValid) {
+      setFieldErrors({
+        email: emailValid ? "" : "Please enter a valid email address (e.g. name@gmail.com).",
+        phone: phoneValid ? "" : "Please enter a valid PH mobile number (10-11 digits, numbers only)."
+      });
+      return;
+    }
+    setFieldErrors({
+      email: "",
+      phone: ""
+    });
     setTermsOpen(true);
   }
   function handleAcceptTerms() {
@@ -700,15 +725,35 @@ export function BookingCTA() {
                     color: "#4d4d4d",
                     fontWeight: 600
                   }} className="block mb-1.5">Phone</label>
-                      <input type="tel" required placeholder="+63 9XX XXX XXXX" value={formData.phone} onChange={e => setFormData(p => ({
-                    ...p,
-                    phone: e.target.value
-                  }))} className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#45B3C0] focus:ring-2 focus:ring-[#45B3C0]/20" style={{
+                      <input type="tel" inputMode="numeric" required placeholder="09XX XXX XXXX" value={formData.phone} onChange={e => {
+                    const digitsOnly = e.target.value.replace(/\D/g, "").slice(0, 11);
+                    setFormData(p => ({
+                      ...p,
+                      phone: digitsOnly
+                    }));
+                    if (fieldErrors.phone) setFieldErrors(fe => ({
+                      ...fe,
+                      phone: ""
+                    }));
+                  }} onBlur={() => {
+                    if (formData.phone && !isValidPhone(formData.phone)) {
+                      setFieldErrors(fe => ({
+                        ...fe,
+                        phone: "Please enter a valid PH mobile number (10-11 digits, numbers only)."
+                      }));
+                    }
+                  }} className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#45B3C0] focus:ring-2 focus:ring-[#45B3C0]/20" style={{
                     fontFamily: "'Plus Jakarta Sans', sans-serif",
                     fontSize: "0.9rem",
-                    borderColor: "#A8DDE3",
+                    borderColor: fieldErrors.phone ? "#E05252" : "#A8DDE3",
                     backgroundColor: "#EAF7F8"
                   }} />
+                      {fieldErrors.phone && <p style={{
+                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                    fontSize: "0.72rem",
+                    color: "#E05252",
+                    marginTop: "4px"
+                  }}>{fieldErrors.phone}</p>}
                     </div>
                   </div>
 
@@ -719,15 +764,35 @@ export function BookingCTA() {
                   color: "#4d4d4d",
                   fontWeight: 600
                 }} className="block mb-1.5">Email Address</label>
-                    <input type="email" required placeholder="you@email.com" value={formData.email} onChange={e => setFormData(p => ({
-                  ...p,
-                  email: e.target.value
-                }))} className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#45B3C0] focus:ring-2 focus:ring-[#45B3C0]/20" style={{
+                    <input type="email" required placeholder="you@email.com" value={formData.email} onChange={e => {
+                  const value = e.target.value;
+                  setFormData(p => ({
+                    ...p,
+                    email: value
+                  }));
+                  if (fieldErrors.email) setFieldErrors(fe => ({
+                    ...fe,
+                    email: ""
+                  }));
+                }} onBlur={() => {
+                  if (formData.email && !isValidEmail(formData.email)) {
+                    setFieldErrors(fe => ({
+                      ...fe,
+                      email: "Please enter a valid email address (e.g. name@gmail.com)."
+                    }));
+                  }
+                }} className="w-full px-4 py-2.5 rounded-xl border outline-none transition-all duration-200 focus:border-[#45B3C0] focus:ring-2 focus:ring-[#45B3C0]/20" style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
                   fontSize: "0.9rem",
-                  borderColor: "#A8DDE3",
+                  borderColor: fieldErrors.email ? "#E05252" : "#A8DDE3",
                   backgroundColor: "#EAF7F8"
                 }} />
+                    {fieldErrors.email && <p style={{
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  fontSize: "0.72rem",
+                  color: "#E05252",
+                  marginTop: "4px"
+                }}>{fieldErrors.email}</p>}
                   </div>
 
                   {}
